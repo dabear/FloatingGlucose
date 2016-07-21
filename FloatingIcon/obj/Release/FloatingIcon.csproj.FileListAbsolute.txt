@@ -1,0 +1,8 @@
+E:\Kode\prosjekter\FloatingIcon\FloatingIcon\bin\Release\FloatingIcon.exe.config
+E:\Kode\prosjekter\FloatingIcon\FloatingIcon\bin\Release\FloatingIcon.exe
+E:\Kode\prosjekter\FloatingIcon\FloatingIcon\bin\Release\FloatingIcon.pdb
+E:\Kode\prosjekter\FloatingIcon\FloatingIcon\obj\Release\FloatingIcon.Form1.resources
+E:\Kode\prosjekter\FloatingIcon\FloatingIcon\obj\Release\FloatingIcon.Properties.Resources.resources
+E:\Kode\prosjekter\FloatingIcon\FloatingIcon\obj\Release\FloatingIcon.csproj.GenerateResource.Cache
+E:\Kode\prosjekter\FloatingIcon\FloatingIcon\obj\Release\FloatingIcon.exe
+E:\Kode\prosjekter\FloatingIcon\FloatingIcon\obj\Release\FloatingIcon.pdb

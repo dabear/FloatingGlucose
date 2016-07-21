@@ -1,0 +1,9 @@
+E:\kode\prosjekter\FloatingIcon\FloatingIcon\bin\Debug\FloatingIcon.exe.config
+E:\kode\prosjekter\FloatingIcon\FloatingIcon\bin\Debug\FloatingIcon.exe
+E:\kode\prosjekter\FloatingIcon\FloatingIcon\bin\Debug\FloatingIcon.pdb
+E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.csprojResolveAssemblyReference.cache
+E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.Form1.resources
+E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.Properties.Resources.resources
+E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.csproj.GenerateResource.Cache
+E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.exe
+E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.pdb
