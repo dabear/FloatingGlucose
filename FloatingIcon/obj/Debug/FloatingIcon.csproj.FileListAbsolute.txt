@@ -7,3 +7,12 @@ E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.Properties.R
 E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.csproj.GenerateResource.Cache
 E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.exe
 E:\kode\prosjekter\FloatingIcon\FloatingIcon\obj\Debug\FloatingIcon.pdb
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\bin\Debug\FloatingIcon.exe.config
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.exe
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.pdb
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\bin\Debug\FloatingIcon.exe
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\bin\Debug\FloatingIcon.pdb
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.csprojResolveAssemblyReference.cache
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.Form1.resources
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.Properties.Resources.resources
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.csproj.GenerateResource.Cache

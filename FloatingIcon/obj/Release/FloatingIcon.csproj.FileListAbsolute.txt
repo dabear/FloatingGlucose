@@ -6,3 +6,12 @@ E:\Kode\prosjekter\FloatingIcon\FloatingIcon\obj\Release\FloatingIcon.Properties
 E:\Kode\prosjekter\FloatingIcon\FloatingIcon\obj\Release\FloatingIcon.csproj.GenerateResource.Cache
 E:\Kode\prosjekter\FloatingIcon\FloatingIcon\obj\Release\FloatingIcon.exe
 E:\Kode\prosjekter\FloatingIcon\FloatingIcon\obj\Release\FloatingIcon.pdb
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\bin\Release\FloatingIcon.exe.config
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Release\FloatingIcon.exe
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Release\FloatingIcon.pdb
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Release\FloatingIcon.csprojResolveAssemblyReference.cache
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Release\FloatingIcon.Form1.resources
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Release\FloatingIcon.Properties.Resources.resources
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Release\FloatingIcon.csproj.GenerateResource.Cache
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\bin\Release\FloatingIcon.exe
+E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\bin\Release\FloatingIcon.pdb

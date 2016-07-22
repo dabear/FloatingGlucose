@@ -2,15 +2,17 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Windows.Threading;
+
 namespace FloatingIcon
 {
 
@@ -40,6 +42,8 @@ namespace FloatingIcon
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+
+        private DateTime lastGlucoseUpdate;
 
         public Form1()
         {
@@ -111,6 +115,9 @@ namespace FloatingIcon
 
                 this.lblGlucoseValue.Text = glucose + this.glucoseUnitText;
                 this.lblLastUpdate.Text = date;
+
+                this.lastGlucoseUpdate = DateTime.Now;
+
                 this.SetSuccessState();
                 StartFileSystemWatcher();
                 
@@ -137,6 +144,7 @@ namespace FloatingIcon
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
+            //This enables dragging the floating window around the screen
             base.OnMouseDown(e);
             if (e.Button == MouseButtons.Left)
             {
@@ -145,9 +153,29 @@ namespace FloatingIcon
             }
         }
 
-        void glucoseLogSystemWatcher_event(object sender, FileSystemEventArgs e)
+        private void WriteDebug(string line) { 
+            var now = DateTime.Now.ToUniversalTime();
+            Debug.WriteLine(now + ":" + line);
+        }
+
+        private async void glucoseLogSystemWatcher_event(object sender, FileSystemEventArgs e)
         {
-            LoadGlucoseValue();
+            WriteDebug("Got filesystem event, waiting 7 seconds..");
+            // delays the event up to seven seconds (to make sure the file is fully written before loading new values)
+            
+            await Task.Delay(7000);
+
+            // makes sure that only one event is handled
+            // every 5 seconds. Multiple fired change events will in effect be cancelled.
+            if (DateTime.Now.AddSeconds(-5) > this.lastGlucoseUpdate)
+            {
+                LoadGlucoseValue();
+                WriteDebug("Got file system event and called LoadClucoseValue()");
+            }
+            else {
+                WriteDebug("Got file system event, but did not load glucose! Less than 5 seconds has passed since last event");
+            }
+            
             
         }
 
