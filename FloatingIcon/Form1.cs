@@ -125,7 +125,7 @@ namespace FloatingIcon
                 var date = split.First();
                 var glucose = split.Last();
 
-                this.lblGlucoseValue.Text = glucose + this.glucoseUnitText;
+                this.lblGlucoseValue.Text = glucose + " " + this.glucoseUnitText;
                 this.lblLastUpdate.Text = date;
 
                 this.lastGlucoseUpdate = DateTime.Now;
