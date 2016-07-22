@@ -28,12 +28,12 @@ namespace FloatingIcon
         //example contents:
         // 21.07.2016 14:16|6.3
         // 21.07.2016 14:26|6.8
-        private string path = @"E:\Kode\python\glucose\glucose.log";
+        private string path = Properties.Settings.Default.LogFilePath;
 
         // Displays this text next to the glucose value
         // note that no conversion to/from mmol
         // is done on the values fetched from glucose.log
-        private string glucoseUnitText = "mmol";
+        private string glucoseUnitText = Properties.Settings.Default.GlucoseUnitText;
 
         private string appname = "FloatingGlucose";
 
