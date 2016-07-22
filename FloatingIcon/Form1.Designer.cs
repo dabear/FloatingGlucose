@@ -35,6 +35,7 @@
             this.lblLastUpdate = new System.Windows.Forms.Label();
             this.labelDoNotEverRemoveThisLabel = new System.Windows.Forms.Label();
             this.lblDebugModeOn = new System.Windows.Forms.Label();
+            this.lblClickToCloseApp = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblGlucose
@@ -48,6 +49,7 @@
             this.lblGlucose.Size = new System.Drawing.Size(70, 38);
             this.lblGlucose.TabIndex = 0;
             this.lblGlucose.Text = "BS:";
+            this.lblGlucose.Click += new System.EventHandler(this.lblGlucose_Click);
             // 
             // lblGlucoseNotAvailable
             // 
@@ -68,7 +70,7 @@
             this.lblGlucoseValue.BackColor = System.Drawing.Color.Black;
             this.lblGlucoseValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGlucoseValue.ForeColor = System.Drawing.Color.Green;
-            this.lblGlucoseValue.Location = new System.Drawing.Point(134, 11);
+            this.lblGlucoseValue.Location = new System.Drawing.Point(134, 12);
             this.lblGlucoseValue.Name = "lblGlucoseValue";
             this.lblGlucoseValue.Size = new System.Drawing.Size(277, 51);
             this.lblGlucoseValue.TabIndex = 2;
@@ -116,12 +118,27 @@
             this.lblDebugModeOn.Text = "(DEVMODE)";
             this.lblDebugModeOn.Visible = false;
             // 
+            // lblClickToCloseApp
+            // 
+            this.lblClickToCloseApp.AutoSize = true;
+            this.lblClickToCloseApp.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.lblClickToCloseApp.ForeColor = System.Drawing.Color.Green;
+            this.lblClickToCloseApp.Location = new System.Drawing.Point(407, 67);
+            this.lblClickToCloseApp.Name = "lblClickToCloseApp";
+            this.lblClickToCloseApp.Size = new System.Drawing.Size(36, 20);
+            this.lblClickToCloseApp.TabIndex = 7;
+            this.lblClickToCloseApp.Text = "(Exit)";
+            this.lblClickToCloseApp.UseCompatibleTextRendering = true;
+            this.lblClickToCloseApp.Visible = false;
+            this.lblClickToCloseApp.Click += new System.EventHandler(this.lblClickToCloseApp_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(452, 90);
+            this.Controls.Add(this.lblClickToCloseApp);
             this.Controls.Add(this.lblDebugModeOn);
             this.Controls.Add(this.labelDoNotEverRemoveThisLabel);
             this.Controls.Add(this.lblLastUpdate);
@@ -153,6 +170,7 @@
         private System.Windows.Forms.Label lblLastUpdate;
         private System.Windows.Forms.Label labelDoNotEverRemoveThisLabel;
         private System.Windows.Forms.Label lblDebugModeOn;
+        private System.Windows.Forms.Label lblClickToCloseApp;
     }
 }
 

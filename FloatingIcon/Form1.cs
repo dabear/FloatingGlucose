@@ -13,6 +13,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace FloatingIcon
 {
 
@@ -50,6 +51,7 @@ namespace FloatingIcon
         public static extern bool ReleaseCapture();
 
         private DateTime lastGlucoseUpdate;
+        private int glucoseLabelClickedCount = 0;
 
         public Form1()
         {
@@ -75,6 +77,8 @@ namespace FloatingIcon
             this.lblGlucoseValue.Visible = true;
         
         }
+
+
 
         private void StartFileSystemWatcher()
         {
@@ -189,6 +193,24 @@ namespace FloatingIcon
             }
             
             
+        }
+
+        private void lblGlucose_Click(object sender, EventArgs e)
+        {
+            WriteDebug("Clicked BS-label!");
+            this.glucoseLabelClickedCount += 1;
+
+            //User has clicked the "BS" text five times already, must be intentional.
+            //let him have access to the exit button
+            if (this.glucoseLabelClickedCount % 5 == 0) {
+                this.lblClickToCloseApp.Visible = !this.lblClickToCloseApp.Visible;
+            }
+          
+        }
+
+        private void lblClickToCloseApp_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
 
         
