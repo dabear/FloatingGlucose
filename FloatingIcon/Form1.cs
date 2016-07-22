@@ -78,7 +78,35 @@ namespace FloatingIcon
         
         }
 
+        private string DirectyionToArrow(string direction) {
 
+            switch (direction) {
+                case "DoubleUp":
+                    return "⇈";
+                case "SingleUp":
+                    return "↑";
+                case "FortyFiveUp":
+                    return "↗";
+                case "Flat":
+                    return "→";
+                case "FortyFiveDown":
+                    return "↘";
+                case "SingleDown":
+                    return "↓";
+                case "DoubleDown":
+                    return "⇊";
+                case "NOT COMPUTABLE":
+                    return "-";
+                case "RATE OUT OF RANGE":
+                    return "⇕";
+                default:
+                case "None":
+                    return "⇼";
+
+            
+            }
+        
+        }
 
         private void StartFileSystemWatcher()
         {
@@ -127,9 +155,11 @@ namespace FloatingIcon
             {
                 var split = File.ReadAllLines(path).Last().Split('|');
                 var date = split.First();
-                var glucose = split.Last();
+                var glucose = split.ElementAt(1);
+                var direction = split.Last();
+                var directionArrow = this.DirectyionToArrow(direction);
 
-                this.lblGlucoseValue.Text = glucose + " " + this.glucoseUnitText;
+                this.lblGlucoseValue.Text = String.Format("{0} {1} {2}", glucose, this.glucoseUnitText, directionArrow);
                 this.lblLastUpdate.Text = date;
 
                 this.lastGlucoseUpdate = DateTime.Now;
