@@ -33,6 +33,8 @@
             this.lblGlucoseValue = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblLastUpdate = new System.Windows.Forms.Label();
+            this.labelDoNotEverRemoveThisLabel = new System.Windows.Forms.Label();
+            this.lblDebugModeOn = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblGlucose
@@ -43,7 +45,7 @@
             this.lblGlucose.ForeColor = System.Drawing.Color.Green;
             this.lblGlucose.Location = new System.Drawing.Point(32, 21);
             this.lblGlucose.Name = "lblGlucose";
-            this.lblGlucose.Size = new System.Drawing.Size(72, 39);
+            this.lblGlucose.Size = new System.Drawing.Size(70, 38);
             this.lblGlucose.TabIndex = 0;
             this.lblGlucose.Text = "BS:";
             // 
@@ -55,7 +57,7 @@
             this.lblGlucoseNotAvailable.ForeColor = System.Drawing.Color.Green;
             this.lblGlucoseNotAvailable.Location = new System.Drawing.Point(134, 11);
             this.lblGlucoseNotAvailable.Name = "lblGlucoseNotAvailable";
-            this.lblGlucoseNotAvailable.Size = new System.Drawing.Size(280, 52);
+            this.lblGlucoseNotAvailable.Size = new System.Drawing.Size(277, 51);
             this.lblGlucoseNotAvailable.TabIndex = 1;
             this.lblGlucoseNotAvailable.Text = "Not Available";
             this.lblGlucoseNotAvailable.Visible = false;
@@ -68,7 +70,7 @@
             this.lblGlucoseValue.ForeColor = System.Drawing.Color.Green;
             this.lblGlucoseValue.Location = new System.Drawing.Point(134, 11);
             this.lblGlucoseValue.Name = "lblGlucoseValue";
-            this.lblGlucoseValue.Size = new System.Drawing.Size(280, 52);
+            this.lblGlucoseValue.Size = new System.Drawing.Size(277, 51);
             this.lblGlucoseValue.TabIndex = 2;
             this.lblGlucoseValue.Text = "Not Available";
             this.lblGlucoseValue.Visible = false;
@@ -93,12 +95,35 @@
             this.lblLastUpdate.TabIndex = 4;
             this.lblLastUpdate.Text = "N/A";
             // 
+            // labelDoNotEverRemoveThisLabel
+            // 
+            this.labelDoNotEverRemoveThisLabel.AutoSize = true;
+            this.labelDoNotEverRemoveThisLabel.Location = new System.Drawing.Point(36, 9);
+            this.labelDoNotEverRemoveThisLabel.Name = "labelDoNotEverRemoveThisLabel";
+            this.labelDoNotEverRemoveThisLabel.Size = new System.Drawing.Size(403, 17);
+            this.labelDoNotEverRemoveThisLabel.TabIndex = 5;
+            this.labelDoNotEverRemoveThisLabel.Text = "this label is only used as a syncobject by the filesystemwatcher";
+            this.labelDoNotEverRemoveThisLabel.Visible = false;
+            // 
+            // lblDebugModeOn
+            // 
+            this.lblDebugModeOn.AutoSize = true;
+            this.lblDebugModeOn.ForeColor = System.Drawing.Color.Yellow;
+            this.lblDebugModeOn.Location = new System.Drawing.Point(27, 59);
+            this.lblDebugModeOn.Name = "lblDebugModeOn";
+            this.lblDebugModeOn.Size = new System.Drawing.Size(87, 17);
+            this.lblDebugModeOn.TabIndex = 6;
+            this.lblDebugModeOn.Text = "(DEVMODE)";
+            this.lblDebugModeOn.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
             this.ClientSize = new System.Drawing.Size(452, 90);
+            this.Controls.Add(this.lblDebugModeOn);
+            this.Controls.Add(this.labelDoNotEverRemoveThisLabel);
             this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblGlucoseValue);
@@ -126,6 +151,8 @@
         private System.Windows.Forms.Label lblGlucoseValue;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblLastUpdate;
+        private System.Windows.Forms.Label labelDoNotEverRemoveThisLabel;
+        private System.Windows.Forms.Label lblDebugModeOn;
     }
 }
 

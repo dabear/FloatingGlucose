@@ -36,6 +36,12 @@ namespace FloatingIcon
 
         private string appname = "FloatingGlucose";
 
+        #if DEBUG
+        private bool isDebuggingBuild = true;
+        #else
+        private bool isDebuggingBuild = false; 
+        #endif
+
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
         [DllImportAttribute("user32.dll")]
@@ -52,6 +58,12 @@ namespace FloatingIcon
             Rectangle r = Screen.PrimaryScreen.WorkingArea;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(r.Width - this.Width, r.Height - this.Height);
+
+            // Enable special label only for debugging, 
+            // This is very handy when devloping with a Release binary running alongside a dev version
+            if (this.isDebuggingBuild) {
+                this.lblDebugModeOn.Visible = true;
+            }
 
         }
         private void SetErrorState() {
@@ -77,7 +89,7 @@ namespace FloatingIcon
             // Set folder path to watch
             fileSystemWatcher.Path = folderPath;
             //hack to make file system events pop up on the main thread
-            fileSystemWatcher.SynchronizingObject = this.lblLastUpdate;
+            fileSystemWatcher.SynchronizingObject = this.labelDoNotEverRemoveThisLabel;
 
             // Gets or sets the type of changes to watch for.
             // In this case we will watch change of filename, last modified time, size and directory name
