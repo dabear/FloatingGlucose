@@ -24,10 +24,10 @@ namespace FloatingIcon
         //log file where glucose values are stored
         //the file can have multiple lines, but only the last line
         //will be considered.
-        //format: date|glucose
+        //format: date|glucose|trend
         //example contents:
-        // 21.07.2016 14:16|6.3
-        // 21.07.2016 14:26|6.8
+        // 21.07.2016 14:16|6.3|Flat
+        // 21.07.2016 14:26|6.8|FortyFiveUp
         private string path = Properties.Settings.Default.LogFilePath;
 
         // Displays this text next to the glucose value
@@ -78,7 +78,7 @@ namespace FloatingIcon
         
         }
 
-        private string DirectyionToArrow(string direction) {
+        private string DirectionToArrow(string direction) {
 
             switch (direction) {
                 case "DoubleUp":
@@ -157,7 +157,7 @@ namespace FloatingIcon
                 var date = split.First();
                 var glucose = split.ElementAt(1);
                 var direction = split.Last();
-                var directionArrow = this.DirectyionToArrow(direction);
+                var directionArrow = this.DirectionToArrow(direction);
 
                 this.lblGlucoseValue.Text = String.Format("{0} {1} {2}", glucose, this.glucoseUnitText, directionArrow);
                 this.lblLastUpdate.Text = date;
