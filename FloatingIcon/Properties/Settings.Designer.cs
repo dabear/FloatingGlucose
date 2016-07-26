@@ -12,7 +12,7 @@ namespace FloatingIcon.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "11.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -25,25 +25,37 @@ namespace FloatingIcon.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("E:\\Kode\\python\\glucose\\glucose.log")]
-        public string LogFilePath {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string nightscout_site {
             get {
-                return ((string)(this["LogFilePath"]));
+                return ((string)(this["nightscout_site"]));
             }
             set {
-                this["LogFilePath"] = value;
+                this["nightscout_site"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("mmol")]
-        public string GlucoseUnitText {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool enable_exception_logging_to_stderr {
             get {
-                return ((string)(this["GlucoseUnitText"]));
+                return ((bool)(this["enable_exception_logging_to_stderr"]));
             }
             set {
-                this["GlucoseUnitText"] = value;
+                this["enable_exception_logging_to_stderr"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("60")]
+        public int refresh_interval_in_seconds {
+            get {
+                return ((int)(this["refresh_interval_in_seconds"]));
+            }
+            set {
+                this["refresh_interval_in_seconds"] = value;
             }
         }
     }

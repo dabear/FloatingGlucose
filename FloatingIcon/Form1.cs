@@ -12,7 +12,10 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using System.Net;
+using System.Net.Http;
+using FloatingIcon.Classes;
+using Newtonsoft.Json;
 
 namespace FloatingIcon
 {
@@ -21,27 +24,18 @@ namespace FloatingIcon
     public partial class Form1 : Form
     {
 
-        //log file where glucose values are stored
-        //the file can have multiple lines, but only the last line
-        //will be considered.
-        //format: date|glucose|trend
-        //example contents:
-        // 21.07.2016 14:16|6.3|Flat
-        // 21.07.2016 14:26|6.8|FortyFiveUp
-        private string path = Properties.Settings.Default.LogFilePath;
-
-        // Displays this text next to the glucose value
-        // note that no conversion to/from mmol
-        // is done on the values fetched from glucose.log
-        private string glucoseUnitText = Properties.Settings.Default.GlucoseUnitText;
-
+        //nightscout URL, will be used to create a pebble endpoint to fetch data from
+        private string nsURL = Properties.Settings.Default.nightscout_site;
+        private bool loggingEnabled = Properties.Settings.Default.enable_exception_logging_to_stderr;
         private string appname = "FloatingGlucose";
 
-        #if DEBUG
+        
+        private int refreshTime = Properties.Settings.Default.refresh_interval_in_seconds * 1000;//milliseconds
+#if DEBUG
         private bool isDebuggingBuild = true;
-        #else
+#else
         private bool isDebuggingBuild = false; 
-        #endif
+#endif
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -50,12 +44,32 @@ namespace FloatingIcon
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        private DateTime lastGlucoseUpdate;
+        /*[return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        public static extern bool SetForegroundWindow(IntPtr hwnd);
+        [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        static extern bool AllowSetForegroundWindow(int procID);
+        [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
+        private static extern int ShowWindow(IntPtr hWnd, uint Msg);
+        private uint SW_SHOWNORMAL = 1;*/
         private int glucoseLabelClickedCount = 0;
+        
 
         public Form1()
         {
             InitializeComponent();
+
+            //bug in newer .net frameworks? Means gotta set these properties as well
+            //this.TopLevel = true;
+            //this.TopMost = true;
+
+           /* AllowSetForegroundWindow((int)Process.GetCurrentProcess().Id);
+            SetForegroundWindow(Handle);
+            ShowWindow(Handle, SW_SHOWNORMAL);*/
+
+           
+
+
             //position at bottom right per default
             Rectangle r = Screen.PrimaryScreen.WorkingArea;
             this.StartPosition = FormStartPosition.Manual;
@@ -68,112 +82,62 @@ namespace FloatingIcon
             }
 
         }
-        private void SetErrorState() {
-            this.lblGlucoseNotAvailable.Visible = true;
-            this.lblGlucoseValue.Visible = false;
+        private void SetErrorState(Exception ex=null) {
+
+            this.lblGlucoseValue.Text = "N/A";
+            this.lblLastUpdate.Text = "N/A";
+            if (ex != null && this.loggingEnabled) {
+                if (this.isDebuggingBuild) {
+                    Console.Out.WriteLine(ex);
+                }
+                else
+                {
+                    Console.Error.WriteLine(ex);
+                }
+                
+            }
+            
         }
         private void SetSuccessState() {
-            this.lblGlucoseNotAvailable.Visible = false;
-            this.lblGlucoseValue.Visible = true;
+            
+            //this.lblGlucoseValue.Visible = true;
         
         }
 
-        private string DirectionToArrow(string direction) {
+        private async void LoadGlucoseValue() 
+        {
+            if (this.nsURL == null || !Uri.IsWellFormedUriString(nsURL, UriKind.RelativeOrAbsolute)) {
+                MessageBox.Show("The nightscout_site setting is not specifed or invalid, will now Exit", this.appname, MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                Application.Exit();
 
-            switch (direction) {
-                case "DoubleUp":
-                    return "⇈";
-                case "SingleUp":
-                    return "↑";
-                case "FortyFiveUp":
-                    return "↗";
-                case "Flat":
-                    return "→";
-                case "FortyFiveDown":
-                    return "↘";
-                case "SingleDown":
-                    return "↓";
-                case "DoubleDown":
-                    return "⇊";
-                case "NOT COMPUTABLE":
-                    return "-";
-                case "RATE OUT OF RANGE":
-                    return "⇕";
-                default:
-                case "None":
-                    return "⇼";
-
-            
             }
-        
-        }
 
-        private void StartFileSystemWatcher()
-        {
-            string folderPath = Path.GetDirectoryName(this.path);
-
-            // If there is no folder selected, to nothing
-            if (string.IsNullOrWhiteSpace(folderPath))
-                return;
-
-            System.IO.FileSystemWatcher fileSystemWatcher = new System.IO.FileSystemWatcher();
-
-            // Set folder path to watch
-            fileSystemWatcher.Path = folderPath;
-            //hack to make file system events pop up on the main thread
-            fileSystemWatcher.SynchronizingObject = this.labelDoNotEverRemoveThisLabel;
-
-            // Gets or sets the type of changes to watch for.
-            // In this case we will watch change of filename, last modified time, size and directory name
-            fileSystemWatcher.NotifyFilter = System.IO.NotifyFilters.FileName |
-                System.IO.NotifyFilters.LastWrite |
-                System.IO.NotifyFilters.Size |
-                System.IO.NotifyFilters.DirectoryName;
-
-
-            // Event handlers that are watching for specific event
-            fileSystemWatcher.Created += new System.IO.FileSystemEventHandler(glucoseLogSystemWatcher_event);
-            fileSystemWatcher.Changed += new System.IO.FileSystemEventHandler(glucoseLogSystemWatcher_event);
-            fileSystemWatcher.Deleted += new System.IO.FileSystemEventHandler(glucoseLogSystemWatcher_event);
-            fileSystemWatcher.Renamed += new System.IO.RenamedEventHandler(glucoseLogSystemWatcher_event);
-
-            // NOTE: If you want to monitor specified files in folder, you can use this filter
-            fileSystemWatcher.Filter = Path.GetFileName(path);
-
-            // START watching
-            fileSystemWatcher.EnableRaisingEvents = true;
-        }
-
-        
-
-
-        private void LoadGlucoseValue() 
-        {
-            
-            
             try
             {
-                var split = File.ReadAllLines(path).Last().Split('|');
-                var date = split.First();
-                var glucose = split.ElementAt(1);
-                var direction = split.Last();
-                var directionArrow = this.DirectionToArrow(direction);
-
-                this.lblGlucoseValue.Text = String.Format("{0} {1} {2}", glucose, this.glucoseUnitText, directionArrow);
-                this.lblLastUpdate.Text = date;
-
-                this.lastGlucoseUpdate = DateTime.Now;
+                WriteDebug("Trying to refresh data");
+                //var data = await this.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
+                var data = await PebbleData.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
+                this.lblGlucoseValue.Text = String.Format("{0} {1}", data.glucose, data.directionArrow);
+                this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
 
                 this.SetSuccessState();
-                StartFileSystemWatcher();
-                
+
+
             }
             catch (IOException ex)
             {
-                this.SetErrorState();
+                this.SetErrorState(ex);
 
             }
-            catch(Exception ex)
+            catch (HttpRequestException ex)
+            {
+                this.SetErrorState(ex);
+            }
+            catch (JsonReaderException ex) {
+                this.SetErrorState(ex);
+            }
+            catch (Exception ex)
             {
                 var msg = "An unknown error occured of type " + ex.GetType().ToString() + ": " + ex.Message;
                 MessageBox.Show(msg, this.appname, MessageBoxButtons.OK,
@@ -185,7 +149,17 @@ namespace FloatingIcon
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.LoadGlucoseValue(); 
+            this.LoadGlucoseValue();
+            var refreshGlucoseTimer = new System.Windows.Forms.Timer();
+            //auto refresh data once every x seconds
+            
+            refreshGlucoseTimer.Interval = this.refreshTime; 
+            refreshGlucoseTimer.Tick += new EventHandler(Glucose_Tick);
+            refreshGlucoseTimer.Start();
+        }
+        private void Glucose_Tick(object sender, EventArgs e)
+        {
+            LoadGlucoseValue();
         }
 
         protected override void OnMouseDown(MouseEventArgs e)
@@ -204,26 +178,7 @@ namespace FloatingIcon
             Debug.WriteLine(now + ":" + line);
         }
 
-        private async void glucoseLogSystemWatcher_event(object sender, FileSystemEventArgs e)
-        {
-            WriteDebug("Got filesystem event, waiting 7 seconds..");
-            // delays the event up to seven seconds (to make sure the file is fully written before loading new values)
-            
-            await Task.Delay(7000);
-
-            // makes sure that only one event is handled
-            // every 5 seconds. Multiple fired change events will in effect be cancelled.
-            if (DateTime.Now.AddSeconds(-5) > this.lastGlucoseUpdate)
-            {
-                LoadGlucoseValue();
-                WriteDebug("Got file system event and called LoadClucoseValue()");
-            }
-            else {
-                WriteDebug("Got file system event, but did not load glucose! Less than 5 seconds has passed since last event");
-            }
-            
-            
-        }
+        
 
         private void lblGlucose_Click(object sender, EventArgs e)
         {
@@ -232,7 +187,7 @@ namespace FloatingIcon
 
             //User has clicked the "BS" text five times already, must be intentional.
             //let him have access to the exit button
-            if (this.glucoseLabelClickedCount % 5 == 0) {
+            if (this.glucoseLabelClickedCount % 4 == 0) {
                 this.lblClickToCloseApp.Visible = !this.lblClickToCloseApp.Visible;
             }
           
@@ -243,6 +198,14 @@ namespace FloatingIcon
             Application.Exit();
         }
 
-        
+        private void labelDoNotEverRemoveThisLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+ 
+
+
+
     }
 }

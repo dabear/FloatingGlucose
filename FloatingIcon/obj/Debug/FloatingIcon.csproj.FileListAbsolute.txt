@@ -16,3 +16,14 @@ E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.csprojRes
 E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.Form1.resources
 E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.Properties.Resources.resources
 E:\Kode\prosjekter\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.csproj.GenerateResource.Cache
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\bin\Debug\FloatingIcon.exe.config
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.exe
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.pdb
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\bin\Debug\FloatingIcon.exe
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\bin\Debug\FloatingIcon.pdb
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.csprojResolveAssemblyReference.cache
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.Form1.resources
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.Properties.Resources.resources
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\obj\Debug\FloatingIcon.csproj.GenerateResource.Cache
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\bin\Debug\Newtonsoft.Json.dll
+C:\Users\bjorninge\Source\Repos\FloatingGlucose\FloatingIcon\bin\Debug\Newtonsoft.Json.xml

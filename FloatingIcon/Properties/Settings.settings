@@ -2,11 +2,14 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FloatingIcon.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="LogFilePath" Type="System.String" Scope="User">
-      <Value Profile="(Default)">E:\Kode\python\glucose\glucose.log</Value>
+    <Setting Name="nightscout_site" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="GlucoseUnitText" Type="System.String" Scope="User">
-      <Value Profile="(Default)">mmol</Value>
+    <Setting Name="enable_exception_logging_to_stderr" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="refresh_interval_in_seconds" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">60</Value>
     </Setting>
   </Settings>
 </SettingsFile>
