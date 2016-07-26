@@ -1,4 +1,4 @@
-﻿namespace FloatingIcon
+﻿namespace FloatingGlucose
 {
     partial class Form1
     {

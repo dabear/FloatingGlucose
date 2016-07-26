@@ -14,10 +14,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Http;
-using FloatingIcon.Classes;
+using FloatingGlucose.Classes;
 using Newtonsoft.Json;
 
-namespace FloatingIcon
+namespace FloatingGlucose
 {
 
 

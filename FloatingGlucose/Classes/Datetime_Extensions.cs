@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FloatingIcon
+namespace FloatingGlucose
 {
     static class Datetime_Extensions
     {

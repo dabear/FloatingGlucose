@@ -6,7 +6,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FloatingIcon.Classes
+namespace FloatingGlucose.Classes
 {
     class PebbleData
     {
