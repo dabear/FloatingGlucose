@@ -7,7 +7,7 @@ A transparent popup window will be displayed in the bottom right corner of your 
 ![Image of Floating glucose in action](https://s32.postimg.org/madq0uj2d/floating_glucose.png)
 
 ## Installation
-Download The .zip-file of the latest release, [which you can find here TODO](https://example.com/TODO) and extract it to some location under your root drive. I suggest extracting it to c:\glucose or similar.
+Download The .zip-file of the latest release, [which you can find here](https://github.com/dabear/FloatingGlucose/releases/tag/v.0.9.0.1-alpha) and extract it to some location under your root drive. I suggest extracting it to c:\glucose or similar.
 
 (You can place it anywhere really.)
 
