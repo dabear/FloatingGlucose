@@ -34,6 +34,10 @@ Now, please edit the file FloatingGlucose.exe.config and update the section Floa
 ## Running the program
 After configuring the nightscout installation URL, double click on FloatingGlucose.exe to open the program.
 
+## Hidden / Nice to Know features
+* You can drag the window around and place it where you want to.
+* To Exit the program, click the "BS:" text five times. A button marked "(Exit)" will show. Click this to close the program.
+
 ## Debugging
 Having troubles with crashes or with the widget not updating? Please make sure you have enabled exception logging to stderr (in the configfile) then run the program from command line:
 
