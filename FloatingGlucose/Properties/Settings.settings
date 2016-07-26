@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="nightscout_site" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">https://...</Value>
     </Setting>
     <Setting Name="enable_exception_logging_to_stderr" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
