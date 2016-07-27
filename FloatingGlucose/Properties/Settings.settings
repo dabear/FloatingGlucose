@@ -11,5 +11,8 @@
     <Setting Name="refresh_interval_in_seconds" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">60</Value>
     </Setting>
+    <Setting Name="gui_scaling_ratio" Type="System.Single" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

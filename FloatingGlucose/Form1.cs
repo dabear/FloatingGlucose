@@ -53,23 +53,32 @@ namespace FloatingGlucose
         private static extern int ShowWindow(IntPtr hWnd, uint Msg);
         private uint SW_SHOWNORMAL = 1;*/
         private int glucoseLabelClickedCount = 0;
-        
+
+        private void SetScaling(float scale) {
+            if ((float)scale == 1.0) {
+                return;
+            }
+            var ratio = new SizeF(scale, scale);
+            this.Scale(ratio);
+            //this is a hack. Scale() doesn't change font sizes
+            // as this is a simple form with onlt labels, set new font sizes for these controls
+            // based on the scaling factor used above
+            var controls = this.Controls.OfType<Label>().ToList();
+            controls.ForEach(x =>
+            {
+                x.Font = new Font(x.Font.Name, x.Font.SizeInPoints * scale);
+            });
+
+        }
 
         public Form1()
         {
             InitializeComponent();
-
-            //bug in newer .net frameworks? Means gotta set these properties as well
-            //this.TopLevel = true;
-            //this.TopMost = true;
-
-           /* AllowSetForegroundWindow((int)Process.GetCurrentProcess().Id);
-            SetForegroundWindow(Handle);
-            ShowWindow(Handle, SW_SHOWNORMAL);*/
-
-           
-
-
+            // Manual scaling for now with values from config file
+            // how to figure out the dpi:
+            // this.CreateGraphics().DpiX > 96
+            SetScaling(Properties.Settings.Default.gui_scaling_ratio);
+             
             //position at bottom right per default
             Rectangle r = Screen.PrimaryScreen.WorkingArea;
             this.StartPosition = FormStartPosition.Manual;
@@ -150,6 +159,7 @@ namespace FloatingGlucose
         private void Form1_Load(object sender, EventArgs e)
         {
             this.LoadGlucoseValue();
+            
             var refreshGlucoseTimer = new System.Windows.Forms.Timer();
             //auto refresh data once every x seconds
             

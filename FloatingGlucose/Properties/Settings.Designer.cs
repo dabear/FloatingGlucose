@@ -58,5 +58,17 @@ namespace FloatingGlucose.Properties {
                 this["refresh_interval_in_seconds"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public float gui_scaling_ratio {
+            get {
+                return ((float)(this["gui_scaling_ratio"]));
+            }
+            set {
+                this["gui_scaling_ratio"] = value;
+            }
+        }
     }
 }
