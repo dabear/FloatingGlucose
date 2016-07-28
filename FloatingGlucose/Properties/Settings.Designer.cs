@@ -70,5 +70,17 @@ namespace FloatingGlucose.Properties {
                 this["gui_scaling_ratio"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool enable_startup_hide_exit_button {
+            get {
+                return ((bool)(this["enable_startup_hide_exit_button"]));
+            }
+            set {
+                this["enable_startup_hide_exit_button"] = value;
+            }
+        }
     }
 }

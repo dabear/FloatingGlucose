@@ -93,7 +93,6 @@
             this.lblClickToCloseApp.TabIndex = 7;
             this.lblClickToCloseApp.Text = "(Exit)";
             this.lblClickToCloseApp.UseCompatibleTextRendering = true;
-            this.lblClickToCloseApp.Visible = false;
             this.lblClickToCloseApp.Click += new System.EventHandler(this.lblClickToCloseApp_Click);
             // 
             // Form1

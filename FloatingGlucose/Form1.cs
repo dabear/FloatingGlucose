@@ -90,6 +90,10 @@ namespace FloatingGlucose
                 this.lblDebugModeOn.Visible = true;
             }
 
+            if (Properties.Settings.Default.enable_startup_hide_exit_button) {
+                this.lblClickToCloseApp.Visible = false;
+            }
+
         }
         private void SetErrorState(Exception ex=null) {
 
@@ -212,10 +216,5 @@ namespace FloatingGlucose
         {
 
         }
-
- 
-
-
-
     }
 }
