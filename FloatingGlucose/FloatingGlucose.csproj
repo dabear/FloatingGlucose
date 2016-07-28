@@ -128,14 +128,20 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="noun_335372_cc.ico" />
+    <Content Include="README_attributions.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>cd $(TargetDir)
+del /F /Q *.zip
+set "projectname=$(ProjectName)"
+set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile
+%25PWS%25 -Command ". ..\..\buildscripts\create-zip-file.ps1"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PreBuildEvent>cd $(TargetDir)
+    <PreBuildEvent>
 set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile
 cd $(TargetDir)
 %25PWS%25 -Command "ls | where { -not ($_.Name.EndsWith(\"vshost.exe\") -or $_.Name.EndsWith(\".zip\")) } | rm"</PreBuildEvent>
