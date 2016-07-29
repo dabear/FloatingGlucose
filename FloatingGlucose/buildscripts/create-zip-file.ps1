@@ -44,7 +44,7 @@ function getGitReleaseZipFileName() {
     #echo "has changes?"$has_uncommitted_changes
     #echo "last id:"$commit_id
 
-    if($log -match "tag: (?<ver>.*)") {
+    if($log -match "tag: (?<ver>.*?)[,)]") {
         #basically, if there is a release associated with this commit, use that release isntead of commit
         $commit_id = $Matches["ver"]
     }
