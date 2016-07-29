@@ -30,8 +30,9 @@ function out-zip($zipfilename, $files) {
     $ZipPackage.Close()
 } 
 
-function getZipFileName() {
+function getGitReleaseZipFileName() {
     $projectname = $env:projectname
+	$buildconfigname = ($env:buildconfigname).toLower()
     #$projectname = "FloatingGlucose"
     $log = (git log --pretty=oneline --decorate | select -first 1)
     #$log = (git log --pretty=oneline --decorate | select -Index 3)
@@ -55,17 +56,20 @@ function getZipFileName() {
         $version = $commit_id
 
     }
-    return "$projectname-$version.zip"
+    return "$projectname-$version-$buildconfigname.zip"
  
 }
 
+function writeReleaseZipFile(){
+
+	$zipfilename = getGitReleaseZipFileName
+	$dir = pwd
+	$outpath = "$dir\$zipfilename"
+
+	$files = ls . |  where { -not ($_.name.EndsWith(".vshost.exe") -or $_.name.EndsWith(".zip"))  }
 
 
-$zipfilename = getZipFileName
-$dir = pwd
-$outpath = "$dir\$zipfilename"
+	$files | out-zip -zipfilename $outpath -files $files
+	return $zipfilename
+}
 
-$files = ls . |  where { -not ($_.name.EndsWith(".vshost.exe") -or $_.name.EndsWith(".zip"))  }
-
-
-$files | out-zip -zipfilename $outpath -files $files

@@ -21,7 +21,7 @@ namespace FloatingGlucose
 {
 
 
-    public partial class Form1 : Form
+    public partial class FloatingGlucose : Form
     {
 
         //nightscout URL, will be used to create a pebble endpoint to fetch data from
@@ -71,7 +71,7 @@ namespace FloatingGlucose
 
         }
 
-        public Form1()
+        public FloatingGlucose()
         {
             InitializeComponent();
             // Manual scaling for now with values from config file
@@ -120,7 +120,7 @@ namespace FloatingGlucose
         private async void LoadGlucoseValue() 
         {
             if (this.nsURL == null || !Uri.IsWellFormedUriString(nsURL, UriKind.RelativeOrAbsolute)) {
-                MessageBox.Show("The nightscout_site setting is not specifed or invalid, will now Exit", this.appname, MessageBoxButtons.OK,
+                MessageBox.Show("The nightscout_site setting in the .config file is not specifed or invalid, will now exit", this.appname, MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
                 Application.Exit();
 
@@ -160,7 +160,7 @@ namespace FloatingGlucose
         
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void FloatingGlucose_Load(object sender, EventArgs e)
         {
             this.LoadGlucoseValue();
             

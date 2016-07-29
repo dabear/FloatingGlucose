@@ -57,14 +57,23 @@
   <PropertyGroup>
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <DelaySign>false</DelaySign>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -78,17 +87,18 @@
   <ItemGroup>
     <Compile Include="Classes\Datetime_Extensions.cs" />
     <Compile Include="Classes\PebbleData.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FloatingGlucose.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FloatingGlucose.Designer.cs">
+      <DependentUpon>FloatingGlucose.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FloatingGlucose.resx">
+      <DependentUpon>FloatingGlucose.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -137,8 +147,12 @@
     <PostBuildEvent>cd $(TargetDir)
 del /F /Q *.zip
 set "projectname=$(ProjectName)"
+set "buildconfigname=$(ConfigurationName)"
+REM install(import) pfx to windows certificate store, then select it based on its sha1 #hash and sign the application
+REM the visual studio code signing doesn't seem to handle the pfx file I have correctly, so I rather invoke signing manually here with signtool (part of visual studio):
+"C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 $(TargetPath)
 set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile
-%25PWS%25 -Command ". ..\..\buildscripts\create-zip-file.ps1"</PostBuildEvent>
+%25PWS%25 -Command ". ..\..\buildscripts\create-zip-file.ps1; writeReleaseZipFile;"</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>

@@ -1,6 +1,6 @@
 ﻿namespace FloatingGlucose
 {
-    partial class Form1
+    partial class FloatingGlucose
     {
         /// <summary>
         /// Required designer variable.
@@ -95,7 +95,7 @@
             this.lblClickToCloseApp.UseCompatibleTextRendering = true;
             this.lblClickToCloseApp.Click += new System.EventHandler(this.lblClickToCloseApp_Click);
             // 
-            // Form1
+            // FloatingGlucose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -107,15 +107,15 @@
             this.Controls.Add(this.lblGlucoseValue);
             this.Controls.Add(this.lblGlucose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "FloatingGlucose";
             this.Opacity = 0.85D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Form1";
+            this.Text = "FloatingGlucose";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.SystemColors.ActiveBorder;
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.FloatingGlucose_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
