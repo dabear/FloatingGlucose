@@ -151,6 +151,7 @@ set "buildconfigname=$(ConfigurationName)"
 REM install(import) pfx to windows certificate store, then select it based on its sha1 #hash and sign the application
 REM the visual studio code signing doesn't seem to handle the pfx file I have correctly, so I rather invoke signing manually here with signtool (part of visual studio):
 "C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 $(TargetPath)
+"C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 $(TargetDir)\Newtonsoft.Json.dll
 set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile
 %25PWS%25 -Command ". ..\..\buildscripts\create-zip-file.ps1; writeReleaseZipFile;"</PostBuildEvent>
   </PropertyGroup>
