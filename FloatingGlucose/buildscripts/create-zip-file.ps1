@@ -6,7 +6,7 @@
 function out-zip($zipfilename, $files) { 
       #Load some assemblys. (No line break!)
     [System.Reflection.Assembly]::Load("WindowsBase,
-       Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35")
+       Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35") | Out-Null
 
     #Create a zip file named "MyZipFile.zip". (No line break!)
     $ZipPackage=[System.IO.Packaging.ZipPackage]::Open("$zipfilename",
@@ -30,10 +30,7 @@ function out-zip($zipfilename, $files) {
     $ZipPackage.Close()
 } 
 
-function getGitReleaseZipFileName() {
-    $projectname = $env:projectname
-	$buildconfigname = ($env:buildconfigname).toLower()
-    #$projectname = "FloatingGlucose"
+function getGitTagOrReleaseName() {   
     $log = (git log --pretty=oneline --decorate | select -first 1)
     #$log = (git log --pretty=oneline --decorate | select -Index 3)
     $commit_id = "commit-" + ($log.Split(" ") | select -first 1).substring(0,8)
@@ -56,11 +53,29 @@ function getGitReleaseZipFileName() {
         $version = $commit_id
 
     }
+    return $version
+}
+
+
+
+function getGitReleaseZipFileName() {
+    #$projectname = "FloatingGlucose"
+    $projectname = $env:projectname
+	$buildconfigname = ($env:buildconfigname).toLower()
+    $version = getGitTagOrReleaseName
     return "$projectname-$version-$buildconfigname.zip"
  
 }
 
-function writeReleaseZipFile(){
+function writeVersionFile(){
+    $buildver = getGitTagOrReleaseName
+    #echo  $buildver  > version.txt #|out-file "version.txt" -Encoding "ascii"
+    #writealltext must be used to avoid newline
+    [System.IO.File]::WriteAllText("version.txt", $buildver)
+    echo "wrote $buildver to version.txt"
+}
+
+function createReleaseZipFile(){
     
 	$zipfilename = getGitReleaseZipFileName
 	$dir = pwd

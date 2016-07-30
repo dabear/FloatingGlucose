@@ -145,15 +145,33 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>cd $(TargetDir)
+echo Deleting files in build directory
 del /F /Q *.zip
+del /F /Q  Setup*.exe
 set "projectname=$(ProjectName)"
 set "buildconfigname=$(ConfigurationName)"
+set "signtool="C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 "
+set "innosetupiscc="%25programfiles(x86)%25/Inno Setup 5/ISCC.exe" /Qp"
+set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile
+
 REM install(import) pfx to windows certificate store, then select it based on its sha1 #hash and sign the application
 REM the visual studio code signing doesn't seem to handle the pfx file I have correctly, so I rather invoke signing manually here with signtool (part of visual studio):
-"C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 $(TargetPath)
-"C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 $(TargetDir)\Newtonsoft.Json.dll
-set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile
-%25PWS%25 -Command ". ..\..\buildscripts\create-zip-file.ps1; writeReleaseZipFile;"</PostBuildEvent>
+
+echo Signing application executables
+%25signtool%25 $(TargetPath)
+%25signtool%25 $(TargetDir)\*.dll
+
+REM Creates version numbered zip file
+
+echo Creating version.txt file and zipping release
+%25PWS%25 -Command ". ..\..\buildscripts\create-zip-file.ps1; writeVersionFile;  createReleaseZipFile; "
+set /p BUILDVER=&lt;version.txt
+REM creates setupRelease.exe|setupDebug.exe installer
+
+echo Creating Signed installer file
+
+cd $(ProjectDir)\installer
+%25innosetupiscc%25 /DReleaseType=$(ConfigurationName)  /DMyAppVersion=%25BUILDVER%25 /O$(TargetDir)  floatingglucose.iss</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
