@@ -7,27 +7,10 @@ A transparent popup window will be displayed in the bottom right corner of your 
 ![Image of Floating glucose in action](https://s32.postimg.org/madq0uj2d/floating_glucose.png)
 
 ## Installation
-Download The .zip-file of the latest release, [which you can find here](https://github.com/dabear/FloatingGlucose/releases/) and extract it to some location under your root drive. I suggest extracting it to c:\glucose or similar.
-
-(You can place it anywhere really.)
+Download The Setup.exe of the latest release, [which you can find here](https://github.com/dabear/FloatingGlucose/releases/) and run it. You should normally just install it to the default directory which is C:\Program Files (x86)\FloatingGlucose. 
 
 
-You should now have the following files extracted under c:\glucose:
-
-```
- 
- Length Name                                           
------- ----                                           
-38120 FloatingGlucose.exe                            
-1878 FloatingGlucose.exe.config                     
-36352 FloatingGlucose.pdb                            
-526336 Newtonsoft.Json.dll                            
-523221 Newtonsoft.Json.xml                            
-384 README_attributions.txt                        
-470 [Content_Types].xml 
-```
-
-Now, please edit the file FloatingGlucose.exe.config and update the section FloatingGlucose.Properties.Settings and set the url to your nightscout installation.
+After installation, please edit the file FloatingGlucose.exe.config, locate the section FloatingGlucose.Properties.Settings and set the url to your nightscout installation.
 
 ![Example of changing your nightscout installation URL](https://s32.postimg.org/gmo1sg29h/glucose_settings.png)
 
