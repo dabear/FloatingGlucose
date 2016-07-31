@@ -52,6 +52,8 @@ Source: "..\bin\{#ReleaseType}\Newtonsoft.Json.xml"; DestDir: "{app}"; Flags: ig
 Source: "..\bin\{#ReleaseType}\README_attributions.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\{#ReleaseType}\version.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+[Dirs]
+Name: "{app}"; Permissions: users-full
 
 [Icons]
 Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

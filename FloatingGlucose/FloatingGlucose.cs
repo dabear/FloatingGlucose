@@ -120,7 +120,8 @@ namespace FloatingGlucose
         private async void LoadGlucoseValue() 
         {
             if (this.nsURL == null || !Uri.IsWellFormedUriString(nsURL, UriKind.RelativeOrAbsolute)) {
-                MessageBox.Show("The nightscout_site setting in the .config file is not specifed or invalid, will now exit", this.appname, MessageBoxButtons.OK,
+                var configfilename = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+                MessageBox.Show(String.Format("The nightscout_site setting in the file {0} is not specifed or invalid. Please edit the file and restart the program. Will now exit.", configfilename), this.appname, MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
                 Application.Exit();
 

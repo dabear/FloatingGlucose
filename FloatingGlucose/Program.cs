@@ -16,6 +16,7 @@ namespace FloatingGlucose
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new FormGlucoseSettings());
             Application.Run(new FloatingGlucose());
         }
     }
