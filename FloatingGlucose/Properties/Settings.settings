@@ -14,8 +14,23 @@
     <Setting Name="gui_scaling_ratio" Type="System.Single" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="enable_startup_hide_exit_button" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
+    <Setting Name="on_startup_show_buttons" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="enable_alarms" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="alarm_urgent_high" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">13</Value>
+    </Setting>
+    <Setting Name="alarm_high" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">11</Value>
+    </Setting>
+    <Setting Name="alarm_low" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">4.5</Value>
+    </Setting>
+    <Setting Name="alarm_urgent_low" Type="System.Decimal" Scope="User">
+      <Value Profile="(Default)">3.8</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("FloatingGlucose")]
 [assembly: AssemblyDescription("A windows app to display your glucose data from windows")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Bjørns open source utilities")]
+[assembly: AssemblyCompany("Bjorns_opensource_utils")]
 [assembly: AssemblyProduct("FloatingGlucose")]
 [assembly: AssemblyCopyright("Copyright code.bjorninge.no©  2016")]
 [assembly: AssemblyTrademark("")]

@@ -86,7 +86,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Datetime_Extensions.cs" />
+    <Compile Include="Classes\Defaults.cs" />
+    <Compile Include="Classes\GlucoseStatus.cs" />
     <Compile Include="Classes\PebbleData.cs" />
+    <Compile Include="Classes\Validators.cs" />
     <Compile Include="FloatingGlucose.cs">
       <SubType>Form</SubType>
     </Compile>

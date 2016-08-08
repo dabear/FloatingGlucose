@@ -25,17 +25,50 @@ namespace FloatingGlucose
     {
 
         //nightscout URL, will be used to create a pebble endpoint to fetch data from
-        private string nsURL = Properties.Settings.Default.nightscout_site;
-        private bool loggingEnabled = Properties.Settings.Default.enable_exception_logging_to_stderr;
-        private string appname = "FloatingGlucose";
+        private string nsURL {
+            get {
+                return Properties.Settings.Default.nightscout_site;
+            }
+        }
+        private bool alarmEnabled {
+            get { return Properties.Settings.Default.enable_alarms;}
+        }
+        private decimal alarmUrgentHigh
+        {
+            get { return Properties.Settings.Default.alarm_urgent_high; }
+        }
+        private decimal alarmHigh
+        {
+            get { return Properties.Settings.Default.alarm_high; }
+        }
 
-        
-        private int refreshTime = Properties.Settings.Default.refresh_interval_in_seconds * 1000;//milliseconds
+        private decimal alarmLow
+        {
+            get { return Properties.Settings.Default.alarm_high; }
+        }
+
+        private decimal alarmUrgentLow
+        {
+            get { return Properties.Settings.Default.alarm_urgent_low; }
+        }
+
+        //private string nsURL = Properties.Settings.Default.nightscout_site;
+        private bool loggingEnabled = Properties.Settings.Default.enable_exception_logging_to_stderr;
+        private string appname = AppDefaults.appName;
+
+        private int refreshTime {
+            get {
+                return Properties.Settings.Default.refresh_interval_in_seconds * 1000;//milliseconds
+            }
+        }
+        //private int refreshTime = Properties.Settings.Default.refresh_interval_in_seconds * 1000;//milliseconds
 #if DEBUG
         private bool isDebuggingBuild = true;
 #else
         private bool isDebuggingBuild = false; 
 #endif
+
+        private Form settingsForm = new FormGlucoseSettings();
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -90,9 +123,11 @@ namespace FloatingGlucose
                 this.lblDebugModeOn.Visible = true;
             }
 
-            if (Properties.Settings.Default.enable_startup_hide_exit_button) {
-                this.lblClickToCloseApp.Visible = false;
-            }
+
+            this.lblClickToCloseApp.Visible =
+            this.lblShowSettings.Visible = Properties.Settings.Default.on_startup_show_buttons;
+
+
 
         }
         private void SetErrorState(Exception ex=null) {
@@ -119,11 +154,11 @@ namespace FloatingGlucose
 
         private async void LoadGlucoseValue() 
         {
-            if (this.nsURL == null || !Uri.IsWellFormedUriString(nsURL, UriKind.RelativeOrAbsolute)) {
+            if (!Validators.isUrl(this.nsURL)) {
                 var configfilename = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
-                MessageBox.Show(String.Format("The nightscout_site setting in the file {0} is not specifed or invalid. Please edit the file and restart the program. Will now exit.", configfilename), this.appname, MessageBoxButtons.OK,
-                MessageBoxIcon.Error);
-                Application.Exit();
+                MessageBox.Show("The nightscout_site setting is not specifed or invalid. Please update it from the settings!",
+                    this.appname, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
 
             }
 
@@ -163,6 +198,12 @@ namespace FloatingGlucose
 
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
+            
+            if (!Validators.isUrl(this.nsURL)) {
+                this.settingsForm.ShowDialog();
+
+            }
+
             this.LoadGlucoseValue();
             
             var refreshGlucoseTimer = new System.Windows.Forms.Timer();
@@ -204,6 +245,7 @@ namespace FloatingGlucose
             //let him have access to the exit button
             if (this.glucoseLabelClickedCount % 4 == 0) {
                 this.lblClickToCloseApp.Visible = !this.lblClickToCloseApp.Visible;
+                this.lblShowSettings.Visible = !this.lblShowSettings.Visible;
             }
           
         }
@@ -214,6 +256,16 @@ namespace FloatingGlucose
         }
 
         private void labelDoNotEverRemoveThisLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblShowSettings_Click(object sender, EventArgs e)
+        {
+            this.settingsForm.Show();
+        }
+
+        private void lblLastUpdate_Click(object sender, EventArgs e)
         {
 
         }

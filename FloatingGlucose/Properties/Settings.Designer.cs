@@ -73,13 +73,73 @@ namespace FloatingGlucose.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool enable_startup_hide_exit_button {
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool on_startup_show_buttons {
             get {
-                return ((bool)(this["enable_startup_hide_exit_button"]));
+                return ((bool)(this["on_startup_show_buttons"]));
             }
             set {
-                this["enable_startup_hide_exit_button"] = value;
+                this["on_startup_show_buttons"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool enable_alarms {
+            get {
+                return ((bool)(this["enable_alarms"]));
+            }
+            set {
+                this["enable_alarms"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("13")]
+        public decimal alarm_urgent_high {
+            get {
+                return ((decimal)(this["alarm_urgent_high"]));
+            }
+            set {
+                this["alarm_urgent_high"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("11")]
+        public decimal alarm_high {
+            get {
+                return ((decimal)(this["alarm_high"]));
+            }
+            set {
+                this["alarm_high"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4.5")]
+        public decimal alarm_low {
+            get {
+                return ((decimal)(this["alarm_low"]));
+            }
+            set {
+                this["alarm_low"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3.8")]
+        public decimal alarm_urgent_low {
+            get {
+                return ((decimal)(this["alarm_urgent_low"]));
+            }
+            set {
+                this["alarm_urgent_low"] = value;
             }
         }
     }
