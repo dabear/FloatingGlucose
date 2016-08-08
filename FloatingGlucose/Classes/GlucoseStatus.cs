@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ namespace FloatingGlucose.Classes
         Normal,
         High,
         UrgentHigh,
+        Unknown
     }
 
     class GlucoseStatus
@@ -28,7 +30,8 @@ namespace FloatingGlucose.Classes
             decimal low = Properties.Settings.Default.alarm_low;
             decimal urgentLow = Properties.Settings.Default.alarm_urgent_low;
 
-            if (decimal.TryParse(glucose, out res)) {
+            var tryres = decimal.TryParse(glucose, NumberStyles.Any, new CultureInfo("en-US"), out res);
+            if (tryres) {
                 if (res <= urgentLow) {
                     return GlucoseStatusEnum.UrgentLow;
                 } else if (res <= low) {
@@ -50,7 +53,7 @@ namespace FloatingGlucose.Classes
             }
             
 
-            return GlucoseStatusEnum.Normal;
+            return GlucoseStatusEnum.Unknown;
 
         }
     }

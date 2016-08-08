@@ -152,15 +152,24 @@ namespace FloatingGlucose
         
         }
 
+        private void setLabelsColor(Color color) {
+            this.lblGlucoseValue.ForeColor = color;
+            //this.lblClickToCloseApp.ForeColor = color;
+
+
+        }
+
+
         private async void LoadGlucoseValue() 
         {
-            if (!Validators.isUrl(this.nsURL)) {
-                var configfilename = AppDomain.CurrentDomain.SetupInformation.ConfigurationFile;
+            if (!Validators.isUrl(this.nsURL)) {   
                 MessageBox.Show("The nightscout_site setting is not specifed or invalid. Please update it from the settings!",
                     this.appname, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
 
             }
+            
+
 
             try
             {
@@ -168,9 +177,28 @@ namespace FloatingGlucose
                 //var data = await this.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
                 var data = await PebbleData.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
                 this.lblGlucoseValue.Text = String.Format("{0} {1}", data.glucose, data.directionArrow);
-                this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
+                var status = GlucoseStatus.GetGlucoseStatus(data.glucose);
 
+                this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
                 this.SetSuccessState();
+
+                switch (status) {
+                    case GlucoseStatusEnum.UrgentHigh:
+                    case GlucoseStatusEnum.UrgentLow:
+                        setLabelsColor(Color.Red);
+                        break;
+                    case GlucoseStatusEnum.Low:
+                    case GlucoseStatusEnum.High:
+                        setLabelsColor(Color.Yellow);
+                        break;
+
+                    case GlucoseStatusEnum.Unknown:
+                    case GlucoseStatusEnum.Normal:
+                    default:
+                        setLabelsColor(Color.Green);
+                        break;
+
+                }
 
 
             }
