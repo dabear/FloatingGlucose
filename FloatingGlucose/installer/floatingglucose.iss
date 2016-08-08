@@ -16,7 +16,7 @@
 ;setting up signing:
 ; in inno setup, go to tools->configure sign tools
 ; add a new tool, call it "signtool" with the following value 
-; "C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe\" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 $f
+; "C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 $f
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
@@ -32,7 +32,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={pf}\{#MyAppName}
 DisableProgramGroupPage=yes
-OutputBaseFilename="Setup{#ReleaseType}-{#MyAppVersion}"
+OutputBaseFilename="{#MyAppName}Setup-{#ReleaseType}-{#MyAppVersion}"
 Compression=lzma
 SolidCompression=yes
 SetupIconFile="{#SourceDir}\noun_335372_cc.ico"
@@ -42,6 +42,7 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: "startup"; Description: "{cm:AutoStartProgram,{#MyAppName}}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
 Source: "..\bin\{#ReleaseType}\FloatingGlucose.exe"; DestDir: "{app}"; Flags: ignoreversion
@@ -58,6 +59,7 @@ Name: "{app}"; Permissions: users-full
 [Icons]
 Name: "{commonprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
+Name: "{userstartup}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: startup
 
 [Run]
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent

@@ -63,7 +63,7 @@ function getGitReleaseZipFileName() {
     $projectname = $env:projectname
 	$buildconfigname = ($env:buildconfigname).toLower()
     $version = getGitTagOrReleaseName
-    return "$projectname-$version-$buildconfigname.zip"
+    return "standalone-$projectname-$version-$buildconfigname.zip"
  
 }
 

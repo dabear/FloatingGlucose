@@ -156,7 +156,7 @@
     <PostBuildEvent>cd $(TargetDir)
 echo Deleting files in build directory
 del /F /Q *.zip
-del /F /Q  Setup*.exe
+del /F /Q  *Setup*.exe
 set "projectname=$(ProjectName)"
 set "buildconfigname=$(ConfigurationName)"
 set "signtool="C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 "
