@@ -147,7 +147,7 @@ namespace FloatingGlucose
             Properties.Settings.Default.alarm_urgent_high = this.numUrgentHigh.Value;
             Properties.Settings.Default.alarm_high = this.numHigh.Value;
             Properties.Settings.Default.alarm_low = this.numLow.Value;
-            Properties.Settings.Default.alarm_urgent_high = this.numUrgentLow.Value;
+            Properties.Settings.Default.alarm_urgent_low = this.numUrgentLow.Value;
             Properties.Settings.Default.on_startup_show_buttons = this.chkShowAppSettingsAndExit.Checked;
             Properties.Settings.Default.Save();
 
