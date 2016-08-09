@@ -290,6 +290,9 @@ namespace FloatingGlucose
 
         private void lblShowSettings_Click(object sender, EventArgs e)
         {
+            if (this.settingsForm == null || this.settingsForm.IsDisposed) {
+                this.settingsForm = new FormGlucoseSettings();
+            }
             this.settingsForm.Show();
         }
 
