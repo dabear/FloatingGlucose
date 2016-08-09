@@ -64,6 +64,26 @@
   <PropertyGroup>
     <DelaySign>false</DelaySign>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug+nosign|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Debug+nosign\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release+nosign|AnyCPU'">
+    <OutputPath>bin\Release+nosign\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -157,21 +177,29 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>cd $(TargetDir)
-echo Deleting files in build directory
-del /F /Q *.zip
-del /F /Q  *Setup*.exe
+
+
 set "projectname=$(ProjectName)"
 set "buildconfigname=$(ConfigurationName)"
 set "signtool="C:\Program Files (x86)\Windows Kits\8.1\bin\x64\signtool.exe" sign /fd sha256 /tr http://time.certum.pl/ /sha1 0B360481F3F59C7F398FB0417AA4B341EB018906 "
 set "innosetupiscc="%25programfiles(x86)%25/Inno Setup 5/ISCC.exe" /Qp"
 set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile
 
+echo Deleting files in build directory
+%25PWS%25 -Command "ls | where { ($_.Name.contains(\"Setup\") -or $_.Name.EndsWith(\".zip\")) } | rm"
+
 REM install(import) pfx to windows certificate store, then select it based on its sha1 #hash and sign the application
 REM the visual studio code signing doesn't seem to handle the pfx file I have correctly, so I rather invoke signing manually here with signtool (part of visual studio):
 
-echo Signing application executables
-%25signtool%25 $(TargetPath)
-%25signtool%25 $(TargetDir)\*.dll
+ECHO.$(ConfigurationName)| FIND /I "nosign"&gt;Nul &amp;&amp; ( 
+
+  Echo Did not sign executables
+) || (
+  echo Signing application executables
+  %25signtool%25 $(TargetPath)
+  %25signtool%25 $(TargetDir)\*.dll
+)
+
 
 REM Creates version numbered zip file
 
@@ -182,14 +210,20 @@ REM creates setupRelease.exe|setupDebug.exe installer
 
 echo Creating Signed installer file
 
-cd $(ProjectDir)\installer
-%25innosetupiscc%25 /DReleaseType=$(ConfigurationName)  /DMyAppVersion=%25BUILDVER%25 /O$(TargetDir)  floatingglucose.iss</PostBuildEvent>
+ECHO.$(ConfigurationName)| FIND /I "nosign"&gt;Nul &amp;&amp; ( 
+  echo Did not create setup installer
+) || (
+  cd $(ProjectDir)\installer
+  %25innosetupiscc%25 /DReleaseType=$(ConfigurationName)  /DMyAppVersion=%25BUILDVER%25 /O$(TargetDir)  floatingglucose.iss
+)
+
+</PostBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
     <PreBuildEvent>
 set PWS=powershell.exe -ExecutionPolicy Bypass -NoLogo -NonInteractive -NoProfile
 cd $(TargetDir)
-%25PWS%25 -Command "ls | where { -not ($_.Name.EndsWith(\"vshost.exe\") -or $_.Name.EndsWith(\".zip\")) } | rm"</PreBuildEvent>
+</PreBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
