@@ -22,10 +22,12 @@ namespace FloatingGlucose
 
         private void txtNSURL_GotFocus(object sender, EventArgs e)
         {
-            if (this.txtNSURL.Text == "https://mysite.azurewebsites.net")
+            var colonPartPos = this.txtNSURL.Text.IndexOf("://");
+            var azurePartPos = this.txtNSURL.Text.IndexOf(".azurewebsites.net");
+            if(colonPartPos != -1 && azurePartPos != -1 && colonPartPos < azurePartPos)
             {
-                this.txtNSURL.Select(8, 6);
-            }
+                this.txtNSURL.Select(colonPartPos+3, azurePartPos-colonPartPos-3);
+            } 
 
         }
         private void txtNSURL_LostFocus(object sender, EventArgs e)

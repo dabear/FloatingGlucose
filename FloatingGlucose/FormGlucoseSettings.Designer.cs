@@ -35,6 +35,7 @@
             this.lblSettingsDesc = new System.Windows.Forms.Label();
             this.btnVerifySubmit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkShowAppSettingsAndExit = new System.Windows.Forms.CheckBox();
             this.grpAlarmSettings = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.numUrgentLow = new System.Windows.Forms.NumericUpDown();
@@ -47,7 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnDisableAlarms = new System.Windows.Forms.RadioButton();
             this.btnEnableAlarms = new System.Windows.Forms.RadioButton();
-            this.chkShowAppSettingsAndExit = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -84,7 +84,7 @@
             // txtNSURL
             // 
             this.txtNSURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNSURL.Location = new System.Drawing.Point(301, 46);
+            this.txtNSURL.Location = new System.Drawing.Point(453, 42);
             this.txtNSURL.Name = "txtNSURL";
             this.txtNSURL.Size = new System.Drawing.Size(351, 27);
             this.txtNSURL.TabIndex = 0;
@@ -113,13 +113,14 @@
             this.lblSettingsDesc.Size = new System.Drawing.Size(639, 40);
             this.lblSettingsDesc.TabIndex = 0;
             this.lblSettingsDesc.Text = "Welcome. These are the necessary settings for an installation of FloatingGlucose " +
-    "to function. Please edit the values below and press ok.";
+    "to function. Please edit the values below and press \"verify and continue\".";
             // 
             // btnVerifySubmit
             // 
-            this.btnVerifySubmit.Location = new System.Drawing.Point(793, 605);
+            this.btnVerifySubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerifySubmit.Location = new System.Drawing.Point(744, 605);
             this.btnVerifySubmit.Name = "btnVerifySubmit";
-            this.btnVerifySubmit.Size = new System.Drawing.Size(166, 37);
+            this.btnVerifySubmit.Size = new System.Drawing.Size(229, 53);
             this.btnVerifySubmit.TabIndex = 1;
             this.btnVerifySubmit.Text = "Verify and continue";
             this.btnVerifySubmit.UseVisualStyleBackColor = true;
@@ -135,6 +136,17 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.panel2.Size = new System.Drawing.Size(951, 480);
             this.panel2.TabIndex = 1;
+            // 
+            // chkShowAppSettingsAndExit
+            // 
+            this.chkShowAppSettingsAndExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkShowAppSettingsAndExit.Location = new System.Drawing.Point(24, 414);
+            this.chkShowAppSettingsAndExit.Name = "chkShowAppSettingsAndExit";
+            this.chkShowAppSettingsAndExit.Size = new System.Drawing.Size(897, 53);
+            this.chkShowAppSettingsAndExit.TabIndex = 3;
+            this.chkShowAppSettingsAndExit.Text = "Show Settings and Exit button in the app? NB! Clicking the \"BS\" text five times w" +
+    "ill temporarily show these buttons in the GUI";
+            this.chkShowAppSettingsAndExit.UseVisualStyleBackColor = true;
             // 
             // grpAlarmSettings
             // 
@@ -177,7 +189,7 @@
             0,
             0,
             65536});
-            this.numUrgentLow.Location = new System.Drawing.Point(302, 202);
+            this.numUrgentLow.Location = new System.Drawing.Point(453, 201);
             this.numUrgentLow.Name = "numUrgentLow";
             this.numUrgentLow.Size = new System.Drawing.Size(120, 27);
             this.numUrgentLow.TabIndex = 9;
@@ -195,7 +207,7 @@
             0,
             0,
             65536});
-            this.numLow.Location = new System.Drawing.Point(302, 169);
+            this.numLow.Location = new System.Drawing.Point(453, 168);
             this.numLow.Name = "numLow";
             this.numLow.Size = new System.Drawing.Size(120, 27);
             this.numLow.TabIndex = 8;
@@ -213,7 +225,7 @@
             0,
             0,
             65536});
-            this.numHigh.Location = new System.Drawing.Point(302, 136);
+            this.numHigh.Location = new System.Drawing.Point(453, 135);
             this.numHigh.Name = "numHigh";
             this.numHigh.Size = new System.Drawing.Size(120, 27);
             this.numHigh.TabIndex = 7;
@@ -231,7 +243,7 @@
             0,
             0,
             65536});
-            this.numUrgentHigh.Location = new System.Drawing.Point(302, 103);
+            this.numUrgentHigh.Location = new System.Drawing.Point(453, 102);
             this.numUrgentHigh.Name = "numUrgentHigh";
             this.numUrgentHigh.Size = new System.Drawing.Size(120, 27);
             this.numUrgentHigh.TabIndex = 6;
@@ -305,22 +317,11 @@
             this.btnEnableAlarms.UseVisualStyleBackColor = true;
             this.btnEnableAlarms.CheckedChanged += new System.EventHandler(this.btnEnableAlarms_CheckedChanged);
             // 
-            // chkShowAppSettingsAndExit
-            // 
-            this.chkShowAppSettingsAndExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShowAppSettingsAndExit.Location = new System.Drawing.Point(24, 414);
-            this.chkShowAppSettingsAndExit.Name = "chkShowAppSettingsAndExit";
-            this.chkShowAppSettingsAndExit.Size = new System.Drawing.Size(897, 53);
-            this.chkShowAppSettingsAndExit.TabIndex = 3;
-            this.chkShowAppSettingsAndExit.Text = "Show Settings and Exit button in the app? NB! Clicking the \"BS\" text five times w" +
-    "ill temporarily show these buttons in the GUI";
-            this.chkShowAppSettingsAndExit.UseVisualStyleBackColor = true;
-            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 654);
+            this.ClientSize = new System.Drawing.Size(985, 682);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.btnVerifySubmit);
             this.Controls.Add(this.panel1);

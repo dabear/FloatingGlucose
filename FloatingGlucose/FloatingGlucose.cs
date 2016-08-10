@@ -175,7 +175,7 @@ namespace FloatingGlucose
             {
                 WriteDebug("Trying to refresh data");
                 //var data = await this.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
-                var data = await PebbleData.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
+                var data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL + "/pebble");
                 this.lblGlucoseValue.Text = String.Format("{0} {1}", data.glucose, data.directionArrow);
                 var status = GlucoseStatus.GetGlucoseStatus(data.glucose);
 
@@ -226,7 +226,11 @@ namespace FloatingGlucose
 
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
-            
+            if (this.settingsForm == null || this.settingsForm.IsDisposed)
+            {
+                this.settingsForm = new FormGlucoseSettings();
+            }
+
             if (!Validators.isUrl(this.nsURL)) {
                 this.settingsForm.ShowDialog();
 
@@ -236,7 +240,6 @@ namespace FloatingGlucose
             
             var refreshGlucoseTimer = new System.Windows.Forms.Timer();
             //auto refresh data once every x seconds
-            
             refreshGlucoseTimer.Interval = this.refreshTime; 
             refreshGlucoseTimer.Tick += new EventHandler(Glucose_Tick);
             refreshGlucoseTimer.Start();
