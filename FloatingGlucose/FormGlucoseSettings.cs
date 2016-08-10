@@ -107,6 +107,13 @@ namespace FloatingGlucose
             this.updateFormControlsFromSettings();
             this.FormClosing += this.OnClosing;
 
+            //different increments for mmol/L and mg/dL 
+            var controls = this.grpAlarmSettings.Controls.OfType<NumericUpDown>().ToList();
+            controls.ForEach( x => {
+                x.Increment = x.Value >= 36 ? 1.0M : 0.1M;
+                x.ValueChanged += new System.EventHandler(this.numericUpDowns_Value_Changed);
+            });
+
 
         }
 
@@ -157,6 +164,22 @@ namespace FloatingGlucose
             MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!", this.appname, MessageBoxButtons.OK,
                MessageBoxIcon.Information);
             this.Close();
+        }
+
+        private void numericUpDowns_Value_Changed(object sender, EventArgs e)
+        {
+            if (sender == null) {
+                return;
+            }
+
+            var button = sender as NumericUpDown;
+
+            //if above 36,assume this is a mg/dl value rather than mmol/L
+            button.Increment = button.Value >= 36 ? 1.0M : 0.1M;
+
+
+            
+
         }
     }
 }

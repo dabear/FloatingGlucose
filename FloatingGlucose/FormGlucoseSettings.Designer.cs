@@ -185,7 +185,7 @@
             // 
             this.numUrgentLow.DecimalPlaces = 1;
             this.numUrgentLow.Increment = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             65536});
@@ -203,7 +203,7 @@
             // 
             this.numLow.DecimalPlaces = 1;
             this.numLow.Increment = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             65536});
@@ -221,7 +221,7 @@
             // 
             this.numHigh.DecimalPlaces = 1;
             this.numHigh.Increment = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             65536});
@@ -239,7 +239,7 @@
             // 
             this.numUrgentHigh.DecimalPlaces = 1;
             this.numUrgentHigh.Increment = new decimal(new int[] {
-            5,
+            1,
             0,
             0,
             65536});
@@ -252,6 +252,7 @@
             0,
             0,
             0});
+            
             // 
             // label4
             // 
