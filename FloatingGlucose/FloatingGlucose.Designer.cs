@@ -28,26 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lblGlucose = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
             this.lblGlucoseValue = new System.Windows.Forms.Label();
             this.lblLastUpdate = new System.Windows.Forms.Label();
             this.lblDebugModeOn = new System.Windows.Forms.Label();
-            this.lblClickToCloseApp = new System.Windows.Forms.Label();
-            this.lblShowSettings = new System.Windows.Forms.Label();
+            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.showApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // lblGlucose
-            // 
-            this.lblGlucose.AutoSize = true;
-            this.lblGlucose.BackColor = System.Drawing.Color.Black;
-            this.lblGlucose.Font = new System.Drawing.Font("Microsoft Sans Serif", 25.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGlucose.ForeColor = System.Drawing.Color.Green;
-            this.lblGlucose.Location = new System.Drawing.Point(59, 25);
-            this.lblGlucose.Name = "lblGlucose";
-            this.lblGlucose.Size = new System.Drawing.Size(93, 52);
-            this.lblGlucose.TabIndex = 0;
-            this.lblGlucose.Text = "BS:";
-            this.lblGlucose.Click += new System.EventHandler(this.lblGlucose_Click);
             // 
             // lblGlucoseValue
             // 
@@ -55,7 +46,7 @@
             this.lblGlucoseValue.BackColor = System.Drawing.Color.Black;
             this.lblGlucoseValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGlucoseValue.ForeColor = System.Drawing.Color.Green;
-            this.lblGlucoseValue.Location = new System.Drawing.Point(148, 25);
+            this.lblGlucoseValue.Location = new System.Drawing.Point(70, 18);
             this.lblGlucoseValue.Name = "lblGlucoseValue";
             this.lblGlucoseValue.Size = new System.Drawing.Size(104, 55);
             this.lblGlucoseValue.TabIndex = 2;
@@ -66,7 +57,7 @@
             this.lblLastUpdate.AutoSize = true;
             this.lblLastUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastUpdate.ForeColor = System.Drawing.Color.Green;
-            this.lblLastUpdate.Location = new System.Drawing.Point(140, 77);
+            this.lblLastUpdate.Location = new System.Drawing.Point(76, 73);
             this.lblLastUpdate.Name = "lblLastUpdate";
             this.lblLastUpdate.Size = new System.Drawing.Size(37, 20);
             this.lblLastUpdate.TabIndex = 4;
@@ -78,53 +69,59 @@
             this.lblDebugModeOn.AutoSize = true;
             this.lblDebugModeOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDebugModeOn.ForeColor = System.Drawing.Color.Yellow;
-            this.lblDebugModeOn.Location = new System.Drawing.Point(165, 18);
+            this.lblDebugModeOn.Location = new System.Drawing.Point(8, 92);
             this.lblDebugModeOn.Name = "lblDebugModeOn";
             this.lblDebugModeOn.Size = new System.Drawing.Size(35, 13);
             this.lblDebugModeOn.TabIndex = 6;
             this.lblDebugModeOn.Text = "(DEV)";
             this.lblDebugModeOn.Visible = false;
             // 
-            // lblClickToCloseApp
+            // notifyIcon1
             // 
-            this.lblClickToCloseApp.AutoSize = true;
-            this.lblClickToCloseApp.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblClickToCloseApp.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblClickToCloseApp.ForeColor = System.Drawing.Color.Green;
-            this.lblClickToCloseApp.Location = new System.Drawing.Point(302, 100);
-            this.lblClickToCloseApp.Name = "lblClickToCloseApp";
-            this.lblClickToCloseApp.Size = new System.Drawing.Size(47, 25);
-            this.lblClickToCloseApp.TabIndex = 7;
-            this.lblClickToCloseApp.Text = "(Exit)";
-            this.lblClickToCloseApp.UseCompatibleTextRendering = true;
-            this.lblClickToCloseApp.Click += new System.EventHandler(this.lblClickToCloseApp_Click);
+            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
+            this.notifyIcon1.Visible = true;
             // 
-            // lblShowSettings
+            // contextMenuStrip1
             // 
-            this.lblShowSettings.AutoSize = true;
-            this.lblShowSettings.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.lblShowSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShowSettings.ForeColor = System.Drawing.Color.Green;
-            this.lblShowSettings.Location = new System.Drawing.Point(204, 98);
-            this.lblShowSettings.Name = "lblShowSettings";
-            this.lblShowSettings.Size = new System.Drawing.Size(81, 25);
-            this.lblShowSettings.TabIndex = 8;
-            this.lblShowSettings.Text = "(Settings)";
-            this.lblShowSettings.UseCompatibleTextRendering = true;
-            this.lblShowSettings.Click += new System.EventHandler(this.lblShowSettings_Click);
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.showApplicationToolStripMenuItem,
+            this.settingsToolStripMenuItem,
+            this.quitToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(202, 82);
+            // 
+            // showApplicationToolStripMenuItem
+            // 
+            this.showApplicationToolStripMenuItem.Name = "showApplicationToolStripMenuItem";
+            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
+            this.showApplicationToolStripMenuItem.Text = "Show &Application";
+            this.showApplicationToolStripMenuItem.Click += new System.EventHandler(this.showApplicationToolStripMenuItem_Click);
+            // 
+            // settingsToolStripMenuItem
+            // 
+            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
+            this.settingsToolStripMenuItem.Text = "&Settings";
+            this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
+            // 
+            // quitToolStripMenuItem
+            // 
+            this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
+            this.quitToolStripMenuItem.Text = "&Quit";
+            this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
             // FloatingGlucose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(372, 132);
-            this.Controls.Add(this.lblShowSettings);
-            this.Controls.Add(this.lblClickToCloseApp);
+            this.ClientSize = new System.Drawing.Size(276, 117);
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.lblDebugModeOn);
             this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.lblGlucoseValue);
-            this.Controls.Add(this.lblGlucose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FloatingGlucose";
             this.Opacity = 0.85D;
@@ -135,19 +132,21 @@
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.SystemColors.ActiveBorder;
             this.Load += new System.EventHandler(this.FloatingGlucose_Load);
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lblGlucose;
         private System.Windows.Forms.Label lblGlucoseValue;
         private System.Windows.Forms.Label lblLastUpdate;
         private System.Windows.Forms.Label lblDebugModeOn;
-        private System.Windows.Forms.Label lblClickToCloseApp;
-        private System.Windows.Forms.Label lblShowSettings;
+        private System.Windows.Forms.NotifyIcon notifyIcon1;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem showApplicationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
     }
 }
 

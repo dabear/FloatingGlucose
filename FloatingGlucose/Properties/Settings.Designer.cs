@@ -74,18 +74,6 @@ namespace FloatingGlucose.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool on_startup_show_buttons {
-            get {
-                return ((bool)(this["on_startup_show_buttons"]));
-            }
-            set {
-                this["on_startup_show_buttons"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool enable_alarms {
             get {
                 return ((bool)(this["enable_alarms"]));

@@ -14,9 +14,6 @@
     <Setting Name="gui_scaling_ratio" Type="System.Single" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="on_startup_show_buttons" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
-    </Setting>
     <Setting Name="enable_alarms" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>

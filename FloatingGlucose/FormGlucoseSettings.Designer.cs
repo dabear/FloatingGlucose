@@ -35,7 +35,6 @@
             this.lblSettingsDesc = new System.Windows.Forms.Label();
             this.btnVerifySubmit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.chkShowAppSettingsAndExit = new System.Windows.Forms.CheckBox();
             this.grpAlarmSettings = new System.Windows.Forms.GroupBox();
             this.label5 = new System.Windows.Forms.Label();
             this.numUrgentLow = new System.Windows.Forms.NumericUpDown();
@@ -48,6 +47,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnDisableAlarms = new System.Windows.Forms.RadioButton();
             this.btnEnableAlarms = new System.Windows.Forms.RadioButton();
+            this.label6 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -128,7 +128,7 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.chkShowAppSettingsAndExit);
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.grpAlarmSettings);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Location = new System.Drawing.Point(22, 119);
@@ -136,17 +136,6 @@
             this.panel2.Padding = new System.Windows.Forms.Padding(50, 10, 50, 10);
             this.panel2.Size = new System.Drawing.Size(951, 480);
             this.panel2.TabIndex = 1;
-            // 
-            // chkShowAppSettingsAndExit
-            // 
-            this.chkShowAppSettingsAndExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.chkShowAppSettingsAndExit.Location = new System.Drawing.Point(24, 414);
-            this.chkShowAppSettingsAndExit.Name = "chkShowAppSettingsAndExit";
-            this.chkShowAppSettingsAndExit.Size = new System.Drawing.Size(897, 53);
-            this.chkShowAppSettingsAndExit.TabIndex = 3;
-            this.chkShowAppSettingsAndExit.Text = "Show Settings and Exit button in the app? NB! Clicking the \"BS\" text five times w" +
-    "ill temporarily show these buttons in the GUI";
-            this.chkShowAppSettingsAndExit.UseVisualStyleBackColor = true;
             // 
             // grpAlarmSettings
             // 
@@ -252,7 +241,6 @@
             0,
             0,
             0});
-            
             // 
             // label4
             // 
@@ -318,6 +306,17 @@
             this.btnEnableAlarms.UseVisualStyleBackColor = true;
             this.btnEnableAlarms.CheckedChanged += new System.EventHandler(this.btnEnableAlarms_CheckedChanged);
             // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.Location = new System.Drawing.Point(24, 425);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(646, 20);
+            this.label6.TabIndex = 3;
+            this.label6.Text = "NB! To show this window again, right click the app or tray icon and choose \"Setti" +
+    "ngs\".";
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -335,6 +334,7 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.grpAlarmSettings.ResumeLayout(false);
             this.grpAlarmSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUrgentLow)).EndInit();
@@ -366,6 +366,6 @@
         private System.Windows.Forms.NumericUpDown numLow;
         private System.Windows.Forms.NumericUpDown numHigh;
         private System.Windows.Forms.NumericUpDown numUrgentHigh;
-        private System.Windows.Forms.CheckBox chkShowAppSettingsAndExit;
+        private System.Windows.Forms.Label label6;
     }
 }

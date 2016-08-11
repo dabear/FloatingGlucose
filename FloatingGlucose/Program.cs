@@ -17,7 +17,15 @@ namespace FloatingGlucose
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FormGlucoseSettings());
-            Application.Run(new FloatingGlucose());
+            try
+            {
+                Application.Run(new FloatingGlucose());
+            }
+            catch (ObjectDisposedException) {
+                // this happens when application.exit() is called when the form has a modal dialog open
+                // ignore for now
+            }
+            
         }
     }
 }

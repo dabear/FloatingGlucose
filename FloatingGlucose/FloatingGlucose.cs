@@ -68,7 +68,16 @@ namespace FloatingGlucose
         private bool isDebuggingBuild = false; 
 #endif
 
-        private Form settingsForm = new FormGlucoseSettings();
+        private Form _settingsForm;
+        private Form settingsForm {
+            get {
+                if (this._settingsForm == null || this._settingsForm.IsDisposed)
+                {
+                    this._settingsForm = new FormGlucoseSettings();
+                }
+                return this._settingsForm;
+            }
+        }
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -85,7 +94,6 @@ namespace FloatingGlucose
         [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
         private static extern int ShowWindow(IntPtr hWnd, uint Msg);
         private uint SW_SHOWNORMAL = 1;*/
-        private int glucoseLabelClickedCount = 0;
 
         private void SetScaling(float scale) {
             if ((float)scale == 1.0) {
@@ -109,6 +117,7 @@ namespace FloatingGlucose
             InitializeComponent();
 
         }
+
         private void SetErrorState(Exception ex=null) {
 
             this.lblGlucoseValue.Text = "N/A";
@@ -155,10 +164,14 @@ namespace FloatingGlucose
                 WriteDebug("Trying to refresh data");
                 //var data = await this.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
                 var data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL + "/pebble");
+
+                
                 this.lblGlucoseValue.Text = String.Format("{0} {1}", data.glucose, data.directionArrow);
+                this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
                 var status = GlucoseStatus.GetGlucoseStatus(data.glucose);
 
                 this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
+                
                 this.SetSuccessState();
 
                 switch (status)
@@ -210,10 +223,10 @@ namespace FloatingGlucose
 
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
-            if (this.settingsForm == null || this.settingsForm.IsDisposed)
-            {
-                this.settingsForm = new FormGlucoseSettings();
-            }
+            
+
+            this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc;
+
             // Manual scaling for now with values from config file
             // how to figure out the dpi:
             // this.CreateGraphics().DpiX > 96
@@ -224,6 +237,10 @@ namespace FloatingGlucose
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(r.Width - this.Width, r.Height - this.Height);
 
+            notifyIcon1.BalloonTipClosed += (asender, ev) =>{
+                notifyIcon1.Visible = false;
+                notifyIcon1.Dispose();
+            };
 
             // Enable special label only for debugging, 
             // This is very handy when devloping with a Release binary running alongside a dev version
@@ -233,8 +250,7 @@ namespace FloatingGlucose
             }
 
 
-            this.lblClickToCloseApp.Visible =
-            this.lblShowSettings.Visible = Properties.Settings.Default.on_startup_show_buttons;
+      
 
 
             if (!Validators.isUrl(this.nsURL)) {
@@ -272,21 +288,6 @@ namespace FloatingGlucose
             Debug.WriteLine(now + ":" + line);
         }
 
-        
-
-        private void lblGlucose_Click(object sender, EventArgs e)
-        {
-            WriteDebug("Clicked BS-label!");
-            this.glucoseLabelClickedCount += 1;
-
-            //User has clicked the "BS" text five times already, must be intentional.
-            //let him have access to the exit button
-            if (this.glucoseLabelClickedCount % 4 == 0) {
-                this.lblClickToCloseApp.Visible = !this.lblClickToCloseApp.Visible;
-                this.lblShowSettings.Visible = !this.lblShowSettings.Visible;
-            }
-          
-        }
 
         private void lblClickToCloseApp_Click(object sender, EventArgs e)
         {
@@ -300,9 +301,7 @@ namespace FloatingGlucose
 
         private void lblShowSettings_Click(object sender, EventArgs e)
         {
-            if (this.settingsForm == null || this.settingsForm.IsDisposed) {
-                this.settingsForm = new FormGlucoseSettings();
-            }
+
             this.settingsForm.Show();
         }
 
@@ -310,5 +309,22 @@ namespace FloatingGlucose
         {
 
         }
+
+        private void showApplicationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Show();
+        }
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.settingsForm.Show();
+        }
+
+        private void quitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+
     }
 }

@@ -76,7 +76,7 @@ namespace FloatingGlucose
             var alarmLow = Properties.Settings.Default.alarm_low;
             var alarmUrgentLow = Properties.Settings.Default.alarm_urgent_low;
             var nsurl = Properties.Settings.Default.nightscout_site;
-            var showAppsettingsAndExitButton = Properties.Settings.Default.on_startup_show_buttons;
+            
 
             this.numUrgentHigh.Value = alarmUrgentHigh;
             this.numHigh.Value = alarmHigh;
@@ -94,7 +94,7 @@ namespace FloatingGlucose
                 this.txtNSURL.Text = nsurl;
             }
 
-            this.chkShowAppSettingsAndExit.Checked = showAppsettingsAndExitButton;
+            
 
             this.updateAlarmSettingsEnabled(enableAlarms);
             this.btnEnableAlarms.Checked = enableAlarms;
@@ -122,7 +122,7 @@ namespace FloatingGlucose
 
             if (this.settingsUpdatedSucessfully) {
                 base.OnClosing(e);
-                settingsUpdatedSucessfully = false;
+                this.settingsUpdatedSucessfully = false;
                 return;
 
             }
@@ -157,7 +157,7 @@ namespace FloatingGlucose
             Properties.Settings.Default.alarm_high = this.numHigh.Value;
             Properties.Settings.Default.alarm_low = this.numLow.Value;
             Properties.Settings.Default.alarm_urgent_low = this.numUrgentLow.Value;
-            Properties.Settings.Default.on_startup_show_buttons = this.chkShowAppSettingsAndExit.Checked;
+            
             Properties.Settings.Default.Save();
 
             this.settingsUpdatedSucessfully = true;
