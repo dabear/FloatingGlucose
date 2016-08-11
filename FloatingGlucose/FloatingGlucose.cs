@@ -107,27 +107,6 @@ namespace FloatingGlucose
         public FloatingGlucose()
         {
             InitializeComponent();
-            // Manual scaling for now with values from config file
-            // how to figure out the dpi:
-            // this.CreateGraphics().DpiX > 96
-            SetScaling(Properties.Settings.Default.gui_scaling_ratio);
-             
-            //position at bottom right per default
-            Rectangle r = Screen.PrimaryScreen.WorkingArea;
-            this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(r.Width - this.Width, r.Height - this.Height);
-
-            // Enable special label only for debugging, 
-            // This is very handy when devloping with a Release binary running alongside a dev version
-            if (this.isDebuggingBuild) {
-                this.lblDebugModeOn.Visible = true;
-            }
-
-
-            this.lblClickToCloseApp.Visible =
-            this.lblShowSettings.Visible = Properties.Settings.Default.on_startup_show_buttons;
-
-
 
         }
         private void SetErrorState(Exception ex=null) {
@@ -230,11 +209,34 @@ namespace FloatingGlucose
             {
                 this.settingsForm = new FormGlucoseSettings();
             }
+            // Manual scaling for now with values from config file
+            // how to figure out the dpi:
+            // this.CreateGraphics().DpiX > 96
+            SetScaling(Properties.Settings.Default.gui_scaling_ratio);
+
+            //position at bottom right per default
+            Rectangle r = Screen.PrimaryScreen.WorkingArea;
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(r.Width - this.Width, r.Height - this.Height);
+
+
+            // Enable special label only for debugging, 
+            // This is very handy when devloping with a Release binary running alongside a dev version
+            if (this.isDebuggingBuild)
+            {
+                this.lblDebugModeOn.Visible = true;
+            }
+
+
+            this.lblClickToCloseApp.Visible =
+            this.lblShowSettings.Visible = Properties.Settings.Default.on_startup_show_buttons;
+
 
             if (!Validators.isUrl(this.nsURL)) {
                 this.settingsForm.ShowDialog();
 
             }
+
 
             this.LoadGlucoseValue();
             
