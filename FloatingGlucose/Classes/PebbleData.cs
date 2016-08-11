@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using Microsoft.CSharp.RuntimeBinder;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,22 @@ using System.Threading.Tasks;
 
 namespace FloatingGlucose.Classes
 {
+    class JSONParsingException: Exception
+    {
+        public JSONParsingException(string message):base(message)
+        {
+
+        }
+        public JSONParsingException()
+        {
+
+        }
+        public JSONParsingException(string message, Exception inner): base(message, inner)
+        {
+
+        }
+
+    }
     class PebbleData
     {
         public DateTime date;
@@ -54,19 +71,28 @@ namespace FloatingGlucose.Classes
 
         public static async Task<PebbleData> GetNightscoutPebbleDataAsync(string url)
         {
-
+            dynamic data;
             HttpClient client = new HttpClient();
             string urlContents = await client.GetStringAsync(url);
-            dynamic data = JObject.Parse(urlContents);
-            var bgs = data.bgs.First;
 
-            return new PebbleData
+            try
             {
-                date = DateTimeOffset.FromUnixTimeMilliseconds((long)bgs.datetime).DateTime,
-                direction = (string)bgs.direction,
-                glucose = bgs.sgv
+                data = JObject.Parse(urlContents);
+                var bgs = data.bgs.First;
 
-            };
+                return new PebbleData
+                {
+                    date = DateTimeOffset.FromUnixTimeMilliseconds((long)bgs.datetime).DateTime,
+                    direction = (string)bgs.direction,
+                    glucose = bgs.sgv
+
+                };
+            }
+            catch (RuntimeBinderException ex) {
+                throw new JSONParsingException("Unable to parse json string:" + urlContents, ex);
+            }
+            
+           
 
         }
 

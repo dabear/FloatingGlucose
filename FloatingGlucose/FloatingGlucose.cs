@@ -147,7 +147,7 @@ namespace FloatingGlucose
                 return;
 
             }
-            
+
 
 
             try
@@ -161,7 +161,8 @@ namespace FloatingGlucose
                 this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
                 this.SetSuccessState();
 
-                switch (status) {
+                switch (status)
+                {
                     case GlucoseStatusEnum.UrgentHigh:
                     case GlucoseStatusEnum.UrgentLow:
                         setLabelsColor(Color.Red);
@@ -190,7 +191,11 @@ namespace FloatingGlucose
             {
                 this.SetErrorState(ex);
             }
-            catch (JsonReaderException ex) {
+            catch (JsonReaderException ex)
+            {
+                this.SetErrorState(ex);
+            }
+            catch (JSONParsingException ex) {
                 this.SetErrorState(ex);
             }
             catch (Exception ex)
