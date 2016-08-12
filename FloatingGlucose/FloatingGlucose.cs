@@ -291,7 +291,7 @@ namespace FloatingGlucose
 
         private void lblClickToCloseApp_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Exit();
         }
 
         private void labelDoNotEverRemoveThisLabel_Click(object sender, EventArgs e)
@@ -322,9 +322,14 @@ namespace FloatingGlucose
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Exit();
         }
 
+        private void Exit()
+        {
+            this.notifyIcon1 = null;
+            Application.Exit();
+        }
 
     }
 }

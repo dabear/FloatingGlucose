@@ -83,6 +83,12 @@ namespace FloatingGlucose
             this.numLow.Value = alarmLow;
             this.numUrgentLow.Value = alarmUrgentLow;
 
+            //advanced settings
+            this.numScaling.Value = (decimal)Properties.Settings.Default.gui_scaling_ratio;
+            this.numRefreshInterval.Value = (decimal)Properties.Settings.Default.refresh_interval_in_seconds;
+            this.chkEnableExceptions.Checked = Properties.Settings.Default.enable_exception_logging_to_stderr;
+            
+
             //this is the default in the settings file
             //override it so it makes sense
             if (nsurl == "https://...")
@@ -157,7 +163,10 @@ namespace FloatingGlucose
             Properties.Settings.Default.alarm_high = this.numHigh.Value;
             Properties.Settings.Default.alarm_low = this.numLow.Value;
             Properties.Settings.Default.alarm_urgent_low = this.numUrgentLow.Value;
-            
+
+            Properties.Settings.Default.gui_scaling_ratio = (float)this.numScaling.Value;
+            Properties.Settings.Default.refresh_interval_in_seconds = (int)this.numRefreshInterval.Value;
+            Properties.Settings.Default.enable_exception_logging_to_stderr = this.chkEnableExceptions.Checked;
             Properties.Settings.Default.Save();
 
             this.settingsUpdatedSucessfully = true;
@@ -181,5 +190,7 @@ namespace FloatingGlucose
             
 
         }
+
+        
     }
 }

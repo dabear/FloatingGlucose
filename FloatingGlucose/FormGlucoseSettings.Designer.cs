@@ -48,6 +48,16 @@
             this.btnDisableAlarms = new System.Windows.Forms.RadioButton();
             this.btnEnableAlarms = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
+            this.tabSettings = new System.Windows.Forms.TabControl();
+            this.tabPageBasic = new System.Windows.Forms.TabPage();
+            this.tabPageAdvanced = new System.Windows.Forms.TabPage();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.chkEnableExceptions = new System.Windows.Forms.CheckBox();
+            this.numScaling = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -56,6 +66,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numLow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHigh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUrgentHigh)).BeginInit();
+            this.tabSettings.SuspendLayout();
+            this.tabPageBasic.SuspendLayout();
+            this.tabPageAdvanced.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScaling)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -118,7 +134,7 @@
             // btnVerifySubmit
             // 
             this.btnVerifySubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerifySubmit.Location = new System.Drawing.Point(744, 605);
+            this.btnVerifySubmit.Location = new System.Drawing.Point(753, 607);
             this.btnVerifySubmit.Name = "btnVerifySubmit";
             this.btnVerifySubmit.Size = new System.Drawing.Size(229, 53);
             this.btnVerifySubmit.TabIndex = 1;
@@ -128,13 +144,12 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.grpAlarmSettings);
             this.panel2.Controls.Add(this.groupBox1);
-            this.panel2.Location = new System.Drawing.Point(22, 119);
+            this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(50, 10, 50, 10);
-            this.panel2.Size = new System.Drawing.Size(951, 480);
+            this.panel2.Size = new System.Drawing.Size(960, 413);
             this.panel2.TabIndex = 1;
             // 
             // grpAlarmSettings
@@ -151,7 +166,7 @@
             this.grpAlarmSettings.Controls.Add(this.btnDisableAlarms);
             this.grpAlarmSettings.Controls.Add(this.btnEnableAlarms);
             this.grpAlarmSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpAlarmSettings.Location = new System.Drawing.Point(24, 157);
+            this.grpAlarmSettings.Location = new System.Drawing.Point(24, 142);
             this.grpAlarmSettings.Name = "grpAlarmSettings";
             this.grpAlarmSettings.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
             this.grpAlarmSettings.Size = new System.Drawing.Size(927, 251);
@@ -179,6 +194,11 @@
             0,
             65536});
             this.numUrgentLow.Location = new System.Drawing.Point(453, 201);
+            this.numUrgentLow.Maximum = new decimal(new int[] {
+            650,
+            0,
+            0,
+            0});
             this.numUrgentLow.Name = "numUrgentLow";
             this.numUrgentLow.Size = new System.Drawing.Size(120, 27);
             this.numUrgentLow.TabIndex = 9;
@@ -197,6 +217,11 @@
             0,
             65536});
             this.numLow.Location = new System.Drawing.Point(453, 168);
+            this.numLow.Maximum = new decimal(new int[] {
+            650,
+            0,
+            0,
+            0});
             this.numLow.Name = "numLow";
             this.numLow.Size = new System.Drawing.Size(120, 27);
             this.numLow.TabIndex = 8;
@@ -215,6 +240,11 @@
             0,
             65536});
             this.numHigh.Location = new System.Drawing.Point(453, 135);
+            this.numHigh.Maximum = new decimal(new int[] {
+            650,
+            0,
+            0,
+            0});
             this.numHigh.Name = "numHigh";
             this.numHigh.Size = new System.Drawing.Size(120, 27);
             this.numHigh.TabIndex = 7;
@@ -233,6 +263,11 @@
             0,
             65536});
             this.numUrgentHigh.Location = new System.Drawing.Point(453, 102);
+            this.numUrgentHigh.Maximum = new decimal(new int[] {
+            650,
+            0,
+            0,
+            0});
             this.numUrgentHigh.Name = "numUrgentHigh";
             this.numUrgentHigh.Size = new System.Drawing.Size(120, 27);
             this.numUrgentHigh.TabIndex = 6;
@@ -310,19 +345,140 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(24, 425);
+            this.label6.Location = new System.Drawing.Point(47, 561);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(646, 20);
             this.label6.TabIndex = 3;
             this.label6.Text = "NB! To show this window again, right click the app or tray icon and choose \"Setti" +
     "ngs\".";
             // 
+            // tabSettings
+            // 
+            this.tabSettings.Controls.Add(this.tabPageBasic);
+            this.tabSettings.Controls.Add(this.tabPageAdvanced);
+            this.tabSettings.Location = new System.Drawing.Point(12, 104);
+            this.tabSettings.Name = "tabSettings";
+            this.tabSettings.SelectedIndex = 0;
+            this.tabSettings.Size = new System.Drawing.Size(1010, 454);
+            this.tabSettings.TabIndex = 2;
+            // 
+            // tabPageBasic
+            // 
+            this.tabPageBasic.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageBasic.Controls.Add(this.panel2);
+            this.tabPageBasic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPageBasic.Location = new System.Drawing.Point(4, 25);
+            this.tabPageBasic.Name = "tabPageBasic";
+            this.tabPageBasic.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageBasic.Size = new System.Drawing.Size(1002, 425);
+            this.tabPageBasic.TabIndex = 0;
+            this.tabPageBasic.Text = "Basic Settings";
+            // 
+            // tabPageAdvanced
+            // 
+            this.tabPageAdvanced.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPageAdvanced.Controls.Add(this.groupBox2);
+            this.tabPageAdvanced.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPageAdvanced.Location = new System.Drawing.Point(4, 25);
+            this.tabPageAdvanced.Name = "tabPageAdvanced";
+            this.tabPageAdvanced.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAdvanced.Size = new System.Drawing.Size(1002, 425);
+            this.tabPageAdvanced.TabIndex = 1;
+            this.tabPageAdvanced.Text = "Advanced Settings";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.numScaling);
+            this.groupBox2.Controls.Add(this.chkEnableExceptions);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.numRefreshInterval);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.groupBox2.Location = new System.Drawing.Point(35, 19);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.groupBox2.Size = new System.Drawing.Size(959, 346);
+            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Advanced application settings (requires restart)";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(38, 88);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(136, 20);
+            this.label8.TabIndex = 8;
+            this.label8.Text = "GUI Scaling ratio";
+            // 
+            // numRefreshInterval
+            // 
+            this.numRefreshInterval.Location = new System.Drawing.Point(444, 45);
+            this.numRefreshInterval.Name = "numRefreshInterval";
+            this.numRefreshInterval.Size = new System.Drawing.Size(120, 27);
+            this.numRefreshInterval.TabIndex = 7;
+            this.numRefreshInterval.Value = new decimal(new int[] {
+            60,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(38, 52);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(161, 20);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "GUI Refresh interval";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(38, 126);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(262, 20);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Enable exception logging to stderr";
+            // 
+            // chkEnableExceptions
+            // 
+            this.chkEnableExceptions.AutoSize = true;
+            this.chkEnableExceptions.Location = new System.Drawing.Point(546, 129);
+            this.chkEnableExceptions.Name = "chkEnableExceptions";
+            this.chkEnableExceptions.Size = new System.Drawing.Size(18, 17);
+            this.chkEnableExceptions.TabIndex = 10;
+            this.chkEnableExceptions.UseVisualStyleBackColor = true;
+            // 
+            // numScaling
+            // 
+            this.numScaling.DecimalPlaces = 1;
+            this.numScaling.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numScaling.Location = new System.Drawing.Point(444, 81);
+            this.numScaling.Name = "numScaling";
+            this.numScaling.Size = new System.Drawing.Size(120, 27);
+            this.numScaling.TabIndex = 11;
+            this.numScaling.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(985, 682);
-            this.Controls.Add(this.panel2);
+            this.ClientSize = new System.Drawing.Size(1027, 672);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.tabSettings);
             this.Controls.Add(this.btnVerifySubmit);
             this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -334,14 +490,21 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.grpAlarmSettings.ResumeLayout(false);
             this.grpAlarmSettings.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUrgentLow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHigh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUrgentHigh)).EndInit();
+            this.tabSettings.ResumeLayout(false);
+            this.tabPageBasic.ResumeLayout(false);
+            this.tabPageAdvanced.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numScaling)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -367,5 +530,15 @@
         private System.Windows.Forms.NumericUpDown numHigh;
         private System.Windows.Forms.NumericUpDown numUrgentHigh;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TabControl tabSettings;
+        private System.Windows.Forms.TabPage tabPageBasic;
+        private System.Windows.Forms.TabPage tabPageAdvanced;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numRefreshInterval;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.CheckBox chkEnableExceptions;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown numScaling;
     }
 }
