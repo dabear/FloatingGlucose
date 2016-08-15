@@ -49,7 +49,7 @@ namespace FloatingGlucose.Classes
                     return String.Format("+{0:N1}", this.delta);
                 }
 
-                return String.Format("-{0:N1}", this.delta);
+                return String.Format("{0:N1}", this.delta);
             }
         }
         
@@ -121,16 +121,13 @@ namespace FloatingGlucose.Classes
             var pebbleData = new PebbleData();
 
             string urlContents = await client.GetStringAsync(url);
-            var parsed = JsonConvert.DeserializeObject<Generated_NSDATA>(urlContents);
 
-            
-            pebbleData.nsdata = parsed;
-
+            var parsed =
+            pebbleData.nsdata = JsonConvert.DeserializeObject<Generated_NSDATA>(urlContents);
             try
             {
                 
                 Bg bgs = parsed.bgs.First();
-
                 pebbleData.direction = bgs.direction;
                 pebbleData.glucose = Double.Parse(bgs.sgv, NumberStyles.Any, culture);
                 pebbleData.date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
@@ -141,6 +138,7 @@ namespace FloatingGlucose.Classes
             }
             catch (Exception)
             {
+                //this exception might be hit when the nightscout installation is brand new or contains no recent data; 
                 return null;
             }
 

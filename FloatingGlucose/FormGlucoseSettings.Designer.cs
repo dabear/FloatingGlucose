@@ -52,12 +52,14 @@
             this.tabPageBasic = new System.Windows.Forms.TabPage();
             this.tabPageAdvanced = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.numScaling = new System.Windows.Forms.NumericUpDown();
+            this.chkEnableExceptions = new System.Windows.Forms.CheckBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.chkEnableExceptions = new System.Windows.Forms.CheckBox();
-            this.numScaling = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
+            this.chkEnableRAWGlucose = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -70,8 +72,8 @@
             this.tabPageBasic.SuspendLayout();
             this.tabPageAdvanced.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -388,6 +390,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkEnableRAWGlucose);
+            this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.numScaling);
             this.groupBox2.Controls.Add(this.chkEnableExceptions);
             this.groupBox2.Controls.Add(this.label9);
@@ -402,6 +406,43 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced application settings (requires restart)";
+            // 
+            // numScaling
+            // 
+            this.numScaling.DecimalPlaces = 1;
+            this.numScaling.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.numScaling.Location = new System.Drawing.Point(444, 81);
+            this.numScaling.Name = "numScaling";
+            this.numScaling.Size = new System.Drawing.Size(120, 27);
+            this.numScaling.TabIndex = 11;
+            this.numScaling.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // chkEnableExceptions
+            // 
+            this.chkEnableExceptions.AutoSize = true;
+            this.chkEnableExceptions.Location = new System.Drawing.Point(546, 129);
+            this.chkEnableExceptions.Name = "chkEnableExceptions";
+            this.chkEnableExceptions.Size = new System.Drawing.Size(18, 17);
+            this.chkEnableExceptions.TabIndex = 10;
+            this.chkEnableExceptions.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(38, 126);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(262, 20);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Enable exception logging to stderr";
             // 
             // label8
             // 
@@ -435,42 +476,24 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "GUI Refresh interval";
             // 
-            // label9
+            // label10
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(38, 126);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(262, 20);
-            this.label9.TabIndex = 9;
-            this.label9.Text = "Enable exception logging to stderr";
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(38, 165);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(284, 20);
+            this.label10.TabIndex = 12;
+            this.label10.Text = "Enable display of raw glucose values";
             // 
-            // chkEnableExceptions
+            // chkEnableRAWGlucose
             // 
-            this.chkEnableExceptions.AutoSize = true;
-            this.chkEnableExceptions.Location = new System.Drawing.Point(546, 129);
-            this.chkEnableExceptions.Name = "chkEnableExceptions";
-            this.chkEnableExceptions.Size = new System.Drawing.Size(18, 17);
-            this.chkEnableExceptions.TabIndex = 10;
-            this.chkEnableExceptions.UseVisualStyleBackColor = true;
-            // 
-            // numScaling
-            // 
-            this.numScaling.DecimalPlaces = 1;
-            this.numScaling.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            65536});
-            this.numScaling.Location = new System.Drawing.Point(444, 81);
-            this.numScaling.Name = "numScaling";
-            this.numScaling.Size = new System.Drawing.Size(120, 27);
-            this.numScaling.TabIndex = 11;
-            this.numScaling.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
+            this.chkEnableRAWGlucose.AutoSize = true;
+            this.chkEnableRAWGlucose.Location = new System.Drawing.Point(546, 168);
+            this.chkEnableRAWGlucose.Name = "chkEnableRAWGlucose";
+            this.chkEnableRAWGlucose.Size = new System.Drawing.Size(18, 17);
+            this.chkEnableRAWGlucose.TabIndex = 13;
+            this.chkEnableRAWGlucose.UseVisualStyleBackColor = true;
             // 
             // FormGlucoseSettings
             // 
@@ -501,8 +524,8 @@
             this.tabPageAdvanced.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -540,5 +563,7 @@
         private System.Windows.Forms.CheckBox chkEnableExceptions;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.NumericUpDown numScaling;
+        private System.Windows.Forms.CheckBox chkEnableRAWGlucose;
+        private System.Windows.Forms.Label label10;
     }
 }

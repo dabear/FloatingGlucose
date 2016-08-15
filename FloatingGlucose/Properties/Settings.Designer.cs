@@ -130,5 +130,17 @@ namespace FloatingGlucose.Properties {
                 this["alarm_urgent_low"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool enable_raw_glucose_display {
+            get {
+                return ((bool)(this["enable_raw_glucose_display"]));
+            }
+            set {
+                this["enable_raw_glucose_display"] = value;
+            }
+        }
     }
 }

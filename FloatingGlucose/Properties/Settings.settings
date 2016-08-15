@@ -29,5 +29,8 @@
     <Setting Name="alarm_urgent_low" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3.8</Value>
     </Setting>
+    <Setting Name="enable_raw_glucose_display" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

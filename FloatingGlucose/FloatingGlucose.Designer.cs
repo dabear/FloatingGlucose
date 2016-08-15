@@ -132,11 +132,12 @@
             this.lblRawBG.BackColor = System.Drawing.Color.Black;
             this.lblRawBG.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRawBG.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblRawBG.Location = new System.Drawing.Point(16, 27);
+            this.lblRawBG.Location = new System.Drawing.Point(28, 27);
             this.lblRawBG.Name = "lblRawBG";
             this.lblRawBG.Size = new System.Drawing.Size(27, 29);
             this.lblRawBG.TabIndex = 8;
             this.lblRawBG.Text = "0";
+            this.lblRawBG.Visible = false;
             this.lblRawBG.Click += new System.EventHandler(this.lblRawBG_Click);
             // 
             // FloatingGlucose
@@ -144,7 +145,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(199, 106);
+            this.ClientSize = new System.Drawing.Size(216, 106);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.lblRawBG);
             this.Controls.Add(this.lblDelta);

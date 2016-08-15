@@ -53,6 +53,11 @@ namespace FloatingGlucose
             get { return Properties.Settings.Default.alarm_urgent_low; }
         }
 
+        private bool enable_raw_glucose_display
+        {
+            get { return Properties.Settings.Default.enable_raw_glucose_display; }
+        }
+
         //private string nsURL = Properties.Settings.Default.nightscout_site;
         private bool loggingEnabled = Properties.Settings.Default.enable_exception_logging_to_stderr;
         private string appname = AppDefaults.appName;
@@ -165,10 +170,10 @@ namespace FloatingGlucose
             try
             {
                 WriteDebug("Trying to refresh data");
-                //var data = await this.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
+                
                 var data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL + "/pebble");
                 
-                //decimal lastRawv = 0.0m;
+                
 
                 this.lblGlucoseValue.Text = String.Format("{0:N1} {1}", data.glucose, data.directionArrow);
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
@@ -177,27 +182,16 @@ namespace FloatingGlucose
                 this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
                 this.lblDelta.Text = data.formattedDelta;
 
-                this.SetSuccessState();
-                this.lblRawBG.Text = String.Format("{0:N1}", data.rawGlucose);
+                
 
-                /*if (data.lastread != this.lasttime.Text)
+                this.lblRawBG.Visible = this.enable_raw_glucose_display;
+                if (this.enable_raw_glucose_display)
                 {
-                    lastRawv = number;
-                    if (this.lasttime.Text != "N/A")
-                    {
-                        if (Decimal.TryParse(this.lastRaw.Text, out number))
-                        {
-                        }
-                        number = lastRawv - number;
-                        deltastr = string.Format("{0}",number);
-                        if (number >= 0)
-                            deltastr = "+" + deltastr;
-                        this.RawBGD.Text = deltastr;
-                    }
-                    this.lasttime.Text = data.lastread;
-                    this.lastRaw.Text = String.Format("{0}", lastRawv);
-                    this.lblRawBG.Text = String.Format("{0}", lastRawv);
-                }*/
+                    this.lblRawBG.Text = String.Format("{0:N1}", data.rawGlucose);
+                }
+
+                this.SetSuccessState();
+
 
                 switch (status)
                 {
