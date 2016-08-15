@@ -28,8 +28,16 @@ namespace FloatingGlucose.Classes
     class PebbleData
     {
         public DateTime date;
-        public string glucose;
+        public string lastread;
+        public decimal glucose;
+        public string delta;
         public string direction;
+        public decimal filt;
+        public decimal unfilt;
+        public decimal noise;
+        public decimal slope;
+        public decimal intercept;
+        public decimal scale;
         public DateTime localDate
         {
             get {
@@ -79,22 +87,27 @@ namespace FloatingGlucose.Classes
             {
                 data = JObject.Parse(urlContents);
                 var bgs = data.bgs.First;
+                var cals = data.cals.First;
 
                 return new PebbleData
                 {
                     date = DateTimeOffset.FromUnixTimeMilliseconds((long)bgs.datetime).DateTime,
+                    lastread = (string)bgs.datetime,
                     direction = (string)bgs.direction,
-                    glucose = bgs.sgv
+                    glucose = bgs.sgv,
+                    delta = bgs.bgdelta,
+                    filt = bgs.filtered,
+                    unfilt = bgs.unfiltered,
+                    noise = bgs.noise,
+                    slope = cals.slope,
+                    intercept = cals.intercept,
+                    scale = cals.scale
 
                 };
             }
             catch (RuntimeBinderException ex) {
                 throw new JSONParsingException("Unable to parse json string:" + urlContents, ex);
             }
-            
-           
-
         }
-
     }
 }
