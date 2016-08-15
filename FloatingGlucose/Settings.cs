@@ -1,4 +1,6 @@
-﻿namespace FloatingGlucose.Properties {
+﻿using FloatingGlucose.Classes;
+
+namespace FloatingGlucose.Properties {
     
     
     // This class allows you to handle specific events on the settings class:
@@ -15,8 +17,14 @@
             //
             // this.SettingsSaving += this.SettingsSavingEventHandler;
             //
+            this.SettingsLoaded += this.SettingsLoadedEventHandler;
         }
-        
+        private void SettingsLoadedEventHandler(object sender, System.Configuration.SettingsLoadedEventArgs e)
+        {
+            // Add code to handle the SettingChangingEvent event here.
+            AppShared.notifyFormSettingsHaveChanged();
+        }
+
         private void SettingChangingEventHandler(object sender, System.Configuration.SettingChangingEventArgs e) {
             // Add code to handle the SettingChangingEvent event here.
         }

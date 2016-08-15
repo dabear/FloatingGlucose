@@ -48,7 +48,7 @@
             this.lblGlucoseValue.BackColor = System.Drawing.Color.Black;
             this.lblGlucoseValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGlucoseValue.ForeColor = System.Drawing.Color.Green;
-            this.lblGlucoseValue.Location = new System.Drawing.Point(77, 9);
+            this.lblGlucoseValue.Location = new System.Drawing.Point(62, 9);
             this.lblGlucoseValue.Name = "lblGlucoseValue";
             this.lblGlucoseValue.Size = new System.Drawing.Size(104, 55);
             this.lblGlucoseValue.TabIndex = 2;
@@ -59,7 +59,7 @@
             this.lblLastUpdate.AutoSize = true;
             this.lblLastUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastUpdate.ForeColor = System.Drawing.Color.Green;
-            this.lblLastUpdate.Location = new System.Drawing.Point(83, 77);
+            this.lblLastUpdate.Location = new System.Drawing.Point(68, 77);
             this.lblLastUpdate.Name = "lblLastUpdate";
             this.lblLastUpdate.Size = new System.Drawing.Size(42, 24);
             this.lblLastUpdate.TabIndex = 4;
@@ -119,7 +119,7 @@
             this.lblDelta.BackColor = System.Drawing.Color.Black;
             this.lblDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDelta.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblDelta.Location = new System.Drawing.Point(83, 53);
+            this.lblDelta.Location = new System.Drawing.Point(68, 53);
             this.lblDelta.Name = "lblDelta";
             this.lblDelta.Size = new System.Drawing.Size(45, 24);
             this.lblDelta.TabIndex = 7;
@@ -132,7 +132,7 @@
             this.lblRawBG.BackColor = System.Drawing.Color.Black;
             this.lblRawBG.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRawBG.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblRawBG.Location = new System.Drawing.Point(28, 27);
+            this.lblRawBG.Location = new System.Drawing.Point(16, 30);
             this.lblRawBG.Name = "lblRawBG";
             this.lblRawBG.Size = new System.Drawing.Size(27, 29);
             this.lblRawBG.TabIndex = 8;
@@ -145,7 +145,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(216, 106);
+            this.ClientSize = new System.Drawing.Size(200, 106);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.lblRawBG);
             this.Controls.Add(this.lblDelta);

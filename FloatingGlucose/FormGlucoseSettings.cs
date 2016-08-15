@@ -185,6 +185,7 @@ namespace FloatingGlucose
             this.settingsUpdatedSucessfully = true;
             MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!", this.appname, MessageBoxButtons.OK,
                MessageBoxIcon.Information);
+            AppShared.notifyFormSettingsHaveChanged();
             this.Close();
         }
 

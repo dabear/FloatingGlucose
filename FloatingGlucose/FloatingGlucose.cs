@@ -245,6 +245,8 @@ namespace FloatingGlucose
         
         }
 
+       
+
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
             // We want all data values to be formatted with a dot, not comma, as some cultures do
@@ -276,7 +278,7 @@ namespace FloatingGlucose
             }
 
 
-      
+            AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
 
             if (!Validators.isUrl(this.nsURL)) {
@@ -293,6 +295,14 @@ namespace FloatingGlucose
             refreshGlucoseTimer.Tick += new EventHandler(Glucose_Tick);
             refreshGlucoseTimer.Start();
         }
+        private bool Settings_Changed_Event() {
+
+            //we got notified via the appshared proxy that settings have been changed
+            //try to load glucose values anew straight away
+            this.LoadGlucoseValue();
+            return false;
+        }
+
         private void Glucose_Tick(object sender, EventArgs e)
         {
             LoadGlucoseValue();
