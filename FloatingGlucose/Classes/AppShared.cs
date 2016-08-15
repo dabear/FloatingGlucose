@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace FloatingGlucose.Classes
 {
-    class AppDefaults
+    class AppShared
     {
         public static string appName = "FloatingGlucose";
+        public static bool settingsFormShouldFocusAdvancedSettings = false;
     }
 }

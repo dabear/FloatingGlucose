@@ -13,7 +13,8 @@ namespace FloatingGlucose
 {
     public partial class FormGlucoseSettings : Form
     {
-        private string appname = AppDefaults.appName;
+        
+        private string appname = AppShared.appName;
         private bool settingsUpdatedSucessfully = false;
         public FormGlucoseSettings()
         {
@@ -121,6 +122,13 @@ namespace FloatingGlucose
                 x.ValueChanged += new System.EventHandler(this.numericUpDowns_Value_Changed);
             });
 
+            if (AppShared.settingsFormShouldFocusAdvancedSettings)
+            {
+                AppShared.settingsFormShouldFocusAdvancedSettings = false;
+                this.tabSettings.SelectTab(this.tabPageAdvanced);
+               
+                
+            }
 
         }
 

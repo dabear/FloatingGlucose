@@ -106,7 +106,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\Datetime_Extensions.cs" />
-    <Compile Include="Classes\Defaults.cs" />
+    <Compile Include="Classes\AppShared.cs" />
     <Compile Include="Classes\Generated_NSDATA.cs" />
     <Compile Include="Classes\GlucoseStatus.cs" />
     <Compile Include="Classes\PebbleData.cs" />

@@ -48,7 +48,7 @@
             this.lblGlucoseValue.BackColor = System.Drawing.Color.Black;
             this.lblGlucoseValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGlucoseValue.ForeColor = System.Drawing.Color.Green;
-            this.lblGlucoseValue.Location = new System.Drawing.Point(77, 6);
+            this.lblGlucoseValue.Location = new System.Drawing.Point(77, 9);
             this.lblGlucoseValue.Name = "lblGlucoseValue";
             this.lblGlucoseValue.Size = new System.Drawing.Size(104, 55);
             this.lblGlucoseValue.TabIndex = 2;
@@ -57,11 +57,11 @@
             // lblLastUpdate
             // 
             this.lblLastUpdate.AutoSize = true;
-            this.lblLastUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLastUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastUpdate.ForeColor = System.Drawing.Color.Green;
-            this.lblLastUpdate.Location = new System.Drawing.Point(83, 79);
+            this.lblLastUpdate.Location = new System.Drawing.Point(83, 77);
             this.lblLastUpdate.Name = "lblLastUpdate";
-            this.lblLastUpdate.Size = new System.Drawing.Size(37, 20);
+            this.lblLastUpdate.Size = new System.Drawing.Size(42, 24);
             this.lblLastUpdate.TabIndex = 4;
             this.lblLastUpdate.Text = "N/A";
             // 
@@ -90,26 +90,26 @@
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(202, 82);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(196, 76);
             // 
             // showApplicationToolStripMenuItem
             // 
             this.showApplicationToolStripMenuItem.Name = "showApplicationToolStripMenuItem";
-            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
+            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.showApplicationToolStripMenuItem.Text = "Show &Application";
             this.showApplicationToolStripMenuItem.Click += new System.EventHandler(this.showApplicationToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.settingsToolStripMenuItem.Text = "&Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
             this.quitToolStripMenuItem.Text = "&Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -117,11 +117,11 @@
             // 
             this.lblDelta.AutoSize = true;
             this.lblDelta.BackColor = System.Drawing.Color.Black;
-            this.lblDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDelta.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblDelta.Location = new System.Drawing.Point(82, 53);
+            this.lblDelta.Location = new System.Drawing.Point(83, 53);
             this.lblDelta.Name = "lblDelta";
-            this.lblDelta.Size = new System.Drawing.Size(56, 29);
+            this.lblDelta.Size = new System.Drawing.Size(45, 24);
             this.lblDelta.TabIndex = 7;
             this.lblDelta.Text = "N/A";
             this.lblDelta.Click += new System.EventHandler(this.lblDelta_Click);

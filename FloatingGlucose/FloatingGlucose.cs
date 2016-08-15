@@ -60,7 +60,7 @@ namespace FloatingGlucose
 
         //private string nsURL = Properties.Settings.Default.nightscout_site;
         private bool loggingEnabled = Properties.Settings.Default.enable_exception_logging_to_stderr;
-        private string appname = AppDefaults.appName;
+        private string appname = AppShared.appName;
 
         private int refreshTime {
             get {
@@ -231,6 +231,9 @@ namespace FloatingGlucose
                 this.SetErrorState(ex);
                 MessageBox.Show(ex.Message, this.appname, MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
+                AppShared.settingsFormShouldFocusAdvancedSettings = true;
+                
+                this.settingsForm.ShowDialog();
             }
             catch (Exception ex)
             {
