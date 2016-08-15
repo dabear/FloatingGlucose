@@ -1,7 +1,9 @@
 ﻿using Microsoft.CSharp.RuntimeBinder;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -9,35 +11,69 @@ using System.Threading.Tasks;
 
 namespace FloatingGlucose.Classes
 {
-    class JSONParsingException: Exception
+    class MissingJSONDataException : Exception
     {
-        public JSONParsingException(string message):base(message)
+        public MissingJSONDataException(string message) : base(message)
         {
 
         }
-        public JSONParsingException()
+        public MissingJSONDataException()
         {
 
         }
-        public JSONParsingException(string message, Exception inner): base(message, inner)
+        public MissingJSONDataException(string message, Exception inner) : base(message, inner)
         {
 
         }
 
     }
+
+
+
     class PebbleData
     {
+        public Generated_NSDATA nsdata;
         public DateTime date;
-        public string lastread;
-        public decimal glucose;
-        public string delta;
+        
+        public double glucose;
+        public double delta = 0.0;
         public string direction;
-        public decimal filt;
-        public decimal unfilt;
-        public decimal noise;
-        public decimal slope;
-        public decimal intercept;
-        public decimal scale;
+
+
+        public string formattedDelta
+        {
+            get {
+
+                if (this.delta >= 0.0)
+                {
+                    return String.Format("+{0:N1}", this.delta);
+                }
+
+                return String.Format("-{0:N1}", this.delta);
+            }
+        }
+        
+
+        public double rawGlucose {
+            get {
+                try
+                {
+                    double number;
+                    Cal cals = this.nsdata.cals.First();
+                    Bg bgs = this.nsdata.bgs.First();
+
+                    number = (cals.scale * (bgs.filtered - cals.intercept) / cals.slope / this.glucose);
+                    number = (cals.scale * (bgs.unfiltered - cals.intercept) / cals.slope / number);
+                    return Math.Round(number, 1);
+                }
+                catch(InvalidOperationException)
+                {
+                    throw new MissingJSONDataException("The raw data are not available, enable RAWBG in your azure settings");
+                }
+                
+            }
+        }
+
         public DateTime localDate
         {
             get {
@@ -79,35 +115,38 @@ namespace FloatingGlucose.Classes
 
         public static async Task<PebbleData> GetNightscoutPebbleDataAsync(string url)
         {
-            dynamic data;
+
             HttpClient client = new HttpClient();
+            var culture = new CultureInfo("en-US");
+            var pebbleData = new PebbleData();
+
             string urlContents = await client.GetStringAsync(url);
+            var parsed = JsonConvert.DeserializeObject<Generated_NSDATA>(urlContents);
+
+            
+            pebbleData.nsdata = parsed;
 
             try
             {
-                data = JObject.Parse(urlContents);
-                var bgs = data.bgs.First;
-                var cals = data.cals.First;
+                
+                Bg bgs = parsed.bgs.First();
 
-                return new PebbleData
-                {
-                    date = DateTimeOffset.FromUnixTimeMilliseconds((long)bgs.datetime).DateTime,
-                    lastread = (string)bgs.datetime,
-                    direction = (string)bgs.direction,
-                    glucose = bgs.sgv,
-                    delta = bgs.bgdelta,
-                    filt = bgs.filtered,
-                    unfilt = bgs.unfiltered,
-                    noise = bgs.noise,
-                    slope = cals.slope,
-                    intercept = cals.intercept,
-                    scale = cals.scale
+                pebbleData.direction = bgs.direction;
+                pebbleData.glucose = Double.Parse(bgs.sgv, NumberStyles.Any, culture);
+                pebbleData.date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
+                pebbleData.delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, culture);
+                 
+                
 
-                };
             }
-            catch (RuntimeBinderException ex) {
-                throw new JSONParsingException("Unable to parse json string:" + urlContents, ex);
+            catch (Exception)
+            {
+                return null;
             }
+
+            return pebbleData;
+            
+
         }
     }
 }

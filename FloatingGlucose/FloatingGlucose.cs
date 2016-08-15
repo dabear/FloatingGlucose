@@ -16,6 +16,7 @@ using System.Net;
 using System.Net.Http;
 using FloatingGlucose.Classes;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace FloatingGlucose
 {
@@ -116,6 +117,7 @@ namespace FloatingGlucose
         public FloatingGlucose()
         {
             InitializeComponent();
+            
 
         }
 
@@ -165,30 +167,20 @@ namespace FloatingGlucose
                 WriteDebug("Trying to refresh data");
                 //var data = await this.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
                 var data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL + "/pebble");
-                decimal number;
-                decimal lastRawv = 0.0m;
+                
+                //decimal lastRawv = 0.0m;
 
-                this.lblGlucoseValue.Text = String.Format("{0} {1}", data.glucose, data.directionArrow);
+                this.lblGlucoseValue.Text = String.Format("{0:N1} {1}", data.glucose, data.directionArrow);
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
-                var status = GlucoseStatus.GetGlucoseStatus(data.glucose);
-                var deltastr = data.delta;
-
+                var status = GlucoseStatus.GetGlucoseStatus((decimal)data.glucose);
+                
                 this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
-                if (Decimal.TryParse(deltastr, out number))
-                {
-                    if (number >= 0)
-                        deltastr = "+" + deltastr;
-                }
-                this.lblDelta.Text = deltastr;
+                this.lblDelta.Text = data.formattedDelta;
 
                 this.SetSuccessState();
+                this.lblRawBG.Text = String.Format("{0:N1}", data.rawGlucose);
 
-                number = (data.scale * (data.filt - data.intercept) / data.slope / data.glucose);
-                number = (data.scale * (data.unfilt - data.intercept) / data.slope / number);
-                number = Decimal.Round(number, 1);
-                this.lblRawBG.Text = String.Format("{0}", number);
-
-                if (data.lastread != this.lasttime.Text)
+                /*if (data.lastread != this.lasttime.Text)
                 {
                     lastRawv = number;
                     if (this.lasttime.Text != "N/A")
@@ -205,7 +197,7 @@ namespace FloatingGlucose
                     this.lasttime.Text = data.lastread;
                     this.lastRaw.Text = String.Format("{0}", lastRawv);
                     this.lblRawBG.Text = String.Format("{0}", lastRawv);
-                }
+                }*/
 
                 switch (status)
                 {
@@ -241,8 +233,10 @@ namespace FloatingGlucose
             {
                 this.SetErrorState(ex);
             }
-            catch (JSONParsingException ex) {
+            catch (MissingJSONDataException ex) {
                 this.SetErrorState(ex);
+                MessageBox.Show(ex.Message, this.appname, MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -256,8 +250,10 @@ namespace FloatingGlucose
 
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
-            
-
+            // We want all data values to be formatted with a dot, not comma, as some cultures do
+            // as this messes up the gui a bit
+            // we avoid this: double foo=7.0; foo.toString() => "7,0" in the nb-NO culture
+            Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
             this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc;
 
             // Manual scaling for now with values from config file
@@ -324,7 +320,7 @@ namespace FloatingGlucose
 
         private void lblClickToCloseApp_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Exit();
         }
 
         private void labelDoNotEverRemoveThisLabel_Click(object sender, EventArgs e)
@@ -350,8 +346,23 @@ namespace FloatingGlucose
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            this.Exit();
+        }
+
+        private void Exit() {
+            this.notifyIcon1.Icon = null;
+            this.notifyIcon1 = null;
             Application.Exit();
         }
 
+        private void lblRawBG_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblDelta_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

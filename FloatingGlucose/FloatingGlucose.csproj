@@ -107,6 +107,7 @@
   <ItemGroup>
     <Compile Include="Classes\Datetime_Extensions.cs" />
     <Compile Include="Classes\Defaults.cs" />
+    <Compile Include="Classes\Generated_NSDATA.cs" />
     <Compile Include="Classes\GlucoseStatus.cs" />
     <Compile Include="Classes\PebbleData.cs" />
     <Compile Include="Classes\Validators.cs" />
@@ -131,6 +132,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormGlucoseSettings.resx">
       <DependentUpon>FormGlucoseSettings.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
