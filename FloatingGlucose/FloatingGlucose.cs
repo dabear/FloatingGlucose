@@ -81,6 +81,7 @@ namespace FloatingGlucose
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
@@ -164,15 +165,47 @@ namespace FloatingGlucose
                 WriteDebug("Trying to refresh data");
                 //var data = await this.GetNightscoutPebbleDataAsync(nsURL + "/pebble");
                 var data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL + "/pebble");
+                decimal number;
+                decimal lastRawv = 0.0m;
 
-                
                 this.lblGlucoseValue.Text = String.Format("{0} {1}", data.glucose, data.directionArrow);
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
                 var status = GlucoseStatus.GetGlucoseStatus(data.glucose);
+                var deltastr = data.delta;
 
                 this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
-                
+                if (Decimal.TryParse(deltastr, out number))
+                {
+                    if (number >= 0)
+                        deltastr = "+" + deltastr;
+                }
+                this.lblDelta.Text = deltastr;
+
                 this.SetSuccessState();
+
+                number = (data.scale * (data.filt - data.intercept) / data.slope / data.glucose);
+                number = (data.scale * (data.unfilt - data.intercept) / data.slope / number);
+                number = Decimal.Round(number, 1);
+                this.lblRawBG.Text = String.Format("{0}", number);
+
+                if (data.lastread != this.lasttime.Text)
+                {
+                    lastRawv = number;
+                    if (this.lasttime.Text != "N/A")
+                    {
+                        if (Decimal.TryParse(this.lastRaw.Text, out number))
+                        {
+                        }
+                        number = lastRawv - number;
+                        deltastr = string.Format("{0}",number);
+                        if (number >= 0)
+                            deltastr = "+" + deltastr;
+                        this.RawBGD.Text = deltastr;
+                    }
+                    this.lasttime.Text = data.lastread;
+                    this.lastRaw.Text = String.Format("{0}", lastRawv);
+                    this.lblRawBG.Text = String.Format("{0}", lastRawv);
+                }
 
                 switch (status)
                 {
@@ -291,7 +324,7 @@ namespace FloatingGlucose
 
         private void lblClickToCloseApp_Click(object sender, EventArgs e)
         {
-            this.Exit();
+            Application.Exit();
         }
 
         private void labelDoNotEverRemoveThisLabel_Click(object sender, EventArgs e)
@@ -303,11 +336,6 @@ namespace FloatingGlucose
         {
 
             this.settingsForm.Show();
-        }
-
-        private void lblLastUpdate_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void showApplicationToolStripMenuItem_Click(object sender, EventArgs e)
@@ -322,12 +350,6 @@ namespace FloatingGlucose
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.Exit();
-        }
-
-        private void Exit()
-        {
-            this.notifyIcon1 = null;
             Application.Exit();
         }
 
