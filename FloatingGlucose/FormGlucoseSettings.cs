@@ -84,6 +84,9 @@ namespace FloatingGlucose
             this.numLow.Value = alarmLow;
             this.numUrgentLow.Value = alarmUrgentLow;
 
+            this.btnUnitsMMOL.Checked = Properties.Settings.Default.glucose_units == "mmol";
+            this.btnUnitsMGDL.Checked = Properties.Settings.Default.glucose_units == "mgdl";
+
             //advanced settings
             this.numScaling.Value = (decimal)Properties.Settings.Default.gui_scaling_ratio;
             this.numRefreshInterval.Value = (decimal)Properties.Settings.Default.refresh_interval_in_seconds;
@@ -172,6 +175,7 @@ namespace FloatingGlucose
             Properties.Settings.Default.alarm_high = this.numHigh.Value;
             Properties.Settings.Default.alarm_low = this.numLow.Value;
             Properties.Settings.Default.alarm_urgent_low = this.numUrgentLow.Value;
+            Properties.Settings.Default.glucose_units = this.btnUnitsMMOL.Checked ? "mmol" : "mgdl";
 
             //advanced settings
             Properties.Settings.Default.gui_scaling_ratio = (float)this.numScaling.Value;
@@ -205,6 +209,56 @@ namespace FloatingGlucose
 
         }
 
-        
+        private void GlucoseUnit_Changed(object sender, EventArgs e)
+        {
+            var isMMOL = this.btnUnitsMMOL.Checked;
+            
+            if (isMMOL) {
+                if (this.numUrgentHigh.Value >= 36)
+                {
+                    this.numUrgentHigh.Value = GlucoseStatus.toMMOL(this.numUrgentHigh.Value);
+                }
+                if (this.numHigh.Value >= 36)
+                {
+                    this.numHigh.Value = GlucoseStatus.toMMOL(this.numHigh.Value);
+                }
+
+                if (this.numLow.Value >= 36)
+                {
+                    this.numLow.Value = GlucoseStatus.toMMOL(this.numLow.Value);
+                }
+
+                if (this.numUrgentLow.Value >= 36)
+                {
+                    this.numUrgentLow.Value = GlucoseStatus.toMMOL(this.numUrgentLow.Value);
+                }
+
+            }
+
+            else 
+            {
+                if (this.numUrgentHigh.Value < 36)
+                {
+                    this.numUrgentHigh.Value = GlucoseStatus.toMGDL(this.numUrgentHigh.Value);
+                }
+                if (this.numHigh.Value < 36)
+                {
+                    this.numHigh.Value = GlucoseStatus.toMGDL(this.numHigh.Value);
+                }
+
+                if (this.numLow.Value < 36)
+                {
+                    this.numLow.Value = GlucoseStatus.toMGDL(this.numLow.Value);
+                }
+
+                if (this.numUrgentLow.Value < 36)
+                {
+                    this.numUrgentLow.Value = GlucoseStatus.toMGDL(this.numUrgentLow.Value);
+                }
+
+            }
+
+
+        }
     }
 }

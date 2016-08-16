@@ -142,5 +142,17 @@ namespace FloatingGlucose.Properties {
                 this["enable_raw_glucose_display"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("mmol")]
+        public string glucose_units {
+            get {
+                return ((string)(this["glucose_units"]));
+            }
+            set {
+                this["glucose_units"] = value;
+            }
+        }
     }
 }

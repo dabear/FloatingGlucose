@@ -28,7 +28,11 @@ namespace FloatingGlucose
         //nightscout URL, will be used to create a pebble endpoint to fetch data from
         private string nsURL {
             get {
-                return Properties.Settings.Default.nightscout_site;
+                // With raw glucose display we need to have two 
+                // data points to calculate raw glucose diff
+                var count = this.enable_raw_glucose_display ? 2 : 1;
+                var units = this.glucoseUnits;
+                return String.Format("{0}/pebble?count={1}&units={2}",Properties.Settings.Default.nightscout_site, count, units);
             }
         }
         private bool alarmEnabled {
@@ -58,6 +62,10 @@ namespace FloatingGlucose
             get { return Properties.Settings.Default.enable_raw_glucose_display; }
         }
 
+        private string glucoseUnits
+        {
+            get { return Properties.Settings.Default.glucose_units; }
+        }
         //private string nsURL = Properties.Settings.Default.nightscout_site;
         private bool loggingEnabled = Properties.Settings.Default.enable_exception_logging_to_stderr;
         private string appname = AppShared.appName;
@@ -171,7 +179,7 @@ namespace FloatingGlucose
             {
                 WriteDebug("Trying to refresh data");
                 
-                var data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL + "/pebble");
+                var data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL);
                 
                 
 

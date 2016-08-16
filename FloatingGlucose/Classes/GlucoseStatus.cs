@@ -20,6 +20,12 @@ namespace FloatingGlucose.Classes
 
     class GlucoseStatus
     {
+        public static decimal toMMOL(decimal number) {
+            return number / 18.0M;
+        }
+        public static decimal toMGDL(decimal number) {
+            return number * 18.0M;
+        }
         public static GlucoseStatusEnum GetGlucoseStatus(decimal glucose) {
             if (!Properties.Settings.Default.enable_alarms)
             {

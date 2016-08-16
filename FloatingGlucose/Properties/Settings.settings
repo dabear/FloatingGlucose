@@ -32,5 +32,8 @@
     <Setting Name="enable_raw_glucose_display" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="glucose_units" Type="System.String" Scope="User">
+      <Value Profile="(Default)">mmol</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
