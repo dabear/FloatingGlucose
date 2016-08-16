@@ -40,6 +40,7 @@ namespace FloatingGlucose.Classes
         public string direction;
 
 
+
         public string formattedDelta
         {
             get {
@@ -52,19 +53,79 @@ namespace FloatingGlucose.Classes
                 return String.Format("{0:N1}", this.delta);
             }
         }
-        
+
+        public double rawDelta {
+            get {
+                return this.rawGlucose - this.previousRawGlucose;
+            }
+        }
+
+        public string formattedRawDelta
+        {
+            get
+            {
+
+                if (this.rawDelta >= 0.0)
+                {
+                    return String.Format("+{0:N1}", this.rawDelta);
+                }
+
+                return String.Format("{0:N1}", this.rawDelta);
+            }
+        }
+
+        public static CultureInfo culture = new CultureInfo("en-US");
+        public static double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose) {
+            double number;
+            number = (cal.scale * (bg.filtered - cal.intercept) / cal.slope / actualGlucose);
+            number = (cal.scale * (bg.unfiltered - cal.intercept) / cal.slope / number);
+
+            return number;
+        }
+
+
+        public double previousGlucose
+        {
+            get
+            {
+                var bgs = this.nsdata.bgs.Skip(1).First();
+                return Double.Parse(bgs.sgv, NumberStyles.Any, PebbleData.culture);
+
+            }
+        }
+
+        public double previousRawGlucose
+        {
+            get
+            {
+                try
+                {
+                    var cal = this.nsdata.cals.Skip(1).First();
+                    var bg = this.nsdata.bgs.Skip(1).First();
+                    return PebbleData.CalculateRawGlucose(cal, bg, this.previousGlucose);
+                }
+                catch (InvalidOperationException)
+                {
+                    throw new MissingJSONDataException("The raw data are not available, enable RAWBG in your azure settings");
+                }
+
+            }
+        }
 
         public double rawGlucose {
             get {
                 try
                 {
-                    double number;
+                    /*double number;
                     Cal cals = this.nsdata.cals.First();
                     Bg bgs = this.nsdata.bgs.First();
 
                     number = (cals.scale * (bgs.filtered - cals.intercept) / cals.slope / this.glucose);
                     number = (cals.scale * (bgs.unfiltered - cals.intercept) / cals.slope / number);
-                    return Math.Round(number, 1);
+                    return number;*/
+                    var cal = this.nsdata.cals.First();
+                    var bg = this.nsdata.bgs.First();
+                    return PebbleData.CalculateRawGlucose(cal, bg, this.glucose);
                 }
                 catch(InvalidOperationException)
                 {
@@ -117,7 +178,7 @@ namespace FloatingGlucose.Classes
         {
 
             HttpClient client = new HttpClient();
-            var culture = new CultureInfo("en-US");
+            
             var pebbleData = new PebbleData();
 
             string urlContents = await client.GetStringAsync(url);
@@ -129,9 +190,9 @@ namespace FloatingGlucose.Classes
                 
                 Bg bgs = parsed.bgs.First();
                 pebbleData.direction = bgs.direction;
-                pebbleData.glucose = Double.Parse(bgs.sgv, NumberStyles.Any, culture);
+                pebbleData.glucose = Double.Parse(bgs.sgv, NumberStyles.Any, PebbleData.culture);
                 pebbleData.date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
-                pebbleData.delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, culture);
+                pebbleData.delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, PebbleData.culture);
                  
                 
 

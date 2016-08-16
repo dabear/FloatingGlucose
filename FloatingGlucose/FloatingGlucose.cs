@@ -173,13 +173,13 @@ namespace FloatingGlucose
 
             }
 
-
+            PebbleData data = null;
 
             try
             {
                 WriteDebug("Trying to refresh data");
                 
-                var data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL);
+                data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL);
                 
                 
 
@@ -190,9 +190,10 @@ namespace FloatingGlucose
                 this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
                 this.lblDelta.Text = data.formattedDelta;
 
-                
 
+                this.lblRawDelta.Visible =
                 this.lblRawBG.Visible = this.enable_raw_glucose_display;
+                
                 if (this.enable_raw_glucose_display)
                 {
                     this.lblRawBG.Text = String.Format("{0:N1}", data.rawGlucose);
@@ -250,7 +251,27 @@ namespace FloatingGlucose
                    MessageBoxIcon.Error);
                 Application.Exit();
             }
-        
+
+            try {
+                if (this.enable_raw_glucose_display && data != null) {
+                    this.lblRawDelta.Text = data.formattedRawDelta;
+                }
+            }
+            catch (MissingJSONDataException) {
+                // No data available.
+                // This can happen even if raw glucose is enabled
+                // as it required two data points to be available
+                this.lblRawDelta.Text = "-";
+            }
+
+            //these are just for layout tests
+            //this.lblGlucoseValue.Text = "+500.0";
+            //this.lblRawBG.Text = "+489.5";
+            //this.lblRawDelta.Text = "+50.0";
+            //this.lblDelta.Text = "-50.0";
+
+
+
         }
 
        
@@ -365,7 +386,9 @@ namespace FloatingGlucose
         }
 
         private void Exit() {
+            
             this.notifyIcon1.Icon = null;
+            this.notifyIcon1.Dispose();
             this.notifyIcon1 = null;
             Application.Exit();
         }
@@ -376,6 +399,11 @@ namespace FloatingGlucose
         }
 
         private void lblDelta_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblRawDelta_Click(object sender, EventArgs e)
         {
 
         }
