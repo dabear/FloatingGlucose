@@ -138,7 +138,11 @@ namespace FloatingGlucose
 
         private void SetErrorState(Exception ex=null) {
 
-            this.lblGlucoseValue.Text = "N/A";
+            this.lblRawBG.Text = "0";
+            this.lblRawDelta.Text = "-";
+
+            this.lblGlucoseValue.Text =
+            this.lblDelta.Text =
             this.lblLastUpdate.Text = "N/A";
             if (ex != null && this.loggingEnabled) {
                 if (this.isDebuggingBuild) {
@@ -165,7 +169,9 @@ namespace FloatingGlucose
 
         }
 
-
+        //
+        // Main loop. This will be called each 60s and also when the settings are reloaded
+        //
         private async void LoadGlucoseValue() 
         {
             if (!Validators.isUrl(this.nsURL)) {   
@@ -195,7 +201,7 @@ namespace FloatingGlucose
 
                 this.lblRawDelta.Visible =
                 this.lblRawBG.Visible = this.enable_raw_glucose_display;
-                
+                this.SetFormWidth();
                 if (this.enable_raw_glucose_display)
                 {
                     this.lblRawBG.Text = String.Format("{0:N1}", data.rawGlucose);
@@ -273,17 +279,23 @@ namespace FloatingGlucose
             //this.lblDelta.Text = "-50.0";
 
 
-            //larger area for raw glucose display
-            if (this.enable_raw_glucose_display)
-            {
-                this.Width = this.intialFormWidth + 25;
-            }
-            else {
-                this.Width = this.intialFormWidth;
-            }
+
+
 
         }
 
+        private void SetFormWidth() {
+            //
+            // increases / decreased form with based on if we want to show the raw values or not
+            //
+
+            int newWidth = this.intialFormWidth;
+            newWidth += this.enable_raw_glucose_display ? Math.Max(25, this.lblRawBG.Width)+5 : 0;
+            //larger area for raw glucose display
+            if (this.Width != newWidth) {
+                this.Width = newWidth;
+            }
+        }
        
 
         private void FloatingGlucose_Load(object sender, EventArgs e)
@@ -327,10 +339,7 @@ namespace FloatingGlucose
 
             this.intialFormWidth = this.Width;
 
-            if (this.enable_raw_glucose_display) {
-                this.Width += 25;
-            }
-
+            this.SetFormWidth();
             this.LoadGlucoseValue();
             
             var refreshGlucoseTimer = new System.Windows.Forms.Timer();
@@ -349,6 +358,7 @@ namespace FloatingGlucose
 
         private void Glucose_Tick(object sender, EventArgs e)
         {
+            //every 60s (default) reload the glucose numbers from the nightscout pebble endpoint
             LoadGlucoseValue();
         }
 
