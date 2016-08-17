@@ -110,6 +110,8 @@ namespace FloatingGlucose
         private static extern int ShowWindow(IntPtr hWnd, uint Msg);
         private uint SW_SHOWNORMAL = 1;*/
 
+        private int intialFormWidth;
+
         private void SetScaling(float scale) {
             if ((float)scale == 1.0) {
                 return;
@@ -271,6 +273,14 @@ namespace FloatingGlucose
             //this.lblDelta.Text = "-50.0";
 
 
+            //larger area for raw glucose display
+            if (this.enable_raw_glucose_display)
+            {
+                this.Width = this.intialFormWidth + 25;
+            }
+            else {
+                this.Width = this.intialFormWidth;
+            }
 
         }
 
@@ -315,6 +325,11 @@ namespace FloatingGlucose
 
             }
 
+            this.intialFormWidth = this.Width;
+
+            if (this.enable_raw_glucose_display) {
+                this.Width += 25;
+            }
 
             this.LoadGlucoseValue();
             

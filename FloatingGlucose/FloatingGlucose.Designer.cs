@@ -45,11 +45,12 @@
             // 
             // lblGlucoseValue
             // 
+            this.lblGlucoseValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGlucoseValue.AutoSize = true;
             this.lblGlucoseValue.BackColor = System.Drawing.Color.Black;
             this.lblGlucoseValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGlucoseValue.ForeColor = System.Drawing.Color.Green;
-            this.lblGlucoseValue.Location = new System.Drawing.Point(87, 7);
+            this.lblGlucoseValue.Location = new System.Drawing.Point(23, 7);
             this.lblGlucoseValue.Name = "lblGlucoseValue";
             this.lblGlucoseValue.Size = new System.Drawing.Size(104, 55);
             this.lblGlucoseValue.TabIndex = 2;
@@ -57,10 +58,11 @@
             // 
             // lblLastUpdate
             // 
+            this.lblLastUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLastUpdate.AutoSize = true;
             this.lblLastUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastUpdate.ForeColor = System.Drawing.Color.Green;
-            this.lblLastUpdate.Location = new System.Drawing.Point(93, 81);
+            this.lblLastUpdate.Location = new System.Drawing.Point(29, 81);
             this.lblLastUpdate.Name = "lblLastUpdate";
             this.lblLastUpdate.Size = new System.Drawing.Size(42, 24);
             this.lblLastUpdate.TabIndex = 4;
@@ -91,36 +93,37 @@
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(196, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(202, 82);
             // 
             // showApplicationToolStripMenuItem
             // 
             this.showApplicationToolStripMenuItem.Name = "showApplicationToolStripMenuItem";
-            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
+            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.showApplicationToolStripMenuItem.Text = "Show &Application";
             this.showApplicationToolStripMenuItem.Click += new System.EventHandler(this.showApplicationToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.settingsToolStripMenuItem.Text = "&Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(195, 24);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(201, 26);
             this.quitToolStripMenuItem.Text = "&Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
             // lblDelta
             // 
+            this.lblDelta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDelta.AutoSize = true;
             this.lblDelta.BackColor = System.Drawing.Color.Black;
             this.lblDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDelta.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblDelta.Location = new System.Drawing.Point(93, 57);
+            this.lblDelta.Location = new System.Drawing.Point(29, 57);
             this.lblDelta.Name = "lblDelta";
             this.lblDelta.Size = new System.Drawing.Size(45, 24);
             this.lblDelta.TabIndex = 7;
@@ -159,7 +162,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(269, 112);
+            this.ClientSize = new System.Drawing.Size(215, 112);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.lblRawDelta);
             this.Controls.Add(this.lblRawBG);
