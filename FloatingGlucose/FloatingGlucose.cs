@@ -201,7 +201,7 @@ namespace FloatingGlucose
 
                 this.lblRawDelta.Visible =
                 this.lblRawBG.Visible = this.enable_raw_glucose_display;
-                this.SetFormWidth();
+                
                 if (this.enable_raw_glucose_display)
                 {
                     this.lblRawBG.Text = String.Format("{0:N1}", data.rawGlucose);
@@ -284,20 +284,6 @@ namespace FloatingGlucose
 
         }
 
-        private void SetFormWidth() {
-            //
-            // increases / decreased form with based on if we want to show the raw values or not
-            //
-
-            int newWidth = this.intialFormWidth;
-            newWidth += this.enable_raw_glucose_display ? Math.Max(25, this.lblRawBG.Width)+5 : 0;
-            //larger area for raw glucose display
-            if (this.Width != newWidth) {
-                this.Width = newWidth;
-            }
-        }
-       
-
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
             // We want all data values to be formatted with a dot, not comma, as some cultures do
@@ -337,9 +323,7 @@ namespace FloatingGlucose
 
             }
 
-            this.intialFormWidth = this.Width;
-
-            this.SetFormWidth();
+            
             this.LoadGlucoseValue();
             
             var refreshGlucoseTimer = new System.Windows.Forms.Timer();
