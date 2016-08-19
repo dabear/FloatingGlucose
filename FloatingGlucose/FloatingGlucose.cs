@@ -322,6 +322,10 @@ namespace FloatingGlucose
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
             this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc;
 
+
+            this.lblRawDelta.Visible =
+            this.lblRawBG.Visible = this.enable_raw_glucose_display;
+
             // Manual scaling for now with values from config file
             // how to figure out the dpi:
             // this.CreateGraphics().DpiX > 96
@@ -362,6 +366,9 @@ namespace FloatingGlucose
             refreshGlucoseTimer.Interval = this.refreshTime; 
             refreshGlucoseTimer.Tick += new EventHandler(Glucose_Tick);
             refreshGlucoseTimer.Start();
+
+
+
         }
         private bool Settings_Changed_Event() {
 
