@@ -154,7 +154,7 @@ namespace FloatingGlucose
             var diff = TextRenderer.MeasureText("+999.0", this.lblDelta.Font);
             var update = TextRenderer.MeasureText("59 minutes ago", this.lblLastUpdate.Font);
 
-            float size = new[] { bg.Width, diff.Width, update.Width }.Max() * 1.03F;
+            float size = new[] { bg.Width, diff.Width, update.Width }.Max() * 1.09F;
             
             //raw glucose will not always be displayed
             if (this.enable_raw_glucose_display) {
