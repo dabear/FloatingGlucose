@@ -110,7 +110,7 @@ namespace FloatingGlucose
         private static extern int ShowWindow(IntPtr hWnd, uint Msg);
         private uint SW_SHOWNORMAL = 1;*/
 
-        private int intialFormWidth;
+        
 
         private void SetScaling(float scale) {
             if ((float)scale == 1.0) {
@@ -135,6 +135,38 @@ namespace FloatingGlucose
             
 
         }
+
+        private void setFormSize() {
+            // This is a nasy and ugly hack. It adjusts the size of the main form
+            // Based on predicted max widths of it's contained elements
+            // This must be set dynamically because the font sizes might change
+            // if the scaling factor changes
+            // Also is used the labels own font size to determine the widths
+            // So the formula doesn't have to be updated if the label fonts are changed
+            // during design-time.
+
+           
+
+            var rawbg = TextRenderer.MeasureText("999.0"  ,  this.lblRawBG.Font);
+            var rawbgdiff = TextRenderer.MeasureText("+999.0", this.lblRawDelta.Font);
+
+            var bg = TextRenderer.MeasureText("999.0 ⇈", this.lblGlucoseValue.Font);
+            var diff = TextRenderer.MeasureText("+999.0", this.lblDelta.Font);
+            var update = TextRenderer.MeasureText("59 minutes ago", this.lblLastUpdate.Font);
+
+            float size = new[] { bg.Width, diff.Width, update.Width }.Max() * 1.03F;
+            
+            //raw glucose will not always be displayed
+            if (this.enable_raw_glucose_display) {
+                size += Math.Max(rawbg.Width, rawbgdiff.Width);
+            }
+
+            
+            this.Width = (int)Math.Ceiling(size);
+
+
+        }
+
 
         private void SetErrorState(Exception ex=null) {
 
@@ -199,8 +231,6 @@ namespace FloatingGlucose
                 this.lblDelta.Text = data.formattedDelta;
 
 
-                this.lblRawDelta.Visible =
-                this.lblRawBG.Visible = this.enable_raw_glucose_display;
                 
                 if (this.enable_raw_glucose_display)
                 {
@@ -322,8 +352,9 @@ namespace FloatingGlucose
                 this.settingsForm.ShowDialog();
 
             }
+            this.setFormSize();
 
-            
+
             this.LoadGlucoseValue();
             
             var refreshGlucoseTimer = new System.Windows.Forms.Timer();
@@ -336,6 +367,10 @@ namespace FloatingGlucose
 
             //we got notified via the appshared proxy that settings have been changed
             //try to load glucose values anew straight away
+            this.setFormSize();
+            this.lblRawDelta.Visible =
+            this.lblRawBG.Visible = this.enable_raw_glucose_display;
+
             this.LoadGlucoseValue();
             return false;
         }

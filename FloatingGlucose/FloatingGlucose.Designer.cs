@@ -50,7 +50,7 @@
             this.lblGlucoseValue.BackColor = System.Drawing.Color.Black;
             this.lblGlucoseValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGlucoseValue.ForeColor = System.Drawing.Color.Green;
-            this.lblGlucoseValue.Location = new System.Drawing.Point(104, 7);
+            this.lblGlucoseValue.Location = new System.Drawing.Point(-8, 9);
             this.lblGlucoseValue.Name = "lblGlucoseValue";
             this.lblGlucoseValue.Size = new System.Drawing.Size(104, 55);
             this.lblGlucoseValue.TabIndex = 2;
@@ -62,18 +62,20 @@
             this.lblLastUpdate.AutoSize = true;
             this.lblLastUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastUpdate.ForeColor = System.Drawing.Color.Green;
-            this.lblLastUpdate.Location = new System.Drawing.Point(110, 81);
+            this.lblLastUpdate.Location = new System.Drawing.Point(5, 81);
             this.lblLastUpdate.Name = "lblLastUpdate";
             this.lblLastUpdate.Size = new System.Drawing.Size(42, 24);
             this.lblLastUpdate.TabIndex = 4;
             this.lblLastUpdate.Text = "N/A";
+            this.lblLastUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblDebugModeOn
             // 
+            this.lblDebugModeOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDebugModeOn.AutoSize = true;
             this.lblDebugModeOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDebugModeOn.ForeColor = System.Drawing.Color.Yellow;
-            this.lblDebugModeOn.Location = new System.Drawing.Point(8, 92);
+            this.lblDebugModeOn.Location = new System.Drawing.Point(107, 9);
             this.lblDebugModeOn.Name = "lblDebugModeOn";
             this.lblDebugModeOn.Size = new System.Drawing.Size(35, 13);
             this.lblDebugModeOn.TabIndex = 6;
@@ -123,11 +125,12 @@
             this.lblDelta.BackColor = System.Drawing.Color.Black;
             this.lblDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDelta.ForeColor = System.Drawing.Color.DarkRed;
-            this.lblDelta.Location = new System.Drawing.Point(110, 57);
+            this.lblDelta.Location = new System.Drawing.Point(5, 57);
             this.lblDelta.Name = "lblDelta";
             this.lblDelta.Size = new System.Drawing.Size(45, 24);
             this.lblDelta.TabIndex = 7;
             this.lblDelta.Text = "N/A";
+            this.lblDelta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.lblDelta.Click += new System.EventHandler(this.lblDelta_Click);
             // 
             // lblRawBG
@@ -138,8 +141,7 @@
             this.lblRawBG.ForeColor = System.Drawing.Color.SteelBlue;
             this.lblRawBG.Location = new System.Drawing.Point(6, 22);
             this.lblRawBG.Name = "lblRawBG";
-            this.lblRawBG.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.lblRawBG.Size = new System.Drawing.Size(29, 29);
+            this.lblRawBG.Size = new System.Drawing.Size(27, 29);
             this.lblRawBG.TabIndex = 8;
             this.lblRawBG.Text = "0";
             this.lblRawBG.Visible = false;
@@ -156,16 +158,15 @@
             this.lblRawDelta.Size = new System.Drawing.Size(17, 24);
             this.lblRawDelta.TabIndex = 9;
             this.lblRawDelta.Text = "-";
+            this.lblRawDelta.Visible = false;
             this.lblRawDelta.Click += new System.EventHandler(this.lblRawDelta_Click);
             // 
             // FloatingGlucose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(296, 112);
+            this.ClientSize = new System.Drawing.Size(189, 112);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.lblRawDelta);
             this.Controls.Add(this.lblRawBG);
