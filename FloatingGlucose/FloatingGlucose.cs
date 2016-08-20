@@ -1,22 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
-using System.Security;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Net;
 using System.Net.Http;
 using FloatingGlucose.Classes;
 using Newtonsoft.Json;
 using System.Globalization;
+
+using static FloatingGlucose.Properties.Settings;
 namespace FloatingGlucose
 {
 
@@ -27,64 +22,23 @@ namespace FloatingGlucose
         //nightscout URL, will be used to create a pebble endpoint to fetch data from
         private string nsURL {
             get {
+                //AlarmUrgentLow
                 // With raw glucose display we need to have two 
                 // data points to calculate raw glucose diff
-                var count = this.enable_raw_glucose_display ? 2 : 1;
-                var units = this.glucoseUnits;
-                return String.Format("{0}/pebble?count={1}&units={2}",Properties.Settings.Default.nightscout_site, count, units);
+                var count = Default.EnableRawGlucoseDisplay ? 2 : 1;
+                var units = Default.GlucoseUnits;
+                return String.Format("{0}/pebble?count={1}&units={2}",Default.NightscoutSite, count, units);
             }
         }
-        private bool alarmEnabled {
-            get { return Properties.Settings.Default.enable_alarms;}
-        }
-        private decimal alarmUrgentHigh
-        {
-            get { return Properties.Settings.Default.alarm_urgent_high; }
-        }
-        private decimal alarmHigh
-        {
-            get { return Properties.Settings.Default.alarm_high; }
-        }
 
-        private decimal alarmLow
-        {
-            get { return Properties.Settings.Default.alarm_high; }
-        }
-
-        private decimal alarmUrgentLow
-        {
-            get { return Properties.Settings.Default.alarm_urgent_low; }
-        }
-
-        private bool enable_raw_glucose_display
-        {
-            get { return Properties.Settings.Default.enable_raw_glucose_display; }
-        }
-
-        private int staleDataUrgent
-        {
-            get { return Properties.Settings.Default.stale_data_urgent; }
-        }
-
-        private int staleDataWarning
-        {
-            get { return Properties.Settings.Default.stale_data_warning; }
-        }
-
-        private string glucoseUnits
-        {
-            get { return Properties.Settings.Default.glucose_units; }
-        }
-        //private string nsURL = Properties.Settings.Default.nightscout_site;
-        private bool loggingEnabled = Properties.Settings.Default.enable_exception_logging_to_stderr;
         private string appname = AppShared.appName;
 
         private int refreshTime {
             get {
-                return Properties.Settings.Default.refresh_interval_in_seconds * 1000;//milliseconds
+                return Default.RefreshIntervalInSeconds * 1000;//milliseconds
             }
         }
-        //private int refreshTime = Properties.Settings.Default.refresh_interval_in_seconds * 1000;//milliseconds
+        
 #if DEBUG
         private bool isDebuggingBuild = true;
 #else
@@ -104,22 +58,12 @@ namespace FloatingGlucose
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-        /*[return: MarshalAs(UnmanagedType.Bool)]
-        [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        public static extern bool SetForegroundWindow(IntPtr hwnd);
-        [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        static extern bool AllowSetForegroundWindow(int procID);
-        [DllImport("user32", CharSet = CharSet.Ansi, SetLastError = true, ExactSpelling = true)]
-        private static extern int ShowWindow(IntPtr hWnd, uint Msg);
-        private uint SW_SHOWNORMAL = 1;*/
 
-        
 
         private void SetScaling(float scale) {
             if ((float)scale == 1.0) {
@@ -166,7 +110,7 @@ namespace FloatingGlucose
             float size = new[] { bg.Width, diff.Width, update.Width }.Max() * 1.09F;
             
             //raw glucose will not always be displayed
-            if (this.enable_raw_glucose_display) {
+            if (Default.EnableRawGlucoseDisplay) {
                 size += Math.Max(rawbg.Width, rawbgdiff.Width);
             }
 
@@ -185,7 +129,7 @@ namespace FloatingGlucose
             this.lblGlucoseValue.Text =
             this.lblDelta.Text =
             this.lblLastUpdate.Text = "N/A";
-            if (ex != null && this.loggingEnabled) {
+            if (ex != null && Default.EnableExceptionLoggingToStderr) {
                 if (this.isDebuggingBuild) {
                     Console.Out.WriteLine(ex);
                 }
@@ -239,9 +183,9 @@ namespace FloatingGlucose
                 //
                 // even if we have glucose data, don't display them if it's considered stale
                 //
-                if (this.alarmEnabled) {
-                    var urgentTime = now.AddMinutes(-this.staleDataUrgent);
-                    var warningTime = now.AddMinutes(-this.staleDataWarning);
+                if (Default.EnableAlarms) {
+                    var urgentTime = now.AddMinutes(-Default.AlarmStaleDataUrgent);
+                    var warningTime = now.AddMinutes(-Default.AlarmStaleDataWarning);
                     var isUrgent = glucoseDate <= urgentTime;
                     var isWarning = glucoseDate <= warningTime;
                     if (isUrgent || isWarning) {
@@ -271,7 +215,7 @@ namespace FloatingGlucose
 
 
                 
-                if (this.enable_raw_glucose_display)
+                if (Default.EnableRawGlucoseDisplay)
                 {
                     this.lblRawBG.Text = String.Format("{0:N1}", data.rawGlucose);
                 }
@@ -330,7 +274,7 @@ namespace FloatingGlucose
             }
 
             try {
-                if (this.enable_raw_glucose_display && data != null) {
+                if (Default.EnableRawGlucoseDisplay && data != null) {
                     this.lblRawDelta.Text = data.formattedRawDelta;
                 }
             }
@@ -363,12 +307,12 @@ namespace FloatingGlucose
 
 
             this.lblRawDelta.Visible =
-            this.lblRawBG.Visible = this.enable_raw_glucose_display;
+            this.lblRawBG.Visible = Default.EnableRawGlucoseDisplay;
 
             // Manual scaling for now with values from config file
             // how to figure out the dpi:
             // this.CreateGraphics().DpiX > 96
-            SetScaling(Properties.Settings.Default.gui_scaling_ratio);
+            SetScaling(Default.GuiScalingRatio);
 
             //position at bottom right per default
             Rectangle r = Screen.PrimaryScreen.WorkingArea;
@@ -415,7 +359,7 @@ namespace FloatingGlucose
             //try to load glucose values anew straight away
             this.setFormSize();
             this.lblRawDelta.Visible =
-            this.lblRawBG.Visible = this.enable_raw_glucose_display;
+            this.lblRawBG.Visible = Default.EnableRawGlucoseDisplay;
 
             this.LoadGlucoseValue();
             return false;

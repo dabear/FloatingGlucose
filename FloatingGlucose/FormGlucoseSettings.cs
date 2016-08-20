@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using static FloatingGlucose.Properties.Settings;
+
 namespace FloatingGlucose
 {
     public partial class FormGlucoseSettings : Form
@@ -71,15 +73,15 @@ namespace FloatingGlucose
 
         private void updateFormControlsFromSettings() {
 
-            var enableAlarms = Properties.Settings.Default.enable_alarms;
-            var alarmUrgentHigh = Properties.Settings.Default.alarm_urgent_high;
-            var alarmHigh = Properties.Settings.Default.alarm_high;
-            var alarmLow = Properties.Settings.Default.alarm_low;
-            var alarmUrgentLow = Properties.Settings.Default.alarm_urgent_low;
-            var nsurl = Properties.Settings.Default.nightscout_site;
+            var enableAlarms = Default.EnableAlarms;
+            var alarmUrgentHigh = Default.AlarmUrgentHigh;
+            var alarmHigh = Default.AlarmHigh;
+            var alarmLow = Default.AlarmLow;
+            var alarmUrgentLow = Default.AlarmUrgentLow;
+            var nsurl = Default.NightscoutSite;
 
-            var staleWarning = Properties.Settings.Default.stale_data_warning;
-            var staleUrgent = Properties.Settings.Default.stale_data_urgent;
+            var staleWarning = Default.AlarmStaleDataWarning;
+            var staleUrgent = Default.AlarmStaleDataUrgent;
 
             this.numUrgentHigh.Value = alarmUrgentHigh;
             this.numHigh.Value = alarmHigh;
@@ -89,14 +91,14 @@ namespace FloatingGlucose
             this.numStaleWarning.Value = staleWarning;
             this.numStaleUrgent.Value = staleUrgent;
 
-            this.btnUnitsMMOL.Checked = Properties.Settings.Default.glucose_units == "mmol";
-            this.btnUnitsMGDL.Checked = Properties.Settings.Default.glucose_units == "mgdl";
+            this.btnUnitsMMOL.Checked = Default.GlucoseUnits == "mmol";
+            this.btnUnitsMGDL.Checked = Default.GlucoseUnits == "mgdl";
 
             //advanced settings
-            this.numScaling.Value = (decimal)Properties.Settings.Default.gui_scaling_ratio;
-            this.numRefreshInterval.Value = (decimal)Properties.Settings.Default.refresh_interval_in_seconds;
-            this.chkEnableExceptions.Checked = Properties.Settings.Default.enable_exception_logging_to_stderr;
-            this.chkEnableRAWGlucose.Checked = Properties.Settings.Default.enable_raw_glucose_display;
+            this.numScaling.Value = (decimal)Default.GuiScalingRatio;
+            this.numRefreshInterval.Value = (decimal)Default.RefreshIntervalInSeconds;
+            this.chkEnableExceptions.Checked = Default.EnableExceptionLoggingToStderr;
+            this.chkEnableRAWGlucose.Checked = Default.EnableRawGlucoseDisplay;
             
 
             //this is the default in the settings file
@@ -175,25 +177,25 @@ namespace FloatingGlucose
                 return;
             }
 
-            Properties.Settings.Default.nightscout_site = this.txtNSURL.Text;
-            Properties.Settings.Default.enable_alarms = this.btnEnableAlarms.Checked;
-            Properties.Settings.Default.alarm_urgent_high = this.numUrgentHigh.Value;
-            Properties.Settings.Default.alarm_high = this.numHigh.Value;
-            Properties.Settings.Default.alarm_low = this.numLow.Value;
-            Properties.Settings.Default.alarm_urgent_low = this.numUrgentLow.Value;
-            Properties.Settings.Default.glucose_units = this.btnUnitsMMOL.Checked ? "mmol" : "mgdl";
+            Default.NightscoutSite = this.txtNSURL.Text;
+            Default.EnableAlarms = this.btnEnableAlarms.Checked;
+            Default.AlarmUrgentHigh = this.numUrgentHigh.Value;
+            Default.AlarmHigh = this.numHigh.Value;
+            Default.AlarmLow = this.numLow.Value;
+            Default.AlarmUrgentLow = this.numUrgentLow.Value;
+            Default.GlucoseUnits = this.btnUnitsMMOL.Checked ? "mmol" : "mgdl";
 
-            Properties.Settings.Default.stale_data_urgent = (int)this.numStaleUrgent.Value;
-            Properties.Settings.Default.stale_data_warning = (int)this.numStaleWarning.Value;
+            Default.AlarmStaleDataUrgent = (int)this.numStaleUrgent.Value;
+            Default.AlarmStaleDataWarning = (int)this.numStaleWarning.Value;
 
             //advanced settings
-            Properties.Settings.Default.gui_scaling_ratio = (float)this.numScaling.Value;
-            Properties.Settings.Default.refresh_interval_in_seconds = (int)this.numRefreshInterval.Value;
-            Properties.Settings.Default.enable_exception_logging_to_stderr = this.chkEnableExceptions.Checked;
+            Default.GuiScalingRatio = (float)this.numScaling.Value;
+            Default.RefreshIntervalInSeconds = (int)this.numRefreshInterval.Value;
+            Default.EnableExceptionLoggingToStderr = this.chkEnableExceptions.Checked;
 
-            Properties.Settings.Default.enable_raw_glucose_display = this.chkEnableRAWGlucose.Checked;
-            
-            Properties.Settings.Default.Save();
+            Default.EnableRawGlucoseDisplay = this.chkEnableRAWGlucose.Checked;
+
+            Default.Save();
 
             this.settingsUpdatedSucessfully = true;
             MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!", this.appname, MessageBoxButtons.OK,

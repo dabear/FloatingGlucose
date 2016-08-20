@@ -2,43 +2,43 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="FloatingGlucose.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="nightscout_site" Type="System.String" Scope="User">
+    <Setting Name="NightscoutSite" Type="System.String" Scope="User">
       <Value Profile="(Default)">https://...</Value>
     </Setting>
-    <Setting Name="enable_exception_logging_to_stderr" Type="System.Boolean" Scope="User">
+    <Setting Name="EnableExceptionLoggingToStderr" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="refresh_interval_in_seconds" Type="System.Int32" Scope="User">
+    <Setting Name="RefreshIntervalInSeconds" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">60</Value>
     </Setting>
-    <Setting Name="gui_scaling_ratio" Type="System.Single" Scope="User">
+    <Setting Name="GuiScalingRatio" Type="System.Single" Scope="User">
       <Value Profile="(Default)">1</Value>
     </Setting>
-    <Setting Name="enable_alarms" Type="System.Boolean" Scope="User">
+    <Setting Name="EnableAlarms" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="alarm_urgent_high" Type="System.Decimal" Scope="User">
+    <Setting Name="AlarmUrgentHigh" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">13</Value>
     </Setting>
-    <Setting Name="alarm_high" Type="System.Decimal" Scope="User">
+    <Setting Name="AlarmHigh" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">11</Value>
     </Setting>
-    <Setting Name="alarm_low" Type="System.Decimal" Scope="User">
+    <Setting Name="AlarmLow" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">4.5</Value>
     </Setting>
-    <Setting Name="alarm_urgent_low" Type="System.Decimal" Scope="User">
+    <Setting Name="AlarmUrgentLow" Type="System.Decimal" Scope="User">
       <Value Profile="(Default)">3.8</Value>
     </Setting>
-    <Setting Name="enable_raw_glucose_display" Type="System.Boolean" Scope="User">
+    <Setting Name="EnableRawGlucoseDisplay" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="glucose_units" Type="System.String" Scope="User">
+    <Setting Name="GlucoseUnits" Type="System.String" Scope="User">
       <Value Profile="(Default)">mmol</Value>
     </Setting>
-    <Setting Name="stale_data_warning" Type="System.Int32" Scope="User">
+    <Setting Name="AlarmStaleDataWarning" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">15</Value>
     </Setting>
-    <Setting Name="stale_data_urgent" Type="System.Int32" Scope="User">
+    <Setting Name="AlarmStaleDataUrgent" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">30</Value>
     </Setting>
   </Settings>

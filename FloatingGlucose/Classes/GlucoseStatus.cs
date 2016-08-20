@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+using static FloatingGlucose.Properties.Settings;
 namespace FloatingGlucose.Classes
 {
     public enum GlucoseStatusEnum
@@ -27,14 +27,14 @@ namespace FloatingGlucose.Classes
             return number * 18.0M;
         }
         public static GlucoseStatusEnum GetGlucoseStatus(decimal glucose) {
-            if (!Properties.Settings.Default.enable_alarms)
+            if (!Default.EnableAlarms)
             {
                 return GlucoseStatusEnum.Normal;
             }
-            decimal urgentHigh = Properties.Settings.Default.alarm_urgent_high;
-            decimal high = Properties.Settings.Default.alarm_high;
-            decimal low = Properties.Settings.Default.alarm_low;
-            decimal urgentLow = Properties.Settings.Default.alarm_urgent_low;
+            decimal urgentHigh = Default.AlarmUrgentHigh;
+            decimal high = Default.AlarmHigh;
+            decimal low = Default.AlarmLow;
+            decimal urgentLow = Default.AlarmUrgentLow;
 
             if (glucose <= urgentLow)
             {

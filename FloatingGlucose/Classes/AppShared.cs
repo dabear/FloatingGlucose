@@ -13,15 +13,13 @@ namespace FloatingGlucose.Classes
         public static bool settingsFormShouldFocusAdvancedSettings = false;
 
   
-        public static Func<bool> callbacks;
+        public static Func<bool> callback;
 
         public static void RegisterSettingsChangedCallback(Func<bool> lambda) {
-            callbacks = lambda;
+            callback = lambda;
         }
-        public static void notifyFormSettingsHaveChanged() {
-            if (callbacks != null) {
-                callbacks.Invoke();
-            }
-        }
+        public static void notifyFormSettingsHaveChanged() => callback?.Invoke();
+            
+        
     }
 }

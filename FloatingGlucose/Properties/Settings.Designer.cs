@@ -26,156 +26,156 @@ namespace FloatingGlucose.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://...")]
-        public string nightscout_site {
+        public string NightscoutSite {
             get {
-                return ((string)(this["nightscout_site"]));
+                return ((string)(this["NightscoutSite"]));
             }
             set {
-                this["nightscout_site"] = value;
+                this["NightscoutSite"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool enable_exception_logging_to_stderr {
+        public bool EnableExceptionLoggingToStderr {
             get {
-                return ((bool)(this["enable_exception_logging_to_stderr"]));
+                return ((bool)(this["EnableExceptionLoggingToStderr"]));
             }
             set {
-                this["enable_exception_logging_to_stderr"] = value;
+                this["EnableExceptionLoggingToStderr"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("60")]
-        public int refresh_interval_in_seconds {
+        public int RefreshIntervalInSeconds {
             get {
-                return ((int)(this["refresh_interval_in_seconds"]));
+                return ((int)(this["RefreshIntervalInSeconds"]));
             }
             set {
-                this["refresh_interval_in_seconds"] = value;
+                this["RefreshIntervalInSeconds"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("1")]
-        public float gui_scaling_ratio {
+        public float GuiScalingRatio {
             get {
-                return ((float)(this["gui_scaling_ratio"]));
+                return ((float)(this["GuiScalingRatio"]));
             }
             set {
-                this["gui_scaling_ratio"] = value;
+                this["GuiScalingRatio"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
-        public bool enable_alarms {
+        public bool EnableAlarms {
             get {
-                return ((bool)(this["enable_alarms"]));
+                return ((bool)(this["EnableAlarms"]));
             }
             set {
-                this["enable_alarms"] = value;
+                this["EnableAlarms"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("13")]
-        public decimal alarm_urgent_high {
+        public decimal AlarmUrgentHigh {
             get {
-                return ((decimal)(this["alarm_urgent_high"]));
+                return ((decimal)(this["AlarmUrgentHigh"]));
             }
             set {
-                this["alarm_urgent_high"] = value;
+                this["AlarmUrgentHigh"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("11")]
-        public decimal alarm_high {
+        public decimal AlarmHigh {
             get {
-                return ((decimal)(this["alarm_high"]));
+                return ((decimal)(this["AlarmHigh"]));
             }
             set {
-                this["alarm_high"] = value;
+                this["AlarmHigh"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("4.5")]
-        public decimal alarm_low {
+        public decimal AlarmLow {
             get {
-                return ((decimal)(this["alarm_low"]));
+                return ((decimal)(this["AlarmLow"]));
             }
             set {
-                this["alarm_low"] = value;
+                this["AlarmLow"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("3.8")]
-        public decimal alarm_urgent_low {
+        public decimal AlarmUrgentLow {
             get {
-                return ((decimal)(this["alarm_urgent_low"]));
+                return ((decimal)(this["AlarmUrgentLow"]));
             }
             set {
-                this["alarm_urgent_low"] = value;
+                this["AlarmUrgentLow"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool enable_raw_glucose_display {
+        public bool EnableRawGlucoseDisplay {
             get {
-                return ((bool)(this["enable_raw_glucose_display"]));
+                return ((bool)(this["EnableRawGlucoseDisplay"]));
             }
             set {
-                this["enable_raw_glucose_display"] = value;
+                this["EnableRawGlucoseDisplay"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("mmol")]
-        public string glucose_units {
+        public string GlucoseUnits {
             get {
-                return ((string)(this["glucose_units"]));
+                return ((string)(this["GlucoseUnits"]));
             }
             set {
-                this["glucose_units"] = value;
+                this["GlucoseUnits"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("15")]
-        public int stale_data_warning {
+        public int AlarmStaleDataWarning {
             get {
-                return ((int)(this["stale_data_warning"]));
+                return ((int)(this["AlarmStaleDataWarning"]));
             }
             set {
-                this["stale_data_warning"] = value;
+                this["AlarmStaleDataWarning"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("30")]
-        public int stale_data_urgent {
+        public int AlarmStaleDataUrgent {
             get {
-                return ((int)(this["stale_data_urgent"]));
+                return ((int)(this["AlarmStaleDataUrgent"]));
             }
             set {
-                this["stale_data_urgent"] = value;
+                this["AlarmStaleDataUrgent"] = value;
             }
         }
     }
