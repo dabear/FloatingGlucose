@@ -540,6 +540,11 @@
             0,
             0,
             0});
+            this.numStaleWarning.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.numStaleWarning.Name = "numStaleWarning";
             this.numStaleWarning.Size = new System.Drawing.Size(120, 27);
             this.numStaleWarning.TabIndex = 12;
@@ -574,6 +579,11 @@
             this.numStaleUrgent.Location = new System.Drawing.Point(453, 247);
             this.numStaleUrgent.Maximum = new decimal(new int[] {
             650,
+            0,
+            0,
+            0});
+            this.numStaleUrgent.Minimum = new decimal(new int[] {
+            2,
             0,
             0,
             0});

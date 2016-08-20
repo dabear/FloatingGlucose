@@ -229,14 +229,44 @@ namespace FloatingGlucose
                 WriteDebug("Trying to refresh data");
                 
                 data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL);
-                
-                
+
+
+                var glucoseDate = data.localDate;
+                var now = DateTime.Now;
+
+                this.lblLastUpdate.Text = glucoseDate.ToTimeAgo();
+
+                //
+                // even if we have glucose data, don't display them if it's considered stale
+                //
+                if (this.alarmEnabled) {
+                    var urgentTime = now.AddMinutes(-this.staleDataUrgent);
+                    var warningTime = now.AddMinutes(-this.staleDataWarning);
+                    var isUrgent = glucoseDate <= urgentTime;
+                    var isWarning = glucoseDate <= warningTime;
+                    if (isUrgent || isWarning) {
+                        this.lblGlucoseValue.Text = "Stale";
+                        this.lblDelta.Text = "data";
+                        this.notifyIcon1.Text = "Stale data";
+                        if (isUrgent)
+                        {
+                            setLabelsColor(Color.Red);
+                        }
+                        else
+                        {
+                            setLabelsColor(Color.Yellow);
+                        }
+
+                        return;
+                    } 
+                }
+
 
                 this.lblGlucoseValue.Text = String.Format("{0:N1} {1}", data.glucose, data.directionArrow);
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
                 var status = GlucoseStatus.GetGlucoseStatus((decimal)data.glucose);
                 
-                this.lblLastUpdate.Text = data.localDate.ToTimeAgo();
+                
                 this.lblDelta.Text = data.formattedDelta;
 
 
