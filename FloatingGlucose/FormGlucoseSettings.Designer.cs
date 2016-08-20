@@ -29,10 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnUnitsMGDL = new System.Windows.Forms.RadioButton();
+            this.btnUnitsMMOL = new System.Windows.Forms.RadioButton();
+            this.label11 = new System.Windows.Forms.Label();
             this.lblNSURL = new System.Windows.Forms.Label();
             this.txtNSURL = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.lblSettingsDesc = new System.Windows.Forms.Label();
             this.btnVerifySubmit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grpAlarmSettings = new System.Windows.Forms.GroupBox();
@@ -59,11 +60,13 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.btnUnitsMMOL = new System.Windows.Forms.RadioButton();
-            this.btnUnitsMGDL = new System.Windows.Forms.RadioButton();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.numStaleWarning = new System.Windows.Forms.NumericUpDown();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.numStaleUrgent = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
-            this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numUrgentLow)).BeginInit();
@@ -76,6 +79,8 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numStaleWarning)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numStaleUrgent)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -93,6 +98,39 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nightscout settings";
+            // 
+            // btnUnitsMGDL
+            // 
+            this.btnUnitsMGDL.AutoSize = true;
+            this.btnUnitsMGDL.Location = new System.Drawing.Point(561, 83);
+            this.btnUnitsMGDL.Name = "btnUnitsMGDL";
+            this.btnUnitsMGDL.Size = new System.Drawing.Size(77, 24);
+            this.btnUnitsMGDL.TabIndex = 4;
+            this.btnUnitsMGDL.Text = "mg/dL";
+            this.btnUnitsMGDL.UseVisualStyleBackColor = true;
+            // 
+            // btnUnitsMMOL
+            // 
+            this.btnUnitsMMOL.AutoSize = true;
+            this.btnUnitsMMOL.Checked = true;
+            this.btnUnitsMMOL.Location = new System.Drawing.Point(453, 83);
+            this.btnUnitsMMOL.Name = "btnUnitsMMOL";
+            this.btnUnitsMMOL.Size = new System.Drawing.Size(86, 24);
+            this.btnUnitsMMOL.TabIndex = 3;
+            this.btnUnitsMMOL.TabStop = true;
+            this.btnUnitsMMOL.Text = "mmol/L";
+            this.btnUnitsMMOL.UseVisualStyleBackColor = true;
+            this.btnUnitsMMOL.CheckedChanged += new System.EventHandler(this.GlucoseUnit_Changed);
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(15, 85);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 20);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Units";
             // 
             // lblNSURL
             // 
@@ -116,32 +154,10 @@
             this.txtNSURL.GotFocus += new System.EventHandler(this.txtNSURL_GotFocus);
             this.txtNSURL.LostFocus += new System.EventHandler(this.txtNSURL_LostFocus);
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lblSettingsDesc);
-            this.panel1.Location = new System.Drawing.Point(22, 25);
-            this.panel1.Name = "panel1";
-            this.panel1.Padding = new System.Windows.Forms.Padding(0, 10, 0, 10);
-            this.panel1.Size = new System.Drawing.Size(743, 73);
-            this.panel1.TabIndex = 0;
-            // 
-            // lblSettingsDesc
-            // 
-            this.lblSettingsDesc.AutoSize = true;
-            this.lblSettingsDesc.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSettingsDesc.Location = new System.Drawing.Point(25, 23);
-            this.lblSettingsDesc.MaximumSize = new System.Drawing.Size(700, 0);
-            this.lblSettingsDesc.MinimumSize = new System.Drawing.Size(100, 0);
-            this.lblSettingsDesc.Name = "lblSettingsDesc";
-            this.lblSettingsDesc.Size = new System.Drawing.Size(639, 40);
-            this.lblSettingsDesc.TabIndex = 0;
-            this.lblSettingsDesc.Text = "Welcome. These are the necessary settings for an installation of FloatingGlucose " +
-    "to function. Please edit the values below and press \"verify and continue\".";
-            // 
             // btnVerifySubmit
             // 
             this.btnVerifySubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerifySubmit.Location = new System.Drawing.Point(753, 607);
+            this.btnVerifySubmit.Location = new System.Drawing.Point(786, 568);
             this.btnVerifySubmit.Name = "btnVerifySubmit";
             this.btnVerifySubmit.Size = new System.Drawing.Size(229, 53);
             this.btnVerifySubmit.TabIndex = 1;
@@ -156,11 +172,17 @@
             this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(50, 10, 50, 10);
-            this.panel2.Size = new System.Drawing.Size(960, 394);
+            this.panel2.Size = new System.Drawing.Size(960, 458);
             this.panel2.TabIndex = 1;
             // 
             // grpAlarmSettings
             // 
+            this.grpAlarmSettings.Controls.Add(this.numStaleUrgent);
+            this.grpAlarmSettings.Controls.Add(this.label13);
+            this.grpAlarmSettings.Controls.Add(this.label14);
+            this.grpAlarmSettings.Controls.Add(this.numStaleWarning);
+            this.grpAlarmSettings.Controls.Add(this.label12);
+            this.grpAlarmSettings.Controls.Add(this.label5);
             this.grpAlarmSettings.Controls.Add(this.numUrgentLow);
             this.grpAlarmSettings.Controls.Add(this.numLow);
             this.grpAlarmSettings.Controls.Add(this.numHigh);
@@ -175,7 +197,7 @@
             this.grpAlarmSettings.Location = new System.Drawing.Point(24, 142);
             this.grpAlarmSettings.Name = "grpAlarmSettings";
             this.grpAlarmSettings.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.grpAlarmSettings.Size = new System.Drawing.Size(927, 229);
+            this.grpAlarmSettings.Size = new System.Drawing.Size(927, 303);
             this.grpAlarmSettings.TabIndex = 2;
             this.grpAlarmSettings.TabStop = false;
             this.grpAlarmSettings.Text = "Alarm settings";
@@ -277,7 +299,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(15, 186);
+            this.label4.Location = new System.Drawing.Point(16, 185);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(136, 20);
             this.label4.TabIndex = 5;
@@ -298,7 +320,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(16, 120);
+            this.label2.Location = new System.Drawing.Point(16, 119);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(93, 20);
             this.label2.TabIndex = 3;
@@ -308,7 +330,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(15, 83);
+            this.label1.Location = new System.Drawing.Point(16, 86);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(148, 20);
             this.label1.TabIndex = 2;
@@ -341,7 +363,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(47, 561);
+            this.label6.Location = new System.Drawing.Point(8, 584);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(646, 20);
             this.label6.TabIndex = 3;
@@ -352,11 +374,12 @@
             // 
             this.tabSettings.Controls.Add(this.tabPageBasic);
             this.tabSettings.Controls.Add(this.tabPageAdvanced);
-            this.tabSettings.Location = new System.Drawing.Point(12, 104);
+            this.tabSettings.Location = new System.Drawing.Point(12, 40);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(1010, 438);
+            this.tabSettings.Size = new System.Drawing.Size(1010, 499);
             this.tabSettings.TabIndex = 2;
+            this.tabSettings.Text = "30";
             // 
             // tabPageBasic
             // 
@@ -366,7 +389,7 @@
             this.tabPageBasic.Location = new System.Drawing.Point(4, 25);
             this.tabPageBasic.Name = "tabPageBasic";
             this.tabPageBasic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBasic.Size = new System.Drawing.Size(1002, 409);
+            this.tabPageBasic.Size = new System.Drawing.Size(1002, 470);
             this.tabPageBasic.TabIndex = 0;
             this.tabPageBasic.Text = "Basic Settings";
             // 
@@ -378,7 +401,7 @@
             this.tabPageAdvanced.Location = new System.Drawing.Point(4, 25);
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAdvanced.Size = new System.Drawing.Size(1002, 425);
+            this.tabPageAdvanced.Size = new System.Drawing.Size(1002, 441);
             this.tabPageAdvanced.TabIndex = 1;
             this.tabPageAdvanced.Text = "Advanced Settings";
             // 
@@ -489,37 +512,79 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "GUI Refresh interval";
             // 
-            // label11
+            // label5
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(15, 85);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(48, 20);
-            this.label11.TabIndex = 2;
-            this.label11.Text = "Units";
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(16, 220);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(147, 20);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Stale data warning";
             // 
-            // btnUnitsMMOL
+            // label12
             // 
-            this.btnUnitsMMOL.AutoSize = true;
-            this.btnUnitsMMOL.Checked = true;
-            this.btnUnitsMMOL.Location = new System.Drawing.Point(453, 83);
-            this.btnUnitsMMOL.Name = "btnUnitsMMOL";
-            this.btnUnitsMMOL.Size = new System.Drawing.Size(86, 24);
-            this.btnUnitsMMOL.TabIndex = 3;
-            this.btnUnitsMMOL.Text = "mmol/L";
-            this.btnUnitsMMOL.UseVisualStyleBackColor = true;
-            this.btnUnitsMMOL.CheckedChanged += new System.EventHandler(this.GlucoseUnit_Changed);
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(16, 254);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(136, 20);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Stale data urgent";
             // 
-            // btnUnitsMGDL
+            // numStaleWarning
             // 
-            this.btnUnitsMGDL.AutoSize = true;
-            this.btnUnitsMGDL.Location = new System.Drawing.Point(561, 83);
-            this.btnUnitsMGDL.Name = "btnUnitsMGDL";
-            this.btnUnitsMGDL.Size = new System.Drawing.Size(77, 24);
-            this.btnUnitsMGDL.TabIndex = 4;
-            this.btnUnitsMGDL.Text = "mg/dL";
-            this.btnUnitsMGDL.UseVisualStyleBackColor = true;
+            this.numStaleWarning.Location = new System.Drawing.Point(454, 213);
+            this.numStaleWarning.Maximum = new decimal(new int[] {
+            650,
+            0,
+            0,
+            0});
+            this.numStaleWarning.Name = "numStaleWarning";
+            this.numStaleWarning.Size = new System.Drawing.Size(120, 27);
+            this.numStaleWarning.TabIndex = 12;
+            this.numStaleWarning.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(580, 248);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(68, 20);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "minutes";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(580, 220);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(68, 20);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "minutes";
+            // 
+            // numStaleUrgent
+            // 
+            this.numStaleUrgent.Location = new System.Drawing.Point(453, 247);
+            this.numStaleUrgent.Maximum = new decimal(new int[] {
+            650,
+            0,
+            0,
+            0});
+            this.numStaleUrgent.Name = "numStaleUrgent";
+            this.numStaleUrgent.Size = new System.Drawing.Size(120, 27);
+            this.numStaleUrgent.TabIndex = 17;
+            this.numStaleUrgent.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
             // 
             // FormGlucoseSettings
             // 
@@ -529,15 +594,12 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tabSettings);
             this.Controls.Add(this.btnVerifySubmit);
-            this.Controls.Add(this.panel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "FormGlucoseSettings";
             this.Text = "Glucose Settings";
             this.Load += new System.EventHandler(this.FormGlucoseSettings_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.grpAlarmSettings.ResumeLayout(false);
             this.grpAlarmSettings.PerformLayout();
@@ -552,6 +614,8 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numStaleWarning)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numStaleUrgent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -560,10 +624,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label lblNSURL;
         private System.Windows.Forms.TextBox txtNSURL;
-        private System.Windows.Forms.Label lblSettingsDesc;
         private System.Windows.Forms.Button btnVerifySubmit;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox grpAlarmSettings;
@@ -593,5 +655,11 @@
         private System.Windows.Forms.RadioButton btnUnitsMGDL;
         private System.Windows.Forms.RadioButton btnUnitsMMOL;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown numStaleUrgent;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown numStaleWarning;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label5;
     }
 }

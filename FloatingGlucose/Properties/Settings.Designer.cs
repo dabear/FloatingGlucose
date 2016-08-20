@@ -154,5 +154,29 @@ namespace FloatingGlucose.Properties {
                 this["glucose_units"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public int stale_data_warning {
+            get {
+                return ((int)(this["stale_data_warning"]));
+            }
+            set {
+                this["stale_data_warning"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("30")]
+        public int stale_data_urgent {
+            get {
+                return ((int)(this["stale_data_urgent"]));
+            }
+            set {
+                this["stale_data_urgent"] = value;
+            }
+        }
     }
 }

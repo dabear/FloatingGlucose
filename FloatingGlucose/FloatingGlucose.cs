@@ -17,7 +17,6 @@ using System.Net.Http;
 using FloatingGlucose.Classes;
 using Newtonsoft.Json;
 using System.Globalization;
-
 namespace FloatingGlucose
 {
 
@@ -60,6 +59,16 @@ namespace FloatingGlucose
         private bool enable_raw_glucose_display
         {
             get { return Properties.Settings.Default.enable_raw_glucose_display; }
+        }
+
+        private int staleDataUrgent
+        {
+            get { return Properties.Settings.Default.stale_data_urgent; }
+        }
+
+        private int staleDataWarning
+        {
+            get { return Properties.Settings.Default.stale_data_warning; }
         }
 
         private string glucoseUnits

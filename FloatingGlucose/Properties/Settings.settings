@@ -35,5 +35,11 @@
     <Setting Name="glucose_units" Type="System.String" Scope="User">
       <Value Profile="(Default)">mmol</Value>
     </Setting>
+    <Setting Name="stale_data_warning" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">15</Value>
+    </Setting>
+    <Setting Name="stale_data_urgent" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">30</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

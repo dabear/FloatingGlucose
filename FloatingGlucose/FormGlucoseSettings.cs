@@ -77,12 +77,17 @@ namespace FloatingGlucose
             var alarmLow = Properties.Settings.Default.alarm_low;
             var alarmUrgentLow = Properties.Settings.Default.alarm_urgent_low;
             var nsurl = Properties.Settings.Default.nightscout_site;
-            
+
+            var staleWarning = Properties.Settings.Default.stale_data_warning;
+            var staleUrgent = Properties.Settings.Default.stale_data_urgent;
 
             this.numUrgentHigh.Value = alarmUrgentHigh;
             this.numHigh.Value = alarmHigh;
             this.numLow.Value = alarmLow;
             this.numUrgentLow.Value = alarmUrgentLow;
+
+            this.numStaleWarning.Value = staleWarning;
+            this.numStaleUrgent.Value = staleUrgent;
 
             this.btnUnitsMMOL.Checked = Properties.Settings.Default.glucose_units == "mmol";
             this.btnUnitsMGDL.Checked = Properties.Settings.Default.glucose_units == "mgdl";
@@ -119,7 +124,8 @@ namespace FloatingGlucose
             this.FormClosing += this.OnClosing;
 
             //different increments for mmol/L and mg/dL 
-            var controls = this.grpAlarmSettings.Controls.OfType<NumericUpDown>().ToList();
+            var controls = this.grpAlarmSettings.Controls.OfType<NumericUpDown>()
+                .Where(x=> x.DecimalPlaces == 1).ToList();
             controls.ForEach( x => {
                 x.Increment = x.Value >= 36 ? 1.0M : 0.1M;
                 x.ValueChanged += new System.EventHandler(this.numericUpDowns_Value_Changed);
@@ -176,6 +182,9 @@ namespace FloatingGlucose
             Properties.Settings.Default.alarm_low = this.numLow.Value;
             Properties.Settings.Default.alarm_urgent_low = this.numUrgentLow.Value;
             Properties.Settings.Default.glucose_units = this.btnUnitsMMOL.Checked ? "mmol" : "mgdl";
+
+            Properties.Settings.Default.stale_data_urgent = (int)this.numStaleUrgent.Value;
+            Properties.Settings.Default.stale_data_warning = (int)this.numStaleWarning.Value;
 
             //advanced settings
             Properties.Settings.Default.gui_scaling_ratio = (float)this.numScaling.Value;
