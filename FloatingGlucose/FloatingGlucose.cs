@@ -203,7 +203,7 @@ namespace FloatingGlucose
                 }
 
 
-                this.lblGlucoseValue.Text = String.Format("{0:N1} {1}", data.glucose, data.directionArrow);
+                this.lblGlucoseValue.Text = $"{data.glucose:N1} {data.directionArrow}";
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
                 var status = GlucoseStatus.GetGlucoseStatus((decimal)data.glucose);
                 
@@ -214,7 +214,7 @@ namespace FloatingGlucose
                 
                 if (Default.EnableRawGlucoseDisplay)
                 {
-                    this.lblRawBG.Text = String.Format("{0:N1}", data.rawGlucose);
+                    this.lblRawBG.Text = $"{data.rawGlucose:N1}";
                 }
 
                 this.SetSuccessState();

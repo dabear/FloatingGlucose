@@ -21,6 +21,7 @@ namespace FloatingGlucose.Classes
         {
 
         }
+        
         public MissingJSONDataException(string message, Exception inner) : base(message, inner)
         {
 
