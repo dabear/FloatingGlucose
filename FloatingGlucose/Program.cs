@@ -17,6 +17,8 @@ namespace FloatingGlucose
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FormGlucoseSettings());
+            Application.Run(new FormAudioTester());
+            return;
             try
             {
                 Application.Run(new FloatingGlucose());
