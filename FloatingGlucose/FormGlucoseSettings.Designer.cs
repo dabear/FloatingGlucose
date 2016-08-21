@@ -37,6 +37,12 @@
             this.btnVerifySubmit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grpAlarmSettings = new System.Windows.Forms.GroupBox();
+            this.numStaleUrgent = new System.Windows.Forms.NumericUpDown();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numStaleWarning = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.numUrgentLow = new System.Windows.Forms.NumericUpDown();
             this.numLow = new System.Windows.Forms.NumericUpDown();
             this.numHigh = new System.Windows.Forms.NumericUpDown();
@@ -60,15 +66,11 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.numStaleWarning = new System.Windows.Forms.NumericUpDown();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.numStaleUrgent = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numStaleUrgent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numStaleWarning)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUrgentLow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLow)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHigh)).BeginInit();
@@ -79,8 +81,6 @@
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numStaleWarning)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numStaleUrgent)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -150,7 +150,6 @@
             this.txtNSURL.Size = new System.Drawing.Size(351, 27);
             this.txtNSURL.TabIndex = 0;
             this.txtNSURL.Text = "https://mysite.azurewebsites.net";
-            this.txtNSURL.TextChanged += new System.EventHandler(this.txtNSURL_TextChanged);
             this.txtNSURL.GotFocus += new System.EventHandler(this.txtNSURL_GotFocus);
             this.txtNSURL.LostFocus += new System.EventHandler(this.txtNSURL_LostFocus);
             // 
@@ -201,7 +200,91 @@
             this.grpAlarmSettings.TabIndex = 2;
             this.grpAlarmSettings.TabStop = false;
             this.grpAlarmSettings.Text = "Alarm settings";
-            this.grpAlarmSettings.Enter += new System.EventHandler(this.groupBox2_Enter);
+            
+            // 
+            // numStaleUrgent
+            // 
+            this.numStaleUrgent.Location = new System.Drawing.Point(453, 247);
+            this.numStaleUrgent.Maximum = new decimal(new int[] {
+            650,
+            0,
+            0,
+            0});
+            this.numStaleUrgent.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
+            this.numStaleUrgent.Name = "numStaleUrgent";
+            this.numStaleUrgent.Size = new System.Drawing.Size(120, 27);
+            this.numStaleUrgent.TabIndex = 17;
+            this.numStaleUrgent.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(580, 220);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(68, 20);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "minutes";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(580, 248);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(68, 20);
+            this.label14.TabIndex = 15;
+            this.label14.Text = "minutes";
+            // 
+            // numStaleWarning
+            // 
+            this.numStaleWarning.Location = new System.Drawing.Point(454, 213);
+            this.numStaleWarning.Maximum = new decimal(new int[] {
+            650,
+            0,
+            0,
+            0});
+            this.numStaleWarning.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numStaleWarning.Name = "numStaleWarning";
+            this.numStaleWarning.Size = new System.Drawing.Size(120, 27);
+            this.numStaleWarning.TabIndex = 12;
+            this.numStaleWarning.Value = new decimal(new int[] {
+            3,
+            0,
+            0,
+            0});
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(16, 254);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(136, 20);
+            this.label12.TabIndex = 11;
+            this.label12.Text = "Stale data urgent";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(16, 220);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(147, 20);
+            this.label5.TabIndex = 10;
+            this.label5.Text = "Stale data warning";
             // 
             // numUrgentLow
             // 
@@ -304,7 +387,6 @@
             this.label4.Size = new System.Drawing.Size(136, 20);
             this.label4.TabIndex = 5;
             this.label4.Text = "Urgent low alarm";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
             // 
             // label3
             // 
@@ -401,7 +483,7 @@
             this.tabPageAdvanced.Location = new System.Drawing.Point(4, 25);
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAdvanced.Size = new System.Drawing.Size(1002, 441);
+            this.tabPageAdvanced.Size = new System.Drawing.Size(1002, 470);
             this.tabPageAdvanced.TabIndex = 1;
             this.tabPageAdvanced.Text = "Advanced Settings";
             // 
@@ -493,6 +575,11 @@
             // numRefreshInterval
             // 
             this.numRefreshInterval.Location = new System.Drawing.Point(444, 45);
+            this.numRefreshInterval.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            0});
             this.numRefreshInterval.Name = "numRefreshInterval";
             this.numRefreshInterval.Size = new System.Drawing.Size(120, 27);
             this.numRefreshInterval.TabIndex = 7;
@@ -512,90 +599,6 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "GUI Refresh interval";
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(16, 220);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(147, 20);
-            this.label5.TabIndex = 10;
-            this.label5.Text = "Stale data warning";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(16, 254);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(136, 20);
-            this.label12.TabIndex = 11;
-            this.label12.Text = "Stale data urgent";
-            // 
-            // numStaleWarning
-            // 
-            this.numStaleWarning.Location = new System.Drawing.Point(454, 213);
-            this.numStaleWarning.Maximum = new decimal(new int[] {
-            650,
-            0,
-            0,
-            0});
-            this.numStaleWarning.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numStaleWarning.Name = "numStaleWarning";
-            this.numStaleWarning.Size = new System.Drawing.Size(120, 27);
-            this.numStaleWarning.TabIndex = 12;
-            this.numStaleWarning.Value = new decimal(new int[] {
-            3,
-            0,
-            0,
-            0});
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(580, 248);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(68, 20);
-            this.label14.TabIndex = 15;
-            this.label14.Text = "minutes";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(580, 220);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(68, 20);
-            this.label13.TabIndex = 16;
-            this.label13.Text = "minutes";
-            // 
-            // numStaleUrgent
-            // 
-            this.numStaleUrgent.Location = new System.Drawing.Point(453, 247);
-            this.numStaleUrgent.Maximum = new decimal(new int[] {
-            650,
-            0,
-            0,
-            0});
-            this.numStaleUrgent.Minimum = new decimal(new int[] {
-            2,
-            0,
-            0,
-            0});
-            this.numStaleUrgent.Name = "numStaleUrgent";
-            this.numStaleUrgent.Size = new System.Drawing.Size(120, 27);
-            this.numStaleUrgent.TabIndex = 17;
-            this.numStaleUrgent.Value = new decimal(new int[] {
-            7,
-            0,
-            0,
-            0});
-            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -613,6 +616,8 @@
             this.panel2.ResumeLayout(false);
             this.grpAlarmSettings.ResumeLayout(false);
             this.grpAlarmSettings.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numStaleUrgent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numStaleWarning)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numUrgentLow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLow)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numHigh)).EndInit();
@@ -624,8 +629,6 @@
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numStaleWarning)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numStaleUrgent)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

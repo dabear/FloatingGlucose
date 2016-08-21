@@ -15,8 +15,6 @@ namespace FloatingGlucose
 {
     public partial class FormGlucoseSettings : Form
     {
-        
-        private string appname = AppShared.appName;
         private bool settingsUpdatedSucessfully = false;
         public FormGlucoseSettings()
         {
@@ -42,25 +40,6 @@ namespace FloatingGlucose
 
         }
 
-        private void txtNSURL_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void radioButton2_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
 
         private void updateAlarmSettingsEnabled(bool enabled=true) {
             
@@ -96,7 +75,7 @@ namespace FloatingGlucose
 
             //advanced settings
             this.numScaling.Value = (decimal)Default.GuiScalingRatio;
-            this.numRefreshInterval.Value = (decimal)Default.RefreshIntervalInSeconds;
+            this.numRefreshInterval.Value = Default.RefreshIntervalInSeconds;
             this.chkEnableExceptions.Checked = Default.EnableExceptionLoggingToStderr;
             this.chkEnableRAWGlucose.Checked = Default.EnableRawGlucoseDisplay;
             
@@ -172,7 +151,7 @@ namespace FloatingGlucose
         private void btnVerifySubmit_Click(object sender, EventArgs e)
         {
             if (!Validators.isUrl(this.txtNSURL.Text) || this.txtNSURL.Text == "https://mysite.azurewebsites.net") {
-                MessageBox.Show("You have entered an invalid nightscout site URL", this.appname, MessageBoxButtons.OK,
+                MessageBox.Show("You have entered an invalid nightscout site URL", AppShared.appName, MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
                 return;
             }
@@ -198,8 +177,8 @@ namespace FloatingGlucose
             Default.Save();
 
             this.settingsUpdatedSucessfully = true;
-            MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!", this.appname, MessageBoxButtons.OK,
-               MessageBoxIcon.Information);
+            MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!",
+                AppShared.appName, MessageBoxButtons.OK,MessageBoxIcon.Information);
             AppShared.notifyFormSettingsHaveChanged();
             this.Close();
         }

@@ -131,7 +131,6 @@
             this.lblDelta.TabIndex = 7;
             this.lblDelta.Text = "N/A";
             this.lblDelta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.lblDelta.Click += new System.EventHandler(this.lblDelta_Click);
             // 
             // lblRawBG
             // 
@@ -145,7 +144,6 @@
             this.lblRawBG.TabIndex = 8;
             this.lblRawBG.Text = "0";
             this.lblRawBG.Visible = false;
-            this.lblRawBG.Click += new System.EventHandler(this.lblRawBG_Click);
             // 
             // lblRawDelta
             // 
@@ -159,7 +157,6 @@
             this.lblRawDelta.TabIndex = 9;
             this.lblRawDelta.Text = "-";
             this.lblRawDelta.Visible = false;
-            this.lblRawDelta.Click += new System.EventHandler(this.lblRawDelta_Click);
             // 
             // FloatingGlucose
             // 

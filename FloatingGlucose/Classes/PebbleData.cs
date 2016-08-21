@@ -40,39 +40,9 @@ namespace FloatingGlucose.Classes
         public string direction;
 
 
-
-        public string formattedDelta
-        {
-            get {
-
-                if (this.delta >= 0.0)
-                {
-                    return String.Format("+{0:N1}", this.delta);
-                }
-
-                return String.Format("{0:N1}", this.delta);
-            }
-        }
-
-        public double rawDelta {
-            get {
-                return this.rawGlucose - this.previousRawGlucose;
-            }
-        }
-
-        public string formattedRawDelta
-        {
-            get
-            {
-
-                if (this.rawDelta >= 0.0)
-                {
-                    return String.Format("+{0:N1}", this.rawDelta);
-                }
-
-                return String.Format("{0:N1}", this.rawDelta);
-            }
-        }
+        public string formattedDelta => $"{(this.delta >= 0.0 ? "+" : "")}{this.delta:N1}";
+        public double rawDelta => this.rawGlucose - this.previousRawGlucose;
+        public string formattedRawDelta => $"{(this.rawDelta >= 0.0 ? "+" : "")}{this.rawDelta:N1}";
 
         public static CultureInfo culture = new CultureInfo("en-US");
         public static double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose) {
@@ -83,8 +53,7 @@ namespace FloatingGlucose.Classes
             return number;
         }
 
-
-        public double previousGlucose
+        public double previousGlucose 
         {
             get
             {
@@ -116,13 +85,7 @@ namespace FloatingGlucose.Classes
             get {
                 try
                 {
-                    /*double number;
-                    Cal cals = this.nsdata.cals.First();
-                    Bg bgs = this.nsdata.bgs.First();
 
-                    number = (cals.scale * (bgs.filtered - cals.intercept) / cals.slope / this.glucose);
-                    number = (cals.scale * (bgs.unfiltered - cals.intercept) / cals.slope / number);
-                    return number;*/
                     var cal = this.nsdata.cals.First();
                     var bg = this.nsdata.bgs.First();
                     return PebbleData.CalculateRawGlucose(cal, bg, this.glucose);
@@ -135,16 +98,13 @@ namespace FloatingGlucose.Classes
             }
         }
 
-        public DateTime localDate
-        {
-            get {
-                return this.date.ToLocalTime();
-            }
-        }
+        public DateTime localDate => this.date.ToLocalTime();
+ 
         public string directionArrow
         {
             get
             {
+
                 switch (this.direction)
                 {
                     case "DoubleUp":

@@ -15,7 +15,6 @@ using static FloatingGlucose.Properties.Settings;
 namespace FloatingGlucose
 {
 
-
     public partial class FloatingGlucose : Form
     {
 
@@ -27,17 +26,15 @@ namespace FloatingGlucose
                 // data points to calculate raw glucose diff
                 var count = Default.EnableRawGlucoseDisplay ? 2 : 1;
                 var units = Default.GlucoseUnits;
-                return String.Format("{0}/pebble?count={1}&units={2}",Default.NightscoutSite, count, units);
+                return $"{Default.NightscoutSite}/pebble?count={count}&units={units}";
+                
             }
         }
 
-        private string appname = AppShared.appName;
 
-        private int refreshTime {
-            get {
-                return Default.RefreshIntervalInSeconds * 1000;//milliseconds
-            }
-        }
+        private int refreshTime => Default.RefreshIntervalInSeconds * 1000;//converted to milliseconds
+      
+        
         
 #if DEBUG
         private bool isDebuggingBuild = true;
@@ -161,7 +158,7 @@ namespace FloatingGlucose
         {
             if (!Validators.isUrl(this.nsURL)) {   
                 MessageBox.Show("The nightscout_site setting is not specifed or invalid. Please update it from the settings!",
-                    this.appname, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    AppShared.appName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
 
             }
@@ -259,7 +256,7 @@ namespace FloatingGlucose
             }
             catch (MissingJSONDataException ex) {
                 this.SetErrorState(ex);
-                MessageBox.Show(ex.Message, this.appname, MessageBoxButtons.OK,
+                MessageBox.Show(ex.Message, AppShared.appName, MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 AppShared.settingsFormShouldFocusAdvancedSettings = true;
                 
@@ -268,7 +265,7 @@ namespace FloatingGlucose
             catch (Exception ex)
             {
                 var msg = "An unknown error occured of type " + ex.GetType().ToString() + ": " + ex.Message;
-                MessageBox.Show(msg, this.appname, MessageBoxButtons.OK,
+                MessageBox.Show(msg, AppShared.appName, MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 Application.Exit();
             }
@@ -346,8 +343,9 @@ namespace FloatingGlucose
             
             var refreshGlucoseTimer = new System.Windows.Forms.Timer();
             //auto refresh data once every x seconds
-            refreshGlucoseTimer.Interval = this.refreshTime; 
-            refreshGlucoseTimer.Tick += new EventHandler(Glucose_Tick);
+            refreshGlucoseTimer.Interval = this.refreshTime;
+            //every 60s (default) reload the glucose numbers from the nightscout pebble endpoint
+            refreshGlucoseTimer.Tick += new EventHandler((asender, ev)=> LoadGlucoseValue());
             refreshGlucoseTimer.Start();
 
 
@@ -365,11 +363,6 @@ namespace FloatingGlucose
             return false;
         }
 
-        private void Glucose_Tick(object sender, EventArgs e)
-        {
-            //every 60s (default) reload the glucose numbers from the nightscout pebble endpoint
-            LoadGlucoseValue();
-        }
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -387,22 +380,6 @@ namespace FloatingGlucose
             Debug.WriteLine(now + ":" + line);
         }
 
-
-        private void lblClickToCloseApp_Click(object sender, EventArgs e)
-        {
-            this.Exit();
-        }
-
-        private void labelDoNotEverRemoveThisLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblShowSettings_Click(object sender, EventArgs e)
-        {
-
-            this.settingsForm.Show();
-        }
 
         private void showApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -427,19 +404,5 @@ namespace FloatingGlucose
             Application.Exit();
         }
 
-        private void lblRawBG_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblDelta_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblRawDelta_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }
