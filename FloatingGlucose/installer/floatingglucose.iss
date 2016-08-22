@@ -50,6 +50,8 @@ Source: "..\bin\{#ReleaseType}\FloatingGlucose.exe.config"; DestDir: "{app}"; Fl
 Source: "..\bin\{#ReleaseType}\FloatingGlucose.pdb"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\{#ReleaseType}\Newtonsoft.Json.dll"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\{#ReleaseType}\Newtonsoft.Json.xml"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\bin\{#ReleaseType}\NAudio.dll"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\bin\{#ReleaseType}\NAudio.xml"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\{#ReleaseType}\README_attributions.txt"; DestDir: "{app}"; Flags: ignoreversion
 Source: "..\bin\{#ReleaseType}\version.txt"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
