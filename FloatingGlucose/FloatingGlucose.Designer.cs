@@ -40,6 +40,11 @@
             this.lblDelta = new System.Windows.Forms.Label();
             this.lblRawBG = new System.Windows.Forms.Label();
             this.lblRawDelta = new System.Windows.Forms.Label();
+            this.postponeAlarmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.postponeFor30MinutesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.postponeFor90MinutesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.postponedUntilFooToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reenableAlarmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -92,10 +97,11 @@
             this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showApplicationToolStripMenuItem,
+            this.postponeAlarmsToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(202, 82);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(239, 136);
             // 
             // showApplicationToolStripMenuItem
             // 
@@ -158,6 +164,47 @@
             this.lblRawDelta.Text = "-";
             this.lblRawDelta.Visible = false;
             // 
+            // postponeAlarmsToolStripMenuItem
+            // 
+            this.postponeAlarmsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.postponeFor30MinutesToolStripMenuItem,
+            this.postponeFor90MinutesToolStripMenuItem,
+            this.reenableAlarmsToolStripMenuItem,
+            this.postponedUntilFooToolStripMenuItem});
+            this.postponeAlarmsToolStripMenuItem.Name = "postponeAlarmsToolStripMenuItem";
+            this.postponeAlarmsToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
+            this.postponeAlarmsToolStripMenuItem.Text = "Postpone sound alarms";
+            // 
+            // postponeFor30MinutesToolStripMenuItem
+            // 
+            this.postponeFor30MinutesToolStripMenuItem.Name = "postponeFor30MinutesToolStripMenuItem";
+            this.postponeFor30MinutesToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.postponeFor30MinutesToolStripMenuItem.Text = "Postpone for 30 minutes";
+            this.postponeFor30MinutesToolStripMenuItem.Click += new System.EventHandler(this.postponeFor30MinutesToolStripMenuItem_Click);
+            // 
+            // postponeFor90MinutesToolStripMenuItem
+            // 
+            this.postponeFor90MinutesToolStripMenuItem.Name = "postponeFor90MinutesToolStripMenuItem";
+            this.postponeFor90MinutesToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.postponeFor90MinutesToolStripMenuItem.Text = "Postpone for 90 minutes";
+            this.postponeFor90MinutesToolStripMenuItem.Click += new System.EventHandler(this.postponeFor90MinutesToolStripMenuItem_Click);
+            // 
+            // postponedUntilFooToolStripMenuItem
+            // 
+            this.postponedUntilFooToolStripMenuItem.Enabled = false;
+            this.postponedUntilFooToolStripMenuItem.Name = "postponedUntilFooToolStripMenuItem";
+            this.postponedUntilFooToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.postponedUntilFooToolStripMenuItem.Text = "Postponed until ";
+            this.postponedUntilFooToolStripMenuItem.Visible = false;
+            // 
+            // reenableAlarmsToolStripMenuItem
+            // 
+            this.reenableAlarmsToolStripMenuItem.Name = "reenableAlarmsToolStripMenuItem";
+            this.reenableAlarmsToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.reenableAlarmsToolStripMenuItem.Text = "Re-enable alarms";
+            this.reenableAlarmsToolStripMenuItem.Visible = false;
+            this.reenableAlarmsToolStripMenuItem.Click += new System.EventHandler(this.reenableAlarmsToolStripMenuItem_Click);
+            // 
             // FloatingGlucose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -199,6 +246,11 @@
         private System.Windows.Forms.ToolStripMenuItem quitToolStripMenuItem;
         private System.Windows.Forms.Label lblRawBG;
         private System.Windows.Forms.Label lblRawDelta;
+        private System.Windows.Forms.ToolStripMenuItem postponeAlarmsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem postponeFor30MinutesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem postponeFor90MinutesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem postponedUntilFooToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reenableAlarmsToolStripMenuItem;
     }
 }
 

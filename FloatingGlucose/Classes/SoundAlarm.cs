@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using NAudio;
 using NAudio.Wave;
 using System.IO;
+using static FloatingGlucose.Properties.Settings;
 
 namespace FloatingGlucose.Classes
 {
@@ -79,27 +80,93 @@ namespace FloatingGlucose.Classes
             return totalBytesRead;
         }
     }
-    class SoundAlarm : IDisposable
+    public  class SoundAlarm : IDisposable
     {
+        private static readonly SoundAlarm instance = new SoundAlarm();
+
         private bool disposed;
         private IWavePlayer device = new WaveOut();
 
-        private Mp3FileReader glucoseAlarm = new Mp3FileReader(new MemoryStream(Properties.Resources.alarm));
-        private Mp3FileReader staleAlarm = new Mp3FileReader(new MemoryStream(Properties.Resources.alarm2));
+        private readonly Mp3FileReader glucoseAlarm = new Mp3FileReader(new MemoryStream(Properties.Resources.alarm));
+        private readonly Mp3FileReader staleAlarm = new Mp3FileReader(new MemoryStream(Properties.Resources.alarm2));
 
         private bool isCurrentlyPlaying = false;
+
+        private DateTime? postponed;
+
+        public DateTime? GetPostponedUntil() => this.postponed;
+
+        // Explicit static constructor to tell C# compiler
+        // not to mark type as beforefieldinit
+        static SoundAlarm()
+        {
+        }
+
+        private SoundAlarm()
+        {
+        }
+
+        public static SoundAlarm Instance
+        {
+            get
+            {
+                return instance;
+            }
+        }
+        public void RemovePostpone()
+        {
+            this.postponed = null;
+
+        }
+        public void PostponeAlarm(int minutes)
+        {
+            var now = DateTime.Now;
+            var postponeUntil = now.AddMinutes(minutes);
+
+            this.postponed = postponeUntil;
+
+            if (this.isCurrentlyPlaying) {
+                this.StopAlarm();
+                
+            }
+
+        }
+
+        public bool isPostponed() {
+
+            if (this.postponed == null) {
+                return false;
+            }
+
+            var now = DateTime.Now;
+            return this.postponed > now;
+        }
+
+
         public void PlayStaleAlarm()
         {
-            if (this.isCurrentlyPlaying) {
+            if (this.isCurrentlyPlaying || !Default.EnableAlarms || !Default.EnableSoundAlarms)
+            {
                 // We don't want to play if there is already other players active
                 // even if the other players are playing other alarms..
                 return;
             }
+            if(this.isPostponed())
+            {
+                return;
+            }
 
-            LoopStream loop = new LoopStream(staleAlarm);
+            var loop = new LoopStream(staleAlarm);
             device.Init(loop);
             device.Play();
             this.isCurrentlyPlaying = true;
+        }
+
+        public void StopAlarmIfPostponed() {
+            if (this.isPostponed())
+            {
+                this.StopAlarm();
+            }
         }
 
         public void StopAlarm()
@@ -108,19 +175,21 @@ namespace FloatingGlucose.Classes
             this.isCurrentlyPlaying = false;
             staleAlarm.CurrentTime =
             glucoseAlarm.CurrentTime = new TimeSpan(0);
-
-
         }
 
         public void PlayGlucoseAlarm()
         {
-            if (this.isCurrentlyPlaying)
+            if (this.isCurrentlyPlaying || !Default.EnableAlarms || !Default.EnableSoundAlarms)
             {
                 // We don't want to play if there is already other players active
                 // even if the other players are playing other alarms..
                 return;
             }
-            
+            if (this.isPostponed())
+            {
+                return;
+            }
+
             var loop = new LoopStream(glucoseAlarm);
             
             this.device.Init(loop);

@@ -13,7 +13,7 @@ namespace FloatingGlucose
 {
     public partial class FormAudioTester : Form
     {
-        private SoundAlarm instance = new SoundAlarm();
+        private SoundAlarm instance = SoundAlarm.Instance;
         public FormAudioTester()
         {
             InitializeComponent();

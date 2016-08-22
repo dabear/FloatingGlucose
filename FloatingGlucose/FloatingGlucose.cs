@@ -165,6 +165,17 @@ namespace FloatingGlucose
 
             PebbleData data = null;
 
+            var alarmManger = SoundAlarm.Instance;
+            var now = DateTime.Now;
+            var alarmsPostponed = alarmManger.GetPostponedUntil();
+
+            //cleanup context menu
+            if (alarmsPostponed != null && alarmsPostponed < now) {
+                this.postponedUntilFooToolStripMenuItem.Visible = 
+                this.reenableAlarmsToolStripMenuItem.Visible = false;
+            }
+
+
             try
             {
                 WriteDebug("Trying to refresh data");
@@ -173,7 +184,7 @@ namespace FloatingGlucose
 
 
                 var glucoseDate = data.localDate;
-                var now = DateTime.Now;
+                
 
                 this.lblLastUpdate.Text = glucoseDate.ToTimeAgo();
 
@@ -191,6 +202,9 @@ namespace FloatingGlucose
                         this.lblGlucoseValue.Text = "Stale";
                         this.lblDelta.Text = "data";
                         this.notifyIcon1.Text = "Stale data";
+
+                        alarmManger.PlayStaleAlarm();
+
                         if (isUrgent)
                         {
                             setLabelsColor(Color.Red);
@@ -227,15 +241,18 @@ namespace FloatingGlucose
                     case GlucoseStatusEnum.UrgentHigh:
                     case GlucoseStatusEnum.UrgentLow:
                         setLabelsColor(Color.Red);
+                        alarmManger.PlayGlucoseAlarm();
                         break;
                     case GlucoseStatusEnum.Low:
                     case GlucoseStatusEnum.High:
                         setLabelsColor(Color.Yellow);
+                        alarmManger.PlayGlucoseAlarm();
                         break;
 
                     case GlucoseStatusEnum.Unknown:
                     case GlucoseStatusEnum.Normal:
                     default:
+                        alarmManger.StopAlarm();
                         setLabelsColor(Color.Green);
                         break;
 
@@ -412,5 +429,39 @@ namespace FloatingGlucose
             Application.Exit();
         }
 
+        private void postponeAlarms(int minutes)
+        {
+            var manager = SoundAlarm.Instance;
+            manager.PostponeAlarm(minutes);
+            DateTime untilDate = (DateTime)manager.GetPostponedUntil();
+            
+            this.postponedUntilFooToolStripMenuItem.Text = $"Postponed until {untilDate.ToShortTimeString()}";
+
+            this.reenableAlarmsToolStripMenuItem.Visible = 
+            this.postponedUntilFooToolStripMenuItem.Visible = true;
+            
+        }
+
+
+        private void postponeFor30MinutesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.postponeAlarms(30);
+        }
+
+        private void postponeFor90MinutesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.postponeAlarms(90);
+        }
+
+        private void reenableAlarmsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var manager = SoundAlarm.Instance;
+            manager.RemovePostpone();
+
+            this.reenableAlarmsToolStripMenuItem.Visible =
+            this.postponedUntilFooToolStripMenuItem.Visible = false;
+
+
+        }
     }
 }

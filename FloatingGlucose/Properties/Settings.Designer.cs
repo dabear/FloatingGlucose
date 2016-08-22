@@ -178,5 +178,17 @@ namespace FloatingGlucose.Properties {
                 this["AlarmStaleDataUrgent"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool EnableSoundAlarms {
+            get {
+                return ((bool)(this["EnableSoundAlarms"]));
+            }
+            set {
+                this["EnableSoundAlarms"] = value;
+            }
+        }
     }
 }
