@@ -210,7 +210,7 @@ namespace FloatingGlucose
                 var status = GlucoseStatus.GetGlucoseStatus((decimal)data.glucose);
 
 
-                this.lblDelta.Text = data.formattedDelta;
+                this.lblDelta.Text = data.formattedDelta + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
 
 
 
