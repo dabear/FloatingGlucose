@@ -168,7 +168,7 @@ namespace FloatingGlucose
             try
             {
                 WriteDebug("Trying to refresh data");
-                
+
                 data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL);
 
 
@@ -180,12 +180,14 @@ namespace FloatingGlucose
                 //
                 // even if we have glucose data, don't display them if it's considered stale
                 //
-                if (Default.EnableAlarms) {
+                if (Default.EnableAlarms)
+                {
                     var urgentTime = now.AddMinutes(-Default.AlarmStaleDataUrgent);
                     var warningTime = now.AddMinutes(-Default.AlarmStaleDataWarning);
                     var isUrgent = glucoseDate <= urgentTime;
                     var isWarning = glucoseDate <= warningTime;
-                    if (isUrgent || isWarning) {
+                    if (isUrgent || isWarning)
+                    {
                         this.lblGlucoseValue.Text = "Stale";
                         this.lblDelta.Text = "data";
                         this.notifyIcon1.Text = "Stale data";
@@ -199,19 +201,19 @@ namespace FloatingGlucose
                         }
 
                         return;
-                    } 
+                    }
                 }
 
 
                 this.lblGlucoseValue.Text = $"{data.glucose:N1} {data.directionArrow}";
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
                 var status = GlucoseStatus.GetGlucoseStatus((decimal)data.glucose);
-                
-                
+
+
                 this.lblDelta.Text = data.formattedDelta;
 
 
-                
+
                 if (Default.EnableRawGlucoseDisplay)
                 {
                     this.lblRawBG.Text = $"{data.rawGlucose:N1}";
@@ -254,12 +256,18 @@ namespace FloatingGlucose
             {
                 this.SetErrorState(ex);
             }
-            catch (MissingJSONDataException ex) {
+            catch (MissingDataException ex)
+            {
+                //typically happens during azure site restarts
+                this.SetErrorState(ex);
+            }
+            catch (InvalidJSONDataException ex)
+            {
                 this.SetErrorState(ex);
                 MessageBox.Show(ex.Message, AppShared.appName, MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 AppShared.settingsFormShouldFocusAdvancedSettings = true;
-                
+
                 this.settingsForm.ShowDialog();
             }
             catch (Exception ex)
@@ -275,7 +283,7 @@ namespace FloatingGlucose
                     this.lblRawDelta.Text = data.formattedRawDelta;
                 }
             }
-            catch (MissingJSONDataException) {
+            catch (InvalidJSONDataException) {
                 // No data available.
                 // This can happen even if raw glucose is enabled
                 // as it required two data points to be available
@@ -293,7 +301,7 @@ namespace FloatingGlucose
 
 
         }
-
+        
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
             // We want all data values to be formatted with a dot, not comma, as some cultures do

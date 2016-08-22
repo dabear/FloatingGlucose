@@ -11,18 +11,36 @@ using System.Threading.Tasks;
 
 namespace FloatingGlucose.Classes
 {
-    class MissingJSONDataException : Exception
+    class InvalidJSONDataException : Exception
     {
-        public MissingJSONDataException(string message) : base(message)
+        public InvalidJSONDataException(string message) : base(message)
         {
 
         }
-        public MissingJSONDataException()
+        public InvalidJSONDataException()
         {
 
         }
         
-        public MissingJSONDataException(string message, Exception inner) : base(message, inner)
+        public InvalidJSONDataException(string message, Exception inner) : base(message, inner)
+        {
+
+        }
+
+    }
+
+    class MissingDataException : Exception
+    {
+        public MissingDataException(string message) : base(message)
+        {
+
+        }
+        public MissingDataException()
+        {
+
+        }
+
+        public MissingDataException(string message, Exception inner) : base(message, inner)
         {
 
         }
@@ -76,7 +94,7 @@ namespace FloatingGlucose.Classes
                 }
                 catch (InvalidOperationException)
                 {
-                    throw new MissingJSONDataException("The raw data are not available, enable RAWBG in your azure settings");
+                    throw new InvalidJSONDataException("The raw data are not available, enable RAWBG in your azure settings");
                 }
 
             }
@@ -93,7 +111,7 @@ namespace FloatingGlucose.Classes
                 }
                 catch(InvalidOperationException)
                 {
-                    throw new MissingJSONDataException("The raw data are not available, enable RAWBG in your azure settings");
+                    throw new InvalidJSONDataException("The raw data are not available, enable RAWBG in your azure settings");
                 }
                 
             }
@@ -138,18 +156,18 @@ namespace FloatingGlucose.Classes
         public static async Task<PebbleData> GetNightscoutPebbleDataAsync(string url)
         {
 
-            HttpClient client = new HttpClient();
-            
+            HttpClient client = new HttpClient();       
             var pebbleData = new PebbleData();
-
             string urlContents = await client.GetStringAsync(url);
+
+            Bg bgs = null;
 
             var parsed =
             pebbleData.nsdata = JsonConvert.DeserializeObject<Generated_NSDATA>(urlContents);
             try
             {
                 
-                Bg bgs = parsed.bgs.First();
+                bgs = parsed.bgs.First();
                 pebbleData.direction = bgs.direction;
                 pebbleData.glucose = Double.Parse(bgs.sgv, NumberStyles.Any, PebbleData.culture);
                 pebbleData.date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
@@ -158,10 +176,11 @@ namespace FloatingGlucose.Classes
                 
 
             }
-            catch (Exception)
+            catch (InvalidOperationException ex)
             {
-                //this exception might be hit when the nightscout installation is brand new or contains no recent data; 
-                return null;
+                //this exception might be hit when the nightscout installation is brand new or contains no recent data;
+                throw new MissingDataException("No data");
+
             }
 
             return pebbleData;
