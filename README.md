@@ -18,7 +18,8 @@ After configuring the nightscout installation URL, double click on FloatingGluco
 
 ## Hidden / Nice to Know features
 * You can drag the window around and place it where you want to.
-* You can temporarily toggle the visibility of the "(exit)" and "(settings)" buttons eiter by clicking the "BS:" text five times, or permantly in the settings.
+* To show the settings again, please right click the notification area icon or the app. A menu will pop up allowing you to access the application settings
+* The same pop up menu can be used to temporarily disable sound alarms.
 
 ## Debugging
 Having troubles with crashes or with the widget not updating? Please make sure you have enabled exception logging to stderr (in the configfile) then run the program from command line:
