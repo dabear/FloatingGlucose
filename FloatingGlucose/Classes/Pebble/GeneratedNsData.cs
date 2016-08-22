@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FloatingGlucose.Classes
+namespace FloatingGlucose.Classes.Pebble
 {
     //json2csharp.com
-    public class Generated_NSDATA
+    public class GeneratedNsData
     {
         public List<Status> status { get; set; }
         public List<Bg> bgs { get; set; }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FloatingGlucose
+namespace FloatingGlucose.Classes.Extensions
 {
-    static class Datetime_Extensions
+    static class DatetimeExtensions
     {
         public static string ToTimeAgo(this DateTime dt)
         {

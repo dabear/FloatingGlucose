@@ -10,15 +10,15 @@ namespace FloatingGlucose.Classes
 {
     class AppShared
     {
-        public static string appName = typeof(Program).Assembly.GetName().Name;
-        public static bool settingsFormShouldFocusAdvancedSettings = false;
+        public static readonly string AppName = typeof(Program).Assembly.GetName().Name;
+        public static bool SettingsFormShouldFocusAdvancedSettings = false;
 
-        public static Func<bool> callback;
+        private static Func<bool> callback;
 
         public static void RegisterSettingsChangedCallback(Func<bool> lambda) {
             AppShared.callback = lambda;
         }
-        public static void notifyFormSettingsHaveChanged() => callback?.Invoke();
+        public static void NotifyFormSettingsHaveChanged() => callback?.Invoke();
             
         
     }

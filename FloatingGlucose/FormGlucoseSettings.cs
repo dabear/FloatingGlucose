@@ -113,12 +113,12 @@ namespace FloatingGlucose
                 .Where(x=> x.DecimalPlaces == 1).ToList();
             controls.ForEach( x => {
                 x.Increment = x.Value >= 36 ? 1.0M : 0.1M;
-                x.ValueChanged += new System.EventHandler(this.numericUpDowns_Value_Changed);
+                x.ValueChanged += new System.EventHandler(this.NumericUpDowns_Value_Changed);
             });
 
-            if (AppShared.settingsFormShouldFocusAdvancedSettings)
+            if (AppShared.SettingsFormShouldFocusAdvancedSettings)
             {
-                AppShared.settingsFormShouldFocusAdvancedSettings = false;
+                AppShared.SettingsFormShouldFocusAdvancedSettings = false;
                 this.tabSettings.SelectTab(this.tabPageAdvanced);
                
                 
@@ -154,8 +154,8 @@ namespace FloatingGlucose
 
         private void btnVerifySubmit_Click(object sender, EventArgs e)
         {
-            if (!Validators.isUrl(this.txtNSURL.Text) || this.txtNSURL.Text == "https://mysite.azurewebsites.net") {
-                MessageBox.Show("You have entered an invalid nightscout site URL", AppShared.appName, MessageBoxButtons.OK,
+            if (!Validators.IsUrl(this.txtNSURL.Text) || this.txtNSURL.Text == "https://mysite.azurewebsites.net") {
+                MessageBox.Show("You have entered an invalid nightscout site URL", AppShared.AppName, MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
                 return;
             }
@@ -191,12 +191,12 @@ namespace FloatingGlucose
 
             this.settingsUpdatedSucessfully = true;
             MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!",
-                AppShared.appName, MessageBoxButtons.OK,MessageBoxIcon.Information);
-            AppShared.notifyFormSettingsHaveChanged();
+                AppShared.AppName, MessageBoxButtons.OK,MessageBoxIcon.Information);
+            AppShared.NotifyFormSettingsHaveChanged();
             this.Close();
         }
 
-        private void numericUpDowns_Value_Changed(object sender, EventArgs e)
+        private void NumericUpDowns_Value_Changed(object sender, EventArgs e)
         {
             if (sender == null) {
                 return;
@@ -214,26 +214,26 @@ namespace FloatingGlucose
 
         private void GlucoseUnit_Changed(object sender, EventArgs e)
         {
-            var isMMOL = this.btnUnitsMMOL.Checked;
+            var isMmol = this.btnUnitsMMOL.Checked;
             
-            if (isMMOL) {
+            if (isMmol) {
                 if (this.numUrgentHigh.Value >= 36)
                 {
-                    this.numUrgentHigh.Value = GlucoseStatus.toMMOL(this.numUrgentHigh.Value);
+                    this.numUrgentHigh.Value = GlucoseStatus.ToMmol(this.numUrgentHigh.Value);
                 }
                 if (this.numHigh.Value >= 36)
                 {
-                    this.numHigh.Value = GlucoseStatus.toMMOL(this.numHigh.Value);
+                    this.numHigh.Value = GlucoseStatus.ToMmol(this.numHigh.Value);
                 }
 
                 if (this.numLow.Value >= 36)
                 {
-                    this.numLow.Value = GlucoseStatus.toMMOL(this.numLow.Value);
+                    this.numLow.Value = GlucoseStatus.ToMmol(this.numLow.Value);
                 }
 
                 if (this.numUrgentLow.Value >= 36)
                 {
-                    this.numUrgentLow.Value = GlucoseStatus.toMMOL(this.numUrgentLow.Value);
+                    this.numUrgentLow.Value = GlucoseStatus.ToMmol(this.numUrgentLow.Value);
                 }
 
             }
@@ -242,21 +242,21 @@ namespace FloatingGlucose
             {
                 if (this.numUrgentHigh.Value < 36)
                 {
-                    this.numUrgentHigh.Value = GlucoseStatus.toMGDL(this.numUrgentHigh.Value);
+                    this.numUrgentHigh.Value = GlucoseStatus.ToMgdl(this.numUrgentHigh.Value);
                 }
                 if (this.numHigh.Value < 36)
                 {
-                    this.numHigh.Value = GlucoseStatus.toMGDL(this.numHigh.Value);
+                    this.numHigh.Value = GlucoseStatus.ToMgdl(this.numHigh.Value);
                 }
 
                 if (this.numLow.Value < 36)
                 {
-                    this.numLow.Value = GlucoseStatus.toMGDL(this.numLow.Value);
+                    this.numLow.Value = GlucoseStatus.ToMgdl(this.numLow.Value);
                 }
 
                 if (this.numUrgentLow.Value < 36)
                 {
-                    this.numUrgentLow.Value = GlucoseStatus.toMGDL(this.numUrgentLow.Value);
+                    this.numUrgentLow.Value = GlucoseStatus.ToMgdl(this.numUrgentLow.Value);
                 }
 
             }

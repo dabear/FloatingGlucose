@@ -10,8 +10,10 @@ using System.Net.Http;
 using FloatingGlucose.Classes;
 using Newtonsoft.Json;
 using System.Globalization;
-
+using FloatingGlucose.Classes.Pebble;
 using static FloatingGlucose.Properties.Settings;
+using FloatingGlucose.Classes.Extensions;
+
 namespace FloatingGlucose
 {
 
@@ -149,16 +151,16 @@ namespace FloatingGlucose
             //this.lblClickToCloseApp.ForeColor = color;
 
 
-        }
+        } 
 
         //
         // Main loop. This will be called each 60s and also when the settings are reloaded
         //
         private async void LoadGlucoseValue() 
         {
-            if (!Validators.isUrl(this.nsURL)) {   
+            if (!Validators.IsUrl(this.nsURL)) {   
                 MessageBox.Show("The nightscout_site setting is not specifed or invalid. Please update it from the settings!",
-                    AppShared.appName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
 
             }
@@ -183,7 +185,7 @@ namespace FloatingGlucose
                 data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL);
 
 
-                var glucoseDate = data.localDate;
+                var glucoseDate = data.LocalDate;
                 
 
                 this.lblLastUpdate.Text = glucoseDate.ToTimeAgo();
@@ -219,18 +221,18 @@ namespace FloatingGlucose
                 }
 
 
-                this.lblGlucoseValue.Text = $"{data.glucose:N1} {data.directionArrow}";
+                this.lblGlucoseValue.Text = $"{data.Glucose:N1} {data.DirectionArrow}";
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
-                var status = GlucoseStatus.GetGlucoseStatus((decimal)data.glucose);
+                var status = GlucoseStatus.GetGlucoseStatus((decimal)data.Glucose);
 
 
-                this.lblDelta.Text = data.formattedDelta + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
+                this.lblDelta.Text = data.FormattedDelta + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
 
 
 
                 if (Default.EnableRawGlucoseDisplay)
                 {
-                    this.lblRawBG.Text = $"{data.rawGlucose:N1}";
+                    this.lblRawBG.Text = $"{data.RawGlucose:N1}";
                 }
 
                 this.SetSuccessState();
@@ -278,29 +280,29 @@ namespace FloatingGlucose
                 //typically happens during azure site restarts
                 this.SetErrorState(ex);
             }
-            catch (InvalidJSONDataException ex)
+            catch (InvalidJsonDataException ex)
             {
                 this.SetErrorState(ex);
-                MessageBox.Show(ex.Message, AppShared.appName, MessageBoxButtons.OK,
+                MessageBox.Show(ex.Message, AppShared.AppName, MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
-                AppShared.settingsFormShouldFocusAdvancedSettings = true;
+                AppShared.SettingsFormShouldFocusAdvancedSettings = true;
 
                 this.settingsForm.ShowDialog();
             }
             catch (Exception ex)
             {
                 var msg = "An unknown error occured of type " + ex.GetType().ToString() + ": " + ex.Message;
-                MessageBox.Show(msg, AppShared.appName, MessageBoxButtons.OK,
+                MessageBox.Show(msg, AppShared.AppName, MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 Application.Exit();
             }
 
             try {
                 if (Default.EnableRawGlucoseDisplay && data != null) {
-                    this.lblRawDelta.Text = data.formattedRawDelta;
+                    this.lblRawDelta.Text = data.FormattedRawDelta;
                 }
             }
-            catch (InvalidJSONDataException) {
+            catch (InvalidJsonDataException) {
                 // No data available.
                 // This can happen even if raw glucose is enabled
                 // as it required two data points to be available
@@ -357,7 +359,7 @@ namespace FloatingGlucose
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
 
-            if (!Validators.isUrl(this.nsURL)) {
+            if (!Validators.IsUrl(this.nsURL)) {
                 this.settingsForm.ShowDialog();
 
             }

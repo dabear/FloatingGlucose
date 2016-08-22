@@ -110,12 +110,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Datetime_Extensions.cs" />
+    <Compile Include="Classes\Extensions\DatetimeExtensions.cs" />
     <Compile Include="Classes\AppShared.cs" />
-    <Compile Include="Classes\Generated_NSDATA.cs" />
+    <Compile Include="Classes\Pebble\GeneratedNsData.cs" />
     <Compile Include="Classes\GlucoseStatus.cs" />
-    <Compile Include="Classes\PebbleData.cs" />
-    <Compile Include="Classes\SoundAlarm.cs" />
+    <Compile Include="Classes\Audio\LoopStream.cs" />
+    <Compile Include="Classes\Pebble\InvalidJsonDataException.cs" />
+    <Compile Include="Classes\Pebble\MissingDataException.cs" />
+    <Compile Include="Classes\Pebble\PebbleData.cs" />
+    <Compile Include="Classes\Audio\SoundAlarm.cs" />
     <Compile Include="Classes\Validators.cs" />
     <Compile Include="FloatingGlucose.cs">
       <SubType>Form</SubType>

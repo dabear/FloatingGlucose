@@ -8,12 +8,7 @@ namespace FloatingGlucose.Classes
 {
     class Validators
     {
-        public static bool isUrl(string url) {
-            if (url == null) {
-                return false;
-            }
-            return Uri.IsWellFormedUriString(url, UriKind.RelativeOrAbsolute);
-
-        }
+        public static bool IsUrl(string url) => url != null && Uri.IsWellFormedUriString(url, UriKind.RelativeOrAbsolute);
+            
     }
 }
