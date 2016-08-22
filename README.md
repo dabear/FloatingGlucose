@@ -4,7 +4,7 @@ FloatingGlucose is a windows program aiming to display your current bloogsugars 
 A transparent popup window will be displayed in the bottom right corner of your desktop, with your current blood glucose values fetched from your nightscout site.
 
 ## Screenshot
-![Image of Floating glucose in action](https://s32.postimg.org/madq0uj2d/floating_glucose.png)
+![Image of Floating glucose in action](https://s9.postimg.org/ut4dnjnfj/floatingglucose_0_9_7_beta7.png)
 
 ## Installation
 Download The Setup.exe of the latest release, [which you can find here](https://github.com/dabear/FloatingGlucose/releases/) and run it. You should normally just install it to the default directory which is C:\Program Files (x86)\FloatingGlucose. 
