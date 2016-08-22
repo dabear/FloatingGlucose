@@ -66,6 +66,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.chkEnableSoundAlarms = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
@@ -156,7 +158,7 @@
             // btnVerifySubmit
             // 
             this.btnVerifySubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerifySubmit.Location = new System.Drawing.Point(786, 568);
+            this.btnVerifySubmit.Location = new System.Drawing.Point(786, 584);
             this.btnVerifySubmit.Name = "btnVerifySubmit";
             this.btnVerifySubmit.Size = new System.Drawing.Size(229, 53);
             this.btnVerifySubmit.TabIndex = 1;
@@ -171,11 +173,13 @@
             this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(50, 10, 50, 10);
-            this.panel2.Size = new System.Drawing.Size(960, 458);
+            this.panel2.Size = new System.Drawing.Size(960, 497);
             this.panel2.TabIndex = 1;
             // 
             // grpAlarmSettings
             // 
+            this.grpAlarmSettings.Controls.Add(this.chkEnableSoundAlarms);
+            this.grpAlarmSettings.Controls.Add(this.label15);
             this.grpAlarmSettings.Controls.Add(this.numStaleUrgent);
             this.grpAlarmSettings.Controls.Add(this.label13);
             this.grpAlarmSettings.Controls.Add(this.label14);
@@ -196,11 +200,10 @@
             this.grpAlarmSettings.Location = new System.Drawing.Point(24, 142);
             this.grpAlarmSettings.Name = "grpAlarmSettings";
             this.grpAlarmSettings.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.grpAlarmSettings.Size = new System.Drawing.Size(927, 303);
+            this.grpAlarmSettings.Size = new System.Drawing.Size(927, 342);
             this.grpAlarmSettings.TabIndex = 2;
             this.grpAlarmSettings.TabStop = false;
             this.grpAlarmSettings.Text = "Alarm settings";
-            
             // 
             // numStaleUrgent
             // 
@@ -445,7 +448,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(8, 584);
+            this.label6.Location = new System.Drawing.Point(8, 600);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(646, 20);
             this.label6.TabIndex = 3;
@@ -459,7 +462,7 @@
             this.tabSettings.Location = new System.Drawing.Point(12, 40);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(1010, 499);
+            this.tabSettings.Size = new System.Drawing.Size(1010, 538);
             this.tabSettings.TabIndex = 2;
             this.tabSettings.Text = "30";
             // 
@@ -471,7 +474,7 @@
             this.tabPageBasic.Location = new System.Drawing.Point(4, 25);
             this.tabPageBasic.Name = "tabPageBasic";
             this.tabPageBasic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBasic.Size = new System.Drawing.Size(1002, 470);
+            this.tabPageBasic.Size = new System.Drawing.Size(1002, 509);
             this.tabPageBasic.TabIndex = 0;
             this.tabPageBasic.Text = "Basic Settings";
             // 
@@ -483,7 +486,7 @@
             this.tabPageAdvanced.Location = new System.Drawing.Point(4, 25);
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAdvanced.Size = new System.Drawing.Size(1002, 470);
+            this.tabPageAdvanced.Size = new System.Drawing.Size(1002, 509);
             this.tabPageAdvanced.TabIndex = 1;
             this.tabPageAdvanced.Text = "Advanced Settings";
             // 
@@ -599,6 +602,25 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "GUI Refresh interval";
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(16, 286);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(166, 20);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "Enable sound alarms";
+            // 
+            // chkEnableSoundAlarms
+            // 
+            this.chkEnableSoundAlarms.AutoSize = true;
+            this.chkEnableSoundAlarms.Location = new System.Drawing.Point(555, 289);
+            this.chkEnableSoundAlarms.Name = "chkEnableSoundAlarms";
+            this.chkEnableSoundAlarms.Size = new System.Drawing.Size(18, 17);
+            this.chkEnableSoundAlarms.TabIndex = 19;
+            this.chkEnableSoundAlarms.UseVisualStyleBackColor = true;
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -674,5 +696,7 @@
         private System.Windows.Forms.NumericUpDown numStaleWarning;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.CheckBox chkEnableSoundAlarms;
+        private System.Windows.Forms.Label label15;
     }
 }

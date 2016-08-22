@@ -48,6 +48,7 @@ namespace FloatingGlucose
             {
                 x.Enabled = enabled;
             });
+            this.chkEnableSoundAlarms.Enabled = enabled;
         }
 
         private void updateFormControlsFromSettings() {
@@ -70,8 +71,11 @@ namespace FloatingGlucose
             this.numStaleWarning.Value = staleWarning;
             this.numStaleUrgent.Value = staleUrgent;
 
+            this.chkEnableSoundAlarms.Checked = Default.EnableSoundAlarms;
+
             this.btnUnitsMMOL.Checked = Default.GlucoseUnits == "mmol";
             this.btnUnitsMGDL.Checked = Default.GlucoseUnits == "mgdl";
+
 
             //advanced settings
             this.numScaling.Value = (decimal)Default.GuiScalingRatio;
@@ -166,6 +170,7 @@ namespace FloatingGlucose
 
             Default.AlarmStaleDataUrgent = (int)this.numStaleUrgent.Value;
             Default.AlarmStaleDataWarning = (int)this.numStaleWarning.Value;
+            Default.EnableSoundAlarms = this.chkEnableSoundAlarms.Checked;
 
             //advanced settings
             Default.GuiScalingRatio = (float)this.numScaling.Value;
@@ -175,6 +180,14 @@ namespace FloatingGlucose
             Default.EnableRawGlucoseDisplay = this.chkEnableRAWGlucose.Checked;
 
             Default.Save();
+
+            
+            if(!this.chkEnableSoundAlarms.Checked)
+            {
+                var manager = SoundAlarm.Instance;
+                manager.StopAlarm();
+            }
+            
 
             this.settingsUpdatedSucessfully = true;
             MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!",
