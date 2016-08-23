@@ -134,7 +134,7 @@ namespace FloatingGlucose.Classes.Pebble
                 bgs = parsed.bgs.First();
                 pebbleData.Direction = bgs.direction;
                 pebbleData.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, PebbleData.Culture);
-                pebbleData.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.Datetime).DateTime;
+                pebbleData.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
                 pebbleData.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, PebbleData.Culture);
                  
                 
