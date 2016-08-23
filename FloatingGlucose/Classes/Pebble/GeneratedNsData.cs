@@ -24,9 +24,9 @@ namespace FloatingGlucose.Classes.Pebble
         public int trend { get; set; }
         public string direction { get; set; }
         public long datetime { get; set; }
-        public int filtered { get; set; }
-        public int unfiltered { get; set; }
-        public int noise { get; set; }
+        public double filtered { get; set; }
+        public double unfiltered { get; set; }
+        public double noise { get; set; }
         public string bgdelta { get; set; }
         public string battery { get; set; }
     }
@@ -34,7 +34,7 @@ namespace FloatingGlucose.Classes.Pebble
     public class Cal
     {
         public double slope { get; set; }
-        public int intercept { get; set; }
+        public double intercept { get; set; }
         public double scale { get; set; }
     }
 
