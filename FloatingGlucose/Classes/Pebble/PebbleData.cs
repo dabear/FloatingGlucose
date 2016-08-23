@@ -127,6 +127,8 @@ namespace FloatingGlucose.Classes.Pebble
 
             Bg bgs = null;
 
+            //urlContents = "{ \"status\":[{\"now\":1471947452808}],\"bgs\":[],\"cals\":[]";
+            //urlContents = "{}"
             var parsed =
                 pebbleData.NsData = JsonConvert.DeserializeObject<GeneratedNsData>(urlContents);
             try

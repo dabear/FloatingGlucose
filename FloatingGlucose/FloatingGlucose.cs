@@ -186,7 +186,7 @@ namespace FloatingGlucose
 
 
                 var glucoseDate = data.LocalDate;
-                
+
 
                 this.lblLastUpdate.Text = glucoseDate.ToTimeAgo();
 
@@ -223,11 +223,11 @@ namespace FloatingGlucose
                 string arrow = data.DirectionArrow;
 
                 //mgdl values are always reported in whole numbers
-                this.lblGlucoseValue.Text = Default.GlucoseUnits == "mmol" ? 
+                this.lblGlucoseValue.Text = Default.GlucoseUnits == "mmol" ?
                     $"{data.Glucose:N1} {arrow}" : $"{data.Glucose:N0} {arrow}";
 
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
-                var status = GlucoseStatus.GetGlucoseStatus((decimal)data.Glucose);
+                var status = GlucoseStatus.GetGlucoseStatus((decimal) data.Glucose);
 
 
                 this.lblDelta.Text = data.FormattedDelta + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
@@ -281,6 +281,10 @@ namespace FloatingGlucose
             }
             catch (MissingDataException ex)
             {
+                //typically happens during azure site restarts
+                this.SetErrorState(ex);
+            }
+            catch (JsonSerializationException ex) {
                 //typically happens during azure site restarts
                 this.SetErrorState(ex);
             }
