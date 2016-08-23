@@ -82,7 +82,8 @@ namespace FloatingGlucose
             this.numRefreshInterval.Value = Default.RefreshIntervalInSeconds;
             this.chkEnableExceptions.Checked = Default.EnableExceptionLoggingToStderr;
             this.chkEnableRAWGlucose.Checked = Default.EnableRawGlucoseDisplay;
-            
+
+            this.chkDisableSoundOnWorkstationLock.Checked = Default.DisableSoundAlarmsOnWorkstationLock;
 
             //this is the default in the settings file
             //override it so it makes sense
@@ -177,6 +178,7 @@ namespace FloatingGlucose
             Default.RefreshIntervalInSeconds = (int)this.numRefreshInterval.Value;
             Default.EnableExceptionLoggingToStderr = this.chkEnableExceptions.Checked;
 
+            Default.DisableSoundAlarmsOnWorkstationLock = this.chkDisableSoundOnWorkstationLock.Checked;
             Default.EnableRawGlucoseDisplay = this.chkEnableRAWGlucose.Checked;
 
             Default.Save();

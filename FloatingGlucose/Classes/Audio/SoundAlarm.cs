@@ -73,24 +73,29 @@ namespace FloatingGlucose.Classes
             return this.postponed > now;
         }
 
-
-        public void PlayStaleAlarm()
-        {
+        public void PlayAlarm(Mp3FileReader fileReader) {
             if (this.isCurrentlyPlaying || !Default.EnableAlarms || !Default.EnableSoundAlarms)
             {
                 // We don't want to play if there is already other players active
                 // even if the other players are playing other alarms..
                 return;
             }
-            if(this.IsPostponed())
+            //alarms should not be sound if actively snoozed or workstation is locked
+            if (this.IsPostponed() || (AppShared.IsWorkStationLocked && Default.DisableSoundAlarmsOnWorkstationLock))
             {
                 return;
             }
 
-            var loop = new LoopStream(staleAlarm);
+            var loop = new LoopStream(fileReader);
             device.Init(loop);
             device.Play();
             this.isCurrentlyPlaying = true;
+
+        }
+
+        public void PlayStaleAlarm()
+        {
+            this.PlayAlarm(staleAlarm);
         }
 
         public void StopAlarmIfPostponed() {
@@ -110,22 +115,7 @@ namespace FloatingGlucose.Classes
 
         public void PlayGlucoseAlarm()
         {
-            if (this.isCurrentlyPlaying || !Default.EnableAlarms || !Default.EnableSoundAlarms)
-            {
-                // We don't want to play if there is already other players active
-                // even if the other players are playing other alarms..
-                return;
-            }
-            if (this.IsPostponed())
-            {
-                return;
-            }
-
-            var loop = new LoopStream(glucoseAlarm);
-            
-            this.device.Init(loop);
-            this.device.Play();
-            this.isCurrentlyPlaying = true;
+            this.PlayAlarm(glucoseAlarm);
         }
 
         /// <summary>

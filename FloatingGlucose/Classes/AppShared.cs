@@ -10,6 +10,7 @@ namespace FloatingGlucose.Classes
 {
     class AppShared
     {
+        public static bool IsWorkStationLocked = false;
         public static readonly string AppName = typeof(Program).Assembly.GetName().Name;
         public static bool SettingsFormShouldFocusAdvancedSettings = false;
 

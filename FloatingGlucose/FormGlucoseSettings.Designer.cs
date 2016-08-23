@@ -37,6 +37,8 @@
             this.btnVerifySubmit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grpAlarmSettings = new System.Windows.Forms.GroupBox();
+            this.chkEnableSoundAlarms = new System.Windows.Forms.CheckBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.numStaleUrgent = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
@@ -66,8 +68,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.chkEnableSoundAlarms = new System.Windows.Forms.CheckBox();
+            this.label16 = new System.Windows.Forms.Label();
+            this.chkDisableSoundOnWorkstationLock = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
@@ -204,6 +206,25 @@
             this.grpAlarmSettings.TabIndex = 2;
             this.grpAlarmSettings.TabStop = false;
             this.grpAlarmSettings.Text = "Alarm settings";
+            // 
+            // chkEnableSoundAlarms
+            // 
+            this.chkEnableSoundAlarms.AutoSize = true;
+            this.chkEnableSoundAlarms.Location = new System.Drawing.Point(555, 289);
+            this.chkEnableSoundAlarms.Name = "chkEnableSoundAlarms";
+            this.chkEnableSoundAlarms.Size = new System.Drawing.Size(18, 17);
+            this.chkEnableSoundAlarms.TabIndex = 19;
+            this.chkEnableSoundAlarms.UseVisualStyleBackColor = true;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label15.Location = new System.Drawing.Point(16, 286);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(166, 20);
+            this.label15.TabIndex = 18;
+            this.label15.Text = "Enable sound alarms";
             // 
             // numStaleUrgent
             // 
@@ -492,6 +513,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkDisableSoundOnWorkstationLock);
+            this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.chkEnableRAWGlucose);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.numScaling);
@@ -602,24 +625,24 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "GUI Refresh interval";
             // 
-            // label15
+            // label16
             // 
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(16, 286);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(166, 20);
-            this.label15.TabIndex = 18;
-            this.label15.Text = "Enable sound alarms";
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label16.Location = new System.Drawing.Point(38, 200);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(419, 20);
+            this.label16.TabIndex = 14;
+            this.label16.Text = "Temporarily disable sounds when workstation is locked";
             // 
-            // chkEnableSoundAlarms
+            // chkDisableSoundOnWorkstationLock
             // 
-            this.chkEnableSoundAlarms.AutoSize = true;
-            this.chkEnableSoundAlarms.Location = new System.Drawing.Point(555, 289);
-            this.chkEnableSoundAlarms.Name = "chkEnableSoundAlarms";
-            this.chkEnableSoundAlarms.Size = new System.Drawing.Size(18, 17);
-            this.chkEnableSoundAlarms.TabIndex = 19;
-            this.chkEnableSoundAlarms.UseVisualStyleBackColor = true;
+            this.chkDisableSoundOnWorkstationLock.AutoSize = true;
+            this.chkDisableSoundOnWorkstationLock.Location = new System.Drawing.Point(546, 200);
+            this.chkDisableSoundOnWorkstationLock.Name = "chkDisableSoundOnWorkstationLock";
+            this.chkDisableSoundOnWorkstationLock.Size = new System.Drawing.Size(18, 17);
+            this.chkDisableSoundOnWorkstationLock.TabIndex = 15;
+            this.chkDisableSoundOnWorkstationLock.UseVisualStyleBackColor = true;
             // 
             // FormGlucoseSettings
             // 
@@ -698,5 +721,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkEnableSoundAlarms;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox chkDisableSoundOnWorkstationLock;
+        private System.Windows.Forms.Label label16;
     }
 }

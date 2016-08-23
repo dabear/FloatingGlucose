@@ -14,6 +14,7 @@ using FloatingGlucose.Classes.Pebble;
 using static FloatingGlucose.Properties.Settings;
 using FloatingGlucose.Properties;
 using FloatingGlucose.Classes.Extensions;
+using Microsoft.Win32;
 
 namespace FloatingGlucose
 {
@@ -342,7 +343,23 @@ namespace FloatingGlucose
             });
             
         }
-        
+
+        static void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
+        {
+            var manager = SoundAlarm.Instance;
+            if (e.Reason == SessionSwitchReason.SessionLock)
+            {
+                AppShared.IsWorkStationLocked = true;
+                if (Default.DisableSoundAlarmsOnWorkstationLock) {
+                    manager.StopAlarm();
+                }
+            }
+            else if (e.Reason == SessionSwitchReason.SessionUnlock){
+                AppShared.IsWorkStationLocked = false;
+            }
+             // Add your session lock "handling" code here
+        }
+
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
             // We want all data values to be formatted with a dot, not comma, as some cultures do
@@ -350,7 +367,7 @@ namespace FloatingGlucose
             // we avoid this: double foo=7.0; foo.toString() => "7,0" in the nb-NO culture
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
             this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc;
-
+            SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
 
             this.lblRawDelta.Visible =
             this.lblRawBG.Visible = Default.EnableRawGlucoseDisplay;

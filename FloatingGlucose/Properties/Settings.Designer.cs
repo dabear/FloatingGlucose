@@ -190,5 +190,17 @@ namespace FloatingGlucose.Properties {
                 this["EnableSoundAlarms"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool DisableSoundAlarmsOnWorkstationLock {
+            get {
+                return ((bool)(this["DisableSoundAlarmsOnWorkstationLock"]));
+            }
+            set {
+                this["DisableSoundAlarmsOnWorkstationLock"] = value;
+            }
+        }
     }
 }
