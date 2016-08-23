@@ -65,7 +65,7 @@ namespace FloatingGlucose
 
 
 
-        private void SetScaling(float scale) {
+        private void setScaling(float scale) {
             if ((float)scale == 1.0) {
                 return;
             }
@@ -329,6 +329,19 @@ namespace FloatingGlucose
 
 
         }
+
+        private void setChildrenOnMouseDown() {
+
+            var controls = this.Controls.OfType<Label>().ToList();
+            controls.ForEach(x =>
+            {
+                x.MouseDown += (asender, ev) => {
+                    this.OnMouseDown(ev);
+                    
+                };
+            });
+            
+        }
         
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
@@ -345,8 +358,8 @@ namespace FloatingGlucose
             // Manual scaling for now with values from config file
             // how to figure out the dpi:
             // this.CreateGraphics().DpiX > 96
-            SetScaling(Default.GuiScalingRatio);
-
+            setScaling(Default.GuiScalingRatio);
+            setChildrenOnMouseDown();
 
 
             notifyIcon1.BalloonTipClosed += (asender, ev) =>{
