@@ -18,6 +18,7 @@ namespace FloatingGlucose
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new FormGlucoseSettings());
             //Application.Run(new FormAudioTester());
+            //Application.Run(new AutoPositionedForm());
             //return;
             try
             {

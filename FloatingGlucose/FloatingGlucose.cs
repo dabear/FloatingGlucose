@@ -12,12 +12,13 @@ using Newtonsoft.Json;
 using System.Globalization;
 using FloatingGlucose.Classes.Pebble;
 using static FloatingGlucose.Properties.Settings;
+using FloatingGlucose.Properties;
 using FloatingGlucose.Classes.Extensions;
 
 namespace FloatingGlucose
 {
 
-    public partial class FloatingGlucose : Form
+    public partial class FloatingGlucose : AutoPositionedForm
     {
 
         //nightscout URL, will be used to create a pebble endpoint to fetch data from
@@ -346,10 +347,7 @@ namespace FloatingGlucose
             // this.CreateGraphics().DpiX > 96
             SetScaling(Default.GuiScalingRatio);
 
-            //position at bottom right per default
-            Rectangle r = Screen.PrimaryScreen.WorkingArea;
-            this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(r.Width - this.Width, r.Height - this.Height);
+
 
             notifyIcon1.BalloonTipClosed += (asender, ev) =>{
                 notifyIcon1.Visible = false;
@@ -432,7 +430,7 @@ namespace FloatingGlucose
         }
 
         private void Exit() {
-            
+            this.SaveWindowPosition();
             this.notifyIcon1.Icon = null;
             this.notifyIcon1.Dispose();
             this.notifyIcon1 = null;
