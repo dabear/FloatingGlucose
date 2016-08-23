@@ -220,8 +220,12 @@ namespace FloatingGlucose
                     }
                 }
 
+                string arrow = data.DirectionArrow;
 
-                this.lblGlucoseValue.Text = $"{data.Glucose:N1} {data.DirectionArrow}";
+                //mgdl values are always reported in whole numbers
+                this.lblGlucoseValue.Text = Default.GlucoseUnits == "mmol" ? 
+                    $"{data.Glucose:N1} {arrow}" : $"{data.Glucose:N0} {arrow}";
+
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
                 var status = GlucoseStatus.GetGlucoseStatus((decimal)data.Glucose);
 

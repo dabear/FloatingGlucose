@@ -11,6 +11,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
+using static FloatingGlucose.Properties.Settings;
 namespace FloatingGlucose.Classes.Pebble
 {
     class PebbleData
@@ -22,7 +23,7 @@ namespace FloatingGlucose.Classes.Pebble
         public double Delta = 0.0;
         public string Direction;
 
-
+        public bool IsMmol  => Default.GlucoseUnits == "mmol";
         public string FormattedDelta => $"{(this.Delta >= 0.0 ? "+" : "")}{this.Delta:N1}";
         public double RawDelta => this.RawGlucose - this.PreviousRawGlucose;
         public string FormattedRawDelta => $"{(this.RawDelta >= 0.0 ? "+" : "")}{this.RawDelta:N1}";
