@@ -8,16 +8,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace FloatingGlucose {
+namespace FloatingGlucose.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
-    internal sealed partial class WindowPositionSettings : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class FormSettings : global::System.Configuration.ApplicationSettingsBase {
         
-        private static WindowPositionSettings defaultInstance = ((WindowPositionSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new WindowPositionSettings())));
+        private static FormSettings defaultInstance = ((FormSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new FormSettings())));
         
-        public static WindowPositionSettings Default {
+        public static FormSettings Default {
             get {
                 return defaultInstance;
             }

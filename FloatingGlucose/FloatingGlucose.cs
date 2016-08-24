@@ -12,19 +12,20 @@ using Newtonsoft.Json;
 using System.Globalization;
 using FloatingGlucose.Classes.Pebble;
 using static FloatingGlucose.Properties.Settings;
-using FloatingGlucose.Properties;
 using FloatingGlucose.Classes.Extensions;
 using Microsoft.Win32;
+using FormSettings = FloatingGlucose.Properties.FormSettings;
 
 namespace FloatingGlucose
 {
 
-    public partial class FloatingGlucose : AutoPositionedForm
+    public partial class FloatingGlucose : Form//AutoPositionedForm
     {
 
         //nightscout URL, will be used to create a pebble endpoint to fetch data from
         private string nsURL {
             get {
+                
                 //AlarmUrgentLow
                 // With raw glucose display we need to have two 
                 // data points to calculate raw glucose diff
@@ -86,7 +87,27 @@ namespace FloatingGlucose
         public FloatingGlucose()
         {
             InitializeComponent();
-            
+            this.StartPosition = FormStartPosition.Manual;
+
+            // check if the saved bounds are nonzero and visible on any screen
+            if (FormSettings.Default.WindowPosition != Rectangle.Empty &&
+                IsVisibleOnAnyScreen(FormSettings.Default.WindowPosition))
+            {
+                // first set the bounds
+                var pos = FormSettings.Default.WindowPosition;
+
+                this.Location = pos.Location;
+
+
+
+            }
+            else
+            {
+                //position at bottom right per FormSettings.Default
+                var r = Screen.PrimaryScreen.WorkingArea;
+                this.Location = new Point(r.Width - this.Width, r.Height - this.Height);
+
+            }
 
         }
 
@@ -98,7 +119,7 @@ namespace FloatingGlucose
             // Also is used the labels own font size to determine the widths
             // So the formula doesn't have to be updated if the label fonts are changed
             // during design-time.
-
+            
            
 
             var rawbg = TextRenderer.MeasureText("999.0"  ,  this.lblRawBG.Font);
@@ -360,8 +381,40 @@ namespace FloatingGlucose
              // Add your session lock "handling" code here
         }
 
+        private bool IsVisibleOnAnyScreen(Rectangle rect)
+        {
+            foreach (Screen screen in Screen.AllScreens)
+            {
+                if (screen.WorkingArea.IntersectsWith(rect))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void SaveWindowPosition()
+        {
+            if (this.WindowState == FormWindowState.Normal)
+            {
+                FormSettings.Default.WindowPosition = this.DesktopBounds;
+            }
+            else
+            {
+                FormSettings.Default.WindowPosition = this.RestoreBounds;
+            }
+
+
+            FormSettings.Default.Save();
+
+        }
+
+
+
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
+
             // We want all data values to be formatted with a dot, not comma, as some cultures do
             // as this messes up the gui a bit
             // we avoid this: double foo=7.0; foo.toString() => "7,0" in the nb-NO culture
@@ -411,7 +464,7 @@ namespace FloatingGlucose
             refreshGlucoseTimer.Tick += new EventHandler((asender, ev)=> LoadGlucoseValue());
             refreshGlucoseTimer.Start();
 
-
+            
 
         }
         private bool Settings_Changed_Event() {

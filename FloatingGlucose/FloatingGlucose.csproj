@@ -110,9 +110,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AutoPositionedForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Classes\Extensions\DatetimeExtensions.cs" />
     <Compile Include="Classes\AppShared.cs" />
     <Compile Include="Classes\Pebble\GeneratedNsData.cs" />
@@ -144,15 +141,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="WindowPosition.cs" />
-    <Compile Include="WindowPositionSettings.Designer.cs">
+    <Compile Include="Properties\FormSettings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>WindowPositionSettings.settings</DependentUpon>
+      <DependentUpon>FormSettings.settings</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AutoPositionedForm.resx">
-      <DependentUpon>AutoPositionedForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FloatingGlucose.resx">
       <DependentUpon>FloatingGlucose.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -189,9 +182,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="WindowPositionSettings.settings">
+    <None Include="Properties\FormSettings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>WindowPositionSettings.Designer.cs</LastGenOutput>
+      <LastGenOutput>FormSettings.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <ItemGroup>
