@@ -473,7 +473,7 @@ namespace FloatingGlucose
             manager.PostponeAlarm(minutes);
             DateTime untilDate = (DateTime)manager.GetPostponedUntil();
             
-            this.postponedUntilFooToolStripMenuItem.Text = $"Postponed until {untilDate.ToShortTimeString()}";
+            this.postponedUntilFooToolStripMenuItem.Text = $"Snoozing until {untilDate.ToShortTimeString()}";
 
             this.reenableAlarmsToolStripMenuItem.Visible = 
             this.postponedUntilFooToolStripMenuItem.Visible = true;

@@ -101,12 +101,12 @@
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(239, 108);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(226, 136);
             // 
             // showApplicationToolStripMenuItem
             // 
             this.showApplicationToolStripMenuItem.Name = "showApplicationToolStripMenuItem";
-            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
+            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.showApplicationToolStripMenuItem.Text = "Show &Application";
             this.showApplicationToolStripMenuItem.Click += new System.EventHandler(this.showApplicationToolStripMenuItem_Click);
             // 
@@ -118,27 +118,27 @@
             this.reenableAlarmsToolStripMenuItem,
             this.postponedUntilFooToolStripMenuItem});
             this.postponeAlarmsToolStripMenuItem.Name = "postponeAlarmsToolStripMenuItem";
-            this.postponeAlarmsToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
-            this.postponeAlarmsToolStripMenuItem.Text = "Postpone sound alarms";
+            this.postponeAlarmsToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.postponeAlarmsToolStripMenuItem.Text = "Snooze sound alarms";
             // 
             // postponeFor30MinutesToolStripMenuItem
             // 
             this.postponeFor30MinutesToolStripMenuItem.Name = "postponeFor30MinutesToolStripMenuItem";
-            this.postponeFor30MinutesToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
-            this.postponeFor30MinutesToolStripMenuItem.Text = "Postpone for 30 minutes";
+            this.postponeFor30MinutesToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.postponeFor30MinutesToolStripMenuItem.Text = "Snooze for 30 minutes";
             this.postponeFor30MinutesToolStripMenuItem.Click += new System.EventHandler(this.postponeFor30MinutesToolStripMenuItem_Click);
             // 
             // postponeFor90MinutesToolStripMenuItem
             // 
             this.postponeFor90MinutesToolStripMenuItem.Name = "postponeFor90MinutesToolStripMenuItem";
-            this.postponeFor90MinutesToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
-            this.postponeFor90MinutesToolStripMenuItem.Text = "Postpone for 90 minutes";
+            this.postponeFor90MinutesToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.postponeFor90MinutesToolStripMenuItem.Text = "Snooze for 90 minutes";
             this.postponeFor90MinutesToolStripMenuItem.Click += new System.EventHandler(this.postponeFor90MinutesToolStripMenuItem_Click);
             // 
             // reenableAlarmsToolStripMenuItem
             // 
             this.reenableAlarmsToolStripMenuItem.Name = "reenableAlarmsToolStripMenuItem";
-            this.reenableAlarmsToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
+            this.reenableAlarmsToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
             this.reenableAlarmsToolStripMenuItem.Text = "Re-enable alarms";
             this.reenableAlarmsToolStripMenuItem.Visible = false;
             this.reenableAlarmsToolStripMenuItem.Click += new System.EventHandler(this.reenableAlarmsToolStripMenuItem_Click);
@@ -147,21 +147,21 @@
             // 
             this.postponedUntilFooToolStripMenuItem.Enabled = false;
             this.postponedUntilFooToolStripMenuItem.Name = "postponedUntilFooToolStripMenuItem";
-            this.postponedUntilFooToolStripMenuItem.Size = new System.Drawing.Size(245, 26);
-            this.postponedUntilFooToolStripMenuItem.Text = "Postponed until ";
+            this.postponedUntilFooToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.postponedUntilFooToolStripMenuItem.Text = "Snoozed until ";
             this.postponedUntilFooToolStripMenuItem.Visible = false;
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.settingsToolStripMenuItem.Text = "&Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(238, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
             this.quitToolStripMenuItem.Text = "&Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -219,11 +219,11 @@
             this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.lblGlucoseValue);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FloatingGlucose";
             this.Opacity = 0.85D;
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "FloatingGlucose";
             this.TopMost = true;
             this.TransparencyKey = System.Drawing.SystemColors.ActiveBorder;
