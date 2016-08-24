@@ -171,7 +171,7 @@
             this.lblDelta.AutoSize = true;
             this.lblDelta.BackColor = System.Drawing.Color.Black;
             this.lblDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDelta.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblDelta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblDelta.Location = new System.Drawing.Point(48, 57);
             this.lblDelta.Name = "lblDelta";
             this.lblDelta.Size = new System.Drawing.Size(45, 24);
@@ -197,7 +197,7 @@
             this.lblRawDelta.AutoSize = true;
             this.lblRawDelta.BackColor = System.Drawing.Color.Black;
             this.lblRawDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRawDelta.ForeColor = System.Drawing.Color.DarkRed;
+            this.lblRawDelta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblRawDelta.Location = new System.Drawing.Point(22, 51);
             this.lblRawDelta.Name = "lblRawDelta";
             this.lblRawDelta.Size = new System.Drawing.Size(17, 24);
@@ -219,7 +219,6 @@
             this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.lblGlucoseValue);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Location = new System.Drawing.Point(0, 0);
             this.Name = "FloatingGlucose";
             this.Opacity = 0.85D;
             this.ShowIcon = false;
