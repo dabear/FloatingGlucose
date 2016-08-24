@@ -15,7 +15,7 @@ namespace FloatingGlucose
 {
     public partial class FormGlucoseSettings : Form
     {
-        private bool settingsUpdatedSucessfully = false;
+      
         public FormGlucoseSettings()
         {
             InitializeComponent();
@@ -130,9 +130,9 @@ namespace FloatingGlucose
         void OnClosing(object sender, FormClosingEventArgs e)
         {
 
-            if (this.settingsUpdatedSucessfully) {
+            if (AppShared.SettingsUpdatedSuccessfully) {
                 base.OnClosing(e);
-                this.settingsUpdatedSucessfully = false;
+                AppShared.SettingsUpdatedSuccessfully = false;
                 return;
 
             }
@@ -140,7 +140,12 @@ namespace FloatingGlucose
             // Close the app
             if (this.Modal)
             {
-                Application.Exit();
+                //ignore for now
+                // this was causing race conditions when multiple onclosing events would trigger in a short
+                // time. The first event would set settingsupdatedsuccessfully=false nad reutnr
+                // the next event would happen just a millisecond later and would see settingsupdatedsuccessfully==false
+                // and exit
+                //Application.Exit();
             }
 
             base.OnClosing(e);
@@ -189,9 +194,9 @@ namespace FloatingGlucose
                 var manager = SoundAlarm.Instance;
                 manager.StopAlarm();
             }
-            
 
-            this.settingsUpdatedSucessfully = true;
+
+            AppShared.SettingsUpdatedSuccessfully = true;
             MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!",
                 AppShared.AppName, MessageBoxButtons.OK,MessageBoxIcon.Information);
             AppShared.NotifyFormSettingsHaveChanged();

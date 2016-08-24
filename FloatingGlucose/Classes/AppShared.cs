@@ -13,6 +13,7 @@ namespace FloatingGlucose.Classes
         public static bool IsWorkStationLocked = false;
         public static readonly string AppName = typeof(Program).Assembly.GetName().Name;
         public static bool SettingsFormShouldFocusAdvancedSettings = false;
+        public static bool SettingsUpdatedSuccessfully = false;
 
         private static Func<bool> callback;
 

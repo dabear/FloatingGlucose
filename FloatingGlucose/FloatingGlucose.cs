@@ -317,7 +317,7 @@ namespace FloatingGlucose
                 MessageBox.Show(ex.Message, AppShared.AppName, MessageBoxButtons.OK,
                    MessageBoxIcon.Error);
                 AppShared.SettingsFormShouldFocusAdvancedSettings = true;
-
+                this.settingsForm.Visible = false;
                 this.settingsForm.ShowDialog();
             }
             catch (Exception ex)
@@ -449,6 +449,7 @@ namespace FloatingGlucose
 
 
             if (!Validators.IsUrl(this.nsURL)) {
+                this.settingsForm.Visible = false;
                 this.settingsForm.ShowDialog();
 
             }
