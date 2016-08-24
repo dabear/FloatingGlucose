@@ -119,27 +119,27 @@
             this.postponedUntilFooToolStripMenuItem});
             this.postponeAlarmsToolStripMenuItem.Name = "postponeAlarmsToolStripMenuItem";
             this.postponeAlarmsToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
-            this.postponeAlarmsToolStripMenuItem.Text = "Snooze sound alarms";
+            this.postponeAlarmsToolStripMenuItem.Text = "Sn&ooze sound alarms";
             // 
             // postponeFor30MinutesToolStripMenuItem
             // 
             this.postponeFor30MinutesToolStripMenuItem.Name = "postponeFor30MinutesToolStripMenuItem";
             this.postponeFor30MinutesToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.postponeFor30MinutesToolStripMenuItem.Text = "Snooze for 30 minutes";
+            this.postponeFor30MinutesToolStripMenuItem.Text = "Snooze for &30 minutes";
             this.postponeFor30MinutesToolStripMenuItem.Click += new System.EventHandler(this.postponeFor30MinutesToolStripMenuItem_Click);
             // 
             // postponeFor90MinutesToolStripMenuItem
             // 
             this.postponeFor90MinutesToolStripMenuItem.Name = "postponeFor90MinutesToolStripMenuItem";
             this.postponeFor90MinutesToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.postponeFor90MinutesToolStripMenuItem.Text = "Snooze for 90 minutes";
+            this.postponeFor90MinutesToolStripMenuItem.Text = "Snooze for &90 minutes";
             this.postponeFor90MinutesToolStripMenuItem.Click += new System.EventHandler(this.postponeFor90MinutesToolStripMenuItem_Click);
             // 
             // reenableAlarmsToolStripMenuItem
             // 
             this.reenableAlarmsToolStripMenuItem.Name = "reenableAlarmsToolStripMenuItem";
             this.reenableAlarmsToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
-            this.reenableAlarmsToolStripMenuItem.Text = "Re-enable alarms";
+            this.reenableAlarmsToolStripMenuItem.Text = "&Re-enable alarms";
             this.reenableAlarmsToolStripMenuItem.Visible = false;
             this.reenableAlarmsToolStripMenuItem.Click += new System.EventHandler(this.reenableAlarmsToolStripMenuItem_Click);
             // 
