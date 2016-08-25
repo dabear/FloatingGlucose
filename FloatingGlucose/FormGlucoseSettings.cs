@@ -79,6 +79,7 @@ namespace FloatingGlucose
 
             //advanced settings
             this.numScaling.Value = (decimal)Default.GuiScalingRatio;
+            this.numOpacity.Value = Default.GuiOpacity;
             this.numRefreshInterval.Value = Default.RefreshIntervalInSeconds;
             this.chkEnableExceptions.Checked = Default.EnableExceptionLoggingToStderr;
             this.chkEnableRAWGlucose.Checked = Default.EnableRawGlucoseDisplay;
@@ -180,6 +181,7 @@ namespace FloatingGlucose
 
             //advanced settings
             Default.GuiScalingRatio = (float)this.numScaling.Value;
+            Default.GuiOpacity = (int) this.numOpacity.Value;
             Default.RefreshIntervalInSeconds = (int)this.numRefreshInterval.Value;
             Default.EnableExceptionLoggingToStderr = this.chkEnableExceptions.Checked;
 

@@ -202,5 +202,17 @@ namespace FloatingGlucose.Properties {
                 this["DisableSoundAlarmsOnWorkstationLock"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("85")]
+        public int GuiOpacity {
+            get {
+                return ((int)(this["GuiOpacity"]));
+            }
+            set {
+                this["GuiOpacity"] = value;
+            }
+        }
     }
 }

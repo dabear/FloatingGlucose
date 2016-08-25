@@ -454,7 +454,8 @@ namespace FloatingGlucose
 
             }
             this.setFormSize();
-
+         
+            this.Opacity = Default.GuiOpacity / 100D;
 
             this.LoadGlucoseValue();
             
