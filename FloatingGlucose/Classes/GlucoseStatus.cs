@@ -21,10 +21,10 @@ namespace FloatingGlucose.Classes
     class GlucoseStatus
     {
         public static decimal ToMmol(decimal number) {
-            return number / 18.0M;
+            return decimal.Round(number / 18.01559M, 1);
         }
         public static decimal ToMgdl(decimal number) {
-            return number * 18.0M;
+            return decimal.Round(number * 18.01559M, 0);//no decimals for mgdl values
         }
         public static GlucoseStatusEnum GetGlucoseStatus(decimal glucose) {
             if (!Default.EnableAlarms)
