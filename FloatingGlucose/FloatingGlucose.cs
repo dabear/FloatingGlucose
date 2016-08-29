@@ -314,8 +314,7 @@ namespace FloatingGlucose
             catch (InvalidJsonDataException ex)
             {
                 this.SetErrorState(ex);
-                MessageBox.Show(ex.Message, AppShared.AppName, MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                this.showErrorMessage(ex.Message);
                 AppShared.SettingsFormShouldFocusAdvancedSettings = true;
                 this.settingsForm.Visible = false;
                 this.settingsForm.ShowDialog();
@@ -323,8 +322,7 @@ namespace FloatingGlucose
             catch (Exception ex)
             {
                 var msg = "An unknown error occured of type " + ex.GetType().ToString() + ": " + ex.Message;
-                MessageBox.Show(msg, AppShared.AppName, MessageBoxButtons.OK,
-                   MessageBoxIcon.Error);
+                this.showErrorMessage(msg);
                 Application.Exit();
             }
 
