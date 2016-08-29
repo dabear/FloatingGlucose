@@ -15,6 +15,7 @@ using static FloatingGlucose.Properties.Settings;
 using FloatingGlucose.Classes.Extensions;
 using Microsoft.Win32;
 using FormSettings = FloatingGlucose.Properties.FormSettings;
+using System.ComponentModel;
 
 namespace FloatingGlucose
 {
@@ -182,8 +183,7 @@ namespace FloatingGlucose
         private async void LoadGlucoseValue() 
         {
             if (!Validators.IsUrl(this.nsURL)) {   
-                MessageBox.Show("The nightscout_site setting is not specifed or invalid. Please update it from the settings!",
-                    AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.showErrorMessage("The nightscout_site setting is not specifed or invalid. Please update it from the settings!");
                 return;
 
             }
@@ -535,6 +535,10 @@ namespace FloatingGlucose
             
         }
 
+        private void showErrorMessage(string error) {
+            MessageBox.Show(error, AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
 
         private void postponeFor30MinutesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -555,6 +559,29 @@ namespace FloatingGlucose
             this.postponedUntilFooToolStripMenuItem.Visible = false;
 
 
+        }
+
+        private void openNightscoutSiteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            var url = Default.NightscoutSite;
+            if (Validators.IsUrl(url))
+            {
+                try
+                {
+                    Process.Start(url);
+                }
+                catch (Win32Exception ex)
+                {
+                    this.showErrorMessage("Could not open your nightscout site in the system default browser!");
+                }
+
+            }
+            else
+            {
+                this.showErrorMessage("The nightscout url is not configured!");
+
+            }
+            
         }
     }
 }

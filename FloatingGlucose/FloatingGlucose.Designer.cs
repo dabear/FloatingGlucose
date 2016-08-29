@@ -45,6 +45,7 @@
             this.lblDelta = new System.Windows.Forms.Label();
             this.lblRawBG = new System.Windows.Forms.Label();
             this.lblRawDelta = new System.Windows.Forms.Label();
+            this.openNightscoutSiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -98,10 +99,11 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.showApplicationToolStripMenuItem,
             this.postponeAlarmsToolStripMenuItem,
+            this.openNightscoutSiteToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(226, 108);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(226, 162);
             // 
             // showApplicationToolStripMenuItem
             // 
@@ -205,6 +207,13 @@
             this.lblRawDelta.Text = "-";
             this.lblRawDelta.Visible = false;
             // 
+            // openNightscoutSiteToolStripMenuItem
+            // 
+            this.openNightscoutSiteToolStripMenuItem.Name = "openNightscoutSiteToolStripMenuItem";
+            this.openNightscoutSiteToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.openNightscoutSiteToolStripMenuItem.Text = "&Open nightscout site";
+            this.openNightscoutSiteToolStripMenuItem.Click += new System.EventHandler(this.openNightscoutSiteToolStripMenuItem_Click);
+            // 
             // FloatingGlucose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -250,6 +259,7 @@
         private System.Windows.Forms.ToolStripMenuItem postponeFor90MinutesToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem postponedUntilFooToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reenableAlarmsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openNightscoutSiteToolStripMenuItem;
     }
 }
 
