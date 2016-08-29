@@ -164,7 +164,7 @@
             // btnVerifySubmit
             // 
             this.btnVerifySubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerifySubmit.Location = new System.Drawing.Point(22, 584);
+            this.btnVerifySubmit.Location = new System.Drawing.Point(12, 587);
             this.btnVerifySubmit.Name = "btnVerifySubmit";
             this.btnVerifySubmit.Size = new System.Drawing.Size(229, 53);
             this.btnVerifySubmit.TabIndex = 1;
@@ -472,7 +472,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(275, 584);
+            this.label6.Location = new System.Drawing.Point(260, 587);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(631, 56);
             this.label6.TabIndex = 3;
@@ -486,8 +486,8 @@
             this.tabSettings.Location = new System.Drawing.Point(12, 40);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(894, 538);
-            this.tabSettings.TabIndex = 2;
+            this.tabSettings.Size = new System.Drawing.Size(904, 538);
+            this.tabSettings.TabIndex = 0;
             this.tabSettings.Text = "30";
             // 
             // tabPageBasic
@@ -498,7 +498,7 @@
             this.tabPageBasic.Location = new System.Drawing.Point(4, 25);
             this.tabPageBasic.Name = "tabPageBasic";
             this.tabPageBasic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBasic.Size = new System.Drawing.Size(886, 509);
+            this.tabPageBasic.Size = new System.Drawing.Size(896, 509);
             this.tabPageBasic.TabIndex = 0;
             this.tabPageBasic.Text = "Basic Settings";
             // 

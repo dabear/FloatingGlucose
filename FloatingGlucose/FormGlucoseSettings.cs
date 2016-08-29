@@ -122,8 +122,13 @@ namespace FloatingGlucose
             {
                 AppShared.SettingsFormShouldFocusAdvancedSettings = false;
                 this.tabSettings.SelectTab(this.tabPageAdvanced);
-               
-                
+
+
+            }
+            else
+            {
+                this.tabSettings.SelectTab(this.tabPageBasic);
+                this.txtNSURL.Select();
             }
 
         }
