@@ -60,6 +60,9 @@
             this.tabPageBasic = new System.Windows.Forms.TabPage();
             this.tabPageAdvanced = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label18 = new System.Windows.Forms.Label();
+            this.numOpacity = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
             this.chkDisableSoundOnWorkstationLock = new System.Windows.Forms.CheckBox();
             this.label16 = new System.Windows.Forms.Label();
             this.chkEnableRAWGlucose = new System.Windows.Forms.CheckBox();
@@ -70,9 +73,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.numOpacity = new System.Windows.Forms.NumericUpDown();
-            this.label18 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
@@ -86,9 +86,9 @@
             this.tabPageBasic.SuspendLayout();
             this.tabPageAdvanced.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -102,7 +102,7 @@
             this.groupBox1.Location = new System.Drawing.Point(24, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.groupBox1.Size = new System.Drawing.Size(927, 123);
+            this.groupBox1.Size = new System.Drawing.Size(840, 123);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nightscout settings";
@@ -164,7 +164,7 @@
             // btnVerifySubmit
             // 
             this.btnVerifySubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerifySubmit.Location = new System.Drawing.Point(786, 584);
+            this.btnVerifySubmit.Location = new System.Drawing.Point(22, 584);
             this.btnVerifySubmit.Name = "btnVerifySubmit";
             this.btnVerifySubmit.Size = new System.Drawing.Size(229, 53);
             this.btnVerifySubmit.TabIndex = 1;
@@ -179,7 +179,7 @@
             this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(50, 10, 50, 10);
-            this.panel2.Size = new System.Drawing.Size(960, 497);
+            this.panel2.Size = new System.Drawing.Size(869, 497);
             this.panel2.TabIndex = 1;
             // 
             // grpAlarmSettings
@@ -206,7 +206,7 @@
             this.grpAlarmSettings.Location = new System.Drawing.Point(24, 142);
             this.grpAlarmSettings.Name = "grpAlarmSettings";
             this.grpAlarmSettings.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.grpAlarmSettings.Size = new System.Drawing.Size(927, 342);
+            this.grpAlarmSettings.Size = new System.Drawing.Size(840, 342);
             this.grpAlarmSettings.TabIndex = 2;
             this.grpAlarmSettings.TabStop = false;
             this.grpAlarmSettings.Text = "Alarm settings";
@@ -471,11 +471,10 @@
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(8, 600);
+            this.label6.Location = new System.Drawing.Point(275, 584);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(646, 20);
+            this.label6.Size = new System.Drawing.Size(631, 56);
             this.label6.TabIndex = 3;
             this.label6.Text = "NB! To show this window again, right click the app or tray icon and choose \"Setti" +
     "ngs\".";
@@ -487,7 +486,7 @@
             this.tabSettings.Location = new System.Drawing.Point(12, 40);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(1010, 538);
+            this.tabSettings.Size = new System.Drawing.Size(894, 538);
             this.tabSettings.TabIndex = 2;
             this.tabSettings.Text = "30";
             // 
@@ -499,7 +498,7 @@
             this.tabPageBasic.Location = new System.Drawing.Point(4, 25);
             this.tabPageBasic.Name = "tabPageBasic";
             this.tabPageBasic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBasic.Size = new System.Drawing.Size(1002, 509);
+            this.tabPageBasic.Size = new System.Drawing.Size(886, 509);
             this.tabPageBasic.TabIndex = 0;
             this.tabPageBasic.Text = "Basic Settings";
             // 
@@ -511,7 +510,7 @@
             this.tabPageAdvanced.Location = new System.Drawing.Point(4, 25);
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAdvanced.Size = new System.Drawing.Size(1002, 509);
+            this.tabPageAdvanced.Size = new System.Drawing.Size(886, 509);
             this.tabPageAdvanced.TabIndex = 1;
             this.tabPageAdvanced.Text = "Advanced Settings";
             // 
@@ -538,6 +537,38 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced application settings (requires restart)";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label18.Location = new System.Drawing.Point(570, 119);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(24, 20);
+            this.label18.TabIndex = 18;
+            this.label18.Text = "%";
+            // 
+            // numOpacity
+            // 
+            this.numOpacity.Location = new System.Drawing.Point(444, 117);
+            this.numOpacity.Name = "numOpacity";
+            this.numOpacity.Size = new System.Drawing.Size(120, 27);
+            this.numOpacity.TabIndex = 17;
+            this.numOpacity.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label17.Location = new System.Drawing.Point(38, 124);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(96, 20);
+            this.label17.TabIndex = 16;
+            this.label17.Text = "GUI opacity";
             // 
             // chkDisableSoundOnWorkstationLock
             // 
@@ -651,43 +682,11 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "GUI Refresh interval";
             // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(38, 124);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(96, 20);
-            this.label17.TabIndex = 16;
-            this.label17.Text = "GUI opacity";
-            // 
-            // numOpacity
-            // 
-            this.numOpacity.Location = new System.Drawing.Point(444, 117);
-            this.numOpacity.Name = "numOpacity";
-            this.numOpacity.Size = new System.Drawing.Size(120, 27);
-            this.numOpacity.TabIndex = 17;
-            this.numOpacity.Value = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label18.Location = new System.Drawing.Point(570, 119);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(24, 20);
-            this.label18.TabIndex = 18;
-            this.label18.Text = "%";
-            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1027, 672);
+            this.ClientSize = new System.Drawing.Size(938, 672);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tabSettings);
             this.Controls.Add(this.btnVerifySubmit);
@@ -711,11 +710,10 @@
             this.tabPageAdvanced.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
