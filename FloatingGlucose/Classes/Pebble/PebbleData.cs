@@ -18,26 +18,49 @@ namespace FloatingGlucose.Classes.Pebble
     {
         public GeneratedNsData NsData;
         public DateTime Date;
-        
+
         public double Glucose;
         public double Delta = 0.0;
         public string Direction;
 
-        public bool IsMmol  => Default.GlucoseUnits == "mmol";
+        public bool IsMmol => Default.GlucoseUnits == "mmol";
         public string FormattedDelta => $"{(this.Delta >= 0.0 ? "+" : "")}{this.Delta:N1}";
         public double RawDelta => this.RawGlucose - this.PreviousRawGlucose;
         public string FormattedRawDelta => $"{(this.RawDelta >= 0.0 ? "+" : "")}{this.RawDelta:N1}";
 
         public static CultureInfo Culture = new CultureInfo("en-US");
-        public static double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose) {
+        public static double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose)
+        {
             double number;
-            number = (cal.scale * (bg.filtered - cal.intercept) / cal.slope / actualGlucose);
-            number = (cal.scale * (bg.unfiltered - cal.intercept) / cal.slope / number);
+            double rawOffset = 5;
+            double curBG = actualGlucose;
+            int specialValue = 0;
+
+            if (Default.GlucoseUnits == "mmol")
+            {
+                if ((actualGlucose < 2.2) || (actualGlucose > 22.2))
+                    specialValue = 1;
+                curBG = curBG * 18.018;
+            }
+            else
+            if ((actualGlucose < 40) || (actualGlucose > 400))
+                specialValue = 1;
+
+            if (specialValue == 1)
+                number = cal.scale * (bg.unfiltered - cal.intercept) / cal.slope;
+            else
+            {
+                number = cal.scale * (bg.filtered - cal.intercept) / cal.slope / curBG;
+                number = cal.scale * (bg.unfiltered - cal.intercept) / cal.slope / number;
+            }
+
+            if (Default.GlucoseUnits == "mmol")
+                number = number / 18.018;
 
             return number;
         }
 
-        public double PreviousGlucose 
+        public double PreviousGlucose
         {
             get
             {
@@ -65,8 +88,10 @@ namespace FloatingGlucose.Classes.Pebble
             }
         }
 
-        public double RawGlucose {
-            get {
+        public double RawGlucose
+        {
+            get
+            {
                 try
                 {
 
@@ -74,16 +99,16 @@ namespace FloatingGlucose.Classes.Pebble
                     var bg = this.NsData.bgs.First();
                     return PebbleData.CalculateRawGlucose(cal, bg, this.Glucose);
                 }
-                catch(InvalidOperationException)
+                catch (InvalidOperationException)
                 {
                     throw new InvalidJsonDataException("The raw data are not available, enable RAWBG in your azure settings");
                 }
-                
+
             }
         }
 
         public DateTime LocalDate => this.Date.ToLocalTime();
- 
+
         public string DirectionArrow
         {
             get
@@ -114,14 +139,14 @@ namespace FloatingGlucose.Classes.Pebble
                         return "⇼";
                 }
             }
-        
+
         }
 
 
         public static async Task<PebbleData> GetNightscoutPebbleDataAsync(string url)
         {
 
-            var client = new HttpClient();       
+            var client = new HttpClient();
             var pebbleData = new PebbleData();
             string urlContents = await client.GetStringAsync(url);
 
@@ -133,14 +158,14 @@ namespace FloatingGlucose.Classes.Pebble
                 pebbleData.NsData = JsonConvert.DeserializeObject<GeneratedNsData>(urlContents);
             try
             {
-                
+
                 bgs = parsed.bgs.First();
                 pebbleData.Direction = bgs.direction;
                 pebbleData.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, PebbleData.Culture);
                 pebbleData.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
                 pebbleData.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, PebbleData.Culture);
-                 
-                
+
+
 
             }
             catch (InvalidOperationException ex)
@@ -151,7 +176,7 @@ namespace FloatingGlucose.Classes.Pebble
             }
 
             return pebbleData;
-            
+
 
         }
     }
