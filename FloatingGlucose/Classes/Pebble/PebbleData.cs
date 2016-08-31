@@ -23,7 +23,7 @@ namespace FloatingGlucose.Classes.Pebble
         public double Delta = 0.0;
         public string Direction;
 
-        public bool IsMmol => Default.GlucoseUnits == "mmol";
+        public static bool IsMmol => Default.GlucoseUnits == "mmol";
         public string FormattedDelta => $"{(this.Delta >= 0.0 ? "+" : "")}{this.Delta:N1}";
         public double RawDelta => this.RawGlucose - this.PreviousRawGlucose;
         public string FormattedRawDelta => $"{(this.RawDelta >= 0.0 ? "+" : "")}{this.RawDelta:N1}";
@@ -32,31 +32,46 @@ namespace FloatingGlucose.Classes.Pebble
         public static double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose)
         {
             double number;
-            double rawOffset = 5;
             double curBG = actualGlucose;
             int specialValue = 0;
 
-            if (Default.GlucoseUnits == "mmol")
+            if (IsMmol)
             {
                 if ((actualGlucose < 2.2) || (actualGlucose > 22.2))
+                {
                     specialValue = 1;
-                curBG = curBG * 18.018;
+                }
+                    
+                curBG = curBG * 18.01559;
             }
             else
-            if ((actualGlucose < 40) || (actualGlucose > 400))
-                specialValue = 1;
+            {
+                if ((actualGlucose < 40) || (actualGlucose > 400))
+                {
+                    specialValue = 1;
 
+                }
+                    
+            }
+            
+            //this special value is only triggered when the dexcom upload is brand new
+            //from a brand new sensor?
             if (specialValue == 1)
+            {
                 number = cal.scale * (bg.unfiltered - cal.intercept) / cal.slope;
+            } 
             else
             {
                 number = cal.scale * (bg.filtered - cal.intercept) / cal.slope / curBG;
                 number = cal.scale * (bg.unfiltered - cal.intercept) / cal.slope / number;
             }
 
-            if (Default.GlucoseUnits == "mmol")
-                number = number / 18.018;
-
+            if (IsMmol)
+            {
+                number = number / 18.01559;
+            }
+                
+            
             return number;
         }
 
