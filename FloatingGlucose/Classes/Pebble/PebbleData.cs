@@ -28,6 +28,9 @@ namespace FloatingGlucose.Classes.Pebble
         public double RawDelta => this.RawGlucose - this.PreviousRawGlucose;
         public string FormattedRawDelta => $"{(this.RawDelta >= 0.0 ? "+" : "")}{this.RawDelta:N1}";
 
+        public double RoundedDelta() => Math.Round(this.Delta, 1);
+        public double RoundedRawDelta() => Math.Round(this.RawDelta, 1);
+
         public static CultureInfo Culture = new CultureInfo("en-US");
         public static double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose)
         {
