@@ -24,11 +24,11 @@ namespace FloatingGlucose.Classes.Pebble
         public string Direction;
 
         public static bool IsMmol => Default.GlucoseUnits == "mmol";
-        public string FormattedDelta => $"{(this.Delta >= 0.0 ? "+" : "")}{this.Delta:N1}";
+        public string FormattedDelta => $"{(this.RoundedDelta() >= 0.0 ? "+" : "")}{this.RoundedDelta():N1}";
         public double RawDelta => this.RawGlucose - this.PreviousRawGlucose;
-        public string FormattedRawDelta => $"{(this.RawDelta >= 0.0 ? "+" : "")}{this.RawDelta:N1}";
+        public string FormattedRawDelta => $"{(this.RoundedRawDelta() >= 0.0 ? "+" : "")}{this.RoundedRawDelta():N1}";
 
-        public double RoundedDelta() => Math.Round(this.Delta, 1);
+        public double RoundedDelta() => Math.Round(this.RawDelta, 1);
         public double RoundedRawDelta() => Math.Round(this.RawDelta, 1);
 
         public static CultureInfo Culture = new CultureInfo("en-US");
