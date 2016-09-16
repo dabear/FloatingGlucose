@@ -214,5 +214,17 @@ namespace FloatingGlucose.Properties {
                 this["GuiOpacity"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AllowFileURIScheme {
+            get {
+                return ((bool)(this["AllowFileURIScheme"]));
+            }
+            set {
+                this["AllowFileURIScheme"] = value;
+            }
+        }
     }
 }

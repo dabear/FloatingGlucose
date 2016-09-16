@@ -73,6 +73,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.chkAllowFileURIScheme = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
@@ -510,12 +512,14 @@
             this.tabPageAdvanced.Location = new System.Drawing.Point(4, 25);
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAdvanced.Size = new System.Drawing.Size(886, 509);
+            this.tabPageAdvanced.Size = new System.Drawing.Size(896, 509);
             this.tabPageAdvanced.TabIndex = 1;
             this.tabPageAdvanced.Text = "Advanced Settings";
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkAllowFileURIScheme);
+            this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.numOpacity);
             this.groupBox2.Controls.Add(this.label17);
@@ -682,6 +686,25 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "GUI Refresh interval";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(38, 267);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(416, 20);
+            this.label19.TabIndex = 19;
+            this.label19.Text = "Debugging: Allow file:// URI schemes as nightscout url";
+            // 
+            // chkAllowFileURIScheme
+            // 
+            this.chkAllowFileURIScheme.AutoSize = true;
+            this.chkAllowFileURIScheme.Location = new System.Drawing.Point(546, 270);
+            this.chkAllowFileURIScheme.Name = "chkAllowFileURIScheme";
+            this.chkAllowFileURIScheme.Size = new System.Drawing.Size(18, 17);
+            this.chkAllowFileURIScheme.TabIndex = 20;
+            this.chkAllowFileURIScheme.UseVisualStyleBackColor = true;
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -764,5 +787,7 @@
         private System.Windows.Forms.NumericUpDown numOpacity;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.CheckBox chkAllowFileURIScheme;
+        private System.Windows.Forms.Label label19;
     }
 }

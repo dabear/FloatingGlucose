@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -161,12 +162,27 @@ namespace FloatingGlucose.Classes.Pebble
         }
 
 
-        public static async Task<PebbleData> GetNightscoutPebbleDataAsync(string url)
+        public static async Task<PebbleData> GetNightscoutPebbleDataAsync(string uri)
         {
 
             var client = new HttpClient();
             var pebbleData = new PebbleData();
-            string urlContents = await client.GetStringAsync(url);
+            string urlContents;
+
+            if(Default.AllowFileURIScheme && uri.ToLower().StartsWith("file:///"))
+            {
+                using (var reader = File.OpenText(new Uri(uri).LocalPath))
+                {
+                    urlContents = await reader.ReadToEndAsync();
+                    
+                }
+                
+            }
+            else
+            {
+                urlContents = await client.GetStringAsync(uri);
+            }
+            
 
             Bg bgs = null;
 

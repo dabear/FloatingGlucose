@@ -27,7 +27,13 @@ namespace FloatingGlucose
         private string nsURL {
             get {
                 
-                //AlarmUrgentLow
+                if (Default.AllowFileURIScheme && 
+                    Default.NightscoutSite.ToLower().StartsWith("file:///") )
+                {
+                    // not adding any query string params for file uri's
+                    return Default.NightscoutSite;
+                }
+                
                 // With raw glucose display we need to have two 
                 // data points to calculate raw glucose diff
                 var count = Default.EnableRawGlucoseDisplay ? 2 : 1;
@@ -182,7 +188,7 @@ namespace FloatingGlucose
         //
         private async void LoadGlucoseValue() 
         {
-            if (!Validators.IsUrl(this.nsURL)) {   
+            if (!Validators.IsUrl(this.nsURL, Default.AllowFileURIScheme)) {   
                 this.showErrorMessage("The nightscout_site setting is not specifed or invalid. Please update it from the settings!");
                 return;
 
@@ -250,7 +256,7 @@ namespace FloatingGlucose
                     $"{data.Glucose:N1} {arrow}" : $"{data.Glucose:N0} {arrow}";
 
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
-                var status = GlucoseStatus.GetGlucoseStatus((decimal) data.Glucose);
+                var status = GlucoseStatus.GetGlucoseStatus((decimal)data.Glucose);
 
 
                 this.lblDelta.Text = data.FormattedDelta + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
@@ -289,6 +295,13 @@ namespace FloatingGlucose
 
 
             }
+            catch (FileNotFoundException ex)
+            {
+                //will only happen during debugging, when the allow file:/// scheme is set
+                this.showErrorMessage($"Could not find file '{ex.FileName}'!");
+                this.SetErrorState(ex);
+                return;
+            }
             catch (IOException ex)
             {
                 this.SetErrorState(ex);
@@ -307,7 +320,8 @@ namespace FloatingGlucose
                 //typically happens during azure site restarts
                 this.SetErrorState(ex);
             }
-            catch (JsonSerializationException ex) {
+            catch (JsonSerializationException ex)
+            {
                 //typically happens during azure site restarts
                 this.SetErrorState(ex);
             }
@@ -319,6 +333,7 @@ namespace FloatingGlucose
                 this.settingsForm.Visible = false;
                 this.settingsForm.ShowDialog();
             }
+            
             catch (Exception ex)
             {
                 var msg = "An unknown error occured of type " + ex.GetType().ToString() + ": " + ex.Message;
@@ -446,7 +461,7 @@ namespace FloatingGlucose
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
 
-            if (!Validators.IsUrl(this.nsURL)) {
+            if (!Validators.IsUrl(this.nsURL , Default.AllowFileURIScheme)) {
                 this.settingsForm.Visible = false;
                 this.settingsForm.ShowDialog();
 
@@ -562,7 +577,7 @@ namespace FloatingGlucose
         private void openNightscoutSiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var url = Default.NightscoutSite;
-            if (Validators.IsUrl(url))
+            if (Validators.IsUrl(url, Default.AllowFileURIScheme))
             {
                 try
                 {
@@ -570,7 +585,7 @@ namespace FloatingGlucose
                 }
                 catch (Win32Exception ex)
                 {
-                    this.showErrorMessage("Could not open your nightscout site in the system default browser!");
+                    this.showErrorMessage($"Could not open your nightscout site in the system default browser! {ex.Message}");
                 }
 
             }
