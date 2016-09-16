@@ -581,5 +581,10 @@ namespace FloatingGlucose
             }
             
         }
+
+        private void reloadToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.LoadGlucoseValue();
+        }
     }
 }
