@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -12,6 +13,23 @@ namespace FloatingGlucose.Classes
     {
         public static bool IsWorkStationLocked = false;
         public static readonly string AppName = typeof(Program).Assembly.GetName().Name;
+        public static string AppVersion {
+            get
+            {
+                try
+                {
+                    using (var reader = File.OpenText(Path.Combine(AppShared.ExecutableDir, "version.txt")))
+                    {
+                        return reader.ReadToEnd();
+                    }
+                } catch (IOException) {
+                    return "unknown";
+                }
+            }
+
+        }
+        public static string ExecutableDir => Path.GetDirectoryName(Application.ExecutablePath);
+
         public static bool SettingsFormShouldFocusAdvancedSettings = false;
         public static bool SettingsUpdatedSuccessfully = false;
 

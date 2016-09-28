@@ -60,6 +60,8 @@
             this.tabPageBasic = new System.Windows.Forms.TabPage();
             this.tabPageAdvanced = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.chkAllowFileURIScheme = new System.Windows.Forms.CheckBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.numOpacity = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
@@ -73,8 +75,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.chkAllowFileURIScheme = new System.Windows.Forms.CheckBox();
+            this.lblVersionInfo = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
@@ -542,6 +543,25 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced application settings (requires restart)";
             // 
+            // chkAllowFileURIScheme
+            // 
+            this.chkAllowFileURIScheme.AutoSize = true;
+            this.chkAllowFileURIScheme.Location = new System.Drawing.Point(546, 270);
+            this.chkAllowFileURIScheme.Name = "chkAllowFileURIScheme";
+            this.chkAllowFileURIScheme.Size = new System.Drawing.Size(18, 17);
+            this.chkAllowFileURIScheme.TabIndex = 20;
+            this.chkAllowFileURIScheme.UseVisualStyleBackColor = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(38, 267);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(416, 20);
+            this.label19.TabIndex = 19;
+            this.label19.Text = "Debugging: Allow file:// URI schemes as nightscout url";
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -686,30 +706,23 @@
             this.label7.TabIndex = 1;
             this.label7.Text = "GUI Refresh interval";
             // 
-            // label19
+            // lblVersionInfo
             // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(38, 267);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(416, 20);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "Debugging: Allow file:// URI schemes as nightscout url";
-            // 
-            // chkAllowFileURIScheme
-            // 
-            this.chkAllowFileURIScheme.AutoSize = true;
-            this.chkAllowFileURIScheme.Location = new System.Drawing.Point(546, 270);
-            this.chkAllowFileURIScheme.Name = "chkAllowFileURIScheme";
-            this.chkAllowFileURIScheme.Size = new System.Drawing.Size(18, 17);
-            this.chkAllowFileURIScheme.TabIndex = 20;
-            this.chkAllowFileURIScheme.UseVisualStyleBackColor = true;
+            this.lblVersionInfo.AutoSize = true;
+            this.lblVersionInfo.Enabled = false;
+            this.lblVersionInfo.ForeColor = System.Drawing.Color.SeaGreen;
+            this.lblVersionInfo.Location = new System.Drawing.Point(12, 658);
+            this.lblVersionInfo.Name = "lblVersionInfo";
+            this.lblVersionInfo.Size = new System.Drawing.Size(93, 17);
+            this.lblVersionInfo.TabIndex = 4;
+            this.lblVersionInfo.Text = "lblVersionInfo";
             // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(938, 672);
+            this.ClientSize = new System.Drawing.Size(967, 687);
+            this.Controls.Add(this.lblVersionInfo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tabSettings);
             this.Controls.Add(this.btnVerifySubmit);
@@ -737,6 +750,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -789,5 +803,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.CheckBox chkAllowFileURIScheme;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label lblVersionInfo;
     }
 }

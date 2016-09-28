@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -110,6 +111,12 @@ namespace FloatingGlucose
             this.updateFormControlsFromSettings();
             this.FormClosing += this.OnClosing;
 
+
+            this.lblVersionInfo.Text = "Version: " + AppShared.AppVersion;
+            this.lblVersionInfo.Enabled = true;
+
+           
+
             //different increments for mmol/L and mg/dL 
             var controls = this.grpAlarmSettings.Controls.OfType<NumericUpDown>()
                 .Where(x=> x.DecimalPlaces == 1).ToList();
@@ -117,6 +124,9 @@ namespace FloatingGlucose
                 x.Increment = x.Value >= 36 ? 1.0M : 0.1M;
                 x.ValueChanged += new System.EventHandler(this.NumericUpDowns_Value_Changed);
             });
+
+            
+
 
             if (AppShared.SettingsFormShouldFocusAdvancedSettings)
             {
