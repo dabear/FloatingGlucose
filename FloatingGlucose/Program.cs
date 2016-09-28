@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FloatingGlucose.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -23,6 +24,8 @@ namespace FloatingGlucose
             try
             {
                 Application.Run(new FloatingGlucose());
+                var manager = SoundAlarm.Instance;
+                manager.StopAlarm();
             }
             catch (ObjectDisposedException) {
                 // this happens when application.exit() is called when the form has a modal dialog open
