@@ -40,12 +40,13 @@
             this.postponeFor90MinutesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reenableAlarmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.postponedUntilFooToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openNightscoutSiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDelta = new System.Windows.Forms.Label();
             this.lblRawBG = new System.Windows.Forms.Label();
             this.lblRawDelta = new System.Windows.Forms.Label();
-            this.openNightscoutSiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -100,10 +101,11 @@
             this.showApplicationToolStripMenuItem,
             this.postponeAlarmsToolStripMenuItem,
             this.openNightscoutSiteToolStripMenuItem,
+            this.reloadToolStripMenuItem,
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(226, 162);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(226, 188);
             // 
             // showApplicationToolStripMenuItem
             // 
@@ -152,6 +154,13 @@
             this.postponedUntilFooToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
             this.postponedUntilFooToolStripMenuItem.Text = "Snoozed until ";
             this.postponedUntilFooToolStripMenuItem.Visible = false;
+            // 
+            // openNightscoutSiteToolStripMenuItem
+            // 
+            this.openNightscoutSiteToolStripMenuItem.Name = "openNightscoutSiteToolStripMenuItem";
+            this.openNightscoutSiteToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.openNightscoutSiteToolStripMenuItem.Text = "&Open nightscout site";
+            this.openNightscoutSiteToolStripMenuItem.Click += new System.EventHandler(this.openNightscoutSiteToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -207,12 +216,12 @@
             this.lblRawDelta.Text = "-";
             this.lblRawDelta.Visible = false;
             // 
-            // openNightscoutSiteToolStripMenuItem
+            // reloadToolStripMenuItem
             // 
-            this.openNightscoutSiteToolStripMenuItem.Name = "openNightscoutSiteToolStripMenuItem";
-            this.openNightscoutSiteToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
-            this.openNightscoutSiteToolStripMenuItem.Text = "&Open nightscout site";
-            this.openNightscoutSiteToolStripMenuItem.Click += new System.EventHandler(this.openNightscoutSiteToolStripMenuItem_Click);
+            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.reloadToolStripMenuItem.Text = "&Reload";
+            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
             // 
             // FloatingGlucose
             // 
@@ -260,6 +269,7 @@
         private System.Windows.Forms.ToolStripMenuItem postponedUntilFooToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem reenableAlarmsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openNightscoutSiteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem reloadToolStripMenuItem;
     }
 }
 

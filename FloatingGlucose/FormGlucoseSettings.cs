@@ -85,7 +85,7 @@ namespace FloatingGlucose
             this.chkEnableRAWGlucose.Checked = Default.EnableRawGlucoseDisplay;
 
             this.chkDisableSoundOnWorkstationLock.Checked = Default.DisableSoundAlarmsOnWorkstationLock;
-
+            this.chkAllowFileURIScheme.Checked = Default.AllowFileURIScheme;
             //this is the default in the settings file
             //override it so it makes sense
             if (nsurl == "https://...")
@@ -166,7 +166,7 @@ namespace FloatingGlucose
 
         private void btnVerifySubmit_Click(object sender, EventArgs e)
         {
-            if (!Validators.IsUrl(this.txtNSURL.Text) || this.txtNSURL.Text == "https://mysite.azurewebsites.net") {
+            if (!Validators.IsUrl(this.txtNSURL.Text, this.chkAllowFileURIScheme.Checked) || this.txtNSURL.Text == "https://mysite.azurewebsites.net") {
                 MessageBox.Show("You have entered an invalid nightscout site URL", AppShared.AppName, MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
                 return;
@@ -192,7 +192,7 @@ namespace FloatingGlucose
 
             Default.DisableSoundAlarmsOnWorkstationLock = this.chkDisableSoundOnWorkstationLock.Checked;
             Default.EnableRawGlucoseDisplay = this.chkEnableRAWGlucose.Checked;
-
+            Default.AllowFileURIScheme = this.chkAllowFileURIScheme.Checked;
             Default.Save();
 
             
