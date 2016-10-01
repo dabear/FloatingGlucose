@@ -10,7 +10,7 @@ using System.Net.Http;
 using FloatingGlucose.Classes;
 using Newtonsoft.Json;
 using System.Globalization;
-using FloatingGlucose.Classes.Pebble;
+using FloatingGlucose.Classes.DataSources;
 using static FloatingGlucose.Properties.Settings;
 using FloatingGlucose.Classes.Extensions;
 using Microsoft.Win32;

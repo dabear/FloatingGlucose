@@ -1,5 +1,5 @@
 ﻿using FloatingGlucose.Classes;
-using FloatingGlucose.Classes.Pebble;
+using FloatingGlucose.Classes.DataSources;
 using Microsoft.CSharp.RuntimeBinder;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using static FloatingGlucose.Properties.Settings;
-namespace FloatingGlucose.Classes.Pebble
+namespace FloatingGlucose.Classes.DataSources
 {
     class PebbleData
     {

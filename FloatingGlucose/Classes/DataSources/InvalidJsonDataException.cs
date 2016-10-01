@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FloatingGlucose.Classes.Pebble
+namespace FloatingGlucose.Classes.DataSources
 {
     class InvalidJsonDataException : Exception
     {
