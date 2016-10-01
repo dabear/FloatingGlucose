@@ -124,14 +124,16 @@ namespace FloatingGlucose
             foreach (Type plugin in allPlugins)
             {
                 
-                dynamic obj = Activator.CreateInstance(plugin);
+                var info = new DataSourceInfo(plugin);
 
-                this.cbDataSource.Items.Add(obj.DataSourceName);
-                obj = null;
+                this.cbDataSource.Items.Add(info);
+               
                 
             }
 
             this.cbDataSource.SelectedIndex = 0;
+            //var selectedInstance = this.cbDataSource.SelectedItem;
+
 
             //different increments for mmol/L and mg/dL 
             var controls = this.grpAlarmSettings.Controls.OfType<NumericUpDown>()

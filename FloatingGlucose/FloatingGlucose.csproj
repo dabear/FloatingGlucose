@@ -110,6 +110,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DataSources\DataSourceInfo.cs" />
     <Compile Include="Classes\DataSources\IDataSourcePlugin.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleFileEndpoint.cs" />
     <Compile Include="Classes\Extensions\DatetimeExtensions.cs" />
