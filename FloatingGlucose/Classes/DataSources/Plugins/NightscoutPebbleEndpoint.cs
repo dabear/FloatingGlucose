@@ -162,7 +162,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         }
 
         public bool IsMmol => Default.GlucoseUnits == "mmol";
-        public string DataSourceName => nameof(NightscoutPebbleFileEndpoint);
+        public virtual string DataSourceName => "Nightscout URL";
  
 
         public virtual async Task<IDataSourcePlugin> GetDataSourceDataAsync(string datapath)

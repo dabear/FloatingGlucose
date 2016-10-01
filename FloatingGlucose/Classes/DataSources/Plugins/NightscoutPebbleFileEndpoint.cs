@@ -18,7 +18,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     class NightscoutPebbleFileEndpoint : NightscoutPebbleEndpoint, IDataSourcePlugin
     {
-       
+        public virtual string DataSourceName => "Nightscout File Dump";
 
         public override async Task<IDataSourcePlugin> GetDataSourceDataAsync(string datapath)
         {

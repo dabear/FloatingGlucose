@@ -124,7 +124,11 @@ namespace FloatingGlucose
             foreach (Type plugin in allPlugins)
             {
                 
-                this.cbDataSource.Items.Add(plugin.Name);
+                dynamic obj = Activator.CreateInstance(plugin);
+
+                this.cbDataSource.Items.Add(obj.DataSourceName);
+                obj = null;
+                
             }
 
             this.cbDataSource.SelectedIndex = 0;
