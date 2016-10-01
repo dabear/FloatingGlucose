@@ -12,7 +12,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-using FloatingGlucose.Classes.DataSources;
 using static FloatingGlucose.Properties.Settings;
 namespace FloatingGlucose.Classes.DataSources.Plugins 
 {
@@ -85,7 +84,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             get
             {
                 var bgs = this.NsData.bgs.Skip(1).First();
-                return Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleEndpoint.Culture);
+                return Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
 
             }
         }
@@ -163,31 +162,23 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         }
 
         public bool IsMmol => Default.GlucoseUnits == "mmol";
-        public string DataSourceName => nameof(NightscoutPebbleEndpoint);
+        public string DataSourceName => nameof(NightscoutPebbleFileEndpoint);
  
 
-        public async Task<IDataSourcePlugin> GetDataSourceDataAsync(string uri)
-        //public static async Task<NightscoutPebbleEndpoint> GetNightscoutPebbleDataAsync(string uri)
+        public virtual async Task<IDataSourcePlugin> GetDataSourceDataAsync(string datapath)
         {
 
             var client = new HttpClient();
             
             string urlContents;
 
-            if(Default.AllowFileURIScheme && uri.ToLower().StartsWith("file:///"))
+
+            using (var reader = File.OpenText(new Uri(datapath).LocalPath))
             {
-                using (var reader = File.OpenText(new Uri(uri).LocalPath))
-                {
-                    urlContents = await reader.ReadToEndAsync();
+                urlContents = await reader.ReadToEndAsync();
                     
-                }
-                
             }
-            else
-            {
-                urlContents = await client.GetStringAsync(uri);
-            }
-            
+
 
             Bg bgs = null;
 
@@ -200,9 +191,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
                 bgs = parsed.bgs.First();
                 this.Direction = bgs.direction;
-                this.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleEndpoint.Culture);
+                this.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
                 this.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
-                this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, NightscoutPebbleEndpoint.Culture);
+                this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
 
 
 

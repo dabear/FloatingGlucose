@@ -211,7 +211,7 @@ namespace FloatingGlucose
             try
             {
                 WriteDebug("Trying to refresh data");
-                var endpoint = new NightscoutPebbleEndpoint();
+                var endpoint = new NightscoutPebbleFileEndpoint();
                 var type = typeof(IDataSourcePlugin);
                 //var allPlugins = AppDomain.CurrentDomain.GetAssemblies()
                 //    .SelectMany((x) => x.GetTypes().Where((y) => type.IsAssignableFrom(y) && !y.IsInterface));

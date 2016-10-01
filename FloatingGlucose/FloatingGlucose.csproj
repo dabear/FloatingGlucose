@@ -111,6 +111,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\DataSources\IDataSourcePlugin.cs" />
+    <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleFileEndpoint.cs" />
     <Compile Include="Classes\Extensions\DatetimeExtensions.cs" />
     <Compile Include="Classes\AppShared.cs" />
     <Compile Include="Classes\DataSources\GeneratedNsData.cs" />

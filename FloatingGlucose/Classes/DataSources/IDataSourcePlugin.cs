@@ -42,7 +42,7 @@ namespace FloatingGlucose.Classes.DataSources
 
         string DataSourceName { get; }
 
-        Task<IDataSourcePlugin> GetDataSourceDataAsync(string uri);
+        Task<IDataSourcePlugin>  GetDataSourceDataAsync(string datapath);
     }
     
 }
