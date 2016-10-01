@@ -26,12 +26,12 @@ namespace FloatingGlucose.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("https://...")]
-        public string NightscoutSite {
+        public string DataPathLocation {
             get {
-                return ((string)(this["NightscoutSite"]));
+                return ((string)(this["DataPathLocation"]));
             }
             set {
-                this["NightscoutSite"] = value;
+                this["DataPathLocation"] = value;
             }
         }
         
@@ -212,18 +212,6 @@ namespace FloatingGlucose.Properties {
             }
             set {
                 this["GuiOpacity"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool AllowFileURIScheme {
-            get {
-                return ((bool)(this["AllowFileURIScheme"]));
-            }
-            set {
-                this["AllowFileURIScheme"] = value;
             }
         }
     }

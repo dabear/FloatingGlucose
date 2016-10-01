@@ -28,18 +28,13 @@ namespace FloatingGlucose
         private string nsURL {
             get {
                 
-                if (Default.AllowFileURIScheme && 
-                    Default.NightscoutSite.ToLower().StartsWith("file:///") )
-                {
-                    // not adding any query string params for file uri's
-                    return Default.NightscoutSite;
-                }
+                
                 
                 // With raw glucose display we need to have two 
                 // data points to calculate raw glucose diff
                 var count = Default.EnableRawGlucoseDisplay ? 2 : 1;
                 var units = Default.GlucoseUnits;
-                return $"{Default.NightscoutSite}/pebble?count={count}&units={units}";
+                return $"{Default.DataPathLocation}/pebble?count={count}&units={units}";
                 
             }
         }
@@ -189,7 +184,7 @@ namespace FloatingGlucose
         //
         private async void LoadGlucoseValue() 
         {
-            if (!Validators.IsUrl(this.nsURL, Default.AllowFileURIScheme)) {   
+            if (!Validators.IsUrl(this.nsURL)) {   
                 this.showErrorMessage("The nightscout_site setting is not specifed or invalid. Please update it from the settings!");
                 return;
 
@@ -211,7 +206,7 @@ namespace FloatingGlucose
             try
             {
                 WriteDebug("Trying to refresh data");
-                var endpoint = new NightscoutPebbleFileEndpoint();
+                var endpoint = new NightscoutPebbleEndpoint();
                 var type = typeof(IDataSourcePlugin);
                 //var allPlugins = AppDomain.CurrentDomain.GetAssemblies()
                 //    .SelectMany((x) => x.GetTypes().Where((y) => type.IsAssignableFrom(y) && !y.IsInterface));
@@ -466,7 +461,7 @@ namespace FloatingGlucose
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
 
-            if (!Validators.IsUrl(this.nsURL , Default.AllowFileURIScheme)) {
+            if (!Validators.IsUrl(this.nsURL)) {
                 this.settingsForm.Visible = false;
                 this.settingsForm.ShowDialog();
 
@@ -581,8 +576,8 @@ namespace FloatingGlucose
 
         private void openNightscoutSiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var url = Default.NightscoutSite;
-            if (Validators.IsUrl(url, Default.AllowFileURIScheme))
+            var url = Default.DataPathLocation;
+            if (Validators.IsUrl(url))
             {
                 try
                 {

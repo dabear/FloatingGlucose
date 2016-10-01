@@ -33,7 +33,7 @@
             this.btnUnitsMMOL = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
             this.lblNSURL = new System.Windows.Forms.Label();
-            this.txtNSURL = new System.Windows.Forms.TextBox();
+            this.txtDataSouceLocation = new System.Windows.Forms.TextBox();
             this.btnVerifySubmit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grpAlarmSettings = new System.Windows.Forms.GroupBox();
@@ -60,8 +60,6 @@
             this.tabPageBasic = new System.Windows.Forms.TabPage();
             this.tabPageAdvanced = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.chkAllowFileURIScheme = new System.Windows.Forms.CheckBox();
-            this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.numOpacity = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
@@ -100,7 +98,7 @@
             this.groupBox1.Controls.Add(this.btnUnitsMMOL);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.lblNSURL);
-            this.groupBox1.Controls.Add(this.txtNSURL);
+            this.groupBox1.Controls.Add(this.txtDataSouceLocation);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(24, 13);
             this.groupBox1.Name = "groupBox1";
@@ -153,16 +151,16 @@
             this.lblNSURL.TabIndex = 1;
             this.lblNSURL.Text = "Your Nightscout installation URL";
             // 
-            // txtNSURL
+            // txtDataSouceLocation
             // 
-            this.txtNSURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNSURL.Location = new System.Drawing.Point(453, 42);
-            this.txtNSURL.Name = "txtNSURL";
-            this.txtNSURL.Size = new System.Drawing.Size(351, 27);
-            this.txtNSURL.TabIndex = 0;
-            this.txtNSURL.Text = "https://mysite.azurewebsites.net";
-            this.txtNSURL.GotFocus += new System.EventHandler(this.txtNSURL_GotFocus);
-            this.txtNSURL.LostFocus += new System.EventHandler(this.txtNSURL_LostFocus);
+            this.txtDataSouceLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataSouceLocation.Location = new System.Drawing.Point(453, 42);
+            this.txtDataSouceLocation.Name = "txtDataSouceLocation";
+            this.txtDataSouceLocation.Size = new System.Drawing.Size(351, 27);
+            this.txtDataSouceLocation.TabIndex = 0;
+            this.txtDataSouceLocation.Text = "https://mysite.azurewebsites.net";
+            this.txtDataSouceLocation.GotFocus += new System.EventHandler(this.txtNSURL_GotFocus);
+            this.txtDataSouceLocation.LostFocus += new System.EventHandler(this.txtNSURL_LostFocus);
             // 
             // btnVerifySubmit
             // 
@@ -519,8 +517,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.chkAllowFileURIScheme);
-            this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.numOpacity);
             this.groupBox2.Controls.Add(this.label17);
@@ -542,25 +538,6 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced application settings (requires restart)";
-            // 
-            // chkAllowFileURIScheme
-            // 
-            this.chkAllowFileURIScheme.AutoSize = true;
-            this.chkAllowFileURIScheme.Location = new System.Drawing.Point(546, 270);
-            this.chkAllowFileURIScheme.Name = "chkAllowFileURIScheme";
-            this.chkAllowFileURIScheme.Size = new System.Drawing.Size(18, 17);
-            this.chkAllowFileURIScheme.TabIndex = 20;
-            this.chkAllowFileURIScheme.UseVisualStyleBackColor = true;
-            // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(38, 267);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(416, 20);
-            this.label19.TabIndex = 19;
-            this.label19.Text = "Debugging: Allow file:// URI schemes as nightscout url";
             // 
             // label18
             // 
@@ -758,7 +735,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblNSURL;
-        private System.Windows.Forms.TextBox txtNSURL;
+        private System.Windows.Forms.TextBox txtDataSouceLocation;
         private System.Windows.Forms.Button btnVerifySubmit;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox grpAlarmSettings;
@@ -801,8 +778,6 @@
         private System.Windows.Forms.NumericUpDown numOpacity;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.CheckBox chkAllowFileURIScheme;
-        private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label lblVersionInfo;
     }
 }

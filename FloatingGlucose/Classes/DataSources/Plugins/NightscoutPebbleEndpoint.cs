@@ -169,18 +169,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
 
             var client = new HttpClient();
-            
-            string urlContents;
-
-
-            using (var reader = File.OpenText(new Uri(datapath).LocalPath))
-            {
-                urlContents = await reader.ReadToEndAsync();
-                    
-            }
-
-
             Bg bgs = null;
+
+            string urlContents = await client.GetStringAsync(datapath);
 
             //urlContents = "{ \"status\":[{\"now\":1471947452808}],\"bgs\":[],\"cals\":[]";
             //urlContents = "{}"

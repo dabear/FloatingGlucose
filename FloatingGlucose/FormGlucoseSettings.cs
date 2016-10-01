@@ -24,19 +24,19 @@ namespace FloatingGlucose
 
         private void txtNSURL_GotFocus(object sender, EventArgs e)
         {
-            var colonPartPos = this.txtNSURL.Text.IndexOf("://");
-            var azurePartPos = this.txtNSURL.Text.IndexOf(".azurewebsites.net");
+            var colonPartPos = this.txtDataSouceLocation.Text.IndexOf("://");
+            var azurePartPos = this.txtDataSouceLocation.Text.IndexOf(".azurewebsites.net");
             if(colonPartPos != -1 && azurePartPos != -1 && colonPartPos < azurePartPos)
             {
-                this.txtNSURL.Select(colonPartPos+3, azurePartPos-colonPartPos-3);
+                this.txtDataSouceLocation.Select(colonPartPos+3, azurePartPos-colonPartPos-3);
             } 
 
         }
         private void txtNSURL_LostFocus(object sender, EventArgs e)
         {
-            if (this.txtNSURL.Text == "")
+            if (this.txtDataSouceLocation.Text == "")
             {
-                this.txtNSURL.Text = "https://mysite.azurewebsites.net";
+                this.txtDataSouceLocation.Text = "https://mysite.azurewebsites.net";
             }
 
         }
@@ -59,7 +59,7 @@ namespace FloatingGlucose
             var alarmHigh = Default.AlarmHigh;
             var alarmLow = Default.AlarmLow;
             var alarmUrgentLow = Default.AlarmUrgentLow;
-            var nsurl = Default.NightscoutSite;
+            var nsurl = Default.DataPathLocation;
 
             var staleWarning = Default.AlarmStaleDataWarning;
             var staleUrgent = Default.AlarmStaleDataUrgent;
@@ -86,16 +86,16 @@ namespace FloatingGlucose
             this.chkEnableRAWGlucose.Checked = Default.EnableRawGlucoseDisplay;
 
             this.chkDisableSoundOnWorkstationLock.Checked = Default.DisableSoundAlarmsOnWorkstationLock;
-            this.chkAllowFileURIScheme.Checked = Default.AllowFileURIScheme;
+            
             //this is the default in the settings file
             //override it so it makes sense
             if (nsurl == "https://...")
             {
-                this.txtNSURL.Text = "https://mysite.azurewebsites.net";
+                this.txtDataSouceLocation.Text = "https://mysite.azurewebsites.net";
             }
             else
             {
-                this.txtNSURL.Text = nsurl;
+                this.txtDataSouceLocation.Text = nsurl;
             }
 
             
@@ -138,7 +138,7 @@ namespace FloatingGlucose
             else
             {
                 this.tabSettings.SelectTab(this.tabPageBasic);
-                this.txtNSURL.Select();
+                this.txtDataSouceLocation.Select();
             }
 
         }
@@ -176,13 +176,13 @@ namespace FloatingGlucose
 
         private void btnVerifySubmit_Click(object sender, EventArgs e)
         {
-            if (!Validators.IsUrl(this.txtNSURL.Text, this.chkAllowFileURIScheme.Checked) || this.txtNSURL.Text == "https://mysite.azurewebsites.net") {
+            if (!Validators.IsUrl(this.txtDataSouceLocation.Text) || this.txtDataSouceLocation.Text == "https://mysite.azurewebsites.net") {
                 MessageBox.Show("You have entered an invalid nightscout site URL", AppShared.AppName, MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
                 return;
             }
 
-            Default.NightscoutSite = this.txtNSURL.Text;
+            Default.DataPathLocation = this.txtDataSouceLocation.Text;
             Default.EnableAlarms = this.btnEnableAlarms.Checked;
             Default.AlarmUrgentHigh = this.numUrgentHigh.Value;
             Default.AlarmHigh = this.numHigh.Value;
@@ -202,7 +202,7 @@ namespace FloatingGlucose
 
             Default.DisableSoundAlarmsOnWorkstationLock = this.chkDisableSoundOnWorkstationLock.Checked;
             Default.EnableRawGlucoseDisplay = this.chkEnableRAWGlucose.Checked;
-            Default.AllowFileURIScheme = this.chkAllowFileURIScheme.Checked;
+            
             Default.Save();
 
             
