@@ -1,4 +1,5 @@
 ﻿using FloatingGlucose.Classes;
+using FloatingGlucose.Classes.DataSources;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -115,7 +116,18 @@ namespace FloatingGlucose
             this.lblVersionInfo.Text = "Version: " + AppShared.AppVersion;
             this.lblVersionInfo.Enabled = true;
 
-           
+            // Fill the list of plugins, these are fairly static and won't change during runtime
+            var type = typeof(IDataSourcePlugin);
+            var allPlugins = AppDomain.CurrentDomain.GetAssemblies()
+                .SelectMany((x) => x.GetTypes().Where((y) => type.IsAssignableFrom(y) && !y.IsInterface));
+
+            foreach (Type plugin in allPlugins)
+            {
+                
+                this.cbDataSource.Items.Add(plugin.Name);
+            }
+
+            this.cbDataSource.SelectedIndex = 0;
 
             //different increments for mmol/L and mg/dL 
             var controls = this.grpAlarmSettings.Controls.OfType<NumericUpDown>()

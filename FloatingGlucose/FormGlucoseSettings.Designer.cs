@@ -74,6 +74,8 @@
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.lblVersionInfo = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
+            this.cbDataSource = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
@@ -94,6 +96,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cbDataSource);
+            this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.btnUnitsMGDL);
             this.groupBox1.Controls.Add(this.btnUnitsMMOL);
             this.groupBox1.Controls.Add(this.label11);
@@ -103,7 +107,7 @@
             this.groupBox1.Location = new System.Drawing.Point(24, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.groupBox1.Size = new System.Drawing.Size(840, 123);
+            this.groupBox1.Size = new System.Drawing.Size(840, 151);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nightscout settings";
@@ -111,7 +115,7 @@
             // btnUnitsMGDL
             // 
             this.btnUnitsMGDL.AutoSize = true;
-            this.btnUnitsMGDL.Location = new System.Drawing.Point(561, 83);
+            this.btnUnitsMGDL.Location = new System.Drawing.Point(547, 99);
             this.btnUnitsMGDL.Name = "btnUnitsMGDL";
             this.btnUnitsMGDL.Size = new System.Drawing.Size(77, 24);
             this.btnUnitsMGDL.TabIndex = 4;
@@ -122,7 +126,7 @@
             // 
             this.btnUnitsMMOL.AutoSize = true;
             this.btnUnitsMMOL.Checked = true;
-            this.btnUnitsMMOL.Location = new System.Drawing.Point(453, 83);
+            this.btnUnitsMMOL.Location = new System.Drawing.Point(455, 99);
             this.btnUnitsMMOL.Name = "btnUnitsMMOL";
             this.btnUnitsMMOL.Size = new System.Drawing.Size(86, 24);
             this.btnUnitsMMOL.TabIndex = 3;
@@ -135,7 +139,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(15, 85);
+            this.label11.Location = new System.Drawing.Point(16, 101);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(48, 20);
             this.label11.TabIndex = 2;
@@ -145,7 +149,7 @@
             // 
             this.lblNSURL.AutoSize = true;
             this.lblNSURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNSURL.Location = new System.Drawing.Point(14, 49);
+            this.lblNSURL.Location = new System.Drawing.Point(16, 69);
             this.lblNSURL.Name = "lblNSURL";
             this.lblNSURL.Size = new System.Drawing.Size(252, 20);
             this.lblNSURL.TabIndex = 1;
@@ -154,7 +158,7 @@
             // txtDataSouceLocation
             // 
             this.txtDataSouceLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataSouceLocation.Location = new System.Drawing.Point(453, 42);
+            this.txtDataSouceLocation.Location = new System.Drawing.Point(455, 62);
             this.txtDataSouceLocation.Name = "txtDataSouceLocation";
             this.txtDataSouceLocation.Size = new System.Drawing.Size(351, 27);
             this.txtDataSouceLocation.TabIndex = 0;
@@ -204,10 +208,10 @@
             this.grpAlarmSettings.Controls.Add(this.btnDisableAlarms);
             this.grpAlarmSettings.Controls.Add(this.btnEnableAlarms);
             this.grpAlarmSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpAlarmSettings.Location = new System.Drawing.Point(24, 142);
+            this.grpAlarmSettings.Location = new System.Drawing.Point(24, 170);
             this.grpAlarmSettings.Name = "grpAlarmSettings";
             this.grpAlarmSettings.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.grpAlarmSettings.Size = new System.Drawing.Size(840, 342);
+            this.grpAlarmSettings.Size = new System.Drawing.Size(840, 314);
             this.grpAlarmSettings.TabIndex = 2;
             this.grpAlarmSettings.TabStop = false;
             this.grpAlarmSettings.Text = "Alarm settings";
@@ -694,6 +698,25 @@
             this.lblVersionInfo.TabIndex = 4;
             this.lblVersionInfo.Text = "lblVersionInfo";
             // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(14, 35);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(96, 20);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "Datasource";
+            // 
+            // cbDataSource
+            // 
+            this.cbDataSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDataSource.FormattingEnabled = true;
+            this.cbDataSource.Location = new System.Drawing.Point(455, 27);
+            this.cbDataSource.Name = "cbDataSource";
+            this.cbDataSource.Size = new System.Drawing.Size(350, 28);
+            this.cbDataSource.TabIndex = 6;
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -779,5 +802,7 @@
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label lblVersionInfo;
+        private System.Windows.Forms.ComboBox cbDataSource;
+        private System.Windows.Forms.Label label19;
     }
 }

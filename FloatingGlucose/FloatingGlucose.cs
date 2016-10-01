@@ -444,6 +444,9 @@ namespace FloatingGlucose
             setScaling(Default.GuiScalingRatio);
             setChildrenOnMouseDown();
 
+            
+                
+            
 
             notifyIcon1.BalloonTipClosed += (asender, ev) =>{
                 notifyIcon1.Visible = false;
