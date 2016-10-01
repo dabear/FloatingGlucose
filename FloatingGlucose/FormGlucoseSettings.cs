@@ -22,7 +22,7 @@ namespace FloatingGlucose
             InitializeComponent();
         }
 
-        private void txtNSURL_GotFocus(object sender, EventArgs e)
+        private void txtDataSouceLocation_GotFocus(object sender, EventArgs e)
         {
             var colonPartPos = this.txtDataSouceLocation.Text.IndexOf("://");
             var azurePartPos = this.txtDataSouceLocation.Text.IndexOf(".azurewebsites.net");
@@ -32,7 +32,7 @@ namespace FloatingGlucose
             } 
 
         }
-        private void txtNSURL_LostFocus(object sender, EventArgs e)
+        private void txtDataSouceLocation_LostFocus(object sender, EventArgs e)
         {
             if (this.txtDataSouceLocation.Text == "")
             {

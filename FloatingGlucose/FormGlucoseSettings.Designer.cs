@@ -159,8 +159,8 @@
             this.txtDataSouceLocation.Size = new System.Drawing.Size(351, 27);
             this.txtDataSouceLocation.TabIndex = 0;
             this.txtDataSouceLocation.Text = "https://mysite.azurewebsites.net";
-            this.txtDataSouceLocation.GotFocus += new System.EventHandler(this.txtNSURL_GotFocus);
-            this.txtDataSouceLocation.LostFocus += new System.EventHandler(this.txtNSURL_LostFocus);
+            this.txtDataSouceLocation.GotFocus += new System.EventHandler(this.txtDataSouceLocation_GotFocus);
+            this.txtDataSouceLocation.LostFocus += new System.EventHandler(this.txtDataSouceLocation_LostFocus);
             // 
             // btnVerifySubmit
             // 
