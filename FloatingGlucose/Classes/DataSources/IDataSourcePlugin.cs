@@ -40,6 +40,7 @@ namespace FloatingGlucose.Classes.DataSources
 
         DateTime LocalDate { get; }
 
+        string DataSourceName { get; }
 
         Task<IDataSourcePlugin> GetDataSourceDataAsync(string uri);
     }
