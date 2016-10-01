@@ -12,19 +12,20 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
+using FloatingGlucose.Classes.DataSources;
 using static FloatingGlucose.Properties.Settings;
-namespace FloatingGlucose.Classes.DataSources
+namespace FloatingGlucose.Classes.DataSources.Plugins 
 {
-    class PebbleData
+    class NightscoutPebbleEndpoint : IDataSourcePlugin
     {
         public GeneratedNsData NsData;
-        public DateTime Date;
+        public DateTime Date { get; set; }
 
-        public double Glucose;
-        public double Delta = 0.0;
-        public string Direction;
+        public double Glucose { get; set; }
+        public double Delta { get; set; }
+        public string Direction { get; set; }
 
-        public static bool IsMmol => Default.GlucoseUnits == "mmol";
+
         public string FormattedDelta => $"{(this.RoundedDelta() >= 0.0 ? "+" : "")}{this.RoundedDelta():N1}";
         public double RawDelta => this.RawGlucose - this.PreviousRawGlucose;
         public string FormattedRawDelta => $"{(this.RoundedRawDelta() >= 0.0 ? "+" : "")}{this.RoundedRawDelta():N1}";
@@ -33,13 +34,13 @@ namespace FloatingGlucose.Classes.DataSources
         public double RoundedRawDelta() => Math.Round(this.RawDelta, 1);
 
         public static CultureInfo Culture = new CultureInfo("en-US");
-        public static double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose)
+        public double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose)
         {
             double number;
             double curBG = actualGlucose;
             int specialValue = 0;
 
-            if (IsMmol)
+            if (this.IsMmol)
             {
                 if ((actualGlucose < 2.2) || (actualGlucose > 22.2))
                 {
@@ -70,7 +71,7 @@ namespace FloatingGlucose.Classes.DataSources
                 number = cal.scale * (bg.unfiltered - cal.intercept) / cal.slope / number;
             }
 
-            if (IsMmol)
+            if (this.IsMmol)
             {
                 number = number / 18.01559;
             }
@@ -84,7 +85,7 @@ namespace FloatingGlucose.Classes.DataSources
             get
             {
                 var bgs = this.NsData.bgs.Skip(1).First();
-                return Double.Parse(bgs.sgv, NumberStyles.Any, PebbleData.Culture);
+                return Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleEndpoint.Culture);
 
             }
         }
@@ -97,7 +98,7 @@ namespace FloatingGlucose.Classes.DataSources
                 {
                     var cal = this.NsData.cals.Skip(1).First();
                     var bg = this.NsData.bgs.Skip(1).First();
-                    return PebbleData.CalculateRawGlucose(cal, bg, this.PreviousGlucose);
+                    return this.CalculateRawGlucose(cal, bg, this.PreviousGlucose);
                 }
                 catch (InvalidOperationException)
                 {
@@ -116,7 +117,7 @@ namespace FloatingGlucose.Classes.DataSources
 
                     var cal = this.NsData.cals.First();
                     var bg = this.NsData.bgs.First();
-                    return PebbleData.CalculateRawGlucose(cal, bg, this.Glucose);
+                    return this.CalculateRawGlucose(cal, bg, this.Glucose);
                 }
                 catch (InvalidOperationException)
                 {
@@ -161,12 +162,20 @@ namespace FloatingGlucose.Classes.DataSources
 
         }
 
-
-        public static async Task<PebbleData> GetNightscoutPebbleDataAsync(string uri)
+        public bool IsMmol
+        {
+            get
+            {
+               return  Default.GlucoseUnits == "mmol";
+            }
+        }
+        
+        public async Task<IDataSourcePlugin> GetDataSourceDataAsync(string uri)
+        //public static async Task<NightscoutPebbleEndpoint> GetNightscoutPebbleDataAsync(string uri)
         {
 
             var client = new HttpClient();
-            var pebbleData = new PebbleData();
+            
             string urlContents;
 
             if(Default.AllowFileURIScheme && uri.ToLower().StartsWith("file:///"))
@@ -189,15 +198,15 @@ namespace FloatingGlucose.Classes.DataSources
             //urlContents = "{ \"status\":[{\"now\":1471947452808}],\"bgs\":[],\"cals\":[]";
             //urlContents = "{}"
             var parsed =
-                pebbleData.NsData = JsonConvert.DeserializeObject<GeneratedNsData>(urlContents);
+                this.NsData = JsonConvert.DeserializeObject<GeneratedNsData>(urlContents);
             try
             {
 
                 bgs = parsed.bgs.First();
-                pebbleData.Direction = bgs.direction;
-                pebbleData.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, PebbleData.Culture);
-                pebbleData.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
-                pebbleData.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, PebbleData.Culture);
+                this.Direction = bgs.direction;
+                this.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleEndpoint.Culture);
+                this.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
+                this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, NightscoutPebbleEndpoint.Culture);
 
 
 
@@ -209,9 +218,11 @@ namespace FloatingGlucose.Classes.DataSources
 
             }
 
-            return pebbleData;
+            return this;
 
 
         }
+
+       
     }
 }

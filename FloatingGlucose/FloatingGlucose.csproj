@@ -110,6 +110,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\DataSources\IDataSourcePlugin.cs" />
     <Compile Include="Classes\Extensions\DatetimeExtensions.cs" />
     <Compile Include="Classes\AppShared.cs" />
     <Compile Include="Classes\DataSources\GeneratedNsData.cs" />
@@ -117,7 +118,7 @@
     <Compile Include="Classes\Audio\LoopStream.cs" />
     <Compile Include="Classes\DataSources\InvalidJsonDataException.cs" />
     <Compile Include="Classes\DataSources\MissingDataException.cs" />
-    <Compile Include="Classes\DataSources\PebbleData.cs" />
+    <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleEndpoint.cs" />
     <Compile Include="Classes\Audio\SoundAlarm.cs" />
     <Compile Include="Classes\Validators.cs" />
     <Compile Include="FloatingGlucose.cs">
@@ -207,6 +208,7 @@
     <None Include="Resources\alarm.mp3" />
     <None Include="Resources\alarm2.mp3" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>cd $(TargetDir)

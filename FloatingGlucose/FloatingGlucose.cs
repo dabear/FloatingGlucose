@@ -11,6 +11,7 @@ using FloatingGlucose.Classes;
 using Newtonsoft.Json;
 using System.Globalization;
 using FloatingGlucose.Classes.DataSources;
+using FloatingGlucose.Classes.DataSources.Plugins;
 using static FloatingGlucose.Properties.Settings;
 using FloatingGlucose.Classes.Extensions;
 using Microsoft.Win32;
@@ -194,7 +195,7 @@ namespace FloatingGlucose
 
             }
 
-            PebbleData data = null;
+            IDataSourcePlugin data = null;
 
             var alarmManger = SoundAlarm.Instance;
             var now = DateTime.Now;
@@ -210,8 +211,8 @@ namespace FloatingGlucose
             try
             {
                 WriteDebug("Trying to refresh data");
-
-                data = await PebbleData.GetNightscoutPebbleDataAsync(this.nsURL);
+                var endpoint = new NightscoutPebbleEndpoint();
+                data = await endpoint.GetDataSourceDataAsync(this.nsURL);
 
 
                 var glucoseDate = data.LocalDate;
