@@ -132,7 +132,7 @@ namespace FloatingGlucose
             }
 
             this.cbDataSource.SelectedIndex = 0;
-            //var selectedInstance = this.cbDataSource.SelectedItem;
+            var selectedInstance = this.cbDataSource.SelectedItem;
 
 
             //different increments for mmol/L and mg/dL 

@@ -11,12 +11,12 @@ namespace FloatingGlucose.Classes.DataSources
         public Type Type { get; set; }
         public string DataSourceName { get; set; }
         public string FullName { get; set; }
-        public dynamic Instance { get; set; }
+        public IDataSourcePlugin Instance { get; set; }
 
         public DataSourceInfo(Type plugin)
         {
             this.Type = plugin;
-            this.Instance = Activator.CreateInstance(plugin);
+            this.Instance = (IDataSourcePlugin)Activator.CreateInstance(plugin);
             this.DataSourceName = this.Instance.DataSourceName;
             this.FullName = plugin.FullName;
         }
