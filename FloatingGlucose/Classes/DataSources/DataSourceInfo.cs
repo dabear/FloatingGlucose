@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FloatingGlucose.Classes.DataSources
 {
-    class DataSourceInfo
+    public class DataSourceInfo
     {
         public Type Type { get; set; }
         public string DataSourceName { get; set; }
@@ -23,7 +23,7 @@ namespace FloatingGlucose.Classes.DataSources
 
         public override string ToString()
         {
-            return DataSourceName;
+            return this.DataSourceName;
         }
     }
 }

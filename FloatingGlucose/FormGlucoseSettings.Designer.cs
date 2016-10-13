@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cbDataSource = new System.Windows.Forms.ComboBox();
+            this.label19 = new System.Windows.Forms.Label();
             this.btnUnitsMGDL = new System.Windows.Forms.RadioButton();
             this.btnUnitsMMOL = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
-            this.lblNSURL = new System.Windows.Forms.Label();
+            this.lblDataSourceLocation = new System.Windows.Forms.Label();
             this.txtDataSouceLocation = new System.Windows.Forms.TextBox();
             this.btnVerifySubmit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -74,8 +76,6 @@
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.lblVersionInfo = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.cbDataSource = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
@@ -101,7 +101,7 @@
             this.groupBox1.Controls.Add(this.btnUnitsMGDL);
             this.groupBox1.Controls.Add(this.btnUnitsMMOL);
             this.groupBox1.Controls.Add(this.label11);
-            this.groupBox1.Controls.Add(this.lblNSURL);
+            this.groupBox1.Controls.Add(this.lblDataSourceLocation);
             this.groupBox1.Controls.Add(this.txtDataSouceLocation);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(24, 13);
@@ -111,6 +111,26 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nightscout settings";
+            // 
+            // cbDataSource
+            // 
+            this.cbDataSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbDataSource.FormattingEnabled = true;
+            this.cbDataSource.Location = new System.Drawing.Point(455, 27);
+            this.cbDataSource.Name = "cbDataSource";
+            this.cbDataSource.Size = new System.Drawing.Size(350, 28);
+            this.cbDataSource.TabIndex = 6;
+            this.cbDataSource.SelectedIndexChanged += new System.EventHandler(this.cbDataSource_SelectedIndexChanged);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(14, 35);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(96, 20);
+            this.label19.TabIndex = 5;
+            this.label19.Text = "Datasource";
             // 
             // btnUnitsMGDL
             // 
@@ -145,15 +165,15 @@
             this.label11.TabIndex = 2;
             this.label11.Text = "Units";
             // 
-            // lblNSURL
+            // lblDataSourceLocation
             // 
-            this.lblNSURL.AutoSize = true;
-            this.lblNSURL.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNSURL.Location = new System.Drawing.Point(16, 69);
-            this.lblNSURL.Name = "lblNSURL";
-            this.lblNSURL.Size = new System.Drawing.Size(252, 20);
-            this.lblNSURL.TabIndex = 1;
-            this.lblNSURL.Text = "Your Nightscout installation URL";
+            this.lblDataSourceLocation.AutoSize = true;
+            this.lblDataSourceLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDataSourceLocation.Location = new System.Drawing.Point(16, 69);
+            this.lblDataSourceLocation.Name = "lblDataSourceLocation";
+            this.lblDataSourceLocation.Size = new System.Drawing.Size(252, 20);
+            this.lblDataSourceLocation.TabIndex = 1;
+            this.lblDataSourceLocation.Text = "Your Nightscout installation URL";
             // 
             // txtDataSouceLocation
             // 
@@ -698,25 +718,6 @@
             this.lblVersionInfo.TabIndex = 4;
             this.lblVersionInfo.Text = "lblVersionInfo";
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(14, 35);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(96, 20);
-            this.label19.TabIndex = 5;
-            this.label19.Text = "Datasource";
-            // 
-            // cbDataSource
-            // 
-            this.cbDataSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbDataSource.FormattingEnabled = true;
-            this.cbDataSource.Location = new System.Drawing.Point(455, 27);
-            this.cbDataSource.Name = "cbDataSource";
-            this.cbDataSource.Size = new System.Drawing.Size(350, 28);
-            this.cbDataSource.TabIndex = 6;
-            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -757,7 +758,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label lblNSURL;
         private System.Windows.Forms.TextBox txtDataSouceLocation;
         private System.Windows.Forms.Button btnVerifySubmit;
         private System.Windows.Forms.Panel panel2;
@@ -804,5 +804,6 @@
         private System.Windows.Forms.Label lblVersionInfo;
         private System.Windows.Forms.ComboBox cbDataSource;
         private System.Windows.Forms.Label label19;
+        public System.Windows.Forms.Label lblDataSourceLocation;
     }
 }

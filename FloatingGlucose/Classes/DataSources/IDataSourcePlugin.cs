@@ -12,11 +12,11 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 using static FloatingGlucose.Properties.Settings;
 namespace FloatingGlucose.Classes.DataSources
 {
-    interface IDataSourcePlugin
+    public interface IDataSourcePlugin
     {
 
         DateTime Date { get; }
@@ -43,6 +43,10 @@ namespace FloatingGlucose.Classes.DataSources
         string DataSourceName { get; }
 
         Task<IDataSourcePlugin>  GetDataSourceDataAsync(string datapath);
+
+        //GUI related
+        void OnPluginSelected(FormGlucoseSettings settingsForm);
+
     }
     
 }

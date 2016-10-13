@@ -20,6 +20,11 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
     {
         public override string DataSourceName => "Nightscout File Dump";
 
+        public override void OnPluginSelected(FormGlucoseSettings form)
+        {
+            form.lblDataSourceLocation.Text = "Your File Dump location";
+        }
+
         public override async Task<IDataSourcePlugin> GetDataSourceDataAsync(string datapath)
         {
 

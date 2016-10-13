@@ -117,21 +117,24 @@ namespace FloatingGlucose
             this.lblVersionInfo.Enabled = true;
 
             // Fill the list of plugins, these are fairly static and won't change during runtime
-            var type = typeof(IDataSourcePlugin);
-            var allPlugins = AppDomain.CurrentDomain.GetAssemblies()
-                .SelectMany((x) => x.GetTypes().Where((y) => type.IsAssignableFrom(y) && !y.IsInterface));
+            var allPlugins = PluginLoader.Instance.GetAllPlugins();
+            var activePlugin = PluginLoader.Instance.GetActivePlugin();
 
-            foreach (Type plugin in allPlugins)
+            foreach (DataSourceInfo plugin in allPlugins)
             {
-                
-                var info = new DataSourceInfo(plugin);
 
-                this.cbDataSource.Items.Add(info);
-               
+                this.cbDataSource.Items.Add(plugin);
+                if(plugin.DataSourceName == activePlugin.DataSourceName)
+                {
+                    this.cbDataSource.SelectedItem = plugin;
+                    plugin.Instance.OnPluginSelected(this);
+                }
                 
+
+
             }
 
-            this.cbDataSource.SelectedIndex = 0;
+            
             var selectedInstance = this.cbDataSource.SelectedItem;
 
 
@@ -304,6 +307,13 @@ namespace FloatingGlucose
             }
 
 
+        }
+
+        private void cbDataSource_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
+            PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
+            selectedPlugin.Instance.OnPluginSelected(this);
         }
     }
 }

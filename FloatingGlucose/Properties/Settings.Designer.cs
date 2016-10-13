@@ -214,5 +214,17 @@ namespace FloatingGlucose.Properties {
                 this["GuiOpacity"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("FloatingGlucose.Classes.DataSources.Plugins.NightscoutPebbleEndpoint")]
+        public string DataSourceFullName {
+            get {
+                return ((string)(this["DataSourceFullName"]));
+            }
+            set {
+                this["DataSourceFullName"] = value;
+            }
+        }
     }
 }

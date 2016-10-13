@@ -11,7 +11,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Forms;
 using static FloatingGlucose.Properties.Settings;
 namespace FloatingGlucose.Classes.DataSources.Plugins 
 {
@@ -163,7 +163,11 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public bool IsMmol => Default.GlucoseUnits == "mmol";
         public virtual string DataSourceName => "Nightscout URL";
- 
+
+        public virtual void OnPluginSelected(FormGlucoseSettings form)
+        {
+            form.lblDataSourceLocation.Text = "Your Nightscout installation URL";
+        }
 
         public virtual async Task<IDataSourcePlugin> GetDataSourceDataAsync(string datapath)
         {

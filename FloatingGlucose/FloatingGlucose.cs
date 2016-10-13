@@ -206,11 +206,9 @@ namespace FloatingGlucose
             try
             {
                 WriteDebug("Trying to refresh data");
-                var endpoint = new NightscoutPebbleEndpoint();
-                var type = typeof(IDataSourcePlugin);
-                //var allPlugins = AppDomain.CurrentDomain.GetAssemblies()
-                //    .SelectMany((x) => x.GetTypes().Where((y) => type.IsAssignableFrom(y) && !y.IsInterface));
-
+                
+                var endpoint = PluginLoader.Instance.GetActivePlugin();
+                var name = endpoint.DataSourceName;
                 data = await endpoint.GetDataSourceDataAsync(this.nsURL);
 
 
