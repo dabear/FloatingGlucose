@@ -1,5 +1,6 @@
 ﻿using FloatingGlucose.Classes;
 using FloatingGlucose.Classes.DataSources;
+using FloatingGlucose.Classes.DataSources.Plugins;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -118,13 +119,22 @@ namespace FloatingGlucose
 
             // Fill the list of plugins, these are fairly static and won't change during runtime
             var allPlugins = PluginLoader.Instance.GetAllPlugins();
-            var activePlugin = PluginLoader.Instance.GetActivePlugin();
+            IDataSourcePlugin activePlugin;
+            try
+            {
+                activePlugin = PluginLoader.Instance.GetActivePlugin();
+            }
+            catch(NoSuchPluginException)
+            {
+                activePlugin = null;
+            }
+            this.cbDataSource.Items.Clear();
 
             foreach (DataSourceInfo plugin in allPlugins)
             {
 
                 this.cbDataSource.Items.Add(plugin);
-                if(plugin.DataSourceName == activePlugin.DataSourceName)
+                if(activePlugin != null && plugin.DataSourceShortName == activePlugin.DataSourceShortName)
                 {
                     this.cbDataSource.SelectedItem = plugin;
                     plugin.Instance.OnPluginSelected(this);
@@ -133,6 +143,13 @@ namespace FloatingGlucose
 
 
             }
+
+            //de-uglify glucosesettings by setting a default plugin even if there was none selected
+            //or a previously included plugin was selected that has been renamed or removed
+            if (activePlugin == null)
+            {
+                this.cbDataSource.SelectedIndex = 0;
+            } 
 
             
             var selectedInstance = this.cbDataSource.SelectedItem;
@@ -197,11 +214,13 @@ namespace FloatingGlucose
 
         private void btnVerifySubmit_Click(object sender, EventArgs e)
         {
-            if (!Validators.IsUrl(this.txtDataSouceLocation.Text) || this.txtDataSouceLocation.Text == "https://mysite.azurewebsites.net") {
+            /*if (!Validators.IsUrl(this.txtDataSouceLocation.Text) || this.txtDataSouceLocation.Text == "https://mysite.azurewebsites.net") {
                 MessageBox.Show("You have entered an invalid nightscout site URL", AppShared.AppName, MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
                 return;
-            }
+            }*/
+
+            
 
             Default.DataPathLocation = this.txtDataSouceLocation.Text;
             Default.EnableAlarms = this.btnEnableAlarms.Checked;
@@ -223,11 +242,31 @@ namespace FloatingGlucose
 
             Default.DisableSoundAlarmsOnWorkstationLock = this.chkDisableSoundOnWorkstationLock.Checked;
             Default.EnableRawGlucoseDisplay = this.chkEnableRAWGlucose.Checked;
-            
+
+            //Save plugin type based on the selected fullname
+            Default.DataSourceFullName = (this.cbDataSource.SelectedItem as DataSourceInfo).FullName;
+
+
+            DataSourceInfo plugin;
+
+            try
+            {
+                plugin = (DataSourceInfo)this.cbDataSource.SelectedItem;
+                plugin.Instance.VerifyConfig(Default);
+            }
+            catch (ConfigValidationError ce)
+            {
+                MessageBox.Show(ce.Message, AppShared.AppName, MessageBoxButtons.OK,
+                MessageBoxIcon.Error);
+                return;
+            }
+
+            Default.DataSourceFullName = plugin.FullName;
+            //this is here for a purpose
+            //only save if validation succeeded.
             Default.Save();
 
-            
-            if(!this.chkEnableSoundAlarms.Checked)
+            if (!this.chkEnableSoundAlarms.Checked)
             {
                 var manager = SoundAlarm.Instance;
                 manager.StopAlarm();

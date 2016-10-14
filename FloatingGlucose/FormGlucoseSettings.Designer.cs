@@ -758,7 +758,6 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox txtDataSouceLocation;
         private System.Windows.Forms.Button btnVerifySubmit;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.GroupBox grpAlarmSettings;
@@ -785,8 +784,6 @@
         private System.Windows.Forms.NumericUpDown numScaling;
         private System.Windows.Forms.CheckBox chkEnableRAWGlucose;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.RadioButton btnUnitsMGDL;
-        private System.Windows.Forms.RadioButton btnUnitsMMOL;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.NumericUpDown numStaleUrgent;
         private System.Windows.Forms.Label label13;
@@ -805,5 +802,8 @@
         private System.Windows.Forms.ComboBox cbDataSource;
         private System.Windows.Forms.Label label19;
         public System.Windows.Forms.Label lblDataSourceLocation;
+        public System.Windows.Forms.TextBox txtDataSouceLocation;
+        public System.Windows.Forms.RadioButton btnUnitsMGDL;
+        public System.Windows.Forms.RadioButton btnUnitsMMOL;
     }
 }

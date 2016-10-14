@@ -33,6 +33,7 @@ namespace FloatingGlucose.Classes.DataSources
                 {
                     list.Add(new DataSourceInfo(plugin));
                 }
+                list.Sort((x, y) => x.FullName.CompareTo(y.FullName));
                 this.loadedPlugins = list;
             }
             
@@ -55,7 +56,16 @@ namespace FloatingGlucose.Classes.DataSources
 
         public IDataSourcePlugin SetActivePlugin(string dataSourceFullName)
         {
-            this.plugin = this.GetAllPlugins().Where((x) => x.FullName == dataSourceFullName).First().Instance;
+            try
+            {
+
+
+                this.plugin = this.GetAllPlugins().Where((x) => x.FullName == dataSourceFullName).First().Instance;
+            }
+            catch (InvalidOperationException)
+            {
+                throw new NoSuchPluginException("Invalid plugin: " + dataSourceFullName);
+            }
             return this.plugin;
         }
 

@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -18,16 +19,26 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     class NightscoutPebbleFileEndpoint : NightscoutPebbleEndpoint, IDataSourcePlugin
     {
-        public override string DataSourceName => "Nightscout File Dump";
+        public override string DataSourceShortName => "Nightscout File Dump";
 
         public override void OnPluginSelected(FormGlucoseSettings form)
         {
             form.lblDataSourceLocation.Text = "Your File Dump location";
         }
-
-        public override async Task<IDataSourcePlugin> GetDataSourceDataAsync(string datapath)
+        public override bool VerifyConfig(Properties.Settings settings)
         {
+            if (!Validators.IsReadableFile(settings.DataPathLocation))
+            {
+                throw new ConfigValidationError("You have entered an invalid file path for the data dump!");
 
+            }
+
+            return true;
+        }
+
+        public override async Task<IDataSourcePlugin> GetDataSourceDataAsync(NameValueCollection locations)
+        {
+            var datapath = locations["raw"];
             var client = new HttpClient();
             string fileContents;
 

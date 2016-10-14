@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -162,16 +163,26 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         }
 
         public bool IsMmol => Default.GlucoseUnits == "mmol";
-        public virtual string DataSourceName => "Nightscout URL";
+        public virtual string DataSourceShortName => "Nightscout URL";
 
         public virtual void OnPluginSelected(FormGlucoseSettings form)
         {
             form.lblDataSourceLocation.Text = "Your Nightscout installation URL";
         }
 
-        public virtual async Task<IDataSourcePlugin> GetDataSourceDataAsync(string datapath)
-        {
+        public virtual bool VerifyConfig(Properties.Settings settings) {
+            if (!Validators.IsUrl(settings.DataPathLocation) || settings.DataPathLocation == "https://mysite.azurewebsites.net")
+            {
+                throw new ConfigValidationError("You have entered an invalid nightscout site URL"); 
+                
+            }
 
+            return true;
+        }
+
+        public virtual async Task<IDataSourcePlugin> GetDataSourceDataAsync(NameValueCollection locations)
+        {
+            var datapath = locations["location"];
             var client = new HttpClient();
             Bg bgs = null;
 

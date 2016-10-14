@@ -6,6 +6,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -40,9 +41,11 @@ namespace FloatingGlucose.Classes.DataSources
 
         DateTime LocalDate { get; }
 
-        string DataSourceName { get; }
+        string DataSourceShortName { get; }
 
-        Task<IDataSourcePlugin>  GetDataSourceDataAsync(string datapath);
+        Task<IDataSourcePlugin>  GetDataSourceDataAsync(NameValueCollection datapath);
+
+        bool VerifyConfig(Properties.Settings settings);
 
         //GUI related
         void OnPluginSelected(FormGlucoseSettings settingsForm);

@@ -17,6 +17,7 @@ using FloatingGlucose.Classes.Extensions;
 using Microsoft.Win32;
 using FormSettings = FloatingGlucose.Properties.FormSettings;
 using System.ComponentModel;
+using System.Collections.Specialized;
 
 namespace FloatingGlucose
 {
@@ -25,7 +26,7 @@ namespace FloatingGlucose
     {
 
         //nightscout URL, will be used to create a pebble endpoint to fetch data from
-        private string nsURL {
+        private NameValueCollection datasourceLocation {
             get {
                 
                 
@@ -34,7 +35,13 @@ namespace FloatingGlucose
                 // data points to calculate raw glucose diff
                 var count = Default.EnableRawGlucoseDisplay ? 2 : 1;
                 var units = Default.GlucoseUnits;
-                return $"{Default.DataPathLocation}/pebble?count={count}&units={units}";
+                return new NameValueCollection()
+                {
+                    { "raw", Default.DataPathLocation },
+                    { "location", $"{Default.DataPathLocation}/pebble?count={count}&units={units}"}
+                };
+
+                
                 
             }
         }
@@ -50,8 +57,8 @@ namespace FloatingGlucose
         private bool isDebuggingBuild = false; 
 #endif
 
-        private Form _settingsForm;
-        private Form settingsForm {
+        private FormGlucoseSettings _settingsForm;
+        private FormGlucoseSettings settingsForm {
             get {
                 if (this._settingsForm == null || this._settingsForm.IsDisposed)
                 {
@@ -184,11 +191,8 @@ namespace FloatingGlucose
         //
         private async void LoadGlucoseValue() 
         {
-            if (!Validators.IsUrl(this.nsURL)) {   
-                this.showErrorMessage("The nightscout_site setting is not specifed or invalid. Please update it from the settings!");
-                return;
+            
 
-            }
 
             IDataSourcePlugin data = null;
 
@@ -206,10 +210,11 @@ namespace FloatingGlucose
             try
             {
                 WriteDebug("Trying to refresh data");
-                
+
                 var endpoint = PluginLoader.Instance.GetActivePlugin();
-                var name = endpoint.DataSourceName;
-                data = await endpoint.GetDataSourceDataAsync(this.nsURL);
+                var name = endpoint.DataSourceShortName;
+                endpoint.VerifyConfig(Default);
+                data = await endpoint.GetDataSourceDataAsync(this.datasourceLocation);
 
 
                 var glucoseDate = data.LocalDate;
@@ -329,15 +334,27 @@ namespace FloatingGlucose
                 this.showErrorMessage(ex.Message);
                 AppShared.SettingsFormShouldFocusAdvancedSettings = true;
                 this.settingsForm.Visible = false;
-                this.settingsForm.ShowDialog();
+                this.settingsForm.ShowDialogIfNonVisible();
             }
-            
-            catch (Exception ex)
+            catch(NoSuchPluginException ex)
+            {
+                var msg = "A datasource plugin was chosen that is no longer available, please choose another datasource: "  + ex.Message;
+
+                this.showErrorMessage(msg);
+                this.settingsForm.ShowDialogIfNonVisible();
+            }
+            catch(ConfigValidationError ex)
+            {
+                this.showErrorMessage(ex.Message);
+                this.settingsForm.ShowDialogIfNonVisible();
+            }
+
+           /* catch (Exception ex)
             {
                 var msg = "An unknown error occured of type " + ex.GetType().ToString() + ": " + ex.Message;
                 this.showErrorMessage(msg);
                 Application.Exit();
-            }
+            }*/
 
             try {
                 if (Default.EnableRawGlucoseDisplay && data != null) {
@@ -462,11 +479,11 @@ namespace FloatingGlucose
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
 
-            if (!Validators.IsUrl(this.nsURL)) {
+            /*if (!Validators.IsUrl(this.datasourceLocation)) {
                 this.settingsForm.Visible = false;
-                this.settingsForm.ShowDialog();
+                this.settingsForm.ShowDialogIfNonVisible();
 
-            }
+            }*/
             this.setFormSize();
          
             this.Opacity = Default.GuiOpacity / 100D;
@@ -520,7 +537,7 @@ namespace FloatingGlucose
 
         private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            this.settingsForm.Show();
+            this.settingsForm.ShowDialogIfNonVisible();
         }
 
         private void quitToolStripMenuItem_Click(object sender, EventArgs e)

@@ -112,8 +112,11 @@
   <ItemGroup>
     <Compile Include="Classes\DataSources\DataSourceInfo.cs" />
     <Compile Include="Classes\DataSources\IDataSourcePlugin.cs" />
+    <Compile Include="Classes\DataSources\NoSuchPluginException.cs" />
+    <Compile Include="Classes\DataSources\ConfigValidationError.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\PluginLoader.cs" />
+    <Compile Include="Classes\Extensions\FormExtensions.cs" />
     <Compile Include="Classes\Extensions\DatetimeExtensions.cs" />
     <Compile Include="Classes\AppShared.cs" />
     <Compile Include="Classes\DataSources\GeneratedNsData.cs" />
@@ -178,7 +181,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <Compile Include="Properties\Settings.Designer.cs">
