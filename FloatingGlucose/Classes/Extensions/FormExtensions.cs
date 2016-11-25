@@ -9,12 +9,13 @@ namespace FloatingGlucose.Classes.Extensions
 {
     static class FormExtensions
     {
-        public static void ShowDialogIfNonVisible(this Form form)
+        public static void ShowDialogIfNonVisible(this FormGlucoseSettings form)
         {
             if(form.Visible)
             {
                 return;
             }
+            AppShared.IsShowingSettings = true;
             form.ShowDialog();
             
         }

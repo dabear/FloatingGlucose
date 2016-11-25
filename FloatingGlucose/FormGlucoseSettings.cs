@@ -194,7 +194,7 @@ namespace FloatingGlucose
 
         void OnClosing(object sender, FormClosingEventArgs e)
         {
-
+            AppShared.IsShowingSettings = false;
             if (AppShared.SettingsUpdatedSuccessfully) {
                 base.OnClosing(e);
                 AppShared.SettingsUpdatedSuccessfully = false;
@@ -291,6 +291,8 @@ namespace FloatingGlucose
             MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!",
                 AppShared.AppName, MessageBoxButtons.OK,MessageBoxIcon.Information);
             AppShared.NotifyFormSettingsHaveChanged();
+
+            AppShared.IsShowingSettings = false;
             this.Close();
         }
 
@@ -379,7 +381,7 @@ namespace FloatingGlucose
 
             dialog.Filter = selectedPlugin.Instance.BrowseDialogFileFilter;
             dialog.InitialDirectory = Path.GetPathRoot(Environment.SystemDirectory);
-            dialog.Title = "select a file for the plugin to handle";
+            dialog.Title = "Select a file for the plugin to handle";
             
             if (dialog.ShowDialog() == DialogResult.OK) {
                 this.txtDataSourceLocation.Text = dialog.FileName;

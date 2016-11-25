@@ -213,7 +213,19 @@ namespace FloatingGlucose
 
                 var endpoint = PluginLoader.Instance.GetActivePlugin();
                 var name = endpoint.DataSourceShortName;
+                
+
+
+                if(AppShared.IsShowingSettings)
+                {
+                    //avoid further loading of glucose values if the user has settings view open
+                    // the user will probably select new settings anyway..
+                    WriteDebug("Could not refresh data, settingsform is modally open..!");
+                    return;
+                }
+
                 endpoint.VerifyConfig(Default);
+
                 data = await endpoint.GetDataSourceDataAsync(this.datasourceLocation);
 
 
