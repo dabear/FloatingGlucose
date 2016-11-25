@@ -148,6 +148,7 @@ namespace FloatingGlucose
                 {
                     this.cbDataSource.SelectedItem = plugin;
                     plugin.Instance.OnPluginSelected(this);
+                    this.btnBrowse.Visible = activePlugin.RequiresBrowseButton;
                 }
                 
 
@@ -378,7 +379,7 @@ namespace FloatingGlucose
 
             dialog.Filter = selectedPlugin.Instance.BrowseDialogFileFilter;
             dialog.InitialDirectory = Path.GetPathRoot(Environment.SystemDirectory);
-            dialog.Title = "Please select a file for the plugin to handle";
+            dialog.Title = "select a file for the plugin to handle";
             
             if (dialog.ShowDialog() == DialogResult.OK) {
                 this.txtDataSourceLocation.Text = dialog.FileName;
