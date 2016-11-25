@@ -30,16 +30,18 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cbDataSource = new System.Windows.Forms.ComboBox();
+            this.tblpDataSourceLocations = new System.Windows.Forms.TableLayoutPanel();
+            this.txtDataSourceLocation = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.btnUnitsMGDL = new System.Windows.Forms.RadioButton();
             this.btnUnitsMMOL = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
             this.lblDataSourceLocation = new System.Windows.Forms.Label();
-            this.txtDataSouceLocation = new System.Windows.Forms.TextBox();
             this.btnVerifySubmit = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.grpAlarmSettings = new System.Windows.Forms.GroupBox();
             this.chkEnableSoundAlarms = new System.Windows.Forms.CheckBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.numStaleUrgent = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
@@ -96,13 +98,15 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtDataSourceLocation);
+            this.groupBox1.Controls.Add(this.btnBrowse);
             this.groupBox1.Controls.Add(this.cbDataSource);
+            this.groupBox1.Controls.Add(this.tblpDataSourceLocations);
             this.groupBox1.Controls.Add(this.label19);
             this.groupBox1.Controls.Add(this.btnUnitsMGDL);
             this.groupBox1.Controls.Add(this.btnUnitsMMOL);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.lblDataSourceLocation);
-            this.groupBox1.Controls.Add(this.txtDataSouceLocation);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(24, 13);
             this.groupBox1.Name = "groupBox1";
@@ -116,11 +120,41 @@
             // 
             this.cbDataSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDataSource.FormattingEnabled = true;
-            this.cbDataSource.Location = new System.Drawing.Point(455, 27);
+            this.cbDataSource.Location = new System.Drawing.Point(338, 26);
             this.cbDataSource.Name = "cbDataSource";
-            this.cbDataSource.Size = new System.Drawing.Size(350, 28);
+            this.cbDataSource.Size = new System.Drawing.Size(340, 28);
             this.cbDataSource.TabIndex = 6;
             this.cbDataSource.SelectedIndexChanged += new System.EventHandler(this.cbDataSource_SelectedIndexChanged);
+            // 
+            // tblpDataSourceLocations
+            // 
+            this.tblpDataSourceLocations.AutoSize = true;
+            this.tblpDataSourceLocations.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.tblpDataSourceLocations.ColumnCount = 2;
+            this.tblpDataSourceLocations.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblpDataSourceLocations.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
+            this.tblpDataSourceLocations.Location = new System.Drawing.Point(455, 60);
+            this.tblpDataSourceLocations.Name = "tblpDataSourceLocations";
+            this.tblpDataSourceLocations.RowCount = 1;
+            this.tblpDataSourceLocations.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tblpDataSourceLocations.Size = new System.Drawing.Size(0, 0);
+            this.tblpDataSourceLocations.TabIndex = 8;
+            // 
+            // txtDataSourceLocation
+            // 
+            this.txtDataSourceLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtDataSourceLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataSourceLocation.Location = new System.Drawing.Point(338, 60);
+            this.txtDataSourceLocation.MaximumSize = new System.Drawing.Size(340, 28);
+            this.txtDataSourceLocation.MinimumSize = new System.Drawing.Size(290, 20);
+            this.txtDataSourceLocation.Name = "txtDataSourceLocation";
+            this.txtDataSourceLocation.Size = new System.Drawing.Size(340, 27);
+            this.txtDataSourceLocation.TabIndex = 0;
+            this.txtDataSourceLocation.Text = "https://mysite.azurewebsites.net";
+            this.txtDataSourceLocation.WordWrap = false;
+            this.txtDataSourceLocation.TextChanged += new System.EventHandler(this.txtDataSouceLocation_TextChanged);
+            this.txtDataSourceLocation.GotFocus += new System.EventHandler(this.txtDataSouceLocation_GotFocus);
+            this.txtDataSourceLocation.LostFocus += new System.EventHandler(this.txtDataSouceLocation_LostFocus);
             // 
             // label19
             // 
@@ -135,7 +169,7 @@
             // btnUnitsMGDL
             // 
             this.btnUnitsMGDL.AutoSize = true;
-            this.btnUnitsMGDL.Location = new System.Drawing.Point(547, 99);
+            this.btnUnitsMGDL.Location = new System.Drawing.Point(442, 97);
             this.btnUnitsMGDL.Name = "btnUnitsMGDL";
             this.btnUnitsMGDL.Size = new System.Drawing.Size(77, 24);
             this.btnUnitsMGDL.TabIndex = 4;
@@ -146,7 +180,7 @@
             // 
             this.btnUnitsMMOL.AutoSize = true;
             this.btnUnitsMMOL.Checked = true;
-            this.btnUnitsMMOL.Location = new System.Drawing.Point(455, 99);
+            this.btnUnitsMMOL.Location = new System.Drawing.Point(338, 97);
             this.btnUnitsMMOL.Name = "btnUnitsMMOL";
             this.btnUnitsMMOL.Size = new System.Drawing.Size(86, 24);
             this.btnUnitsMMOL.TabIndex = 3;
@@ -174,17 +208,6 @@
             this.lblDataSourceLocation.Size = new System.Drawing.Size(252, 20);
             this.lblDataSourceLocation.TabIndex = 1;
             this.lblDataSourceLocation.Text = "Your Nightscout installation URL";
-            // 
-            // txtDataSouceLocation
-            // 
-            this.txtDataSouceLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataSouceLocation.Location = new System.Drawing.Point(455, 62);
-            this.txtDataSouceLocation.Name = "txtDataSouceLocation";
-            this.txtDataSouceLocation.Size = new System.Drawing.Size(351, 27);
-            this.txtDataSouceLocation.TabIndex = 0;
-            this.txtDataSouceLocation.Text = "https://mysite.azurewebsites.net";
-            this.txtDataSouceLocation.GotFocus += new System.EventHandler(this.txtDataSouceLocation_GotFocus);
-            this.txtDataSouceLocation.LostFocus += new System.EventHandler(this.txtDataSouceLocation_LostFocus);
             // 
             // btnVerifySubmit
             // 
@@ -239,11 +262,23 @@
             // chkEnableSoundAlarms
             // 
             this.chkEnableSoundAlarms.AutoSize = true;
-            this.chkEnableSoundAlarms.Location = new System.Drawing.Point(555, 289);
+            this.chkEnableSoundAlarms.Location = new System.Drawing.Point(491, 289);
             this.chkEnableSoundAlarms.Name = "chkEnableSoundAlarms";
             this.chkEnableSoundAlarms.Size = new System.Drawing.Size(18, 17);
             this.chkEnableSoundAlarms.TabIndex = 19;
             this.chkEnableSoundAlarms.UseVisualStyleBackColor = true;
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.BackColor = System.Drawing.Color.Transparent;
+            this.btnBrowse.FlatAppearance.BorderSize = 0;
+            this.btnBrowse.Location = new System.Drawing.Point(700, 56);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(106, 35);
+            this.btnBrowse.TabIndex = 7;
+            this.btnBrowse.Text = "Browse..";
+            this.btnBrowse.UseVisualStyleBackColor = false;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // label15
             // 
@@ -257,7 +292,7 @@
             // 
             // numStaleUrgent
             // 
-            this.numStaleUrgent.Location = new System.Drawing.Point(453, 247);
+            this.numStaleUrgent.Location = new System.Drawing.Point(389, 247);
             this.numStaleUrgent.Maximum = new decimal(new int[] {
             650,
             0,
@@ -281,7 +316,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(580, 220);
+            this.label13.Location = new System.Drawing.Point(516, 220);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(68, 20);
             this.label13.TabIndex = 16;
@@ -291,7 +326,7 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(580, 248);
+            this.label14.Location = new System.Drawing.Point(516, 248);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(68, 20);
             this.label14.TabIndex = 15;
@@ -299,7 +334,7 @@
             // 
             // numStaleWarning
             // 
-            this.numStaleWarning.Location = new System.Drawing.Point(454, 213);
+            this.numStaleWarning.Location = new System.Drawing.Point(390, 213);
             this.numStaleWarning.Maximum = new decimal(new int[] {
             650,
             0,
@@ -347,7 +382,7 @@
             0,
             0,
             65536});
-            this.numUrgentLow.Location = new System.Drawing.Point(454, 178);
+            this.numUrgentLow.Location = new System.Drawing.Point(390, 178);
             this.numUrgentLow.Maximum = new decimal(new int[] {
             650,
             0,
@@ -370,7 +405,7 @@
             0,
             0,
             65536});
-            this.numLow.Location = new System.Drawing.Point(454, 145);
+            this.numLow.Location = new System.Drawing.Point(390, 145);
             this.numLow.Maximum = new decimal(new int[] {
             650,
             0,
@@ -393,7 +428,7 @@
             0,
             0,
             65536});
-            this.numHigh.Location = new System.Drawing.Point(454, 112);
+            this.numHigh.Location = new System.Drawing.Point(390, 112);
             this.numHigh.Maximum = new decimal(new int[] {
             650,
             0,
@@ -416,7 +451,7 @@
             0,
             0,
             65536});
-            this.numUrgentHigh.Location = new System.Drawing.Point(454, 79);
+            this.numUrgentHigh.Location = new System.Drawing.Point(390, 79);
             this.numUrgentHigh.Maximum = new decimal(new int[] {
             650,
             0,
@@ -802,8 +837,10 @@
         private System.Windows.Forms.ComboBox cbDataSource;
         private System.Windows.Forms.Label label19;
         public System.Windows.Forms.Label lblDataSourceLocation;
-        public System.Windows.Forms.TextBox txtDataSouceLocation;
+        public System.Windows.Forms.TextBox txtDataSourceLocation;
         public System.Windows.Forms.RadioButton btnUnitsMGDL;
         public System.Windows.Forms.RadioButton btnUnitsMMOL;
+        private System.Windows.Forms.Button btnBrowse;
+        private System.Windows.Forms.TableLayoutPanel tblpDataSourceLocations;
     }
 }

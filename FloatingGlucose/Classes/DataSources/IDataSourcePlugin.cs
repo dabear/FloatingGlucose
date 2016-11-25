@@ -49,6 +49,8 @@ namespace FloatingGlucose.Classes.DataSources
 
         //GUI related
         void OnPluginSelected(FormGlucoseSettings settingsForm);
+        bool RequiresBrowseButton { get; }
+        string BrowseDialogFileFilter { get; }
 
     }
     

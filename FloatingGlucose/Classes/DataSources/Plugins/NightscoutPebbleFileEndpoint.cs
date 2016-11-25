@@ -19,6 +19,8 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     class NightscoutPebbleFileEndpoint : NightscoutPebbleEndpoint, IDataSourcePlugin
     {
+        public override bool RequiresBrowseButton => true;
+        public override string BrowseDialogFileFilter => "Nightscout Dumps|*.nsdata.dump;*.nsdata|Text files|*.txt";
         public override string DataSourceShortName => "Nightscout File Dump";
 
         public override void OnPluginSelected(FormGlucoseSettings form)

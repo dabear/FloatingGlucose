@@ -124,6 +124,9 @@
   <data name="alarm2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\alarm2.mp3;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="browse_file" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\browse-file.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="noun_335372_cc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\noun_335372_cc.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>

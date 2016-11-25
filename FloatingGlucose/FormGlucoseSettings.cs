@@ -26,19 +26,19 @@ namespace FloatingGlucose
 
         private void txtDataSouceLocation_GotFocus(object sender, EventArgs e)
         {
-            var colonPartPos = this.txtDataSouceLocation.Text.IndexOf("://");
-            var azurePartPos = this.txtDataSouceLocation.Text.IndexOf(".azurewebsites.net");
+            var colonPartPos = this.txtDataSourceLocation.Text.IndexOf("://");
+            var azurePartPos = this.txtDataSourceLocation.Text.IndexOf(".azurewebsites.net");
             if(colonPartPos != -1 && azurePartPos != -1 && colonPartPos < azurePartPos)
             {
-                this.txtDataSouceLocation.Select(colonPartPos+3, azurePartPos-colonPartPos-3);
+                this.txtDataSourceLocation.Select(colonPartPos+3, azurePartPos-colonPartPos-3);
             } 
 
         }
         private void txtDataSouceLocation_LostFocus(object sender, EventArgs e)
         {
-            if (this.txtDataSouceLocation.Text == "")
+            if (this.txtDataSourceLocation.Text == "")
             {
-                this.txtDataSouceLocation.Text = "https://mysite.azurewebsites.net";
+                this.txtDataSourceLocation.Text = "https://mysite.azurewebsites.net";
             }
 
         }
@@ -93,11 +93,11 @@ namespace FloatingGlucose
             //override it so it makes sense
             if (nsurl == "https://...")
             {
-                this.txtDataSouceLocation.Text = "https://mysite.azurewebsites.net";
+                this.txtDataSourceLocation.Text = "https://mysite.azurewebsites.net";
             }
             else
             {
-                this.txtDataSouceLocation.Text = nsurl;
+                this.txtDataSourceLocation.Text = nsurl;
             }
 
             
@@ -117,6 +117,16 @@ namespace FloatingGlucose
             this.lblVersionInfo.Text = "Version: " + AppShared.AppVersion;
             this.lblVersionInfo.Enabled = true;
 
+            /*this.btnBrowse.Image = Properties.Resources.browse_file.ToBitmap();
+            this.btnBrowse.Size = new Size(32,32);
+            this.btnBrowse.Text = "";*/
+
+
+
+
+            //browse button control visibility logic
+            //this.tblpDataSourceLocations.GetControlFromPosition(1, 0).Visible = false;
+            this.btnBrowse.Visible = false;
             // Fill the list of plugins, these are fairly static and won't change during runtime
             var allPlugins = PluginLoader.Instance.GetAllPlugins();
             IDataSourcePlugin activePlugin;
@@ -176,7 +186,7 @@ namespace FloatingGlucose
             else
             {
                 this.tabSettings.SelectTab(this.tabPageBasic);
-                this.txtDataSouceLocation.Select();
+                this.txtDataSourceLocation.Select();
             }
 
         }
@@ -201,7 +211,10 @@ namespace FloatingGlucose
                 // and exit
                 //Application.Exit();
             }
-
+            //reload to settings stored in file
+            //user has aborted the changes
+            //made in the gui
+            Default.Reload();
             base.OnClosing(e);
             
         }
@@ -222,7 +235,7 @@ namespace FloatingGlucose
 
             
 
-            Default.DataPathLocation = this.txtDataSouceLocation.Text;
+            Default.DataPathLocation = this.txtDataSourceLocation.Text;
             Default.EnableAlarms = this.btnEnableAlarms.Checked;
             Default.AlarmUrgentHigh = this.numUrgentHigh.Value;
             Default.AlarmHigh = this.numHigh.Value;
@@ -353,6 +366,30 @@ namespace FloatingGlucose
             var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
             PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
             selectedPlugin.Instance.OnPluginSelected(this);
+
+            this.btnBrowse.Visible = selectedPlugin.Instance.RequiresBrowseButton;
+
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
+
+            dialog.Filter = selectedPlugin.Instance.BrowseDialogFileFilter;
+            dialog.InitialDirectory = Path.GetPathRoot(Environment.SystemDirectory);
+            dialog.Title = "Please select a file for the plugin to handle";
+            
+            if (dialog.ShowDialog() == DialogResult.OK) {
+                this.txtDataSourceLocation.Text = dialog.FileName;
+            }
+            dialog.Dispose();
+            dialog = null;
+        }
+
+        private void txtDataSouceLocation_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

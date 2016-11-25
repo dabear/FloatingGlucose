@@ -22,7 +22,7 @@ using System.Collections.Specialized;
 namespace FloatingGlucose
 {
 
-    public partial class FloatingGlucose : Form//AutoPositionedForm
+    public partial class FloatingGlucose : Form
     {
 
         //nightscout URL, will be used to create a pebble endpoint to fetch data from

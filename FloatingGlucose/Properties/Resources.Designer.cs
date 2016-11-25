@@ -83,6 +83,16 @@ namespace FloatingGlucose.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
+        internal static System.Drawing.Icon browse_file {
+            get {
+                object obj = ResourceManager.GetObject("browse_file", resourceCulture);
+                return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
+        /// </summary>
         internal static System.Drawing.Icon noun_335372_cc {
             get {
                 object obj = ResourceManager.GetObject("noun_335372_cc", resourceCulture);

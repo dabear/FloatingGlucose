@@ -211,6 +211,7 @@
     <Content Include="README_attributions.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\browse-file.ico" />
     <None Include="Resources\alarm.mp3" />
     <None Include="Resources\alarm2.mp3" />
   </ItemGroup>
