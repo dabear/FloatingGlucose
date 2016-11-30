@@ -51,7 +51,7 @@
       <Value Profile="(Default)">85</Value>
     </Setting>
     <Setting Name="DataSourceFullName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">FloatingGlucose.Classes.DataSources.Plugins.NightscoutPebbleEndpoint</Value>
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>

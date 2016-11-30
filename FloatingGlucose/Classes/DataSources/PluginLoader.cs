@@ -50,6 +50,10 @@ namespace FloatingGlucose.Classes.DataSources
             //use default plugin from config file
             // this can change between run
             var fullname = Default.DataSourceFullName;
+            if(fullname.Length==0)
+            {
+                throw new NoPluginChosenException("");
+            }
             return this.SetActivePlugin(fullname);
 
         }

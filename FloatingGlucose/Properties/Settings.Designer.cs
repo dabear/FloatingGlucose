@@ -217,7 +217,7 @@ namespace FloatingGlucose.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("FloatingGlucose.Classes.DataSources.Plugins.NightscoutPebbleEndpoint")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string DataSourceFullName {
             get {
                 return ((string)(this["DataSourceFullName"]));

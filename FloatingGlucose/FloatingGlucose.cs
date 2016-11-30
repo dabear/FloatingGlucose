@@ -348,6 +348,12 @@ namespace FloatingGlucose
                 this.settingsForm.Visible = false;
                 this.settingsForm.ShowDialogIfNonVisible();
             }
+            catch (NoPluginChosenException)
+            {
+                //this will happen on first run, as there is no default set plugin anymore
+                this.WriteDebug("no plugin is chosen");
+                this.settingsForm.ShowDialogIfNonVisible();
+            }
             catch(NoSuchPluginException ex)
             {
                 var msg = "A datasource plugin was chosen that is no longer available, please choose another datasource: "  + ex.Message;
@@ -471,10 +477,6 @@ namespace FloatingGlucose
             setScaling(Default.GuiScalingRatio);
             setChildrenOnMouseDown();
 
-            
-                
-            
-
             notifyIcon1.BalloonTipClosed += (asender, ev) =>{
                 notifyIcon1.Visible = false;
                 notifyIcon1.Dispose();
@@ -490,12 +492,6 @@ namespace FloatingGlucose
 
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
-
-            /*if (!Validators.IsUrl(this.datasourceLocation)) {
-                this.settingsForm.Visible = false;
-                this.settingsForm.ShowDialogIfNonVisible();
-
-            }*/
             this.setFormSize();
          
             this.Opacity = Default.GuiOpacity / 100D;

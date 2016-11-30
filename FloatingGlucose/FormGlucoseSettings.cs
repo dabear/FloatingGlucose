@@ -138,6 +138,10 @@ namespace FloatingGlucose
             {
                 activePlugin = null;
             }
+            catch (NoPluginChosenException)
+            {
+                activePlugin = null;
+            }
             this.cbDataSource.Items.Clear();
 
             foreach (DataSourceInfo plugin in allPlugins)
