@@ -155,6 +155,11 @@ namespace FloatingGlucose
 
         private void SetErrorState(Exception ex=null) {
 
+            //if an error occured in fetching data, 
+            //alarms shall be discontinued.
+            var manager = SoundAlarm.Instance;
+            manager.StopAlarm();
+
             this.lblRawBG.Text = "0";
             this.lblRawDelta.Text = "-";
 
