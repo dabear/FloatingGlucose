@@ -123,18 +123,13 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 }
                 catch (InvalidOperationException)
                 {
-                    throw new InvalidJsonDataException("The raw data are not available, enable RAWBG in your azure settings");
+                    throw new InvalidJsonDataException("The raw data are not available, you may have enable RAWBG in your azure settings");
                 }
 
             }
         }
 
         public DateTime LocalDate => this.Date.ToLocalTime();
-
-        
-
-        
-
         public bool IsMmol => Default.GlucoseUnits == "mmol";
         public virtual string DataSourceShortName => "Nightscout URL";
 

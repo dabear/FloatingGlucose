@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDataSourceLocation = new System.Windows.Forms.TextBox();
+            this.btnBrowse = new System.Windows.Forms.Button();
             this.cbDataSource = new System.Windows.Forms.ComboBox();
             this.tblpDataSourceLocations = new System.Windows.Forms.TableLayoutPanel();
-            this.txtDataSourceLocation = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.btnUnitsMGDL = new System.Windows.Forms.RadioButton();
             this.btnUnitsMMOL = new System.Windows.Forms.RadioButton();
@@ -41,7 +42,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.grpAlarmSettings = new System.Windows.Forms.GroupBox();
             this.chkEnableSoundAlarms = new System.Windows.Forms.CheckBox();
-            this.btnBrowse = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.numStaleUrgent = new System.Windows.Forms.NumericUpDown();
             this.label13 = new System.Windows.Forms.Label();
@@ -116,6 +116,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nightscout settings";
             // 
+            // txtDataSourceLocation
+            // 
+            this.txtDataSourceLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtDataSourceLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtDataSourceLocation.Location = new System.Drawing.Point(338, 60);
+            this.txtDataSourceLocation.MaximumSize = new System.Drawing.Size(340, 28);
+            this.txtDataSourceLocation.MinimumSize = new System.Drawing.Size(290, 20);
+            this.txtDataSourceLocation.Name = "txtDataSourceLocation";
+            this.txtDataSourceLocation.Size = new System.Drawing.Size(340, 27);
+            this.txtDataSourceLocation.TabIndex = 0;
+            this.txtDataSourceLocation.Text = "https://mysite.azurewebsites.net";
+            this.txtDataSourceLocation.WordWrap = false;
+      
+            // 
+            // btnBrowse
+            // 
+            this.btnBrowse.BackColor = System.Drawing.Color.Transparent;
+            this.btnBrowse.FlatAppearance.BorderSize = 0;
+            this.btnBrowse.Location = new System.Drawing.Point(700, 56);
+            this.btnBrowse.Name = "btnBrowse";
+            this.btnBrowse.Size = new System.Drawing.Size(106, 35);
+            this.btnBrowse.TabIndex = 7;
+            this.btnBrowse.Text = "Browse..";
+            this.btnBrowse.UseVisualStyleBackColor = false;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
+            // 
             // cbDataSource
             // 
             this.cbDataSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -139,22 +165,6 @@
             this.tblpDataSourceLocations.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tblpDataSourceLocations.Size = new System.Drawing.Size(0, 0);
             this.tblpDataSourceLocations.TabIndex = 8;
-            // 
-            // txtDataSourceLocation
-            // 
-            this.txtDataSourceLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtDataSourceLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataSourceLocation.Location = new System.Drawing.Point(338, 60);
-            this.txtDataSourceLocation.MaximumSize = new System.Drawing.Size(340, 28);
-            this.txtDataSourceLocation.MinimumSize = new System.Drawing.Size(290, 20);
-            this.txtDataSourceLocation.Name = "txtDataSourceLocation";
-            this.txtDataSourceLocation.Size = new System.Drawing.Size(340, 27);
-            this.txtDataSourceLocation.TabIndex = 0;
-            this.txtDataSourceLocation.Text = "https://mysite.azurewebsites.net";
-            this.txtDataSourceLocation.WordWrap = false;
-            this.txtDataSourceLocation.TextChanged += new System.EventHandler(this.txtDataSouceLocation_TextChanged);
-            this.txtDataSourceLocation.GotFocus += new System.EventHandler(this.txtDataSouceLocation_GotFocus);
-            this.txtDataSourceLocation.LostFocus += new System.EventHandler(this.txtDataSouceLocation_LostFocus);
             // 
             // label19
             // 
@@ -267,18 +277,6 @@
             this.chkEnableSoundAlarms.Size = new System.Drawing.Size(18, 17);
             this.chkEnableSoundAlarms.TabIndex = 19;
             this.chkEnableSoundAlarms.UseVisualStyleBackColor = true;
-            // 
-            // btnBrowse
-            // 
-            this.btnBrowse.BackColor = System.Drawing.Color.Transparent;
-            this.btnBrowse.FlatAppearance.BorderSize = 0;
-            this.btnBrowse.Location = new System.Drawing.Point(700, 56);
-            this.btnBrowse.Name = "btnBrowse";
-            this.btnBrowse.Size = new System.Drawing.Size(106, 35);
-            this.btnBrowse.TabIndex = 7;
-            this.btnBrowse.Text = "Browse..";
-            this.btnBrowse.UseVisualStyleBackColor = false;
-            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // label15
             // 

@@ -40,17 +40,16 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             get
             {
                 var firstCsv = this.csv.First();
-                // if(firstCsv)
-                // {
-                // return Convert.ToDateTime(firstCsv.DateReading);
-                return DateTime.ParseExact(firstCsv.DateReading, "dd/MM/yyyy HH.mm.ss", CultureInfo.InvariantCulture);
-                // }
 
-                return new DateTime(1988, 06, 05);
+                return DateTime.ParseExact(firstCsv.DateReading, "dd/MM/yyyy HH.mm.ss", CultureInfo.InvariantCulture);
+
+
+                //for testing only:
+                //return new DateTime(1988, 06, 05);
             }
         }
 
-        public string FormattedDelta => $"{(this.RoundedDelta() >= 0.0 ? "+" : "")}{this.RoundedDelta():N1}";
+        
 
 
 
@@ -63,7 +62,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public double RoundedRawDelta() => 0.0;
         public double RawGlucose => 0.0;
         public double PreviousRawGlucose => 0.0;
-        public string FormattedRawDelta => "";
+       
 
 
         public DateTime LocalDate => this.Date;
@@ -88,10 +87,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             get
             {
                 var reading = this.csv.First();
-                //if (reading != null)
-                //{
-                    return ConvertToMmolIfNeeded(Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture));
-               // }
+                return ConvertToMmolIfNeeded(Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture));
 
             }
         }

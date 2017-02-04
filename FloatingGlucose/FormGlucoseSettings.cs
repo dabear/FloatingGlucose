@@ -24,26 +24,6 @@ namespace FloatingGlucose
             InitializeComponent();
         }
 
-        private void txtDataSouceLocation_GotFocus(object sender, EventArgs e)
-        {
-            var colonPartPos = this.txtDataSourceLocation.Text.IndexOf("://");
-            var azurePartPos = this.txtDataSourceLocation.Text.IndexOf(".azurewebsites.net");
-            if(colonPartPos != -1 && azurePartPos != -1 && colonPartPos < azurePartPos)
-            {
-                this.txtDataSourceLocation.Select(colonPartPos+3, azurePartPos-colonPartPos-3);
-            } 
-
-        }
-        private void txtDataSouceLocation_LostFocus(object sender, EventArgs e)
-        {
-            if (this.txtDataSourceLocation.Text == "")
-            {
-                this.txtDataSourceLocation.Text = "https://mysite.azurewebsites.net";
-            }
-
-        }
-
-
         private void updateAlarmSettingsEnabled(bool enabled=true) {
             
             var controls = this.grpAlarmSettings.Controls.OfType<NumericUpDown>().ToList();
@@ -303,17 +283,6 @@ namespace FloatingGlucose
 
         private void NumericUpDowns_Value_Changed(object sender, EventArgs e)
         {
-            if (sender == null) {
-                return;
-            }
-
-            var button = sender as NumericUpDown;
-
-            //if above 36,assume this is a mg/dl value rather than mmol/L
-            button.Increment = button.Value >= 36 ? 1.0M : 0.1M;
-
-
-            
 
         }
 
