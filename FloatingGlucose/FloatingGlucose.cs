@@ -214,7 +214,7 @@ namespace FloatingGlucose
 
             try
             {
-                WriteDebug("Trying to refresh data");
+                WriteDebug("Start Trying to refresh data");
 
                 var endpoint = PluginLoader.Instance.GetActivePlugin();
                 var name = endpoint.DataSourceShortName;
@@ -264,7 +264,7 @@ namespace FloatingGlucose
                         {
                             setLabelsColor(Color.Yellow);
                         }
-
+                        WriteDebug("Refreshed, but got stale data");
                         return;
                     }
                 }
@@ -356,7 +356,7 @@ namespace FloatingGlucose
             catch (NoPluginChosenException)
             {
                 //this will happen on first run, as there is no default set plugin anymore
-                this.WriteDebug("no plugin is chosen");
+                this.WriteDebug("No plugin is chosen");
                 this.settingsForm.ShowDialogIfNonVisible();
             }
             catch(NoSuchPluginException ex)
@@ -397,7 +397,7 @@ namespace FloatingGlucose
             //this.lblRawDelta.Text = "+50.0";
             //this.lblDelta.Text = "-50.0";
 
-
+            WriteDebug("End Trying to refresh data");
 
 
 
@@ -487,13 +487,12 @@ namespace FloatingGlucose
                 notifyIcon1.Dispose();
             };
 
-            // Enable special label only for debugging, 
+            // Enable special color for  debugging, 
             // This is very handy when devloping with a Release binary running alongside a dev version
             if (this.isDebuggingBuild)
             {
-                this.lblDebugModeOn.Visible = true;
+                this.BackColor = Color.LightBlue;
             }
-
 
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 

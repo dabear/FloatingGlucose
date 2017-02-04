@@ -31,7 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.lblGlucoseValue = new System.Windows.Forms.Label();
             this.lblLastUpdate = new System.Windows.Forms.Label();
-            this.lblDebugModeOn = new System.Windows.Forms.Label();
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.showApplicationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -41,12 +40,12 @@
             this.reenableAlarmsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.postponedUntilFooToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openNightscoutSiteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.quitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.lblDelta = new System.Windows.Forms.Label();
             this.lblRawBG = new System.Windows.Forms.Label();
             this.lblRawDelta = new System.Windows.Forms.Label();
-            this.reloadToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -54,7 +53,7 @@
             // 
             this.lblGlucoseValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblGlucoseValue.AutoSize = true;
-            this.lblGlucoseValue.BackColor = System.Drawing.Color.Black;
+            this.lblGlucoseValue.BackColor = System.Drawing.Color.Transparent;
             this.lblGlucoseValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGlucoseValue.ForeColor = System.Drawing.Color.Green;
             this.lblGlucoseValue.Location = new System.Drawing.Point(35, 9);
@@ -76,19 +75,6 @@
             this.lblLastUpdate.Text = "N/A";
             this.lblLastUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // lblDebugModeOn
-            // 
-            this.lblDebugModeOn.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDebugModeOn.AutoSize = true;
-            this.lblDebugModeOn.Font = new System.Drawing.Font("Microsoft Sans Serif", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDebugModeOn.ForeColor = System.Drawing.Color.Yellow;
-            this.lblDebugModeOn.Location = new System.Drawing.Point(150, 9);
-            this.lblDebugModeOn.Name = "lblDebugModeOn";
-            this.lblDebugModeOn.Size = new System.Drawing.Size(35, 13);
-            this.lblDebugModeOn.TabIndex = 6;
-            this.lblDebugModeOn.Text = "(DEV)";
-            this.lblDebugModeOn.Visible = false;
-            // 
             // notifyIcon1
             // 
             this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
@@ -105,7 +91,7 @@
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(226, 188);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(226, 160);
             // 
             // showApplicationToolStripMenuItem
             // 
@@ -162,6 +148,13 @@
             this.openNightscoutSiteToolStripMenuItem.Text = "&Open nightscout site";
             this.openNightscoutSiteToolStripMenuItem.Click += new System.EventHandler(this.openNightscoutSiteToolStripMenuItem_Click);
             // 
+            // reloadToolStripMenuItem
+            // 
+            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.reloadToolStripMenuItem.Text = "&Reload";
+            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
+            // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
@@ -180,7 +173,7 @@
             // 
             this.lblDelta.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDelta.AutoSize = true;
-            this.lblDelta.BackColor = System.Drawing.Color.Black;
+            this.lblDelta.BackColor = System.Drawing.Color.Transparent;
             this.lblDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDelta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblDelta.Location = new System.Drawing.Point(48, 57);
@@ -216,13 +209,6 @@
             this.lblRawDelta.Text = "-";
             this.lblRawDelta.Visible = false;
             // 
-            // reloadToolStripMenuItem
-            // 
-            this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
-            this.reloadToolStripMenuItem.Text = "&Reload";
-            this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
-            // 
             // FloatingGlucose
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -233,7 +219,6 @@
             this.Controls.Add(this.lblRawDelta);
             this.Controls.Add(this.lblRawBG);
             this.Controls.Add(this.lblDelta);
-            this.Controls.Add(this.lblDebugModeOn);
             this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.lblGlucoseValue);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -255,7 +240,6 @@
         private System.Windows.Forms.Label lblGlucoseValue;
         private System.Windows.Forms.Label lblDelta;
         private System.Windows.Forms.Label lblLastUpdate;
-        private System.Windows.Forms.Label lblDebugModeOn;
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripMenuItem showApplicationToolStripMenuItem;
