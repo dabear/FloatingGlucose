@@ -69,6 +69,20 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public DateTime LocalDate => this.Date;
         public double RoundedDelta() => Math.Round(this.Delta, 1);
 
+        public bool IsMmol => Default.GlucoseUnits == "mmol";
+
+        private double ConvertToMmolIfNeeded(double glucose)
+        {
+
+            if (this.IsMmol)
+            {
+                
+                return glucose / 18.01559;
+            }
+            return glucose;
+        }
+
+
         public double Glucose
         {
             get
@@ -76,7 +90,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 var reading = this.csv.First();
                 //if (reading != null)
                 //{
-                    return Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
+                    return ConvertToMmolIfNeeded(Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture));
                // }
 
             }
@@ -87,7 +101,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             get
             {
                 var reading = this.csv.Skip(1).First();
-                return Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
+                return ConvertToMmolIfNeeded(Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture));
             }
         }
 
