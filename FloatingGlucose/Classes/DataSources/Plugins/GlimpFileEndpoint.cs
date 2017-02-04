@@ -33,11 +33,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public string BrowseDialogFileFilter => "Glimp Glucose file |GlicemiaMisurazioni.csv";
         public string DataSourceShortName => "Glimp Dropbox File";
 
-        private List<RawGlimpData> csv = new List<RawGlimpData>();
-
-        public string Direction;
-        public double Glucose;
-        public double PreviousGlucose;
+        private List<RawGlimpData> csv = new List<RawGlimpData>();  
 
         public DateTime Date
         {
@@ -54,68 +50,26 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             }
         }
 
-        
-
-        
-
-        public double Delta
-        {
-            get
-            {
-                return 0.0;
-            }
-        }
-
-        public double RawDelta
-        {
-            get
-            {
-                return 0.0;
-            }
-        }
+        public string FormattedDelta => $"{(this.RoundedDelta() >= 0.0 ? "+" : "")}{this.RoundedDelta():N1}";
 
 
-        public double RawGlucose
-        {
-            get
-            {
-                return 0.0;
-            }
-        }
 
-        public double PreviousRawGlucose
-        {
-            get
-            {
-                return 0.0;
-            }
-        }
+        public double Delta => this.Glucose - this.PreviousGlucose;
 
-        public string FormattedDelta
-        {
-            get
-            {
-                return "";
-            }
-        }
+        //
+        // Raw glucose is not supported for this plugin
+        //
+        public double RawDelta => 0.0;
+        public double RoundedRawDelta() => 0.0;
+        public double RawGlucose => 0.0;
+        public double PreviousRawGlucose => 0.0;
+        public string FormattedRawDelta => "";
 
-        public string FormattedRawDelta
-        {
-            get
-            {
-                return "";
-            }
-        }
 
-        public DateTime LocalDate
-        {
-            get
-            {
-                return this.Date;
-            }
-        }
+        public DateTime LocalDate => this.Date;
+        public double RoundedDelta() => Math.Round(this.Delta, 1);
 
-        double IDataSourcePlugin.Glucose
+        public double Glucose
         {
             get
             {
@@ -128,7 +82,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             }
         }
 
-        double IDataSourcePlugin.PreviousGlucose
+        public double PreviousGlucose
         {
             get
             {
@@ -137,7 +91,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             }
         }
 
-        string IDataSourcePlugin.Direction
+        public string Direction
         {
             get
             {
@@ -210,13 +164,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
             }
 
-            if(this.csv.Count() > 0)
-            {
-                this.Direction = "";
-                
-                //this.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
-                //this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
-            }
+            
 
 
 
@@ -225,14 +173,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         }
 
-        public double RoundedDelta()
-        {
-            return 0.0;
-        }
 
-        public double RoundedRawDelta()
-        {
-            return 0.0;
-        }
+        
     }
 }
