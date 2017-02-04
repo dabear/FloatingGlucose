@@ -48,7 +48,7 @@ namespace FloatingGlucose
 
 
         private int refreshTime => Default.RefreshIntervalInSeconds * 1000;//converted to milliseconds
-      
+        private System.Windows.Forms.Timer refreshGlucoseTimer;
         
         
 #if DEBUG
@@ -122,7 +122,7 @@ namespace FloatingGlucose
         }
 
         private void setFormSize() {
-            // This is a nasy and ugly hack. It adjusts the size of the main form
+            // This is a nasty and ugly hack. It adjusts the size of the main form
             // Based on predicted max widths of it's contained elements
             // This must be set dynamically because the font sizes might change
             // if the scaling factor changes
@@ -497,21 +497,33 @@ namespace FloatingGlucose
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
             this.setFormSize();
-         
-            this.Opacity = Default.GuiOpacity / 100D;
+
+            this.SetOpacity();
 
             this.LoadGlucoseValue();
             
-            var refreshGlucoseTimer = new System.Windows.Forms.Timer();
+            this.refreshGlucoseTimer = new System.Windows.Forms.Timer();
             //auto refresh data once every x seconds
-            refreshGlucoseTimer.Interval = this.refreshTime;
+            this.refreshGlucoseTimer.Interval = this.refreshTime;
             //every 60s (default) reload the glucose numbers from the nightscout pebble endpoint
-            refreshGlucoseTimer.Tick += new EventHandler((asender, ev)=> LoadGlucoseValue());
-            refreshGlucoseTimer.Start();
+            this.refreshGlucoseTimer.Tick += new EventHandler((asender, ev)=> LoadGlucoseValue());
+            this.refreshGlucoseTimer.Start();
 
             
 
         }
+
+        private void SetOpacity()
+        {
+            if(this.Opacity != Default.GuiOpacity / 100D)
+            {
+                WriteDebug($"Setting opacity to {Default.GuiOpacity}%");
+                this.Opacity = Default.GuiOpacity / 100D;
+            }
+            
+        }
+
+
         private bool Settings_Changed_Event() {
 
             //we got notified via the appshared proxy that settings have been changed
@@ -520,7 +532,25 @@ namespace FloatingGlucose
             this.lblRawDelta.Visible =
             this.lblRawBG.Visible = Default.EnableRawGlucoseDisplay;
 
+            this.SetOpacity();
+
+
             this.LoadGlucoseValue();
+
+            //refreshTime => Default.RefreshIntervalInSeconds * 1000;
+
+
+
+
+            if(this.refreshTime != this.refreshGlucoseTimer.Interval)
+            {
+                WriteDebug($"Resetting the refresh interval to {Default.RefreshIntervalInSeconds} seconds");
+                this.refreshGlucoseTimer.Stop();
+                this.refreshGlucoseTimer.Interval = this.refreshTime;
+                this.refreshGlucoseTimer.Start();
+            }
+  
+
             return false;
         }
 
