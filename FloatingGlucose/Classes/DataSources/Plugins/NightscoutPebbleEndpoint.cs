@@ -28,9 +28,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public string Direction { get; set; }
 
 
-        public string FormattedDelta => $"{(this.RoundedDelta() >= 0.0 ? "+" : "")}{this.RoundedDelta():N1}";
+        
         public double RawDelta => this.RawGlucose - this.PreviousRawGlucose;
-        public string FormattedRawDelta => $"{(this.RoundedRawDelta() >= 0.0 ? "+" : "")}{this.RoundedRawDelta():N1}";
+        
 
         public double RoundedDelta() => Math.Round(this.Delta, 1);
         public double RoundedRawDelta() => Math.Round(this.RawDelta, 1);
@@ -131,38 +131,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public DateTime LocalDate => this.Date.ToLocalTime();
 
-        public string DirectionArrow
-        {
-            get
-            {
+        
 
-                switch (this.Direction)
-                {
-                    case "DoubleUp":
-                        return "⇈";
-                    case "SingleUp":
-                        return "↑";
-                    case "FortyFiveUp":
-                        return "↗";
-                    case "Flat":
-                        return "→";
-                    case "FortyFiveDown":
-                        return "↘";
-                    case "SingleDown":
-                        return "↓";
-                    case "DoubleDown":
-                        return "⇊";
-                    case "NOT COMPUTABLE":
-                        return "-";
-                    case "RATE OUT OF RANGE":
-                        return "⇕";
-                    default:
-                    case "None":
-                        return "⇼";
-                }
-            }
-
-        }
+        
 
         public bool IsMmol => Default.GlucoseUnits == "mmol";
         public virtual string DataSourceShortName => "Nightscout URL";

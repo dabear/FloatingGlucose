@@ -113,13 +113,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             }
         }
 
-        public string DirectionArrow
-        {
-            get
-            {
-                return "n/a";
-            }
-        }
+        
 
         public void OnPluginSelected(FormGlucoseSettings form)
         {

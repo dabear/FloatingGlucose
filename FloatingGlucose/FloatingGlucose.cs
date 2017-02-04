@@ -269,7 +269,7 @@ namespace FloatingGlucose
                     }
                 }
 
-                string arrow = data.DirectionArrow;
+                string arrow = data.DirectionArrow();
 
                 //mgdl values are always reported in whole numbers
                 this.lblGlucoseValue.Text = Default.GlucoseUnits == "mmol" ?
@@ -279,7 +279,7 @@ namespace FloatingGlucose
                 var status = GlucoseStatus.GetGlucoseStatus((decimal)data.Glucose);
 
 
-                this.lblDelta.Text = data.FormattedDelta + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
+                this.lblDelta.Text = data.FormattedDelta() + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
 
 
 
@@ -381,7 +381,7 @@ namespace FloatingGlucose
 
             try {
                 if (Default.EnableRawGlucoseDisplay && data != null) {
-                    this.lblRawDelta.Text = data.FormattedRawDelta;
+                    this.lblRawDelta.Text = data.FormattedRawDelta();
                 }
             }
             catch (InvalidJsonDataException) {

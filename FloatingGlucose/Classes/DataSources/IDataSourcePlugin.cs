@@ -28,14 +28,9 @@ namespace FloatingGlucose.Classes.DataSources
         double RawDelta { get; }
         //this is a text describing in which direction the current glucose trend is heading
         string Direction { get; }
-        string DirectionArrow { get; }
         double RawGlucose { get; }
         double PreviousRawGlucose { get; }
         
-        string FormattedDelta { get; }
-
-        string FormattedRawDelta { get; }
-
         double RoundedDelta();
         double RoundedRawDelta();
 
