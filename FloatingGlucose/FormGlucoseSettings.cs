@@ -213,8 +213,8 @@ namespace FloatingGlucose
 
         private void btnVerifySubmit_Click(object sender, EventArgs e)
         {
-            /*if (!Validators.IsUrl(this.txtDataSouceLocation.Text) || this.txtDataSouceLocation.Text == "https://mysite.azurewebsites.net") {
-                MessageBox.Show("You have entered an invalid nightscout site URL", AppShared.AppName, MessageBoxButtons.OK,
+            /*if (!Validators.IsUrl(this.txtDataSourceLocation.Text) || this.txtDataSourceLocation.Text == "https://mysite.azurewebsites.net") {
+                MessageBox.Show("You have entered an invalid Nightscout site URL", AppShared.AppName, MessageBoxButtons.OK,
                 MessageBoxIcon.Error);
                 return;
             }*/

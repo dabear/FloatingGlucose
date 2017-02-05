@@ -83,7 +83,7 @@ namespace FloatingGlucose
             var ratio = new SizeF(scale, scale);
             this.Scale(ratio);
             //this is a hack. Scale() doesn't change font sizes
-            // as this is a simple form with onlt labels, set new font sizes for these controls
+            // as this is a simple form with only labels, set new font sizes for these controls
             // based on the scaling factor used above
             var controls = this.Controls.OfType<Label>().ToList();
             controls.ForEach(x =>
@@ -144,7 +144,7 @@ namespace FloatingGlucose
 
         private void SetErrorState(Exception ex = null)
         {
-            //if an error occured in fetching data,
+            //if an error occurred in fetching data,
             //alarms shall be discontinued.
             var manager = SoundAlarm.Instance;
             manager.StopAlarm();
@@ -350,7 +350,7 @@ namespace FloatingGlucose
 
             /* catch (Exception ex)
              {
-                 var msg = "An unknown error occured of type " + ex.GetType().ToString() + ": " + ex.Message;
+                 var msg = "An unknown error occurred of type " + ex.GetType().ToString() + ": " + ex.Message;
                  this.showErrorMessage(msg);
                  Application.Exit();
              }*/
@@ -461,7 +461,7 @@ namespace FloatingGlucose
             };
 
             // Enable special color for  debugging,
-            // This is very handy when devloping with a Release binary running alongside a dev version
+            // This is very handy when developing with a Release binary running alongside a dev version
             if (this.isDebuggingBuild)
             {
                 this.BackColor = Color.LightBlue;
@@ -478,7 +478,7 @@ namespace FloatingGlucose
             AppShared.refreshGlucoseTimer = new System.Windows.Forms.Timer();
             //auto refresh data once every x seconds
             AppShared.refreshGlucoseTimer.Interval = this.refreshTime;
-            //every 60s (default) reload the glucose numbers from the nightscout pebble endpoint
+            //every 60s (default) reload the glucose numbers from the Nightscout pebble endpoint
             AppShared.refreshGlucoseTimer.Tick += new EventHandler((asender, ev) => LoadGlucoseValue());
             AppShared.refreshGlucoseTimer.Start();
         }
@@ -622,7 +622,7 @@ namespace FloatingGlucose
             }
             else
             {
-                this.showErrorMessage("The nightscout url is not configured!");
+                this.showErrorMessage("The Nightscout url is not configured!");
             }
         }
 

@@ -131,7 +131,7 @@ namespace FloatingGlucose.Classes
 
         /// <summary>
         /// The virtual dispose method that allows
-        /// classes inherithed from this one to dispose their resources.
+        /// classes inherited from this one to dispose their resources.
         /// </summary>
         /// <param name="disposing"></param>
         protected virtual void Dispose(bool disposing)

@@ -54,7 +54,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 }
             }
 
-            //this special value is only triggered when the dexcom upload is brand new
+            //this special value is only triggered when the Dexcom upload is brand new
             //from a brand new sensor?
             if (specialValue == 1)
             {
@@ -130,7 +130,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             if (!Validators.IsUrl(settings.DataPathLocation) || settings.DataPathLocation == "https://mysite.azurewebsites.net")
             {
-                throw new ConfigValidationException("You have entered an invalid nightscout site URL");
+                throw new ConfigValidationException("You have entered an invalid Nightscout site URL");
             }
 
             return true;
@@ -158,7 +158,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             }
             catch (InvalidOperationException ex)
             {
-                //this exception might be hit when the nightscout installation is brand new or contains no recent data;
+                //this exception might be hit when the Nightscout installation is brand new or contains no recent data;
                 throw new MissingDataException("No data");
             }
 
