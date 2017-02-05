@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FloatingGlucose.Classes.Extensions
 {
-    static class DatetimeExtensions
+    internal static class DatetimeExtensions
     {
         public static string ToTimeAgo(this DateTime dt)
         {
@@ -36,9 +34,8 @@ namespace FloatingGlucose.Classes.Extensions
             if (span.Minutes > 0)
                 return String.Format("{0} {1} ago",
                 span.Minutes, span.Minutes == 1 ? "minute" : "minutes");
-            
+
             return "now";
-            
         }
     }
 }

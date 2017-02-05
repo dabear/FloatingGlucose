@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace FloatingGlucose.Classes.DataSources
 {
-    
-    class NoSuchPluginException : Exception
+    internal class NoSuchPluginException : Exception
     {
         public NoSuchPluginException()
         {
@@ -13,7 +11,5 @@ namespace FloatingGlucose.Classes.DataSources
         public NoSuchPluginException(string message) : base(message)
         {
         }
-
-       
     }
 }

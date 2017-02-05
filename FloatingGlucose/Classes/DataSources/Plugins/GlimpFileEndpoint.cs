@@ -1,9 +1,4 @@
-﻿using FloatingGlucose.Classes;
-using FloatingGlucose.Classes.DataSources;
-using Microsoft.CSharp.RuntimeBinder;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -14,28 +9,27 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-
 using static FloatingGlucose.Properties.Settings;
-namespace FloatingGlucose.Classes.DataSources.Plugins 
+
+namespace FloatingGlucose.Classes.DataSources.Plugins
 {
-    struct RawGlimpData
+    internal struct RawGlimpData
     {
         public string FileVersion;
         public string DateReading;
         public string RawGlucose;
         public string Glucose;
         public string SensorId;
-     
     }
 
-    class GlimpFileEndpoint : IDataSourcePlugin
+    internal class GlimpFileEndpoint : IDataSourcePlugin
     {
         public bool RequiresBrowseButton => true;
         public string BrowseDialogFileFilter => "Glimp Glucose file |GlicemiaMisurazioni.csv";
         public string DataSourceShortName => "Glimp Dropbox File";
         public virtual int SortOrder => 20;
 
-        private List<RawGlimpData> csv = new List<RawGlimpData>();  
+        private List<RawGlimpData> csv = new List<RawGlimpData>();
 
         public DateTime Date
         {
@@ -45,15 +39,10 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
                 return DateTime.ParseExact(firstCsv.DateReading, "dd/MM/yyyy HH.mm.ss", CultureInfo.InvariantCulture);
 
-
                 //for testing only:
                 //return new DateTime(1988, 06, 05);
             }
         }
-
-        
-
-
 
         public double Delta => this.Glucose - this.PreviousGlucose;
 
@@ -61,28 +50,26 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         // Raw glucose is not supported for this plugin
         //
         public double RawDelta => 0.0;
+
         public double RoundedRawDelta() => 0.0;
+
         public double RawGlucose => 0.0;
         public double PreviousRawGlucose => 0.0;
-       
-
 
         public DateTime LocalDate => this.Date;
+
         public double RoundedDelta() => Math.Round(this.Delta, 1);
 
         public bool IsMmol => Default.GlucoseUnits == "mmol";
 
         private double ConvertToMmolIfNeeded(double glucose)
         {
-
             if (this.IsMmol)
             {
-                
                 return glucose / 18.01559;
             }
             return glucose;
         }
-
 
         public double Glucose
         {
@@ -90,7 +77,6 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             {
                 var reading = this.csv.First();
                 return ConvertToMmolIfNeeded(Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture));
-
             }
         }
 
@@ -108,7 +94,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             get
             {
                 // Basic implementation of  direction.
-                // This is on purpose made to only consider the last two 
+                // This is on purpose made to only consider the last two
                 // blood sugar values and doesn't use graph trending.
                 // IT WILL BE INACCURATE.
                 // Consider this just an indication where the blood sugar is headed.
@@ -136,23 +122,20 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                     return "FortyFiveDown";
                 }
 
-
                 return "Flat";
             }
         }
-
-        
 
         public void OnPluginSelected(FormGlucoseSettings form)
         {
             form.lblDataSourceLocation.Text = "Your File Dump location";
         }
+
         public bool VerifyConfig(Properties.Settings settings)
         {
             if (!Validators.IsReadableFile(settings.DataPathLocation))
             {
                 throw new ConfigValidationException("You have entered an invalid file path for the data dump!");
-
             }
 
             return true;
@@ -169,16 +152,16 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             using (var reader = new StreamReader(datapath, System.Text.Encoding.Unicode))
             {
                 int i = 0;
-                
+
                 while (true)
                 {
-
                     //something wrong here, it is read wrongly..
                     string line = await reader.ReadLineAsync();
-                    if (line == null || i++ > 100) {
+                    if (line == null || i++ > 100)
+                    {
                         break;
                     }
-                    if(line.Trim().Length == 0)
+                    if (line.Trim().Length == 0)
                     {
                         continue;
                     }
@@ -188,29 +171,18 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                     //Measurement type (0=manual measurement, 1=Freestyle Libre)
                     //if (items[6] == "1")
                     //{
-                        data.FileVersion = items[0];
-                        data.DateReading = items[1];
-                        data.RawGlucose = items[4];
-                        data.Glucose = items[5];
-                        data.SensorId = items[7];
+                    data.FileVersion = items[0];
+                    data.DateReading = items[1];
+                    data.RawGlucose = items[4];
+                    data.Glucose = items[5];
+                    data.SensorId = items[7];
                     //}
-
 
                     this.csv.Add(data);
                 }
-
             }
 
-            
-
-
-
             return this;
-
-
         }
-
-
-        
     }
 }

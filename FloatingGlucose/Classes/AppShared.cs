@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace FloatingGlucose.Classes
 {
-    class AppShared
+    internal class AppShared
     {
         public static bool IsWorkStationLocked = false;
         public static bool IsShowingSettings = false;
         public static readonly string AppName = typeof(Program).Assembly.GetName().Name;
-        public static string AppVersion {
+
+        public static string AppVersion
+        {
             get
             {
                 try
@@ -23,11 +22,12 @@ namespace FloatingGlucose.Classes
                     {
                         return reader.ReadToEnd();
                     }
-                } catch (IOException) {
+                }
+                catch (IOException)
+                {
                     return "unknown";
                 }
             }
-
         }
 
         public static System.Windows.Forms.Timer refreshGlucoseTimer;
@@ -38,11 +38,11 @@ namespace FloatingGlucose.Classes
 
         private static Func<bool> callback;
 
-        public static void RegisterSettingsChangedCallback(Func<bool> lambda) {
+        public static void RegisterSettingsChangedCallback(Func<bool> lambda)
+        {
             AppShared.callback = lambda;
         }
+
         public static void NotifyFormSettingsHaveChanged() => callback?.Invoke();
-            
-        
     }
 }

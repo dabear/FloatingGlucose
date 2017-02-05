@@ -1,37 +1,36 @@
 ﻿using System;
+using FloatingGlucose.Classes;
+using FloatingGlucose.Classes.DataSources;
+using FloatingGlucose.Classes.Extensions;
+using Microsoft.Win32;
+using Newtonsoft.Json;
+
+using System;
+
+using System.Collections.Specialized;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
-using System.Net.Http;
-using FloatingGlucose.Classes;
-using Newtonsoft.Json;
-using System.Globalization;
-using FloatingGlucose.Classes.DataSources;
-using FloatingGlucose.Classes.DataSources.Plugins;
 using static FloatingGlucose.Properties.Settings;
-using FloatingGlucose.Classes.Extensions;
-using Microsoft.Win32;
 using FormSettings = FloatingGlucose.Properties.FormSettings;
-using System.ComponentModel;
-using System.Collections.Specialized;
 
 namespace FloatingGlucose
 {
-
     public partial class FloatingGlucose : Form
     {
-
         //nightscout URL, will be used to create a pebble endpoint to fetch data from
-        private NameValueCollection datasourceLocation {
-            get {
-                
-                
-                
-                // With raw glucose display we need to have two 
+        private NameValueCollection datasourceLocation
+        {
+            get
+            {
+                // With raw glucose display we need to have two
                 // data points to calculate raw glucose diff
                 var count = Default.EnableRawGlucoseDisplay ? 2 : 1;
                 var units = Default.GlucoseUnits;
@@ -40,26 +39,24 @@ namespace FloatingGlucose
                     { "raw", Default.DataPathLocation },
                     { "location", $"{Default.DataPathLocation}/pebble?count={count}&units={units}"}
                 };
-
-                
-                
             }
         }
 
-
         private int refreshTime => Default.RefreshIntervalInSeconds * 1000;//converted to milliseconds
-        //private System.Windows.Forms.Timer refreshGlucoseTimer;
-        
-        
+                                                                           //private System.Windows.Forms.Timer refreshGlucoseTimer;
+
 #if DEBUG
         private bool isDebuggingBuild = true;
 #else
-        private bool isDebuggingBuild = false; 
+        private bool isDebuggingBuild = false;
 #endif
 
         private FormGlucoseSettings _settingsForm;
-        private FormGlucoseSettings settingsForm {
-            get {
+
+        private FormGlucoseSettings settingsForm
+        {
+            get
+            {
                 if (this._settingsForm == null || this._settingsForm.IsDisposed)
                 {
                     this._settingsForm = new FormGlucoseSettings();
@@ -70,15 +67,17 @@ namespace FloatingGlucose
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
 
-
-
-        private void setScaling(float scale) {
-            if ((float)scale == 1.0) {
+        private void setScaling(float scale)
+        {
+            if ((float)scale == 1.0)
+            {
                 return;
             }
             var ratio = new SizeF(scale, scale);
@@ -91,7 +90,6 @@ namespace FloatingGlucose
             {
                 x.Font = new Font(x.Font.Name, x.Font.SizeInPoints * scale);
             });
-
         }
 
         public FloatingGlucose()
@@ -107,21 +105,17 @@ namespace FloatingGlucose
                 var pos = FormSettings.Default.WindowPosition;
 
                 this.Location = pos.Location;
-
-
-
             }
             else
             {
                 //position at bottom right per FormSettings.Default
                 var r = Screen.PrimaryScreen.WorkingArea;
                 this.Location = new Point(r.Width - this.Width, r.Height - this.Height);
-
             }
-
         }
 
-        private void setFormSize() {
+        private void setFormSize()
+        {
             // This is a nasty and ugly hack. It adjusts the size of the main form
             // Based on predicted max widths of it's contained elements
             // This must be set dynamically because the font sizes might change
@@ -129,10 +123,8 @@ namespace FloatingGlucose
             // Also is used the labels own font size to determine the widths
             // So the formula doesn't have to be updated if the label fonts are changed
             // during design-time.
-            
-           
 
-            var rawbg = TextRenderer.MeasureText("999.0"  ,  this.lblRawBG.Font);
+            var rawbg = TextRenderer.MeasureText("999.0", this.lblRawBG.Font);
             var rawbgdiff = TextRenderer.MeasureText("+999.0", this.lblRawDelta.Font);
 
             var bg = TextRenderer.MeasureText("999.0 ⇈", this.lblGlucoseValue.Font);
@@ -140,22 +132,19 @@ namespace FloatingGlucose
             var update = TextRenderer.MeasureText("59 minutes ago", this.lblLastUpdate.Font);
 
             float size = new[] { bg.Width, diff.Width, update.Width }.Max() * 1.09F;
-            
+
             //raw glucose will not always be displayed
-            if (Default.EnableRawGlucoseDisplay) {
+            if (Default.EnableRawGlucoseDisplay)
+            {
                 size += Math.Max(rawbg.Width, rawbgdiff.Width);
             }
 
-            
             this.Width = (int)Math.Ceiling(size);
-
-
         }
 
-
-        private void SetErrorState(Exception ex=null) {
-
-            //if an error occured in fetching data, 
+        private void SetErrorState(Exception ex = null)
+        {
+            //if an error occured in fetching data,
             //alarms shall be discontinued.
             var manager = SoundAlarm.Instance;
             manager.StopAlarm();
@@ -166,39 +155,35 @@ namespace FloatingGlucose
             this.lblGlucoseValue.Text =
             this.lblDelta.Text =
             this.lblLastUpdate.Text = "N/A";
-            if (ex != null && Default.EnableExceptionLoggingToStderr) {
-                if (this.isDebuggingBuild) {
+            if (ex != null && Default.EnableExceptionLoggingToStderr)
+            {
+                if (this.isDebuggingBuild)
+                {
                     Console.Out.WriteLine(ex);
                 }
                 else
                 {
                     Console.Error.WriteLine(ex);
                 }
-                
             }
-            
-        }
-        private void SetSuccessState() {
-            
-            //this.lblGlucoseValue.Visible = true;
-        
         }
 
-        private void setLabelsColor(Color color) {
+        private void SetSuccessState()
+        {
+            //this.lblGlucoseValue.Visible = true;
+        }
+
+        private void setLabelsColor(Color color)
+        {
             this.lblGlucoseValue.ForeColor = color;
             //this.lblClickToCloseApp.ForeColor = color;
-
-
-        } 
+        }
 
         //
         // Main loop. This will be called each 60s and also when the settings are reloaded
         //
-        private async void LoadGlucoseValue() 
+        private async void LoadGlucoseValue()
         {
-            
-
-
             IDataSourcePlugin data = null;
 
             var alarmManger = SoundAlarm.Instance;
@@ -206,11 +191,11 @@ namespace FloatingGlucose
             var alarmsPostponed = alarmManger.GetPostponedUntil();
 
             //cleanup context menu
-            if (alarmsPostponed != null && alarmsPostponed < now) {
-                this.postponedUntilFooToolStripMenuItem.Visible = 
+            if (alarmsPostponed != null && alarmsPostponed < now)
+            {
+                this.postponedUntilFooToolStripMenuItem.Visible =
                 this.reenableAlarmsToolStripMenuItem.Visible = false;
             }
-
 
             try
             {
@@ -221,8 +206,7 @@ namespace FloatingGlucose
 
                 WriteDebug($"Data will be fetched via plugin: {name}");
 
-
-                if(AppShared.IsShowingSettings)
+                if (AppShared.IsShowingSettings)
                 {
                     //avoid further loading of glucose values if the user has settings view open
                     // the user will probably select new settings anyway..
@@ -234,9 +218,7 @@ namespace FloatingGlucose
 
                 data = await endpoint.GetDataSourceDataAsync(this.datasourceLocation);
 
-
                 var glucoseDate = data.LocalDate;
-
 
                 this.lblLastUpdate.Text = glucoseDate.ToTimeAgo();
 
@@ -279,10 +261,7 @@ namespace FloatingGlucose
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
                 var status = GlucoseStatus.GetGlucoseStatus((decimal)data.Glucose);
 
-
                 this.lblDelta.Text = data.FormattedDelta() + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
-
-
 
                 if (Default.EnableRawGlucoseDisplay)
                 {
@@ -291,7 +270,6 @@ namespace FloatingGlucose
 
                 this.SetSuccessState();
 
-
                 switch (status)
                 {
                     case GlucoseStatusEnum.UrgentHigh:
@@ -299,6 +277,7 @@ namespace FloatingGlucose
                         setLabelsColor(Color.Red);
                         alarmManger.PlayGlucoseAlarm();
                         break;
+
                     case GlucoseStatusEnum.Low:
                     case GlucoseStatusEnum.High:
                         setLabelsColor(Color.Yellow);
@@ -311,10 +290,7 @@ namespace FloatingGlucose
                         alarmManger.StopAlarm();
                         setLabelsColor(Color.Green);
                         break;
-
                 }
-
-
             }
             catch (FileNotFoundException ex)
             {
@@ -326,7 +302,6 @@ namespace FloatingGlucose
             catch (IOException ex)
             {
                 this.SetErrorState(ex);
-
             }
             catch (HttpRequestException ex)
             {
@@ -360,32 +335,35 @@ namespace FloatingGlucose
                 this.WriteDebug("No plugin is chosen");
                 this.settingsForm.ShowDialogIfNonVisible();
             }
-            catch(NoSuchPluginException ex)
+            catch (NoSuchPluginException ex)
             {
-                var msg = "A datasource plugin was chosen that is no longer available, please choose another datasource: "  + ex.Message;
+                var msg = "A datasource plugin was chosen that is no longer available, please choose another datasource: " + ex.Message;
 
                 this.showErrorMessage(msg);
                 this.settingsForm.ShowDialogIfNonVisible();
             }
-            catch(ConfigValidationException ex)
+            catch (ConfigValidationException ex)
             {
                 this.showErrorMessage(ex.Message);
                 this.settingsForm.ShowDialogIfNonVisible();
             }
 
-           /* catch (Exception ex)
-            {
-                var msg = "An unknown error occured of type " + ex.GetType().ToString() + ": " + ex.Message;
-                this.showErrorMessage(msg);
-                Application.Exit();
-            }*/
+            /* catch (Exception ex)
+             {
+                 var msg = "An unknown error occured of type " + ex.GetType().ToString() + ": " + ex.Message;
+                 this.showErrorMessage(msg);
+                 Application.Exit();
+             }*/
 
-            try {
-                if (Default.EnableRawGlucoseDisplay && data != null) {
+            try
+            {
+                if (Default.EnableRawGlucoseDisplay && data != null)
+                {
                     this.lblRawDelta.Text = data.FormattedRawDelta();
                 }
             }
-            catch (InvalidJsonDataException) {
+            catch (InvalidJsonDataException)
+            {
                 // No data available.
                 // This can happen even if raw glucose is enabled
                 // as it required two data points to be available
@@ -399,38 +377,36 @@ namespace FloatingGlucose
             //this.lblDelta.Text = "-50.0";
 
             WriteDebug("End Trying to refresh data");
-
-
-
         }
 
-        private void setChildrenOnMouseDown() {
-
+        private void setChildrenOnMouseDown()
+        {
             var controls = this.Controls.OfType<Label>().ToList();
             controls.ForEach(x =>
             {
-                x.MouseDown += (asender, ev) => {
+                x.MouseDown += (asender, ev) =>
+                {
                     this.OnMouseDown(ev);
-                    
                 };
             });
-            
         }
 
-        static void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
+        private static void SystemEvents_SessionSwitch(object sender, SessionSwitchEventArgs e)
         {
             var manager = SoundAlarm.Instance;
             if (e.Reason == SessionSwitchReason.SessionLock)
             {
                 AppShared.IsWorkStationLocked = true;
-                if (Default.DisableSoundAlarmsOnWorkstationLock) {
+                if (Default.DisableSoundAlarmsOnWorkstationLock)
+                {
                     manager.StopAlarm();
                 }
             }
-            else if (e.Reason == SessionSwitchReason.SessionUnlock){
+            else if (e.Reason == SessionSwitchReason.SessionUnlock)
+            {
                 AppShared.IsWorkStationLocked = false;
             }
-             // Add your session lock "handling" code here
+            // Add your session lock "handling" code here
         }
 
         private bool IsVisibleOnAnyScreen(Rectangle rect)
@@ -457,16 +433,11 @@ namespace FloatingGlucose
                 FormSettings.Default.WindowPosition = this.RestoreBounds;
             }
 
-
             FormSettings.Default.Save();
-
         }
-
-
 
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
-
             // We want all data values to be formatted with a dot, not comma, as some cultures do
             // as this messes up the gui a bit
             // we avoid this: double foo=7.0; foo.toString() => "7,0" in the nb-NO culture
@@ -483,12 +454,13 @@ namespace FloatingGlucose
             setScaling(Default.GuiScalingRatio);
             setChildrenOnMouseDown();
 
-            notifyIcon1.BalloonTipClosed += (asender, ev) =>{
+            notifyIcon1.BalloonTipClosed += (asender, ev) =>
+            {
                 notifyIcon1.Visible = false;
                 notifyIcon1.Dispose();
             };
 
-            // Enable special color for  debugging, 
+            // Enable special color for  debugging,
             // This is very handy when devloping with a Release binary running alongside a dev version
             if (this.isDebuggingBuild)
             {
@@ -502,31 +474,26 @@ namespace FloatingGlucose
             this.SetOpacity();
 
             this.LoadGlucoseValue();
-            
+
             AppShared.refreshGlucoseTimer = new System.Windows.Forms.Timer();
             //auto refresh data once every x seconds
             AppShared.refreshGlucoseTimer.Interval = this.refreshTime;
             //every 60s (default) reload the glucose numbers from the nightscout pebble endpoint
-            AppShared.refreshGlucoseTimer.Tick += new EventHandler((asender, ev)=> LoadGlucoseValue());
+            AppShared.refreshGlucoseTimer.Tick += new EventHandler((asender, ev) => LoadGlucoseValue());
             AppShared.refreshGlucoseTimer.Start();
-
-            
-
         }
 
         private void SetOpacity()
         {
-            if(this.Opacity != Default.GuiOpacity / 100D)
+            if (this.Opacity != Default.GuiOpacity / 100D)
             {
                 WriteDebug($"Setting opacity to {Default.GuiOpacity}%");
                 this.Opacity = Default.GuiOpacity / 100D;
             }
-            
         }
 
-
-        private bool Settings_Changed_Event() {
-
+        private bool Settings_Changed_Event()
+        {
             //we got notified via the appshared proxy that settings have been changed
             //try to load glucose values anew straight away
             this.setFormSize();
@@ -535,24 +502,18 @@ namespace FloatingGlucose
 
             this.SetOpacity();
 
-
             this.LoadGlucoseValue();
 
             //refreshTime => Default.RefreshIntervalInSeconds * 1000;
 
-
-
-
-            if(AppShared.refreshGlucoseTimer?.Interval != this.refreshTime)
+            if (AppShared.refreshGlucoseTimer?.Interval != this.refreshTime)
             {
                 WriteDebug($"Resetting the refresh interval to {Default.RefreshIntervalInSeconds} seconds");
                 AppShared.refreshGlucoseTimer?.Stop();
-                if(AppShared.refreshGlucoseTimer != null)
+                if (AppShared.refreshGlucoseTimer != null)
                 {
                     AppShared.refreshGlucoseTimer.Interval = this.refreshTime;
                 }
-                
-                
             }
 
             //
@@ -565,11 +526,8 @@ namespace FloatingGlucose
                 AppShared.refreshGlucoseTimer?.Start();
             }
 
-
-
             return false;
         }
-
 
         protected override void OnMouseDown(MouseEventArgs e)
         {
@@ -582,11 +540,11 @@ namespace FloatingGlucose
             }
         }
 
-        private void WriteDebug(string line) { 
+        private void WriteDebug(string line)
+        {
             var now = DateTime.Now.ToUniversalTime();
             Debug.WriteLine(now + ":" + line);
         }
-
 
         private void showApplicationToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -603,7 +561,8 @@ namespace FloatingGlucose
             this.Exit();
         }
 
-        private void Exit() {
+        private void Exit()
+        {
             this.SaveWindowPosition();
             this.notifyIcon1.Icon = null;
             this.notifyIcon1.Dispose();
@@ -616,18 +575,17 @@ namespace FloatingGlucose
             var manager = SoundAlarm.Instance;
             manager.PostponeAlarm(minutes);
             DateTime untilDate = (DateTime)manager.GetPostponedUntil();
-            
+
             this.postponedUntilFooToolStripMenuItem.Text = $"Snoozing until {untilDate.ToShortTimeString()}";
 
-            this.reenableAlarmsToolStripMenuItem.Visible = 
+            this.reenableAlarmsToolStripMenuItem.Visible =
             this.postponedUntilFooToolStripMenuItem.Visible = true;
-            
         }
 
-        private void showErrorMessage(string error) {
+        private void showErrorMessage(string error)
+        {
             MessageBox.Show(error, AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
-
 
         private void postponeFor30MinutesToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -646,8 +604,6 @@ namespace FloatingGlucose
 
             this.reenableAlarmsToolStripMenuItem.Visible =
             this.postponedUntilFooToolStripMenuItem.Visible = false;
-
-
         }
 
         private void openNightscoutSiteToolStripMenuItem_Click(object sender, EventArgs e)
@@ -663,14 +619,11 @@ namespace FloatingGlucose
                 {
                     this.showErrorMessage($"Could not open your nightscout site in the system default browser! {ex.Message}");
                 }
-
             }
             else
             {
                 this.showErrorMessage("The nightscout url is not configured!");
-
             }
-            
         }
 
         private void reloadToolStripMenuItem_Click(object sender, EventArgs e)

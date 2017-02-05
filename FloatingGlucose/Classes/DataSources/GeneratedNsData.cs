@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FloatingGlucose.Classes.DataSources
 {
@@ -13,6 +12,7 @@ namespace FloatingGlucose.Classes.DataSources
         public List<Bg> bgs { get; set; }
         public List<Cal> cals { get; set; }
     }
+
     public class Status
     {
         public long now { get; set; }
@@ -37,5 +37,4 @@ namespace FloatingGlucose.Classes.DataSources
         public double intercept { get; set; }
         public double scale { get; set; }
     }
-
 }

@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
+﻿using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System;
 
 using static FloatingGlucose.Properties.Settings;
+
 namespace FloatingGlucose.Classes
 {
     public enum GlucoseStatusEnum
@@ -18,15 +16,20 @@ namespace FloatingGlucose.Classes
         Unknown
     }
 
-    class GlucoseStatus
+    internal class GlucoseStatus
     {
-        public static decimal ToMmol(decimal number) {
+        public static decimal ToMmol(decimal number)
+        {
             return decimal.Round(number / 18.01559M, 1);
         }
-        public static decimal ToMgdl(decimal number) {
+
+        public static decimal ToMgdl(decimal number)
+        {
             return decimal.Round(number * 18.01559M, 0);//no decimals for mgdl values
         }
-        public static GlucoseStatusEnum GetGlucoseStatus(decimal glucose) {
+
+        public static GlucoseStatusEnum GetGlucoseStatus(decimal glucose)
+        {
             if (!Default.EnableAlarms)
             {
                 return GlucoseStatusEnum.Normal;
@@ -44,7 +47,7 @@ namespace FloatingGlucose.Classes
             {
                 return GlucoseStatusEnum.Low;
             }
-            else if (glucose <= high )
+            else if (glucose <= high)
             {
                 return GlucoseStatusEnum.Normal;
             }
@@ -56,10 +59,8 @@ namespace FloatingGlucose.Classes
             {
                 return GlucoseStatusEnum.UrgentHigh;
             }
-            
 
             return GlucoseStatusEnum.Unknown;
-
         }
     }
 }

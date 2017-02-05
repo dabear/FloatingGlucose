@@ -1,18 +1,17 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using NAudio;
+using System.Linq;
 using NAudio.Wave;
+
+using System;
+
+using System.Diagnostics;
 using System.IO;
 using static FloatingGlucose.Properties.Settings;
-using System.Diagnostics;
 
 namespace FloatingGlucose.Classes
 {
-   
-    public  class SoundAlarm : IDisposable
+    public class SoundAlarm : IDisposable
     {
         private static readonly SoundAlarm instance = new SoundAlarm();
 
@@ -45,11 +44,12 @@ namespace FloatingGlucose.Classes
                 return instance;
             }
         }
+
         public void RemovePostpone()
         {
             this.postponed = null;
-
         }
+
         public void PostponeAlarm(int minutes)
         {
             var now = DateTime.Now;
@@ -57,16 +57,16 @@ namespace FloatingGlucose.Classes
 
             this.postponed = postponeUntil;
             Debug.WriteLine($"Postponed any audible alarms until {postponeUntil.ToLocalTime()}");
-            if (this.isCurrentlyPlaying) {
+            if (this.isCurrentlyPlaying)
+            {
                 this.StopAlarm();
-                
             }
-
         }
 
-        public bool IsPostponed() {
-
-            if (this.postponed == null) {
+        public bool IsPostponed()
+        {
+            if (this.postponed == null)
+            {
                 return false;
             }
 
@@ -74,7 +74,8 @@ namespace FloatingGlucose.Classes
             return this.postponed > now;
         }
 
-        public void PlayAlarm(Mp3FileReader fileReader) {
+        public void PlayAlarm(Mp3FileReader fileReader)
+        {
             if (this.isCurrentlyPlaying || !Default.EnableAlarms || !Default.EnableSoundAlarms)
             {
                 // We don't want to play if there is already other players active
@@ -91,7 +92,6 @@ namespace FloatingGlucose.Classes
             device.Init(loop);
             device.Play();
             this.isCurrentlyPlaying = true;
-
         }
 
         public void PlayStaleAlarm()
@@ -99,7 +99,8 @@ namespace FloatingGlucose.Classes
             this.PlayAlarm(staleAlarm);
         }
 
-        public void StopAlarmIfPostponed() {
+        public void StopAlarmIfPostponed()
+        {
             if (this.IsPostponed())
             {
                 this.StopAlarm();
@@ -141,15 +142,14 @@ namespace FloatingGlucose.Classes
                 {
                     // Dispose managed resources here.
                 }
-                
+
                 this.device.Dispose();
                 this.device = null;
-                
-            
             }
 
             disposed = true;
         }
+
         ~SoundAlarm()
         {
             this.Dispose(false);

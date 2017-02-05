@@ -1,18 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace FloatingGlucose.Classes.Extensions
 {
-    static class FormExtensions
+    internal static class FormExtensions
     {
         public static void ShowDialogIfNonVisible(this FormGlucoseSettings form)
         {
-            if(form.Visible)
+            if (form.Visible)
             {
                 return;
             }
@@ -21,7 +18,6 @@ namespace FloatingGlucose.Classes.Extensions
 
             AppShared.IsShowingSettings = true;
             form.ShowDialog();
-            
         }
     }
 }

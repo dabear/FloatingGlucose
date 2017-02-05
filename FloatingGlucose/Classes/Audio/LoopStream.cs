@@ -1,9 +1,7 @@
 ﻿using NAudio.Wave;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System;
 
 namespace FloatingGlucose.Classes
 {
@@ -12,7 +10,7 @@ namespace FloatingGlucose.Classes
     /// </summary>
     public class LoopStream : WaveStream
     {
-        WaveStream sourceStream;
+        private WaveStream sourceStream;
 
         /// <summary>
         /// Creates a new Loop stream

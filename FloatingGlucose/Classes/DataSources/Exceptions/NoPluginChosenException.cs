@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Runtime.Serialization;
 
 namespace FloatingGlucose.Classes.DataSources
 {
-    
-    class NoPluginChosenException : Exception
+    internal class NoPluginChosenException : Exception
     {
         public NoPluginChosenException()
         {
@@ -13,7 +11,5 @@ namespace FloatingGlucose.Classes.DataSources
         public NoPluginChosenException(string message) : base(message)
         {
         }
-
-       
     }
 }

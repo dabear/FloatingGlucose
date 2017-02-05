@@ -1,22 +1,16 @@
-﻿using FloatingGlucose.Classes;
-using FloatingGlucose.Classes.DataSources;
-using Microsoft.CSharp.RuntimeBinder;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
-using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using static FloatingGlucose.Properties.Settings;
-namespace FloatingGlucose.Classes.DataSources.Plugins 
+
+namespace FloatingGlucose.Classes.DataSources.Plugins
 {
-    class NightscoutPebbleEndpoint : IDataSourcePlugin
+    internal class NightscoutPebbleEndpoint : IDataSourcePlugin
     {
         public virtual bool RequiresBrowseButton => false;
         public virtual string BrowseDialogFileFilter => "";
@@ -28,14 +22,15 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public string Direction { get; set; }
 
         public virtual int SortOrder => 10;
-        
+
         public double RawDelta => this.RawGlucose - this.PreviousRawGlucose;
-        
 
         public double RoundedDelta() => Math.Round(this.Delta, 1);
+
         public double RoundedRawDelta() => Math.Round(this.RawDelta, 1);
 
         public static CultureInfo Culture = new CultureInfo("en-US");
+
         public double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose)
         {
             double number;
@@ -48,7 +43,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 {
                     specialValue = 1;
                 }
-                    
+
                 curBG = curBG * 18.01559;
             }
             else
@@ -56,17 +51,15 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 if ((actualGlucose < 40) || (actualGlucose > 400))
                 {
                     specialValue = 1;
-
                 }
-                    
             }
-            
+
             //this special value is only triggered when the dexcom upload is brand new
             //from a brand new sensor?
             if (specialValue == 1)
             {
                 number = cal.scale * (bg.unfiltered - cal.intercept) / cal.slope;
-            } 
+            }
             else
             {
                 number = cal.scale * (bg.filtered - cal.intercept) / cal.slope / curBG;
@@ -77,8 +70,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             {
                 number = number / 18.01559;
             }
-                
-            
+
             return number;
         }
 
@@ -88,7 +80,6 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             {
                 var bgs = this.NsData.bgs.Skip(1).First();
                 return Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
-
             }
         }
 
@@ -106,7 +97,6 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 {
                     throw new InvalidJsonDataException("The raw data are not available, enable RAWBG in your azure settings");
                 }
-
             }
         }
 
@@ -116,7 +106,6 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             {
                 try
                 {
-
                     var cal = this.NsData.cals.First();
                     var bg = this.NsData.bgs.First();
                     return this.CalculateRawGlucose(cal, bg, this.Glucose);
@@ -125,7 +114,6 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 {
                     throw new InvalidJsonDataException("The raw data are not available, you may have enable RAWBG in your azure settings");
                 }
-
             }
         }
 
@@ -138,11 +126,11 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             form.lblDataSourceLocation.Text = "Your Nightscout installation URL";
         }
 
-        public virtual bool VerifyConfig(Properties.Settings settings) {
+        public virtual bool VerifyConfig(Properties.Settings settings)
+        {
             if (!Validators.IsUrl(settings.DataPathLocation) || settings.DataPathLocation == "https://mysite.azurewebsites.net")
             {
-                throw new ConfigValidationException("You have entered an invalid nightscout site URL"); 
-                
+                throw new ConfigValidationException("You have entered an invalid nightscout site URL");
             }
 
             return true;
@@ -162,28 +150,19 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 this.NsData = JsonConvert.DeserializeObject<GeneratedNsData>(urlContents);
             try
             {
-
                 bgs = parsed.bgs.First();
                 this.Direction = bgs.direction;
                 this.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
                 this.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
                 this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
-
-
-
             }
             catch (InvalidOperationException ex)
             {
                 //this exception might be hit when the nightscout installation is brand new or contains no recent data;
                 throw new MissingDataException("No data");
-
             }
 
             return this;
-
-
         }
-
-       
     }
 }

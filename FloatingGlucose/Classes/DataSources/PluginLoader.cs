@@ -2,16 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using NAudio;
-
-using System.IO;
 using static FloatingGlucose.Properties.Settings;
-using FloatingGlucose.Classes.DataSources;
 
 namespace FloatingGlucose.Classes.DataSources
 {
-   
     public class PluginLoader
     {
         private static readonly PluginLoader instance = new PluginLoader();
@@ -20,7 +14,7 @@ namespace FloatingGlucose.Classes.DataSources
 
         public List<DataSourceInfo> GetAllPlugins(bool forceReload = false)
         {
-            if(forceReload || loadedPlugins == null)
+            if (forceReload || loadedPlugins == null)
             {
                 var list = new List<DataSourceInfo>();
 
@@ -36,34 +30,30 @@ namespace FloatingGlucose.Classes.DataSources
                 list.Sort((x, y) => x.FullName.CompareTo(y.FullName));
                 this.loadedPlugins = list;
             }
-            
 
             return this.loadedPlugins;
-
         }
+
         public IDataSourcePlugin GetActivePlugin()
         {
-            if(this.plugin != null)
+            if (this.plugin != null)
             {
                 return this.plugin;
             }
             //use default plugin from config file
             // this can change between run
             var fullname = Default.DataSourceFullName;
-            if(fullname.Length==0)
+            if (fullname.Length == 0)
             {
                 throw new NoPluginChosenException("");
             }
             return this.SetActivePlugin(fullname);
-
         }
 
         public IDataSourcePlugin SetActivePlugin(string dataSourceFullName)
         {
             try
             {
-
-
                 this.plugin = this.GetAllPlugins().Where((x) => x.FullName == dataSourceFullName).First().Instance;
             }
             catch (InvalidOperationException)
@@ -72,7 +62,6 @@ namespace FloatingGlucose.Classes.DataSources
             }
             return this.plugin;
         }
-
 
         // Explicit static constructor to tell C# compiler
         // not to mark type as beforefieldinit
@@ -91,6 +80,5 @@ namespace FloatingGlucose.Classes.DataSources
                 return instance;
             }
         }
-        
     }
 }

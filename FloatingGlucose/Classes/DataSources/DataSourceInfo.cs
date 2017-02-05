@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FloatingGlucose.Classes.DataSources
 {
@@ -19,7 +17,6 @@ namespace FloatingGlucose.Classes.DataSources
             this.Instance = (IDataSourcePlugin)Activator.CreateInstance(plugin);
             this.DataSourceShortName = this.Instance.DataSourceShortName;
             this.FullName = plugin.FullName;
-            
         }
 
         public DataSourceInfo(IDataSourcePlugin plugin)

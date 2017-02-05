@@ -1,10 +1,5 @@
-﻿using FloatingGlucose.Classes;
-using FloatingGlucose.Classes.DataSources;
-using Microsoft.CSharp.RuntimeBinder;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
@@ -13,11 +8,9 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-
-using static FloatingGlucose.Properties.Settings;
-namespace FloatingGlucose.Classes.DataSources.Plugins 
+namespace FloatingGlucose.Classes.DataSources.Plugins
 {
-    class NightscoutPebbleFileEndpoint : NightscoutPebbleEndpoint, IDataSourcePlugin
+    internal class NightscoutPebbleFileEndpoint : NightscoutPebbleEndpoint, IDataSourcePlugin
     {
         public override bool RequiresBrowseButton => true;
         public override string BrowseDialogFileFilter => "Nightscout Dumps|*.nsdata.dump;*.nsdata|Text files|*.txt";
@@ -28,12 +21,12 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             form.lblDataSourceLocation.Text = "Your File Dump location";
         }
+
         public override bool VerifyConfig(Properties.Settings settings)
         {
             if (!Validators.IsReadableFile(settings.DataPathLocation))
             {
                 throw new ConfigValidationException("You have entered an invalid file path for the data dump!");
-
             }
 
             return true;
@@ -50,14 +43,11 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             using (var reader = File.OpenText(datapath))
             {
                 fileContents = await reader.ReadToEndAsync();
-                    
             }
-                
-            
+
             Bg bgs = null;
             var parsed =
                 this.NsData = JsonConvert.DeserializeObject<GeneratedNsData>(fileContents);
-
 
             bgs = parsed.bgs.First();
             this.Direction = bgs.direction;
@@ -65,15 +55,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             this.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
             this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
 
-
-
-           
-
             return this;
-
-
         }
-
-       
     }
 }
