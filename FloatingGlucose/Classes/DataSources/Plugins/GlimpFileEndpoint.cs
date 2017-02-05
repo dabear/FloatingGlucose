@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -105,7 +106,37 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             get
             {
-                return "n/a";
+                // Basic implementation of  direction.
+                // This is on purpose made to only consider the last two 
+                // blood sugar values and doesn't use graph trending.
+                // IT WILL BE INACCURATE.
+                // Consider this just an indication where the blood sugar is headed.
+                var mgdlDiff = this.Delta * (this.IsMmol ? 18.01559 : 1);
+
+                Debug.WriteLine($"diff: {mgdlDiff}, delta: {this.Delta}");
+
+                if (mgdlDiff >= 9)
+                {
+                    return "SingleUp";
+                }
+
+                if (mgdlDiff >= 4)
+                {
+                    return "FortyFiveUp";
+                }
+
+                if (mgdlDiff <= -9)
+                {
+                    return "SingleDown";
+                }
+
+                if (mgdlDiff <= -4)
+                {
+                    return "FortyFiveDown";
+                }
+
+
+                return "Flat";
             }
         }
 
@@ -130,13 +161,14 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             var datapath = locations["raw"];
             var client = new HttpClient();
-            
 
+            this.csv.Clear();
             // datapath is expected to be a valid file
             // Exceptions will be handled by the main program
             using (var reader = new StreamReader(datapath, System.Text.Encoding.Unicode))
             {
                 int i = 0;
+                
                 while (true)
                 {
 
