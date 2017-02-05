@@ -543,11 +543,15 @@ namespace FloatingGlucose
 
 
 
-            if( AppShared.refreshGlucoseTimer?.Interval != this.refreshTime)
+            if(AppShared.refreshGlucoseTimer?.Interval != this.refreshTime)
             {
                 WriteDebug($"Resetting the refresh interval to {Default.RefreshIntervalInSeconds} seconds");
-                AppShared.refreshGlucoseTimer.Stop();
-                AppShared.refreshGlucoseTimer.Interval = this.refreshTime;
+                AppShared.refreshGlucoseTimer?.Stop();
+                if(AppShared.refreshGlucoseTimer != null)
+                {
+                    AppShared.refreshGlucoseTimer.Interval = this.refreshTime;
+                }
+                
                 
             }
 
@@ -558,7 +562,7 @@ namespace FloatingGlucose
             if (AppShared.refreshGlucoseTimer?.Enabled == false)
             {
                 WriteDebug("Starting timer again");
-                AppShared.refreshGlucoseTimer.Start();
+                AppShared.refreshGlucoseTimer?.Start();
             }
 
 
