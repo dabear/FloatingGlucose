@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -185,20 +186,12 @@ namespace FloatingGlucose
                 return;
 
             }
-            // If shown modal, it means the initial setup is not complete
-            // Close the app
-            if (this.Modal)
-            {
-                //ignore for now
-                // this was causing race conditions when multiple onclosing events would trigger in a short
-                // time. The first event would set settingsupdatedsuccessfully=false nad reutnr
-                // the next event would happen just a millisecond later and would see settingsupdatedsuccessfully==false
-                // and exit
-                //Application.Exit();
-            }
+
             //reload to settings stored in file
             //user has aborted the changes
             //made in the gui
+            Debug.WriteLine("Resetting defaults values");
+            
             Default.Reload();
             base.OnClosing(e);
             
@@ -277,7 +270,9 @@ namespace FloatingGlucose
             AppShared.IsShowingSettings = false;
             AppShared.NotifyFormSettingsHaveChanged();
 
-            
+            var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
+            PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
+
             this.Close();
         }
 
@@ -341,7 +336,7 @@ namespace FloatingGlucose
         private void cbDataSource_SelectedIndexChanged(object sender, EventArgs e)
         {
             var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
-            PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
+            //PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
             selectedPlugin.Instance.OnPluginSelected(this);
 
             this.btnBrowse.Visible = selectedPlugin.Instance.RequiresBrowseButton;
