@@ -262,6 +262,10 @@ namespace FloatingGlucose
 
             Default.DataSourceFullName = plugin.FullName;
             //this is here for a purpose
+
+            var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
+            PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
+
             //only save if validation succeeded.
             Default.Save();
 
@@ -276,10 +280,10 @@ namespace FloatingGlucose
             MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!",
                 AppShared.AppName, MessageBoxButtons.OK,MessageBoxIcon.Information);
             AppShared.IsShowingSettings = false;
+
             AppShared.NotifyFormSettingsHaveChanged();
 
-            var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
-            PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
+
 
             this.Close();
         }

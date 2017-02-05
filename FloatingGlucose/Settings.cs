@@ -1,4 +1,5 @@
 ﻿using FloatingGlucose.Classes;
+using System.Diagnostics;
 
 namespace FloatingGlucose.Properties {
     
@@ -22,7 +23,8 @@ namespace FloatingGlucose.Properties {
         private void SettingsLoadedEventHandler(object sender, System.Configuration.SettingsLoadedEventArgs e)
         {
             // Add code to handle the SettingChangingEvent event here.
-            AppShared.NotifyFormSettingsHaveChanged();
+            //Debug.WriteLine("Got external settings loaded event");
+            //AppShared.NotifyFormSettingsHaveChanged();
         }
 
         private void SettingChangingEventHandler(object sender, System.Configuration.SettingChangingEventArgs e) {
