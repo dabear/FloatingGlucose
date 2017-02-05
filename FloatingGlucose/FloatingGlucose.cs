@@ -366,7 +366,7 @@ namespace FloatingGlucose
                 this.showErrorMessage(msg);
                 this.settingsForm.ShowDialogIfNonVisible();
             }
-            catch(ConfigValidationError ex)
+            catch(ConfigValidationException ex)
             {
                 this.showErrorMessage(ex.Message);
                 this.settingsForm.ShowDialogIfNonVisible();

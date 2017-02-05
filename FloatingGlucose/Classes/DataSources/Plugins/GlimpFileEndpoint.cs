@@ -150,7 +150,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             if (!Validators.IsReadableFile(settings.DataPathLocation))
             {
-                throw new ConfigValidationError("You have entered an invalid file path for the data dump!");
+                throw new ConfigValidationException("You have entered an invalid file path for the data dump!");
 
             }
 

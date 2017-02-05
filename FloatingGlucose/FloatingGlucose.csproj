@@ -112,9 +112,9 @@
   <ItemGroup>
     <Compile Include="Classes\DataSources\DataSourceInfo.cs" />
     <Compile Include="Classes\DataSources\IDataSourcePlugin.cs" />
-    <Compile Include="Classes\DataSources\NoPluginChosenException.cs" />
-    <Compile Include="Classes\DataSources\NoSuchPluginException.cs" />
-    <Compile Include="Classes\DataSources\ConfigValidationError.cs" />
+    <Compile Include="Classes\DataSources\Exceptions\NoPluginChosenException.cs" />
+    <Compile Include="Classes\DataSources\Exceptions\NoSuchPluginException.cs" />
+    <Compile Include="Classes\DataSources\Exceptions\ConfigValidationException.cs" />
     <Compile Include="Classes\DataSources\Plugins\GlimpFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\PluginLoader.cs" />
@@ -125,8 +125,8 @@
     <Compile Include="Classes\DataSources\GeneratedNsData.cs" />
     <Compile Include="Classes\GlucoseStatus.cs" />
     <Compile Include="Classes\Audio\LoopStream.cs" />
-    <Compile Include="Classes\DataSources\InvalidJsonDataException.cs" />
-    <Compile Include="Classes\DataSources\MissingDataException.cs" />
+    <Compile Include="Classes\DataSources\Exceptions\InvalidJsonDataException.cs" />
+    <Compile Include="Classes\DataSources\Exceptions\MissingDataException.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleEndpoint.cs" />
     <Compile Include="Classes\Audio\SoundAlarm.cs" />
     <Compile Include="Classes\Validators.cs" />

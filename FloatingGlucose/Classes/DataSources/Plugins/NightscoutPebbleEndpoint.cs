@@ -141,7 +141,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public virtual bool VerifyConfig(Properties.Settings settings) {
             if (!Validators.IsUrl(settings.DataPathLocation) || settings.DataPathLocation == "https://mysite.azurewebsites.net")
             {
-                throw new ConfigValidationError("You have entered an invalid nightscout site URL"); 
+                throw new ConfigValidationException("You have entered an invalid nightscout site URL"); 
                 
             }
 

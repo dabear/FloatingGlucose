@@ -252,7 +252,7 @@ namespace FloatingGlucose
                 plugin = (DataSourceInfo)this.cbDataSource.SelectedItem;
                 plugin.Instance.VerifyConfig(Default);
             }
-            catch (ConfigValidationError ce)
+            catch (ConfigValidationException ce)
             {
                 MessageBox.Show(ce.Message, AppShared.AppName, MessageBoxButtons.OK,
                 MessageBoxIcon.Error);

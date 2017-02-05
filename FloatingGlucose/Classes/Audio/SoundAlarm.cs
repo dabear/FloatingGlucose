@@ -7,6 +7,7 @@ using NAudio;
 using NAudio.Wave;
 using System.IO;
 using static FloatingGlucose.Properties.Settings;
+using System.Diagnostics;
 
 namespace FloatingGlucose.Classes
 {
@@ -55,7 +56,7 @@ namespace FloatingGlucose.Classes
             var postponeUntil = now.AddMinutes(minutes);
 
             this.postponed = postponeUntil;
-
+            Debug.WriteLine($"Postponed any audible alarms until {postponeUntil.ToLocalTime()}");
             if (this.isCurrentlyPlaying) {
                 this.StopAlarm();
                 
