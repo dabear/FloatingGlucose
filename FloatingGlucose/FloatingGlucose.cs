@@ -48,7 +48,7 @@ namespace FloatingGlucose
 
 
         private int refreshTime => Default.RefreshIntervalInSeconds * 1000;//converted to milliseconds
-        private System.Windows.Forms.Timer refreshGlucoseTimer;
+        //private System.Windows.Forms.Timer refreshGlucoseTimer;
         
         
 #if DEBUG
@@ -218,7 +218,8 @@ namespace FloatingGlucose
 
                 var endpoint = PluginLoader.Instance.GetActivePlugin();
                 var name = endpoint.DataSourceShortName;
-                
+
+                WriteDebug($"Data will be fetched via plugin: {name}");
 
 
                 if(AppShared.IsShowingSettings)
@@ -502,12 +503,12 @@ namespace FloatingGlucose
 
             this.LoadGlucoseValue();
             
-            this.refreshGlucoseTimer = new System.Windows.Forms.Timer();
+            AppShared.refreshGlucoseTimer = new System.Windows.Forms.Timer();
             //auto refresh data once every x seconds
-            this.refreshGlucoseTimer.Interval = this.refreshTime;
+            AppShared.refreshGlucoseTimer.Interval = this.refreshTime;
             //every 60s (default) reload the glucose numbers from the nightscout pebble endpoint
-            this.refreshGlucoseTimer.Tick += new EventHandler((asender, ev)=> LoadGlucoseValue());
-            this.refreshGlucoseTimer.Start();
+            AppShared.refreshGlucoseTimer.Tick += new EventHandler((asender, ev)=> LoadGlucoseValue());
+            AppShared.refreshGlucoseTimer.Start();
 
             
 
@@ -542,14 +543,25 @@ namespace FloatingGlucose
 
 
 
-            if(this.refreshTime != this.refreshGlucoseTimer.Interval)
+            if( AppShared.refreshGlucoseTimer?.Interval != this.refreshTime)
             {
                 WriteDebug($"Resetting the refresh interval to {Default.RefreshIntervalInSeconds} seconds");
-                this.refreshGlucoseTimer.Stop();
-                this.refreshGlucoseTimer.Interval = this.refreshTime;
-                this.refreshGlucoseTimer.Start();
+                AppShared.refreshGlucoseTimer.Stop();
+                AppShared.refreshGlucoseTimer.Interval = this.refreshTime;
+                
             }
-  
+
+            //
+            // The timer can be and will be stopped every time we're entering the settings
+            // even if the refresh interval isn't changed
+            //
+            if (AppShared.refreshGlucoseTimer?.Enabled == false)
+            {
+                WriteDebug("Starting timer again");
+                AppShared.refreshGlucoseTimer.Start();
+            }
+
+
 
             return false;
         }

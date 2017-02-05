@@ -180,12 +180,20 @@ namespace FloatingGlucose
         void OnClosing(object sender, FormClosingEventArgs e)
         {
             AppShared.IsShowingSettings = false;
+
+
+
             if (AppShared.SettingsUpdatedSuccessfully) {
                 base.OnClosing(e);
                 AppShared.SettingsUpdatedSuccessfully = false;
+
+
                 return;
 
             }
+
+            Debug.WriteLine("No settings changed; Restarting timer, as it was previously stopped");
+            AppShared.refreshGlucoseTimer?.Start();
 
             //reload to settings stored in file
             //user has aborted the changes

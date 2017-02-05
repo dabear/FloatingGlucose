@@ -29,6 +29,8 @@ namespace FloatingGlucose.Classes
             }
 
         }
+
+        public static System.Windows.Forms.Timer refreshGlucoseTimer;
         public static string ExecutableDir => Path.GetDirectoryName(Application.ExecutablePath);
 
         public static bool SettingsFormShouldFocusAdvancedSettings = false;
