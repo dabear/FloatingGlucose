@@ -33,6 +33,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public bool RequiresBrowseButton => true;
         public string BrowseDialogFileFilter => "Glimp Glucose file |GlicemiaMisurazioni.csv";
         public string DataSourceShortName => "Glimp Dropbox File";
+        public virtual int SortOrder => 20;
 
         private List<RawGlimpData> csv = new List<RawGlimpData>();  
 

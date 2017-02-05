@@ -19,7 +19,7 @@ namespace FloatingGlucose.Classes.DataSources
 {
     public interface IDataSourcePlugin
     {
-
+        int SortOrder { get;  }
         DateTime Date { get; }
 
         double Glucose { get; }

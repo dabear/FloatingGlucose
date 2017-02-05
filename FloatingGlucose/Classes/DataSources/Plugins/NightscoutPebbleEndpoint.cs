@@ -27,7 +27,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public double Delta { get; set; }
         public string Direction { get; set; }
 
-
+        public virtual int SortOrder => 10;
         
         public double RawDelta => this.RawGlucose - this.PreviousRawGlucose;
         

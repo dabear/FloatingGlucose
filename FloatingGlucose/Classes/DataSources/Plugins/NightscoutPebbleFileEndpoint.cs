@@ -22,6 +22,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public override bool RequiresBrowseButton => true;
         public override string BrowseDialogFileFilter => "Nightscout Dumps|*.nsdata.dump;*.nsdata|Text files|*.txt";
         public override string DataSourceShortName => "Nightscout File Dump";
+        public override int SortOrder => 11;
 
         public override void OnPluginSelected(FormGlucoseSettings form)
         {

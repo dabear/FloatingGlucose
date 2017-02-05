@@ -109,7 +109,7 @@ namespace FloatingGlucose
             //this.tblpDataSourceLocations.GetControlFromPosition(1, 0).Visible = false;
             this.btnBrowse.Visible = false;
             // Fill the list of plugins, these are fairly static and won't change during runtime
-            var allPlugins = PluginLoader.Instance.GetAllPlugins();
+            var allPlugins = PluginLoader.Instance.GetAllPlugins().OrderBy(x => x.Instance.SortOrder).ToList();
             IDataSourcePlugin activePlugin;
             try
             {
