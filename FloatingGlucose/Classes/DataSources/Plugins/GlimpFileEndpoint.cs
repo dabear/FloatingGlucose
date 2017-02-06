@@ -84,7 +84,20 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             get
             {
-                var reading = this.csv.Skip(1).First();
+                RawGlimpData reading;
+
+                try
+                {
+                    reading = this.csv.Skip(1).First();
+                }
+                catch (InvalidOperationException)
+                {
+                    //this is factually incorrect, but will provide a delta of 0 in the GUI,
+                    //which is what we want
+                    //reading the first entry might also fail, but we presume the file has content when it's created
+                    reading = this.csv.First();
+                }
+
                 return ConvertToMmolIfNeeded(Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture));
             }
         }

@@ -316,6 +316,11 @@ namespace FloatingGlucose
                 //typically happens during azure site restarts
                 this.SetErrorState(ex);
             }
+            catch (InvalidOperationException ex)
+            {
+                //might happen if json structure is correectly formed, but is missing data elements
+                this.SetErrorState(ex);
+            }
             catch (JsonSerializationException ex)
             {
                 //typically happens during azure site restarts
