@@ -20,6 +20,7 @@ using System.Threading;
 using System.Windows.Forms;
 using static FloatingGlucose.Properties.Settings;
 using FormSettings = FloatingGlucose.Properties.FormSettings;
+using FloatingGlucose.Classes.Utils;
 
 namespace FloatingGlucose
 {
@@ -259,7 +260,7 @@ namespace FloatingGlucose
                     $"{data.Glucose:N1} {arrow}" : $"{data.Glucose:N0} {arrow}";
 
                 this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
-                var status = GlucoseStatus.GetGlucoseStatus((decimal)data.Glucose);
+                var status = GlucoseMath.GetGlucoseAlarmStatus((decimal)data.Glucose);
 
                 this.lblDelta.Text = data.FormattedDelta() + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
 
@@ -272,20 +273,20 @@ namespace FloatingGlucose
 
                 switch (status)
                 {
-                    case GlucoseStatusEnum.UrgentHigh:
-                    case GlucoseStatusEnum.UrgentLow:
+                    case GlucoseAlarmStatusEnum.UrgentHigh:
+                    case GlucoseAlarmStatusEnum.UrgentLow:
                         setLabelsColor(Color.Red);
                         alarmManger.PlayGlucoseAlarm();
                         break;
 
-                    case GlucoseStatusEnum.Low:
-                    case GlucoseStatusEnum.High:
+                    case GlucoseAlarmStatusEnum.Low:
+                    case GlucoseAlarmStatusEnum.High:
                         setLabelsColor(Color.Yellow);
                         alarmManger.PlayGlucoseAlarm();
                         break;
 
-                    case GlucoseStatusEnum.Unknown:
-                    case GlucoseStatusEnum.Normal:
+                    case GlucoseAlarmStatusEnum.Unknown:
+                    case GlucoseAlarmStatusEnum.Normal:
                     default:
                         alarmManger.StopAlarm();
                         setLabelsColor(Color.Green);

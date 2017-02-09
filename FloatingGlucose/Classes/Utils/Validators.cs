@@ -3,7 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace FloatingGlucose.Classes
+namespace FloatingGlucose.Classes.Utils
 {
     internal class Validators
     {

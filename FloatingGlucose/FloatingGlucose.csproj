@@ -123,13 +123,15 @@
     <Compile Include="Classes\Extensions\DatetimeExtensions.cs" />
     <Compile Include="Classes\AppShared.cs" />
     <Compile Include="Classes\DataSources\GeneratedNsData.cs" />
-    <Compile Include="Classes\GlucoseStatus.cs" />
+    <Compile Include="Classes\Utils\BGReading.cs" />
+    <Compile Include="Classes\Utils\GlucoseMath.cs" />
     <Compile Include="Classes\Audio\LoopStream.cs" />
     <Compile Include="Classes\DataSources\Exceptions\InvalidJsonDataException.cs" />
     <Compile Include="Classes\DataSources\Exceptions\MissingDataException.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleEndpoint.cs" />
     <Compile Include="Classes\Audio\SoundAlarm.cs" />
-    <Compile Include="Classes\Validators.cs" />
+    <Compile Include="Classes\Utils\GlucoseAlarmStatusEnum.cs" />
+    <Compile Include="Classes\Utils\Validators.cs" />
     <Compile Include="FloatingGlucose.cs">
       <SubType>Form</SubType>
     </Compile>

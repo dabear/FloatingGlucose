@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FloatingGlucose.Classes.Extensions;
+using FloatingGlucose.Classes.Utils;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Diagnostics;
@@ -13,12 +15,10 @@ using static FloatingGlucose.Properties.Settings;
 
 namespace FloatingGlucose.Classes.DataSources.Plugins
 {
-    internal struct RawGlimpData
+    internal class RawGlimpData : BgReading
     {
         public string FileVersion;
-        public string DateReading;
         public string RawGlucose;
-        public string Glucose;
         public string SensorId;
     }
 
@@ -31,18 +31,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         private List<RawGlimpData> csv = new List<RawGlimpData>();
 
-        public DateTime Date
-        {
-            get
-            {
-                var firstCsv = this.csv.First();
-
-                return DateTime.ParseExact(firstCsv.DateReading, "dd/MM/yyyy HH.mm.ss", CultureInfo.InvariantCulture);
-
-                //for testing only:
-                //return new DateTime(1988, 06, 05);
-            }
-        }
+        public DateTime Date => this.csv.First().DateReading;
 
         public double Delta => this.Glucose - this.PreviousGlucose;
 
@@ -62,23 +51,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public bool IsMmol => Default.GlucoseUnits == "mmol";
 
-        private double ConvertToMmolIfNeeded(double glucose)
-        {
-            if (this.IsMmol)
-            {
-                return glucose / 18.01559;
-            }
-            return glucose;
-        }
-
-        public double Glucose
-        {
-            get
-            {
-                var reading = this.csv.First();
-                return ConvertToMmolIfNeeded(Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture));
-            }
-        }
+        public double Glucose => this.IsMmol ? this.csv.First().GlucoseMmol : this.csv.First().GlucoseMgdl;
 
         public double PreviousGlucose
         {
@@ -98,44 +71,37 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                     reading = this.csv.First();
                 }
 
-                return ConvertToMmolIfNeeded(Double.Parse(reading.Glucose, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture));
+                return this.IsMmol ? reading.GlucoseMmol : reading.GlucoseMgdl;
             }
+        }
+
+        private DateTime GlimpDateStringToDateTime(string reading)
+        {
+            return DateTime.ParseExact(reading, "dd/MM/yyyy HH.mm.ss", CultureInfo.InvariantCulture);
         }
 
         public string Direction
         {
             get
             {
-                // Basic implementation of  direction.
-                // This is on purpose made to only consider the last two
-                // blood sugar values and doesn't use graph trending.
-                // IT WILL BE INACCURATE.
-                // Consider this just an indication where the blood sugar is headed.
-                var mgdlDiff = this.Delta * (this.IsMmol ? 18.01559 : 1);
+                //Sligthly more advanced implementation of direction
+                //Calculates a slope per minute
+                //(how much glucose has changed every minute between two readings)
 
-                Debug.WriteLine($"diff: {mgdlDiff}, delta: {this.Delta}");
-
-                if (mgdlDiff >= 9)
+                var first = this.csv.First();
+                RawGlimpData last;
+                try
                 {
-                    return "SingleUp";
+                    last = this.csv.Skip(1).First();
+                }
+                catch (InvalidOperationException)
+                {
+                    last = first;
                 }
 
-                if (mgdlDiff >= 4)
-                {
-                    return "FortyFiveUp";
-                }
-
-                if (mgdlDiff <= -9)
-                {
-                    return "SingleDown";
-                }
-
-                if (mgdlDiff <= -4)
-                {
-                    return "FortyFiveDown";
-                }
-
-                return "Flat";
+                var dir = first.GetRelativeGlucoseDirection(last);
+                Debug.WriteLine($"glimpfile got glucose direction:{dir}");
+                return dir;
             }
         }
 
@@ -185,9 +151,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                     //if (items[6] == "1")
                     //{
                     data.FileVersion = items[0];
-                    data.DateReading = items[1];
+                    data.DateReading = GlimpDateStringToDateTime(items[1]);
                     data.RawGlucose = items[4];
-                    data.Glucose = items[5];
+                    data._glucose = Double.Parse(items[5], NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
                     data.SensorId = items[7];
                     //}
 

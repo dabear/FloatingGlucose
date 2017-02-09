@@ -6,6 +6,13 @@ namespace FloatingGlucose.Classes.Extensions
 {
     internal static class DatetimeExtensions
     {
+        public static double ToUnixTimeStampMilliseconds(this DateTime dt)
+        {
+            return dt.ToUniversalTime().Subtract(
+                new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
+            ).TotalMilliseconds;
+        }
+
         public static string ToTimeAgo(this DateTime dt)
         {
             TimeSpan span = DateTime.Now - dt;

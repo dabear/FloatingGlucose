@@ -1,6 +1,7 @@
 ﻿using FloatingGlucose.Classes;
 using FloatingGlucose.Classes.DataSources;
 using FloatingGlucose.Classes.DataSources.Plugins;
+using FloatingGlucose.Classes.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,14 +20,13 @@ namespace FloatingGlucose
 {
     public partial class FormGlucoseSettings : Form
     {
-      
         public FormGlucoseSettings()
         {
             InitializeComponent();
         }
 
-        private void updateAlarmSettingsEnabled(bool enabled=true) {
-            
+        private void updateAlarmSettingsEnabled(bool enabled = true)
+        {
             var controls = this.grpAlarmSettings.Controls.OfType<NumericUpDown>().ToList();
             controls.ForEach(x =>
             {
@@ -35,8 +35,8 @@ namespace FloatingGlucose
             this.chkEnableSoundAlarms.Enabled = enabled;
         }
 
-        private void updateFormControlsFromSettings() {
-
+        private void updateFormControlsFromSettings()
+        {
             var enableAlarms = Default.EnableAlarms;
             var alarmUrgentHigh = Default.AlarmUrgentHigh;
             var alarmHigh = Default.AlarmHigh;
@@ -60,7 +60,6 @@ namespace FloatingGlucose
             this.btnUnitsMMOL.Checked = Default.GlucoseUnits == "mmol";
             this.btnUnitsMGDL.Checked = Default.GlucoseUnits == "mgdl";
 
-
             //advanced settings
             this.numScaling.Value = (decimal)Default.GuiScalingRatio;
             this.numOpacity.Value = Default.GuiOpacity;
@@ -69,7 +68,7 @@ namespace FloatingGlucose
             this.chkEnableRAWGlucose.Checked = Default.EnableRawGlucoseDisplay;
 
             this.chkDisableSoundOnWorkstationLock.Checked = Default.DisableSoundAlarmsOnWorkstationLock;
-            
+
             //this is the default in the settings file
             //override it so it makes sense
             if (nsurl == "https://...")
@@ -81,19 +80,14 @@ namespace FloatingGlucose
                 this.txtDataSourceLocation.Text = nsurl;
             }
 
-            
-
             this.updateAlarmSettingsEnabled(enableAlarms);
             this.btnEnableAlarms.Checked = enableAlarms;
-
         }
-
 
         private void FormGlucoseSettings_Load(object sender, EventArgs e)
         {
             this.updateFormControlsFromSettings();
             this.FormClosing += this.OnClosing;
-
 
             this.lblVersionInfo.Text = "Version: " + AppShared.AppVersion;
             this.lblVersionInfo.Enabled = true;
@@ -101,9 +95,6 @@ namespace FloatingGlucose
             /*this.btnBrowse.Image = Properties.Resources.browse_file.ToBitmap();
             this.btnBrowse.Size = new Size(32,32);
             this.btnBrowse.Text = "";*/
-
-
-
 
             //browse button control visibility logic
             //this.tblpDataSourceLocations.GetControlFromPosition(1, 0).Visible = false;
@@ -115,7 +106,7 @@ namespace FloatingGlucose
             {
                 activePlugin = PluginLoader.Instance.GetActivePlugin();
             }
-            catch(NoSuchPluginException)
+            catch (NoSuchPluginException)
             {
                 activePlugin = null;
             }
@@ -127,17 +118,13 @@ namespace FloatingGlucose
 
             foreach (DataSourceInfo plugin in allPlugins)
             {
-
                 this.cbDataSource.Items.Add(plugin);
-                if(activePlugin != null && plugin.DataSourceShortName == activePlugin.DataSourceShortName)
+                if (activePlugin != null && plugin.DataSourceShortName == activePlugin.DataSourceShortName)
                 {
                     this.cbDataSource.SelectedItem = plugin;
                     plugin.Instance.OnPluginSelected(this);
                     this.btnBrowse.Visible = activePlugin.RequiresBrowseButton;
                 }
-                
-
-
             }
 
             //de-uglify glucosesettings by setting a default plugin even if there was none selected
@@ -145,51 +132,41 @@ namespace FloatingGlucose
             if (activePlugin == null)
             {
                 this.cbDataSource.SelectedIndex = 0;
-            } 
+            }
 
-            
             var selectedInstance = this.cbDataSource.SelectedItem;
 
-
-            //different increments for mmol/L and mg/dL 
+            //different increments for mmol/L and mg/dL
             var controls = this.grpAlarmSettings.Controls.OfType<NumericUpDown>()
-                .Where(x=> x.DecimalPlaces == 1).ToList();
-            controls.ForEach( x => {
+                .Where(x => x.DecimalPlaces == 1).ToList();
+            controls.ForEach(x =>
+            {
                 x.Increment = x.Value >= 36 ? 1.0M : 0.1M;
                 x.ValueChanged += new System.EventHandler(this.NumericUpDowns_Value_Changed);
             });
-
-            
-
 
             if (AppShared.SettingsFormShouldFocusAdvancedSettings)
             {
                 AppShared.SettingsFormShouldFocusAdvancedSettings = false;
                 this.tabSettings.SelectTab(this.tabPageAdvanced);
-
-
             }
             else
             {
                 this.tabSettings.SelectTab(this.tabPageBasic);
                 this.txtDataSourceLocation.Select();
             }
-
         }
 
-        void OnClosing(object sender, FormClosingEventArgs e)
+        private void OnClosing(object sender, FormClosingEventArgs e)
         {
             AppShared.IsShowingSettings = false;
 
-
-
-            if (AppShared.SettingsUpdatedSuccessfully) {
+            if (AppShared.SettingsUpdatedSuccessfully)
+            {
                 base.OnClosing(e);
                 AppShared.SettingsUpdatedSuccessfully = false;
 
-
                 return;
-
             }
 
             Debug.WriteLine("No settings changed; Restarting timer, as it was previously stopped");
@@ -199,16 +176,14 @@ namespace FloatingGlucose
             //user has aborted the changes
             //made in the gui
             Debug.WriteLine("Resetting defaults values");
-            
+
             Default.Reload();
             base.OnClosing(e);
-            
         }
 
         private void btnEnableAlarms_CheckedChanged(object sender, EventArgs e)
         {
             this.updateAlarmSettingsEnabled(this.btnEnableAlarms.Checked);
-            
         }
 
         private void btnVerifySubmit_Click(object sender, EventArgs e)
@@ -218,8 +193,6 @@ namespace FloatingGlucose
                 MessageBoxIcon.Error);
                 return;
             }*/
-
-            
 
             Default.DataPathLocation = this.txtDataSourceLocation.Text;
             Default.EnableAlarms = this.btnEnableAlarms.Checked;
@@ -235,7 +208,7 @@ namespace FloatingGlucose
 
             //advanced settings
             Default.GuiScalingRatio = (float)this.numScaling.Value;
-            Default.GuiOpacity = (int) this.numOpacity.Value;
+            Default.GuiOpacity = (int)this.numOpacity.Value;
             Default.RefreshIntervalInSeconds = (int)this.numRefreshInterval.Value;
             Default.EnableExceptionLoggingToStderr = this.chkEnableExceptions.Checked;
 
@@ -244,7 +217,6 @@ namespace FloatingGlucose
 
             //Save plugin type based on the selected fullname
             Default.DataSourceFullName = (this.cbDataSource.SelectedItem as DataSourceInfo).FullName;
-
 
             DataSourceInfo plugin;
 
@@ -275,74 +247,66 @@ namespace FloatingGlucose
                 manager.StopAlarm();
             }
 
-
             AppShared.SettingsUpdatedSuccessfully = true;
             MessageBox.Show("Settings have been saved! Please note: some settings might require a restart to take effect!",
-                AppShared.AppName, MessageBoxButtons.OK,MessageBoxIcon.Information);
+                AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             AppShared.IsShowingSettings = false;
 
             AppShared.NotifyFormSettingsHaveChanged();
-
-
 
             this.Close();
         }
 
         private void NumericUpDowns_Value_Changed(object sender, EventArgs e)
         {
-
         }
 
         private void GlucoseUnit_Changed(object sender, EventArgs e)
         {
             var isMmol = this.btnUnitsMMOL.Checked;
-            
-            if (isMmol) {
+
+            if (isMmol)
+            {
                 if (this.numUrgentHigh.Value >= 36)
                 {
-                    this.numUrgentHigh.Value = GlucoseStatus.ToMmol(this.numUrgentHigh.Value);
+                    this.numUrgentHigh.Value = GlucoseMath.ToMmol(this.numUrgentHigh.Value);
                 }
                 if (this.numHigh.Value >= 36)
                 {
-                    this.numHigh.Value = GlucoseStatus.ToMmol(this.numHigh.Value);
+                    this.numHigh.Value = GlucoseMath.ToMmol(this.numHigh.Value);
                 }
 
                 if (this.numLow.Value >= 36)
                 {
-                    this.numLow.Value = GlucoseStatus.ToMmol(this.numLow.Value);
+                    this.numLow.Value = GlucoseMath.ToMmol(this.numLow.Value);
                 }
 
                 if (this.numUrgentLow.Value >= 36)
                 {
-                    this.numUrgentLow.Value = GlucoseStatus.ToMmol(this.numUrgentLow.Value);
+                    this.numUrgentLow.Value = GlucoseMath.ToMmol(this.numUrgentLow.Value);
                 }
-
             }
-
-            else 
+            else
             {
                 if (this.numUrgentHigh.Value < 36)
                 {
-                    this.numUrgentHigh.Value = GlucoseStatus.ToMgdl(this.numUrgentHigh.Value);
+                    this.numUrgentHigh.Value = GlucoseMath.ToMgdl(this.numUrgentHigh.Value);
                 }
                 if (this.numHigh.Value < 36)
                 {
-                    this.numHigh.Value = GlucoseStatus.ToMgdl(this.numHigh.Value);
+                    this.numHigh.Value = GlucoseMath.ToMgdl(this.numHigh.Value);
                 }
 
                 if (this.numLow.Value < 36)
                 {
-                    this.numLow.Value = GlucoseStatus.ToMgdl(this.numLow.Value);
+                    this.numLow.Value = GlucoseMath.ToMgdl(this.numLow.Value);
                 }
 
                 if (this.numUrgentLow.Value < 36)
                 {
-                    this.numUrgentLow.Value = GlucoseStatus.ToMgdl(this.numUrgentLow.Value);
+                    this.numUrgentLow.Value = GlucoseMath.ToMgdl(this.numUrgentLow.Value);
                 }
-
             }
-
-
         }
 
         private void cbDataSource_SelectedIndexChanged(object sender, EventArgs e)
@@ -352,7 +316,6 @@ namespace FloatingGlucose
             selectedPlugin.Instance.OnPluginSelected(this);
 
             this.btnBrowse.Visible = selectedPlugin.Instance.RequiresBrowseButton;
-
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -363,8 +326,9 @@ namespace FloatingGlucose
             dialog.Filter = selectedPlugin.Instance.BrowseDialogFileFilter;
             dialog.InitialDirectory = Path.GetPathRoot(Environment.SystemDirectory);
             dialog.Title = "Select a file for the plugin to handle";
-            
-            if (dialog.ShowDialog() == DialogResult.OK) {
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
                 this.txtDataSourceLocation.Text = dialog.FileName;
             }
             dialog.Dispose();
@@ -373,7 +337,6 @@ namespace FloatingGlucose
 
         private void txtDataSouceLocation_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }
