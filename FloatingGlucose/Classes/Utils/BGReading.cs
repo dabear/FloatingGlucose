@@ -5,6 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static FloatingGlucose.Properties.Settings;
 
 namespace FloatingGlucose.Classes.Utils
 {
@@ -13,7 +14,7 @@ namespace FloatingGlucose.Classes.Utils
         public double _glucose;
         public DateTime DateReading;
 
-        public double timestamp => this.DateReading.ToUnixTimeStampMilliseconds();
+        public double Timestamp => this.DateReading.ToUnixTimeStampMilliseconds();
         public double GlucoseMgdl => this._glucose;
         public double GlucoseMmol => this.GlucoseMgdl / 18.01559;
 

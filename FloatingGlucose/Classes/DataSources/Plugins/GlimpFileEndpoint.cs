@@ -49,9 +49,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public double RoundedDelta() => Math.Round(this.Delta, 1);
 
-        public bool IsMmol => Default.GlucoseUnits == "mmol";
+        public double Glucose => this.UserWantsMmolUnits() ? this.csv.First().GlucoseMmol : this.csv.First().GlucoseMgdl;
 
-        public double Glucose => this.IsMmol ? this.csv.First().GlucoseMmol : this.csv.First().GlucoseMgdl;
+        private DateTime GlimpDateStringToDateTime(string reading) => DateTime.ParseExact(reading, "dd/MM/yyyy HH.mm.ss", CultureInfo.InvariantCulture);
 
         public double PreviousGlucose
         {
@@ -71,13 +71,8 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                     reading = this.csv.First();
                 }
 
-                return this.IsMmol ? reading.GlucoseMmol : reading.GlucoseMgdl;
+                return this.UserWantsMmolUnits() ? reading.GlucoseMmol : reading.GlucoseMgdl;
             }
-        }
-
-        private DateTime GlimpDateStringToDateTime(string reading)
-        {
-            return DateTime.ParseExact(reading, "dd/MM/yyyy HH.mm.ss", CultureInfo.InvariantCulture);
         }
 
         public string Direction

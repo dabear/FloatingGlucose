@@ -20,12 +20,12 @@ namespace FloatingGlucose.Classes.Utils
 
         private static double calculateSlope(BgReading current, BgReading last)
         {
-            if (current.timestamp == last.timestamp)
+            if (current.Timestamp == last.Timestamp)
             {
                 return 0.0;
             }
 
-            return (last._glucose - current._glucose) / (last.timestamp - current.timestamp);
+            return (last._glucose - current._glucose) / (last.Timestamp - current.Timestamp);
         }
 
         private static double calculateSlopeByMinute(BgReading current, BgReading last)

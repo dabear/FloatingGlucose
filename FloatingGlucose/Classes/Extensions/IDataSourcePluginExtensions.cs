@@ -2,11 +2,14 @@
 using System.Linq;
 using System.Text;
 using System;
+using static FloatingGlucose.Properties.Settings;
 
 namespace FloatingGlucose.Classes.Extensions
 {
     internal static class IDataSourcePluginExtensions
     {
+        public static bool UserWantsMmolUnits(this IDataSourcePlugin plugin) => Default.GlucoseUnits == "mmol";
+
         public static string FormattedDelta(this IDataSourcePlugin plugin)
         {
             return $"{(plugin.RoundedDelta() >= 0.0 ? "+" : "")}{plugin.RoundedDelta():N1}";
