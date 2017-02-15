@@ -115,6 +115,7 @@
     <Compile Include="Classes\DataSources\Exceptions\NoPluginChosenException.cs" />
     <Compile Include="Classes\DataSources\Exceptions\NoSuchPluginException.cs" />
     <Compile Include="Classes\DataSources\Exceptions\ConfigValidationException.cs" />
+    <Compile Include="Classes\DataSources\Plugins\YrWeatherServiceEndpoint.cs" />
     <Compile Include="Classes\DataSources\Plugins\GlimpFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\PluginLoader.cs" />

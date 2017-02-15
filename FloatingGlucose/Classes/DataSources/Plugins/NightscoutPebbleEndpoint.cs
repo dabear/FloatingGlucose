@@ -1,4 +1,5 @@
-﻿using FloatingGlucose.Classes.Utils;
+﻿using FloatingGlucose.Classes.Extensions;
+using FloatingGlucose.Classes.Utils;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Specialized;
@@ -30,7 +31,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public double RoundedRawDelta() => Math.Round(this.RawDelta, 1);
 
-        public static CultureInfo Culture = new CultureInfo("en-US");
+        //public static CultureInfo Culture = new CultureInfo("en-US");
 
         public double CalculateRawGlucose(Cal cal, Bg bg, double actualGlucose)
         {
@@ -38,7 +39,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             double curBG = actualGlucose;
             int specialValue = 0;
 
-            if (this.IsMmol)
+            if (this.UserWantsMmolUnits())
             {
                 if ((actualGlucose < 2.2) || (actualGlucose > 22.2))
                 {
@@ -67,7 +68,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 number = cal.scale * (bg.unfiltered - cal.intercept) / cal.slope / number;
             }
 
-            if (this.IsMmol)
+            if (this.UserWantsMmolUnits())
             {
                 number = number / 18.01559;
             }
@@ -80,7 +81,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             get
             {
                 var bgs = this.NsData.bgs.Skip(1).First();
-                return Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
+                return Double.Parse(bgs.sgv, NumberStyles.Any, CultureInfo.InvariantCulture);
             }
         }
 
@@ -119,7 +120,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         }
 
         public DateTime LocalDate => this.Date.ToLocalTime();
-        public bool IsMmol => Default.GlucoseUnits == "mmol";
+
         public virtual string DataSourceShortName => "Nightscout URL";
 
         public virtual void OnPluginSelected(FormGlucoseSettings form)
@@ -153,9 +154,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             {
                 bgs = parsed.bgs.First();
                 this.Direction = bgs.direction;
-                this.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
+                this.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, CultureInfo.InvariantCulture);
                 this.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
-                this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
+                this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, CultureInfo.InvariantCulture);
             }
             catch (InvalidOperationException ex)
             {

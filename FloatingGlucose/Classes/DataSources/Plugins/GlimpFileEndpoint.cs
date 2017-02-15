@@ -148,7 +148,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                     data.FileVersion = items[0];
                     data.DateReading = GlimpDateStringToDateTime(items[1]);
                     data.RawGlucose = items[4];
-                    data._glucose = Double.Parse(items[5], NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
+                    data._glucose = Double.Parse(items[5], NumberStyles.Any, CultureInfo.InvariantCulture);
                     data.SensorId = items[7];
                     //}
 

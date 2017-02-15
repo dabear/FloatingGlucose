@@ -52,9 +52,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
             bgs = parsed.bgs.First();
             this.Direction = bgs.direction;
-            this.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
+            this.Glucose = Double.Parse(bgs.sgv, NumberStyles.Any, CultureInfo.InvariantCulture);
             this.Date = DateTimeOffset.FromUnixTimeMilliseconds(bgs.datetime).DateTime;
-            this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, NightscoutPebbleFileEndpoint.Culture);
+            this.Delta = Double.Parse(bgs.bgdelta, NumberStyles.Any, CultureInfo.InvariantCulture);
 
             return this;
         }
