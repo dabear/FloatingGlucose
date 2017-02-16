@@ -5,8 +5,6 @@ using FloatingGlucose.Classes.Extensions;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 
-using System;
-
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -45,12 +43,6 @@ namespace FloatingGlucose
 
         private int refreshTime => Default.RefreshIntervalInSeconds * 1000;//converted to milliseconds
                                                                            //private System.Windows.Forms.Timer refreshGlucoseTimer;
-
-#if DEBUG
-        private bool isDebuggingBuild = true;
-#else
-        private bool isDebuggingBuild = false;
-#endif
 
         private FormGlucoseSettings _settingsForm;
 
@@ -158,7 +150,7 @@ namespace FloatingGlucose
             this.lblLastUpdate.Text = "N/A";
             if (ex != null && Default.EnableExceptionLoggingToStderr)
             {
-                if (this.isDebuggingBuild)
+                if (AppShared.isDebuggingBuild)
                 {
                     Console.Out.WriteLine(ex);
                 }
@@ -468,7 +460,7 @@ namespace FloatingGlucose
 
             // Enable special color for  debugging,
             // This is very handy when developing with a Release binary running alongside a dev version
-            if (this.isDebuggingBuild)
+            if (AppShared.isDebuggingBuild)
             {
                 this.BackColor = Color.LightBlue;
             }

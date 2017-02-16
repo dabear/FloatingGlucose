@@ -85,6 +85,9 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>FloatingGlucose.Program</StartupObject>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAudio, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.8.0\lib\net35\NAudio.dll</HintPath>
@@ -115,10 +118,10 @@
     <Compile Include="Classes\DataSources\Exceptions\NoPluginChosenException.cs" />
     <Compile Include="Classes\DataSources\Exceptions\NoSuchPluginException.cs" />
     <Compile Include="Classes\DataSources\Exceptions\ConfigValidationException.cs" />
-    <Compile Include="Classes\DataSources\Plugins\YrWeatherServiceEndpoint.cs" />
     <Compile Include="Classes\DataSources\Plugins\GlimpFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\PluginLoader.cs" />
+    <Compile Include="Classes\DataSources\Plugins\YrWeatherServiceEndpoint.cs" />
     <Compile Include="Classes\Extensions\IDataSourcePluginExtensions.cs" />
     <Compile Include="Classes\Extensions\FormExtensions.cs" />
     <Compile Include="Classes\Extensions\DatetimeExtensions.cs" />

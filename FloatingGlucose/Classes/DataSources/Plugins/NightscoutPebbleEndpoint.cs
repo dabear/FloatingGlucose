@@ -14,6 +14,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     internal class NightscoutPebbleEndpoint : IDataSourcePlugin
     {
+        public virtual bool PluginDisabled => false;
         public virtual bool RequiresBrowseButton => false;
         public virtual string BrowseDialogFileFilter => "";
         public GeneratedNsData NsData;

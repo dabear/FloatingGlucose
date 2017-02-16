@@ -39,5 +39,6 @@ namespace FloatingGlucose.Classes.DataSources
 
         bool RequiresBrowseButton { get; }
         string BrowseDialogFileFilter { get; }
+        bool PluginDisabled { get; }
     }
 }

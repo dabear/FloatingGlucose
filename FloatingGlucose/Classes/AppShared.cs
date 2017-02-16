@@ -8,6 +8,12 @@ namespace FloatingGlucose.Classes
 {
     internal class AppShared
     {
+#if DEBUG
+        public static bool isDebuggingBuild => true;
+#else
+        public static bool isDebuggingBuild => false;
+#endif
+
         public static bool IsWorkStationLocked = false;
         public static bool IsShowingSettings = false;
         public static readonly string AppName = typeof(Program).Assembly.GetName().Name;

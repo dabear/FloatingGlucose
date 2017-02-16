@@ -3,8 +3,6 @@ using System.Text;
 using System.Linq;
 using NAudio.Wave;
 
-using System;
-
 using System.Diagnostics;
 using System.IO;
 using static FloatingGlucose.Properties.Settings;

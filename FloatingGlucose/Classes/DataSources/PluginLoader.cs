@@ -25,7 +25,11 @@ namespace FloatingGlucose.Classes.DataSources
 
                 foreach (Type plugin in allPlugins)
                 {
-                    list.Add(new DataSourceInfo(plugin));
+                    var dsinfo = new DataSourceInfo(plugin);
+                    if (!dsinfo.Instance.PluginDisabled)
+                    {
+                        list.Add(dsinfo);
+                    }
                 }
                 list.Sort((x, y) => x.FullName.CompareTo(y.FullName));
                 this.loadedPlugins = list;
