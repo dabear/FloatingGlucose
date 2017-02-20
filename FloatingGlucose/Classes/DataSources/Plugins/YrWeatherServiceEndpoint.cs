@@ -48,7 +48,15 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public string Direction => "Flat";
 
-        private string yrSearchUrl = "https://www.yr.no/soek/soek.aspx?&land=&region1=&sok=Search&sted=";
+        private string yrSearchUrl = "https://www.yr.no/soek/soek.aspx?&land=&spr=eng&region1=&sok=Search&sted=";
+
+        public FormWebbrowser createBrowser(string url, string js)
+        {
+            var form = new FormWebbrowser(js);
+            form.SetBrowserUrl(url);
+            form.ShowDialog();
+            return form;
+        }
 
         public void OnPluginSelected(FormGlucoseSettings form)
         {
@@ -59,11 +67,53 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             var city = WebUtility.UrlEncode(settings.DataPathLocation);
 
-            var client = new HttpClient();
+            var jscode = @"
 
-            var urlContents = WebUtility.HtmlDecode(client.GetStringAsync($"{yrSearchUrl}").Result);
+(function(){
+    if (!String.prototype.startsWith) {
+        String.prototype.startsWith = function(searchString, position){
+          position = position || 0;
+          return this.substr(position, searchString.length) === searchString;
+        };
+    }
 
-            // var doc = new System.net.http.ht();
+    function handler(ev) {
+        var event  = window.event || event;
+        var target = event.srcElement || event.target;
+
+        if( target.tagName != 'A') {
+           return false;
+        }
+
+        var pathname = target.pathname;
+        if(pathname.substring(0, 1) != '/') {
+          pathname = '/'+ pathname;
+        }
+        //alert('will now try to close, pathname: ' + pathname);
+        if(pathname.startsWith('/place/') ||
+           pathname.startsWith('/sted/') ||
+           pathname.startsWith('/stad/') ||
+           pathname.startsWith('/sadji/')
+        ) {
+            //alert('will now close with reval:' + pathname)
+            //console.log('set return value and close:' + pathname);
+            window.external.SetReturnValueAndClose(pathname);
+        }
+
+        ev.preventDefault && ev.preventDefault();
+
+        return false;
+    }
+    var aEL=window.addEventListener;
+    alert('Please choose the most appropriate location in the following web page')
+
+    document.body[ aEL ? 'addEventListener' : 'attachEvent' ]( aEL ? 'click' : 'onclick', handler )
+})();
+";
+
+            var client = this.createBrowser(yrSearchUrl + city, jscode);
+
+            var response = client.WebPageReturnValue;
 
             return true;
         }

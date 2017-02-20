@@ -162,6 +162,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>FormSettings.settings</DependentUpon>
     </Compile>
+    <Compile Include="FormWebbrowser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormWebbrowser.Designer.cs">
+      <DependentUpon>FormWebbrowser.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="FloatingGlucose.resx">
       <DependentUpon>FloatingGlucose.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -183,6 +189,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="FormWebbrowser.resx">
+      <DependentUpon>FormWebbrowser.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
