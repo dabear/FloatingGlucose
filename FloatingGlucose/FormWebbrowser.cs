@@ -19,7 +19,8 @@ namespace FloatingGlucose
     {
         private string injectScript = "";
 
-        private string _webpageReturnValue = "/place/Norway/Sør-Trøndelag/Trondheim/Trondheim/";
+        //private string _webpageReturnValue = "/place/Norway/Sør-Trøndelag/Trondheim/Trondheim/";
+        private string _webpageReturnValue = "";
 
         public string WebPageReturnValue => this._webpageReturnValue;
 
