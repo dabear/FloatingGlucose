@@ -22,6 +22,13 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public override void OnPluginSelected(FormGlucoseSettings form)
         {
             form.lblDataSourceLocation.Text = "Your File Dump location";
+            var source = form.txtDataSourceLocation.Text.ToLower();
+            //for this plugin, we don't handle http:// and https://
+            //if the source does not resemble an url, it should clearly be removed.
+            if (source.StartsWith("http://") || source.StartsWith("https://"))
+            {
+                form.txtDataSourceLocation.Text = "";
+            }
         }
 
         public override bool VerifyConfig(Properties.Settings settings)

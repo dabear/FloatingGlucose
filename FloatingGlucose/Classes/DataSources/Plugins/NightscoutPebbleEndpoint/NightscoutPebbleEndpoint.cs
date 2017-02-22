@@ -132,6 +132,14 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public virtual void OnPluginSelected(FormGlucoseSettings form)
         {
             form.lblDataSourceLocation.Text = "Your Nightscout installation URL";
+
+            var source = form.txtDataSourceLocation.Text.ToLower();
+            //for this plugin, we handle only http:// and https://
+            //if the source does not resemble an url, it should clearly be removed.
+            if (!source.StartsWith("http://") || !source.StartsWith("https://"))
+            {
+                form.txtDataSourceLocation.Text = "";
+            }
         }
 
         public virtual bool VerifyConfig(Properties.Settings settings)
