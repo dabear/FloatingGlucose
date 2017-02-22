@@ -25,7 +25,11 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
     internal class GlimpFileEndpoint : IDataSourcePlugin
     {
         public bool PluginDisabled => false;
+
+        public List<string> HandleFormatting() => null;
+
         public bool RequiresBrowseButton => true;
+        public bool PluginHandlesFormatting => false;
         public string BrowseDialogFileFilter => "Glimp Glucose file |GlicemiaMisurazioni.csv";
         public string DataSourceShortName => "Glimp Dropbox File";
         public virtual int SortOrder => 20;

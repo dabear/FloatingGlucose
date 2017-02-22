@@ -4,6 +4,7 @@ using System.Text;
 using System;
 using static FloatingGlucose.Properties.Settings;
 using System.Diagnostics;
+using FloatingGlucose.Classes.DataSources.Plugins;
 
 namespace FloatingGlucose.Classes.Extensions
 {

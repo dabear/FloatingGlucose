@@ -247,42 +247,53 @@ namespace FloatingGlucose
 
                 string arrow = data.DirectionArrow();
 
-                //mgdl values are always reported in whole numbers
-                this.lblGlucoseValue.Text = Default.GlucoseUnits == "mmol" ?
-                    $"{data.Glucose:N1} {arrow}" : $"{data.Glucose:N0} {arrow}";
-
-                this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
-                var status = GlucoseMath.GetGlucoseAlarmStatus((decimal)data.Glucose);
-
-                this.lblDelta.Text = data.FormattedDelta() + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
-
-                if (Default.EnableRawGlucoseDisplay)
+                if (endpoint.PluginHandlesFormatting)
                 {
-                    this.lblRawBG.Text = $"{data.RawGlucose:N1}";
+                    var result = endpoint.HandleFormatting();
+                    this.lblGlucoseValue.Text = result[0];
+                    this.lblLastUpdate.Text = result[1];
+                    this.lblDelta.Text = result[2];
+                    this.notifyIcon1.Text = result[3];
                 }
-
-                this.SetSuccessState();
-
-                switch (status)
+                else
                 {
-                    case GlucoseAlarmStatusEnum.UrgentHigh:
-                    case GlucoseAlarmStatusEnum.UrgentLow:
-                        setLabelsColor(Color.Red);
-                        alarmManger.PlayGlucoseAlarm();
-                        break;
+                    //mgdl values are always reported in whole numbers
+                    this.lblGlucoseValue.Text = Default.GlucoseUnits == "mmol" ?
+                        $"{data.Glucose:N1} {arrow}" : $"{data.Glucose:N0} {arrow}";
 
-                    case GlucoseAlarmStatusEnum.Low:
-                    case GlucoseAlarmStatusEnum.High:
-                        setLabelsColor(Color.Yellow);
-                        alarmManger.PlayGlucoseAlarm();
-                        break;
+                    this.notifyIcon1.Text = "BG: " + this.lblGlucoseValue.Text;
+                    var status = GlucoseMath.GetGlucoseAlarmStatus((decimal)data.Glucose);
 
-                    case GlucoseAlarmStatusEnum.Unknown:
-                    case GlucoseAlarmStatusEnum.Normal:
-                    default:
-                        alarmManger.StopAlarm();
-                        setLabelsColor(Color.Green);
-                        break;
+                    this.lblDelta.Text = data.FormattedDelta() + " " + (Default.GlucoseUnits == "mmol" ? "mmol/L" : "mg/dL");
+
+                    if (Default.EnableRawGlucoseDisplay)
+                    {
+                        this.lblRawBG.Text = $"{data.RawGlucose:N1}";
+                    }
+
+                    this.SetSuccessState();
+
+                    switch (status)
+                    {
+                        case GlucoseAlarmStatusEnum.UrgentHigh:
+                        case GlucoseAlarmStatusEnum.UrgentLow:
+                            setLabelsColor(Color.Red);
+                            alarmManger.PlayGlucoseAlarm();
+                            break;
+
+                        case GlucoseAlarmStatusEnum.Low:
+                        case GlucoseAlarmStatusEnum.High:
+                            setLabelsColor(Color.Yellow);
+                            alarmManger.PlayGlucoseAlarm();
+                            break;
+
+                        case GlucoseAlarmStatusEnum.Unknown:
+                        case GlucoseAlarmStatusEnum.Normal:
+                        default:
+                            alarmManger.StopAlarm();
+                            setLabelsColor(Color.Green);
+                            break;
+                    }
                 }
             }
             catch (FileNotFoundException ex)

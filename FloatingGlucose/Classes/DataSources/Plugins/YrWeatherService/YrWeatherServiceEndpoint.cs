@@ -20,6 +20,8 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     internal class YrWeatherServiceEndpoint : IDataSourcePlugin
     {
+        public bool PluginHandlesFormatting => true;
+
         public bool PluginDisabled => !AppShared.isDebuggingBuild;
         public bool RequiresBrowseButton => false;
         public string BrowseDialogFileFilter => "";
@@ -29,6 +31,31 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public DateTime Date => @DateTime.Parse(this.weatherData.Forecast.Tabular.Time[0].From);
 
         public double Delta => this.Glucose - this.PreviousGlucose;
+
+        //glucose,lastupdate,delta,notification
+        public List<string> HandleFormatting()
+        {
+            var texts = new List<string>();
+
+            if (this.weatherData != null)
+            {
+                var temp = this.weatherData.Forecast?.Tabular?.Time?[0]?.Temperature;
+                var temperature = temp?.Value + " " + temp.Unit?[0].ToString().ToUpper() + "°";
+                texts.Add(temperature);
+                texts.Add(this.Date.ToLocalTime().ToShortTimeString());
+                texts.Add(this.weatherData.Location?.Name ?? "");
+
+                texts.Add("Weatherdata plugin active");
+
+                return texts;
+            }
+            texts.Add("Error");
+            texts.Add("Cannot");
+            texts.Add("get weatherdata");
+            texts.Add("error");
+
+            return texts;
+        }
 
         //
         // Raw glucose is not supported for this plugin
@@ -58,10 +85,6 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         private string getYrForeCastURL(string pathname) => String.Format(this.yrForeCast, pathname);
 
         //override specific for this plugin as it doesn't really handle deltas
-        public string FormattedDelta()
-        {
-            return this.weatherData?.Location?.Name ?? "";
-        }
 
         public FormWebbrowser createYrSearchBrowser(string city)
         {

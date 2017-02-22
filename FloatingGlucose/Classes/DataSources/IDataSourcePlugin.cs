@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,10 @@ namespace FloatingGlucose.Classes.DataSources
     public interface IDataSourcePlugin
     {
         int SortOrder { get; }
+        bool PluginHandlesFormatting { get; }
+
+        List<string> HandleFormatting();
+
         DateTime Date { get; }
 
         double Glucose { get; }

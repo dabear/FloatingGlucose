@@ -2,6 +2,7 @@
 using FloatingGlucose.Classes.Utils;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.Linq;
@@ -14,6 +15,10 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     internal class NightscoutPebbleEndpoint : IDataSourcePlugin
     {
+        public bool PluginHandlesFormatting => false;
+
+        public List<string> HandleFormatting() => null;
+
         public virtual bool PluginDisabled => false;
         public virtual bool RequiresBrowseButton => false;
         public virtual string BrowseDialogFileFilter => "";
