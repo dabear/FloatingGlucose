@@ -2,6 +2,8 @@
  Licensed under the Apache License, Version 2.0
 
  http://www.apache.org/licenses/LICENSE-2.0
+
+ Adapted from http://xmltocsharp.azurewebsites.net/ by bjorninges.spam@bjorninge.no
  */
 
 using System;
@@ -21,7 +23,7 @@ namespace Xml2CSharp
     }
 
     [XmlRoot(ElementName = "location")]
-    public class Location
+    public class Location2
     {
         [XmlAttribute(AttributeName = "altitude")]
         public string Altitude { get; set; }
@@ -37,12 +39,25 @@ namespace Xml2CSharp
 
         [XmlAttribute(AttributeName = "geobaseid")]
         public string Geobaseid { get; set; }
+    }
 
-        [XmlElement(ElementName = "time")]
-        public List<Time> Time { get; set; }
-
-        [XmlAttribute(AttributeName = "name")]
+    [XmlRoot(ElementName = "location")]
+    public class Location
+    {
+        [XmlElement(ElementName = "name")]
         public string Name { get; set; }
+
+        [XmlElement(ElementName = "type")]
+        public string Type { get; set; }
+
+        [XmlElement(ElementName = "country")]
+        public string Country { get; set; }
+
+        [XmlElement(ElementName = "timezone")]
+        public Timezone Timezone { get; set; }
+
+        [XmlElement(ElementName = "location2")]
+        public Location2 Location2 { get; set; }
     }
 
     [XmlRoot(ElementName = "link")]
@@ -92,13 +107,6 @@ namespace Xml2CSharp
         public string Set { get; set; }
     }
 
-    [XmlRoot(ElementName = "body")]
-    public class Body
-    {
-        [XmlElement(ElementName = "strong")]
-        public string Strong { get; set; }
-    }
-
     [XmlRoot(ElementName = "time")]
     public class Time
     {
@@ -106,7 +114,7 @@ namespace Xml2CSharp
         public string Title { get; set; }
 
         [XmlElement(ElementName = "body")]
-        public Body Body { get; set; }
+        public string Body { get; set; }
 
         [XmlAttribute(AttributeName = "from")]
         public string From { get; set; }
@@ -133,11 +141,21 @@ namespace Xml2CSharp
         public Pressure Pressure { get; set; }
     }
 
+    [XmlRoot(ElementName = "location")]
+    public class Location3
+    {
+        [XmlElement(ElementName = "time")]
+        public List<Time> Time { get; set; }
+
+        [XmlAttribute(AttributeName = "name")]
+        public string Name { get; set; }
+    }
+
     [XmlRoot(ElementName = "text")]
     public class Text
     {
         [XmlElement(ElementName = "location")]
-        public Location Location { get; set; }
+        public Location3 Location3 { get; set; }
     }
 
     [XmlRoot(ElementName = "symbol")]
@@ -154,6 +172,9 @@ namespace Xml2CSharp
 
         [XmlAttribute(AttributeName = "var")]
         public string Var { get; set; }
+
+        [XmlAttribute(AttributeName = "time")]
+        public string Time { get; set; }
     }
 
     [XmlRoot(ElementName = "precipitation")]
@@ -161,12 +182,6 @@ namespace Xml2CSharp
     {
         [XmlAttribute(AttributeName = "value")]
         public string Value { get; set; }
-
-        [XmlAttribute(AttributeName = "minvalue")]
-        public string Minvalue { get; set; }
-
-        [XmlAttribute(AttributeName = "maxvalue")]
-        public string Maxvalue { get; set; }
     }
 
     [XmlRoot(ElementName = "windDirection")]
@@ -241,6 +256,9 @@ namespace Xml2CSharp
     [XmlRoot(ElementName = "weatherstation")]
     public class Weatherstation
     {
+        [XmlElement(ElementName = "symbol")]
+        public Symbol Symbol { get; set; }
+
         [XmlElement(ElementName = "temperature")]
         public Temperature Temperature { get; set; }
 

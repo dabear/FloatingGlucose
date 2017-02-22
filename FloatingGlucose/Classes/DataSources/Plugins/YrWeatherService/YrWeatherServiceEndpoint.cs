@@ -22,7 +22,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
     {
         public bool PluginHandlesFormatting => true;
 
-        public bool PluginDisabled => !AppShared.isDebuggingBuild;
+        public bool PluginDisabled => false;
         public bool RequiresBrowseButton => false;
         public string BrowseDialogFileFilter => "";
         public string DataSourceShortName => "Yr.no Weather";
@@ -165,6 +165,14 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public void OnPluginSelected(FormGlucoseSettings form)
         {
             form.lblDataSourceLocation.Text = "Your closest location";
+
+            var source = form.txtDataSourceLocation.Text.ToLower();
+            //for this plugin, we handle only city names and yr.no path names
+            //if the source resembles an url, it should clearly be removed.
+            if (source.StartsWith("http://") || source.StartsWith("https://"))
+            {
+                form.txtDataSourceLocation.Text = "";
+            }
         }
 
         public bool VerifyConfig(Properties.Settings settings)
@@ -196,18 +204,16 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public async Task<IDataSourcePlugin> GetDataSourceDataAsync(NameValueCollection locations)
         {
+            this.WriteDebug("Will now try refresh using YR.no");
             var pathname = locations["raw"];
             var forecastUrl = this.getYrForeCastURL(pathname);
 
             try
             {
                 var client = new HttpClient();
-
                 string urlContents = await client.GetStringAsync(forecastUrl);
 
                 this.weatherData = this.deserializeWeatherData(urlContents);
-
-                //var temperature = times[0].Temperature.Value + " " + times[0].Temperature.Unit[0].ToString().ToUpper() + "°";
             }
             catch (Exception err)
             {
