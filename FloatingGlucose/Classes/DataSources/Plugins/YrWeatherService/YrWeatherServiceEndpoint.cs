@@ -13,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using static FloatingGlucose.Properties.Settings;
 using System.Windows.Forms;
+using System.Xml.Serialization;
+using Xml2CSharp;
 
 namespace FloatingGlucose.Classes.DataSources.Plugins
 {
@@ -24,7 +26,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public string DataSourceShortName => "Yr.no Weather";
         public virtual int SortOrder => 20;
 
-        public DateTime Date => new DateTime(1970, 1, 1);
+        public DateTime Date => @DateTime.Parse(this.weatherData.Forecast.Tabular.Time[0].From);
 
         public double Delta => this.Glucose - this.PreviousGlucose;
 
@@ -51,7 +53,15 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         private string yrSearchUrl = "https://www.yr.no/soek/soek.aspx?&land=&spr=eng&region1=&sok=Search&sted=";
         private string yrForeCast = "http://www.yr.no/{0}/forecast_hour_by_hour.xml";
 
+        private Weatherdata weatherData;
+
         private string getYrForeCastURL(string pathname) => String.Format(this.yrForeCast, pathname);
+
+        //override specific for this plugin as it doesn't really handle deltas
+        public string FormattedDelta()
+        {
+            return this.weatherData?.Location?.Name ?? "";
+        }
 
         public FormWebbrowser createYrSearchBrowser(string city)
         {
@@ -104,7 +114,20 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             return form;
         }
 
-        private bool VerifyYrPathString(string path)
+        private Weatherdata deserializeWeatherData(string xmlsource)
+        {
+            Weatherdata weather;
+
+            using (var reader = new StringReader(xmlsource))
+            {
+                var serializer = new XmlSerializer(typeof(Weatherdata));
+                weather = (Weatherdata)serializer.Deserialize(reader);
+
+                return weather;
+            }
+        }
+
+        private bool verifyYrPathString(string path)
         {
             if (path.StartsWith("/place/") || path.StartsWith("/sted/") ||
                path.StartsWith("/stad/") ||
@@ -125,7 +148,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             var pathname = settings.DataPathLocation;
             settings.DataPathLocation = pathname;
-            if (this.VerifyYrPathString(pathname))
+            if (this.verifyYrPathString(pathname))
             {
                 return true;
             }
@@ -140,7 +163,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
             var url = this.getYrForeCastURL(settings.DataPathLocation);
 
-            if (!this.VerifyYrPathString(settings.DataPathLocation))
+            if (!this.verifyYrPathString(settings.DataPathLocation))
             {
                 throw new ConfigValidationException("The entered weather location was not correctly formed!");
             }
@@ -151,7 +174,23 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public async Task<IDataSourcePlugin> GetDataSourceDataAsync(NameValueCollection locations)
         {
             var pathname = locations["raw"];
-            var forecast = this.getYrForeCastURL(pathname);
+            var forecastUrl = this.getYrForeCastURL(pathname);
+
+            try
+            {
+                var client = new HttpClient();
+
+                string urlContents = await client.GetStringAsync(forecastUrl);
+
+                this.weatherData = this.deserializeWeatherData(urlContents);
+
+                //var temperature = times[0].Temperature.Value + " " + times[0].Temperature.Unit[0].ToString().ToUpper() + "°";
+            }
+            catch (Exception err)
+            {
+                this.WriteDebug($"got error in fetching xmldata from {forecastUrl}: {err.Message}");
+            }
+
             return this;
         }
     }

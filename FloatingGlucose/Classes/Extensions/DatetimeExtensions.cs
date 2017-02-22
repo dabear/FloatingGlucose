@@ -21,7 +21,7 @@ namespace FloatingGlucose.Classes.Extensions
                 int years = (span.Days / 365);
                 if (span.Days % 365 != 0)
                     years += 1;
-                return String.Format("{0} {1}",
+                return String.Format("{0} {1} ago",
                 years, years == 1 ? "year" : "years");
             }
             if (span.Days > 30)
