@@ -41,14 +41,14 @@ namespace FloatingGlucose
 
             wb.ObjectForScripting = this;
 
-            if (!AppShared.isDebuggingBuild)
-            {
-                wb.AllowWebBrowserDrop = false;
-                wb.IsWebBrowserContextMenuEnabled = false;
-                wb.WebBrowserShortcutsEnabled = false;
-            }
-
-            wb.ScriptErrorsSuppressed = !AppShared.isDebuggingBuild;
+            //if (!AppShared.isDebuggingBuild)
+            //{
+            wb.AllowWebBrowserDrop = false;
+            wb.IsWebBrowserContextMenuEnabled = false;
+            wb.WebBrowserShortcutsEnabled = false;
+            wb.ScriptErrorsSuppressed = true;
+            //}
+            this.disableScrollBars = disableScrollBars;
         }
 
         public void SetBrowserUrl(string url)
@@ -81,6 +81,7 @@ namespace FloatingGlucose
                 head.AppendChild(s);
                 Debug.WriteLine("Inserted script into web page!");
             }
+
             if (this.disableScrollBars)
             {
                 doc.Body.Style = "overflow:hidden";
