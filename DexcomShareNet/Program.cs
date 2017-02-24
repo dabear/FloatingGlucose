@@ -35,22 +35,26 @@ namespace DexcomShareNet
             }
             var client = new ShareClient(user, password);
 
-            try
-            {
-                // var token = await client.fetchToken();
-                //this will login, fetch token and send a request to fetch
-                //glucose values using that token.
-                //manually setting the client.token is only recommended for testing purposes!
+            //europe:
+            //var client = new ShareClient(user, password, DexcomShareServer.DexcomServerNonUS);
 
-                var glucose = await client.FetchLastGlucoseValues();
+            /* try
+             {*/
+            // var token = await client.fetchToken();
+            //this will login, fetch token and send a request to fetch
+            //glucose values using that token.
+            //manually setting the client.token is only recommended for testing purposes!
 
-                //set client.token manually, test with a valid token
-                client.token = testtoken;
+            //var glucose = await client.FetchLastGlucoseValues();
 
-                //set client.token manually, test with an invalid token
-                client.token = testtoken2;
-                var glucose2 = await client.FetchLastGlucoseValues();
-            }
+            //set client.token manually, test with a valid token
+            //client.token = testtoken;
+
+            //set client.token manually, test with an invalid token
+            // client.token = testtoken2;
+            //will handle retries if session becomes invalid:
+            var glucose2 = await client.FetchLast(3);
+            /*}
             catch (SpecificShareError err)
             {
                 Console.WriteLine($"Got specific error:{err}: {err.Message}");
@@ -58,7 +62,7 @@ namespace DexcomShareNet
             catch (Exception err)
             {
                 Console.WriteLine($"got generic error of type {err.GetType()}: {err.Message}");
-            }
+            }*/
         }
     }
 }

@@ -99,21 +99,23 @@ namespace DexcomShareNet
             return decoded;
         }
 
-        public async void FetchLast(int n)
+        public async Task<List<ShareGlucose>> FetchLast(int n)
         {
-            await this.FetchLastGlucoseValuesWithRetries(n, this.maxReauthAttempts);
+            return await this.FetchLastGlucoseValuesWithRetries(n, this.maxReauthAttempts);
         }
 
         //should be private after test
         public async Task<List<ShareGlucose>> FetchLastGlucoseValuesWithRetries(int n = 3, int remaining = 3)
         {
             List<ShareGlucose> result = null;
-
+            var i = 0;
             do
             {
                 //logic for refetching token/reauth here, but missing currently
                 try
                 {
+                    i++;
+                    WriteDebug($"Attempt #{i} to fetch glucose");
                     result = await this.FetchLastGlucoseValues(n);
                 }
                 catch (WebException)
@@ -126,11 +128,12 @@ namespace DexcomShareNet
                 }
                 catch (SpecificShareError err)
                 {
-                    if (err.code == "SessionIdNotFound")
+                    if (err.code == "SessionIdNotFound" || err.code == "SessionNotValid")
                     {
                         // Token is invalid, force trying to fetching new token on next call
                         // to FetchLastGlucoseValues
                         this.token = null;
+                        WriteDebug("Session not found, must reauth");
                     }
                     else
                     {
