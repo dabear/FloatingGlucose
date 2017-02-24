@@ -113,6 +113,9 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\DexcomShareNet\*.cs">
+       <Link>_Inlined\DexcomShareNet\%(RecursiveDir)%(Filename)%(Extension)</Link>
+    </Compile>
     <Compile Include="Classes\DataSources\DataSourceInfo.cs" />
     <Compile Include="Classes\DataSources\IDataSourcePlugin.cs" />
     <Compile Include="Classes\DataSources\Exceptions\NoPluginChosenException.cs" />
