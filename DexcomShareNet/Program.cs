@@ -10,7 +10,7 @@ namespace DexcomShareNet
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Test");
+            
 
             DoIt();
             Console.Read();
@@ -28,12 +28,15 @@ namespace DexcomShareNet
             //testtoken, should be correct format, but invalid number
             string testtoken2 = "someothertoken";
 
+
             if (debug)
             {
                 user = "baribari2402207X";//obviously incorrect
                 password = "bazbar"; //obviously incorrect
             }
             var client = new ShareClient(user, password);
+
+
 
             //europe:
             //var client = new ShareClient(user, password, DexcomShareServer.DexcomServerNonUS);
