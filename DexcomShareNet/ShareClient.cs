@@ -1,4 +1,4 @@
-﻿ using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,15 +31,15 @@ namespace DexcomShareNet
 
         private string token;
 
-		protected bool enableDebug = true;
+        protected bool enableDebug = true;
 
         protected virtual void WriteDebug(string msg)
         {
-			if (!this.enableDebug)
-			{ 
-				return; 
-			}
-			Console.WriteLine(nameof(ShareClient) + ": " + msg);
+            if (!this.enableDebug)
+            {
+                return;
+            }
+            Console.WriteLine(nameof(ShareClient) + ": " + msg);
         }
 
         private async Task<ShareResponse> dexcomPOST(string url, Dictionary<string, string> data = null)
@@ -60,27 +60,28 @@ namespace DexcomShareNet
             msg.Headers.UserAgent.Clear();
             msg.Headers.Add("user-agent", this.dexcomUserAgent);
 
-            
+
 
             msg.Content = new StringContent(json, Encoding.UTF8, "application/json");
 
 
-			try
-			{
-				WriteDebug($"Sending json {json} to endpoint {url}");
-				var response = (await client.SendAsync(msg));
-				WriteDebug($"Is response success? {response.IsSuccessStatusCode}");
-				var result = await response.Content.ReadAsStringAsync();
+            try
+            {
+                WriteDebug($"Sending json {json} to endpoint {url}");
+                var response = (await client.SendAsync(msg));
+                WriteDebug($"Is response success? {response.IsSuccessStatusCode}");
+                var result = await response.Content.ReadAsStringAsync();
 
-				WriteDebug($"Response from endpoint {url}: {result}");
-				return new ShareResponse { IsSuccess = response.IsSuccessStatusCode, Response = result };
+                WriteDebug($"Response from endpoint {url}: {result}");
+                return new ShareResponse { IsSuccess = response.IsSuccessStatusCode, Response = result };
 
-			}
-			catch (Exception err) {
-				WriteDebug($"Got exception in sending to endpoint {err}");
-			}
+            }
+            catch (Exception err)
+            {
+                WriteDebug($"Got exception in sending to endpoint {err}");
+            }
 
-			return null;
+            return null;
         }
 
         public ShareClient(string username, string password, DexcomShareServer shareServer = DexcomShareServer.DexcomServerUS)
@@ -118,8 +119,8 @@ namespace DexcomShareNet
             return await this.fetchLastGlucoseValuesWithRetries(n, this.maxReauthAttempts);
         }
 
-		//should be private after test
-		private async Task<List<ShareGlucose>> fetchLastGlucoseValuesWithRetries(int n = 3, int remaining = 3)
+        //should be private after test
+        private async Task<List<ShareGlucose>> fetchLastGlucoseValuesWithRetries(int n = 3, int remaining = 3)
         {
             List<ShareGlucose> result = null;
             var i = 0;
@@ -134,13 +135,13 @@ namespace DexcomShareNet
                 }
                 catch (WebException)
                 {
-					//ignore webexceptions, might mean network is temporarily down, retry
-					WriteDebug("Got webexception");
+                    //ignore webexceptions, might mean network is temporarily down, retry
+                    WriteDebug("Got webexception");
                 }
                 catch (HttpRequestException)
                 {
                     //ignore webexceptions, might mean network is temporarily down, retry
-					WriteDebug("Got httprequestexception");
+                    WriteDebug("Got httprequestexception");
                 }
                 catch (SpecificShareError err)
                 {
@@ -162,8 +163,8 @@ namespace DexcomShareNet
             return result;
         }
 
-		//should be private after testubg
-		private async Task<List<ShareGlucose>> fetchLastGlucoseValues(int n = 3)
+        //should be private after testubg
+        private async Task<List<ShareGlucose>> fetchLastGlucoseValues(int n = 3)
         {
             if (this.token == null)
             {

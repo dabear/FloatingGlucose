@@ -10,7 +10,7 @@ namespace DexcomShareNet
     {
         private static void Main(string[] args)
         {
-            
+
 
             DoIt();
             Console.Read();
