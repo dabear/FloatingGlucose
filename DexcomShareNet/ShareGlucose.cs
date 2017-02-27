@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DexcomShareNet
+namespace ShareClientDotNet
 {
     //json2csharp.com
     internal class ShareGlucose
