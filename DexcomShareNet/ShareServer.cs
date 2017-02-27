@@ -2,7 +2,7 @@
 
 namespace DexcomShareNet
 {
-    public enum DexcomShareServer
+    public enum ShareServer
     {
         ShareServerUS,
         ServerNonUS

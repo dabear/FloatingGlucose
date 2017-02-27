@@ -84,12 +84,12 @@ namespace DexcomShareNet
             return null;
         }
 
-        public ShareClient(string username, string password, DexcomShareServer shareServer = DexcomShareServer.DexcomServerUS)
+        public ShareClient(string username, string password, ShareServer shareServer = ShareServer.ShareServerUS)
         {
             this.username = username;
             this.password = password;
 
-            this.dexcomServer = shareServer == DexcomShareServer.DexcomServerUS ?
+            this.dexcomServer = shareServer == ShareServer.ShareServerUS ?
                 this.dexcomServerUS :
                 this.dexcomServerNonUS;
         }
