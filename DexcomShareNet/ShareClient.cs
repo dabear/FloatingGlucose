@@ -120,7 +120,8 @@ namespace ShareClientDotNet
             }
             catch (Exception err)
             {
-                WriteDebug($"Could not fetch token because response was not as expected. Network failure, or decoding failure?");
+                WriteDebug($"Could not fetch token because response was not as expected. Network failure, or decoding failure:");
+                WriteDebug($"{err.GetType()}: message:{err.Message}");
 
                 throw err;
             }

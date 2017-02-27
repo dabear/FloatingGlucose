@@ -60,6 +60,17 @@ namespace ShareClientDotNet
                     //the client will not try to automatically re-authenticate when this happens,
                     //as it will likely fail anyway
                 }
+                else if (err.code == "Unknown")
+                {
+                    Console.WriteLine("got unknown error from main program");
+                    //some unknown error occured, url might be wrong, or some other error
+                }
+                else
+                {
+                    // This should never happen. 
+                    // If it does, there is a new Remote error code that we don't know about..
+                    Console.WriteLine($"hit else-block, coce: {err.code}, err: {err}");
+                }
 
             }
 
