@@ -54,6 +54,8 @@
     <Compile Include="ShareGlucose.cs" />
     <Compile Include="ShareResponse.cs" />
     <Compile Include="SpecificShareError.cs" />
+    <Compile Include="ShareGlucoseSlopeOrdinals.cs" />
+    <Compile Include="ShareKnownRemoteErrorCodes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

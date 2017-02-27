@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DexcomShareNet
+namespace ShareClientDotNet
 {
     internal class Program
     {
@@ -18,15 +18,10 @@ namespace DexcomShareNet
 
         private static async void DoIt()
         {
-            var debug = false;
+            var debug = !false;
             string user = "somevaliduser";
             string password = "somevalidpassword";
 
-            //testtoken, this token was valid 2017-02-24 13:00 Norway time
-            string testtoken = "sometoken";
-
-            //testtoken, should be correct format, but invalid number
-            string testtoken2 = "someothertoken";
 
 
             if (debug)
@@ -34,38 +29,39 @@ namespace DexcomShareNet
                 user = "baribari2402207X";//obviously incorrect
                 password = "bazbar"; //obviously incorrect
             }
+
+            //use this if you use the US servers
+
             var client = new ShareClient(user, password);
 
+            //use this if you use the Non US servers
+            //var client = new ShareClient(user, password, ShareServer.ServerNonUS);
 
+            try
+            {
 
-            //europe:
-            //var client = new ShareClient(user, password, DexcomShareServer.DexcomServerNonUS);
-
-            /* try
-             {*/
-            // var token = await client.fetchToken();
-            //this will login, fetch token and send a request to fetch
-            //glucose values using that token.
-            //manually setting the client.token is only recommended for testing purposes!
-
-            //var glucose = await client.FetchLastGlucoseValues();
-
-            //set client.token manually, test with a valid token
-            //client.token = testtoken;
-
-            //set client.token manually, test with an invalid token
-            // client.token = testtoken2;
-            //will handle retries if session becomes invalid:
-            var glucose2 = await client.FetchLast(3);
-            /*}
+                var glucose = await client.FetchLast(3);
+            }
             catch (SpecificShareError err)
             {
-                Console.WriteLine($"Got specific error:{err}: {err.Message}");
+
+                if (err.code == ShareKnownRemoteErrorCodes.AuthenticateAccountNotFound)
+                {
+                    //invalid username
+
+                }
+                else if (err.code == ShareKnownRemoteErrorCodes.AuthenticatePasswordInvalid)
+                {
+                    //invalid password
+
+                }
+                else if (err.code == ShareKnownRemoteErrorCodes.AuthenticateMaxAttemptsExceeed)
+                {
+                    //password is invalid
+                }
+
             }
-            catch (Exception err)
-            {
-                Console.WriteLine($"got generic error of type {err.GetType()}: {err.Message}");
-            }*/
+
         }
     }
 }

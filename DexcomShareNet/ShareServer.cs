@@ -1,6 +1,6 @@
 ﻿
 
-namespace DexcomShareNet
+namespace ShareClientDotNet
 {
     public enum ShareServer
     {

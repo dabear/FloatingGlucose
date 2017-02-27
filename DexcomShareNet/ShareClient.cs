@@ -8,7 +8,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DexcomShareNet
+namespace ShareClientDotNet
 {
     internal class ShareClient
     {
@@ -108,10 +108,20 @@ namespace DexcomShareNet
 
             WriteDebug($"Post to {url}");
 
-            var result = (await this.dexcomPOST(url, data)).GetResponse();
-            decoded = JsonConvert.DeserializeObject<string>(result);
+            try
+            {
 
-            return decoded;
+                var result = (await this.dexcomPOST(url, data)).GetResponse();
+                decoded = JsonConvert.DeserializeObject<string>(result);
+
+                return decoded;
+            }
+            catch (Exception err)
+            {
+                WriteDebug($"Could not fetch token because response was not as expected. Network failure, or decoding failure?");
+                return null;
+            }
+
         }
 
         public async Task<List<ShareGlucose>> FetchLast(int n)
@@ -158,7 +168,7 @@ namespace DexcomShareNet
                         throw err;
                     }
                 }
-            } while (result == null && remaining-- > 0);
+            } while (result == null && remaining-- > 1);
 
             return result;
         }
