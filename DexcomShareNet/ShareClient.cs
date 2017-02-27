@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace ShareClientDotNet
 {
@@ -79,9 +80,10 @@ namespace ShareClientDotNet
             catch (Exception err)
             {
                 WriteDebug($"Got exception in sending to endpoint {err}");
+                throw err;
             }
 
-            return null;
+
         }
 
         public ShareClient(string username, string password, ShareServer shareServer = ShareServer.ShareServerUS)
@@ -119,7 +121,8 @@ namespace ShareClientDotNet
             catch (Exception err)
             {
                 WriteDebug($"Could not fetch token because response was not as expected. Network failure, or decoding failure?");
-                return null;
+
+                throw err;
             }
 
         }
@@ -149,14 +152,14 @@ namespace ShareClientDotNet
                 catch (WebException)
                 {
                     //ignore webexceptions, might mean network is temporarily down, retry
-                    WriteDebug("Got webexception");
-                    await Task.Delay(1000);
+                    WriteDebug("Got webexception, waiting at least 1s before retry");
+                    Thread.Sleep(1000);
                 }
                 catch (HttpRequestException)
                 {
                     //ignore webexceptions, might mean network is temporarily down, retry
-                    WriteDebug("Got httprequestexception");
-                    await Task.Delay(1000);
+                    WriteDebug("Got httprequestexception, waiting at least 1s before retry");
+                    Thread.Sleep(1000);
                 }
                 catch (SpecificShareError err)
                 {
@@ -194,6 +197,8 @@ namespace ShareClientDotNet
             {
                 return null;
             }
+
+            return null;
 
             var url = $"{this.dexcomServer}{this.dexcomLatestGlucosePath}?sessionId={this.token}&minutes=1440&maxCount={n}";
 
