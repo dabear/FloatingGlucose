@@ -198,7 +198,7 @@ namespace ShareClientDotNet
                 return null;
             }
 
-            return null;
+
 
             var url = $"{this.dexcomServer}{this.dexcomLatestGlucosePath}?sessionId={this.token}&minutes=1440&maxCount={n}";
 
