@@ -18,7 +18,7 @@ namespace ShareClientDotNet
 
         private static async void DoIt()
         {
-            var debug = !false;
+            var debug = false;
             string user = "somevaliduser";
             string password = "somevalidpassword";
 
@@ -39,7 +39,7 @@ namespace ShareClientDotNet
 
             try
             {
-
+                //this can return null if the internet connection is broken
                 var glucose = await client.FetchLast(3);
             }
             catch (SpecificShareError err)
@@ -57,7 +57,8 @@ namespace ShareClientDotNet
                 }
                 else if (err.code == ShareKnownRemoteErrorCodes.AuthenticateMaxAttemptsExceeed)
                 {
-                    //password is invalid
+                    //the client will not try to automatically re-authenticate when this happens,
+                    //as it will likely fail anyway
                 }
 
             }

@@ -129,6 +129,7 @@ namespace ShareClientDotNet
             return await this.fetchLastGlucoseValuesWithRetries(n, this.maxReauthAttempts);
         }
 
+
         //should be private after test
         private async Task<List<ShareGlucose>> fetchLastGlucoseValuesWithRetries(int n = 3, int remaining = 3)
         {
@@ -142,16 +143,20 @@ namespace ShareClientDotNet
                     i++;
                     WriteDebug($"Attempt #{i} to fetch glucose");
                     result = await this.fetchLastGlucoseValues(n);
+
+
                 }
                 catch (WebException)
                 {
                     //ignore webexceptions, might mean network is temporarily down, retry
                     WriteDebug("Got webexception");
+                    await Task.Delay(1000);
                 }
                 catch (HttpRequestException)
                 {
                     //ignore webexceptions, might mean network is temporarily down, retry
                     WriteDebug("Got httprequestexception");
+                    await Task.Delay(1000);
                 }
                 catch (SpecificShareError err)
                 {

@@ -7,7 +7,7 @@
     <ProjectGuid>{2AD02968-E7EA-4989-8BD8-FAD6A31C0072}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DexcomShareNet</RootNamespace>
+    <RootNamespace>ShareClientDotNet</RootNamespace>
     <AssemblyName>DexcomShareNet</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
