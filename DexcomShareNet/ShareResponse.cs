@@ -58,10 +58,6 @@ namespace ShareClientDotNet
                 string message;
                 this.errors.TryGetValue("Code", out code);
                 this.errors.TryGetValue("Message", out message);
-                if (code?.Length > 0 && message?.Length > 0)
-                {
-                    throw new SpecificShareError(message, code);
-                }
 
                 throw new SpecificShareError(message ?? "Generic Share Client Fault", code ?? "Unknown");
             }

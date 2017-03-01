@@ -13,24 +13,24 @@ namespace ShareClientDotNet
 {
     internal class ShareClient
     {
-        private string dexcomUserAgent = "Dexcom Share/3.0.2.11 CFNetwork/711.2.23 Darwin/14.0.0";
-        private string dexcomApplicationId = "d89443d2-327c-4a6f-89e5-496bbb0317db";
-        private string dexcomLoginPath = "/ShareWebServices/Services/General/LoginPublisherAccountByName";
-        private string dexcomLatestGlucosePath = "/ShareWebServices/Services/Publisher/ReadPublisherLatestGlucoseValues";
+        protected string dexcomUserAgent = "Dexcom Share/3.0.2.11 CFNetwork/711.2.23 Darwin/14.0.0";
+        protected string dexcomApplicationId = "d89443d2-327c-4a6f-89e5-496bbb0317db";
+        protected string dexcomLoginPath = "/ShareWebServices/Services/General/LoginPublisherAccountByName";
+        protected string dexcomLatestGlucosePath = "/ShareWebServices/Services/Publisher/ReadPublisherLatestGlucoseValues";
 
-        private string dexcomServerUS = "https://share1.dexcom.com";
+        protected string dexcomServerUS = "https://share1.dexcom.com";
         //private string dexcomServerUS = "https://example.com";
 
-        private string dexcomServerNonUS = "https://shareous1.dexcom.com";
+        protected string dexcomServerNonUS = "https://shareous1.dexcom.com";
 
-        private string dexcomServer;
+        protected string dexcomServer;
 
-        private int maxReauthAttempts = 3;
+        protected int maxReauthAttempts = 3;
 
-        private string username;
-        private string password;
+        protected string username;
+        protected string password;
 
-        private string token;
+        protected string token;
 
         protected bool enableDebug = true;
 
@@ -43,12 +43,12 @@ namespace ShareClientDotNet
             Console.WriteLine(nameof(ShareClient) + ": " + msg);
         }
 
-        private async Task<ShareResponse> dexcomPOST(string url, Dictionary<string, string> data = null)
+        protected async Task<ShareResponse> dexcomPOST(string url, Dictionary<string, string> data = null)
         {
             return await this.dexcomPOST(new Uri(url), data);
         }
 
-        private async Task<ShareResponse> dexcomPOST(Uri url, Dictionary<string, string> data = null)
+        protected async Task<ShareResponse> dexcomPOST(Uri url, Dictionary<string, string> data = null)
         {
             var json = JsonConvert.SerializeObject(data);
             var client = new HttpClient();
@@ -61,10 +61,7 @@ namespace ShareClientDotNet
             msg.Headers.UserAgent.Clear();
             msg.Headers.Add("user-agent", this.dexcomUserAgent);
 
-
-
             msg.Content = new StringContent(json, Encoding.UTF8, "application/json");
-
 
             try
             {
@@ -75,15 +72,12 @@ namespace ShareClientDotNet
 
                 WriteDebug($"Response from endpoint {url}: {result}");
                 return new ShareResponse { IsSuccess = response.IsSuccessStatusCode, Response = result };
-
             }
             catch (Exception err)
             {
                 WriteDebug($"Got exception in sending to endpoint {err}");
                 throw err;
             }
-
-
         }
 
         public ShareClient(string username, string password, ShareServer shareServer = ShareServer.ShareServerUS)
@@ -112,7 +106,6 @@ namespace ShareClientDotNet
 
             try
             {
-
                 var result = (await this.dexcomPOST(url, data)).GetResponse();
                 decoded = JsonConvert.DeserializeObject<string>(result);
 
@@ -125,14 +118,12 @@ namespace ShareClientDotNet
 
                 throw err;
             }
-
         }
 
         public async Task<List<ShareGlucose>> FetchLast(int n)
         {
             return await this.fetchLastGlucoseValuesWithRetries(n, this.maxReauthAttempts);
         }
-
 
         //should be private after test
         private async Task<List<ShareGlucose>> fetchLastGlucoseValuesWithRetries(int n = 3, int remaining = 3)
@@ -147,8 +138,6 @@ namespace ShareClientDotNet
                     i++;
                     WriteDebug($"Attempt #{i} to fetch glucose");
                     result = await this.fetchLastGlucoseValues(n);
-
-
                 }
                 catch (WebException)
                 {
@@ -198,8 +187,6 @@ namespace ShareClientDotNet
             {
                 return null;
             }
-
-
 
             var url = $"{this.dexcomServer}{this.dexcomLatestGlucosePath}?sessionId={this.token}&minutes=1440&maxCount={n}";
 
