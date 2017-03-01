@@ -26,13 +26,14 @@ namespace ShareClientDotNet
         protected string dexcomServer;
 
         protected int maxReauthAttempts = 3;
+        protected int sleepBetweenRetries = 1000;
 
         protected string username;
         protected string password;
 
         protected string token;
 
-        protected bool enableDebug = true;
+        protected bool enableDebug = false;
 
         protected virtual void WriteDebug(string msg)
         {
@@ -143,13 +144,19 @@ namespace ShareClientDotNet
                 {
                     //ignore webexceptions, might mean network is temporarily down, retry
                     WriteDebug("Got webexception, waiting at least 1s before retry");
-                    Thread.Sleep(1000);
+                    if (this.sleepBetweenRetries > 0)
+                    {
+                        Thread.Sleep(this.sleepBetweenRetries);
+                    }
                 }
                 catch (HttpRequestException)
                 {
                     //ignore webexceptions, might mean network is temporarily down, retry
                     WriteDebug("Got httprequestexception, waiting at least 1s before retry");
-                    Thread.Sleep(1000);
+                    if (this.sleepBetweenRetries > 0)
+                    {
+                        Thread.Sleep(this.sleepBetweenRetries);
+                    }
                 }
                 catch (SpecificShareError err)
                 {
@@ -158,7 +165,7 @@ namespace ShareClientDotNet
                         // Token is invalid, force trying to fetching new token on next call
                         // to FetchLastGlucoseValues
                         this.token = null;
-                        WriteDebug("Session not found, must reauth");
+                        WriteDebug("Session was not valid, must reauth");
                     }
                     else
                     {
@@ -178,6 +185,7 @@ namespace ShareClientDotNet
             {
                 WriteDebug("Fetching token from inside FetchLastGlucoseValues");
                 this.token = await this.fetchToken();
+                WriteDebug($"Tried getting new access token: {this.token}");
             }
 
             //

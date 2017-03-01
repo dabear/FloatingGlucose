@@ -10,8 +10,6 @@ namespace ShareClientDotNet
     {
         private static void Main(string[] args)
         {
-
-
             DoIt();
             Console.Read();
         }
@@ -21,8 +19,6 @@ namespace ShareClientDotNet
             var debug = false;
             string user = "somevaliduser";
             string password = "somevalidpassword";
-
-
 
             if (debug)
             {
@@ -34,26 +30,36 @@ namespace ShareClientDotNet
 
             var client = new ShareClient(user, password);
 
+            //Different ways of debugging
+            //this will per default write to the console
+            //var client = new DebuggableShareClient(user, password)
+            //This overrides that and writes a custom message:
+            //var client = new DebuggableShareClient(user, password, handler: msg =>
+            //{
+            //    Console.WriteLine($"overridden: {msg}");
+            //});
+
             //use this if you use the Non US servers
             //var client = new ShareClient(user, password, ShareServer.ServerNonUS);
 
+            var glucose = new List<ShareGlucose>();
             try
             {
                 //this can return null if the internet connection is broken
-                var glucose = await client.FetchLast(3);
+                Console.WriteLine("Main Program: Fetching glucose");
+                glucose = await client.FetchLast(3);
             }
             catch (SpecificShareError err)
             {
-
                 if (err.code == ShareKnownRemoteErrorCodes.AuthenticateAccountNotFound)
                 {
                     //invalid username
-
+                    Console.WriteLine("Main Program: The account was not found");
                 }
                 else if (err.code == ShareKnownRemoteErrorCodes.AuthenticatePasswordInvalid)
                 {
                     //invalid password
-
+                    Console.WriteLine("Main Program: The account password was invalid");
                 }
                 else if (err.code == ShareKnownRemoteErrorCodes.AuthenticateMaxAttemptsExceeed)
                 {
@@ -62,18 +68,23 @@ namespace ShareClientDotNet
                 }
                 else if (err.code == "Unknown")
                 {
-                    Console.WriteLine("got unknown error from main program");
+                    Console.WriteLine("Main program: Got unknown error");
                     //some unknown error occured, url might be wrong, or some other error
                 }
                 else
                 {
-                    // This should never happen. 
+                    // This should never happen.
                     // If it does, there is a new Remote error code that we don't know about..
-                    Console.WriteLine($"hit else-block, coce: {err.code}, err: {err}");
+                    Console.WriteLine($"Hit else-block, code: {err.code}, err: {err}");
                 }
-
+            }
+            catch (Exception err)
+            {
+                Console.WriteLine($"Main Program got general exception: {err.GetType()}: {err}");
             }
 
+            Console.WriteLine($"Main Program: Glucose length: {glucose.Count}");
+            Console.WriteLine("Main Program: Finished looking for glucose");
         }
     }
 }
