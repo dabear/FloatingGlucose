@@ -1,0 +1,3 @@
+[submodule "ShareClientDotNet"]
+	path = ShareClientDotNet
+	url = https://github.com/dabear/ShareClientDotNet
