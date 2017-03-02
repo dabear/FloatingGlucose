@@ -101,6 +101,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -114,7 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\ShareClientDotNet\*.cs">
-       <Link>_Inlined\ShareClientDotNet\%(RecursiveDir)%(Filename)%(Extension)</Link>
+      <Link>_Inlined\ShareClientDotNet\%(RecursiveDir)%(Filename)%(Extension)</Link>
     </Compile>
     <Compile Include="Classes\DataSources\DataSourceInfo.cs" />
     <Compile Include="Classes\DataSources\IDataSourcePlugin.cs" />
@@ -132,6 +133,7 @@
     <Compile Include="Classes\AppShared.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleEndpoint\GeneratedNsData.cs" />
     <Compile Include="Classes\Utils\BGReading.cs" />
+    <Compile Include="Classes\Utils\DataProtector.cs" />
     <Compile Include="Classes\Utils\GlucoseMath.cs" />
     <Compile Include="Classes\Audio\LoopStream.cs" />
     <Compile Include="Classes\DataSources\Exceptions\InvalidJsonDataException.cs" />
