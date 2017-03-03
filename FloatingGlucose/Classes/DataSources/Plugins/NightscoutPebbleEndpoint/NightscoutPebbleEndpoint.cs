@@ -138,7 +138,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             var source = form.txtDataSourceLocation.Text.ToLower();
             //for this plugin, we handle only http:// and https://
             //if the source does not resemble an url, it should clearly be removed.
-            if (!source.StartsWith("http://") || !source.StartsWith("https://"))
+            if (!(source.StartsWith("http://") || source.StartsWith("https://")))
             {
                 form.txtDataSourceLocation.Text = "";
             }
