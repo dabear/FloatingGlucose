@@ -80,6 +80,14 @@ namespace FloatingGlucose
                 this.txtDataSourceLocation.Text = nsurl;
             }
 
+            this.txtUserName.Text = Default.UserName;
+
+            var pass = Default.HashedPassword?.Text ?? "";
+            if (pass.Length > 0)
+            {
+                this.txtPassword.Text = pass;
+            }
+
             this.updateAlarmSettingsEnabled(enableAlarms);
             this.btnEnableAlarms.Checked = enableAlarms;
         }
@@ -199,6 +207,10 @@ namespace FloatingGlucose
                 return;
             }*/
 
+            Default.UserName = this.txtUserName.Text;
+
+            Default.HashedPassword = new DataProtector(this.txtPassword.Text);
+
             Default.DataPathLocation = this.txtDataSourceLocation.Text;
             Default.EnableAlarms = this.btnEnableAlarms.Checked;
             Default.AlarmUrgentHigh = this.numUrgentHigh.Value;
@@ -243,7 +255,6 @@ namespace FloatingGlucose
             var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
             PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
 
-            Default.HashedPassword = new DataProtector("defaulthashedpassword from formglucosesettings2");
             //only save if validation succeeded.
             Default.Save();
 

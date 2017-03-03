@@ -80,6 +80,19 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public bool VerifyConfig(Properties.Settings settings)
         {
+            var username = settings.UserName;
+            var password = settings.HashedPassword?.Text ?? "";
+
+            if (username.Length < 2)
+            {
+                throw new ConfigValidationException("UserName field was not correctly filled!");
+            }
+
+            if (password.Length < 1)
+            {
+                throw new ConfigValidationException("Password field was not correctly filled!");
+            }
+
             /*if (!Validators.IsReadableFile(settings.DataPathLocation))
             {
                 throw new ConfigValidationException("You have entered an invalid file path for the data dump!");
@@ -91,7 +104,6 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public async Task<IDataSourcePlugin> GetDataSourceDataAsync(NameValueCollection locations)
         {
             var datapath = locations["raw"];
-            var client = new HttpClient();
 
             return this;
         }
