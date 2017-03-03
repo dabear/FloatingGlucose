@@ -86,6 +86,8 @@ namespace FloatingGlucose
 
         private void FormGlucoseSettings_Load(object sender, EventArgs e)
         {
+            var pass = Default.HashedPassword?.Text;
+
             this.updateFormControlsFromSettings();
             this.FormClosing += this.OnClosing;
 
@@ -241,6 +243,7 @@ namespace FloatingGlucose
             var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
             PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
 
+            Default.HashedPassword = new DataProtector("defaulthashedpassword from formglucosesettings2");
             //only save if validation succeeded.
             Default.Save();
 

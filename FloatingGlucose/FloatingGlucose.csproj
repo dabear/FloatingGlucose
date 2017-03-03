@@ -134,6 +134,7 @@
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleEndpoint\GeneratedNsData.cs" />
     <Compile Include="Classes\Utils\BGReading.cs" />
     <Compile Include="Classes\Utils\DataProtector.cs" />
+    <Compile Include="Classes\Utils\DataProtectorConverter.cs" />
     <Compile Include="Classes\Utils\GlucoseMath.cs" />
     <Compile Include="Classes\Audio\LoopStream.cs" />
     <Compile Include="Classes\DataSources\Exceptions\InvalidJsonDataException.cs" />
