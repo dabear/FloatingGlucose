@@ -9,6 +9,8 @@ namespace FloatingGlucose.Classes.DataSources
 {
     public interface IDataSourcePlugin
     {
+        bool RequiresUserNameAndPassword { get; }
+        bool RequiresDataSource { get; }
         int SortOrder { get; }
         bool PluginHandlesFormatting { get; }
 

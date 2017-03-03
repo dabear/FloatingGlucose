@@ -78,6 +78,11 @@
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.lblVersionInfo = new System.Windows.Forms.Label();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.paneUserNamePassword = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
@@ -94,10 +99,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).BeginInit();
+            this.paneUserNamePassword.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.paneUserNamePassword);
             this.groupBox1.Controls.Add(this.txtDataSourceLocation);
             this.groupBox1.Controls.Add(this.btnBrowse);
             this.groupBox1.Controls.Add(this.cbDataSource);
@@ -111,7 +118,7 @@
             this.groupBox1.Location = new System.Drawing.Point(24, 13);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.groupBox1.Size = new System.Drawing.Size(840, 151);
+            this.groupBox1.Size = new System.Drawing.Size(840, 239);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nightscout settings";
@@ -120,7 +127,7 @@
             // 
             this.txtDataSourceLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtDataSourceLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDataSourceLocation.Location = new System.Drawing.Point(338, 60);
+            this.txtDataSourceLocation.Location = new System.Drawing.Point(338, 69);
             this.txtDataSourceLocation.MaximumSize = new System.Drawing.Size(340, 28);
             this.txtDataSourceLocation.MinimumSize = new System.Drawing.Size(290, 20);
             this.txtDataSourceLocation.Name = "txtDataSourceLocation";
@@ -128,7 +135,6 @@
             this.txtDataSourceLocation.TabIndex = 0;
             this.txtDataSourceLocation.Text = "https://mysite.azurewebsites.net";
             this.txtDataSourceLocation.WordWrap = false;
-      
             // 
             // btnBrowse
             // 
@@ -222,7 +228,7 @@
             // btnVerifySubmit
             // 
             this.btnVerifySubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerifySubmit.Location = new System.Drawing.Point(12, 587);
+            this.btnVerifySubmit.Location = new System.Drawing.Point(12, 629);
             this.btnVerifySubmit.Name = "btnVerifySubmit";
             this.btnVerifySubmit.Size = new System.Drawing.Size(229, 53);
             this.btnVerifySubmit.TabIndex = 1;
@@ -237,7 +243,7 @@
             this.panel2.Location = new System.Drawing.Point(6, 6);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(50, 10, 50, 10);
-            this.panel2.Size = new System.Drawing.Size(869, 497);
+            this.panel2.Size = new System.Drawing.Size(869, 570);
             this.panel2.TabIndex = 1;
             // 
             // grpAlarmSettings
@@ -261,10 +267,10 @@
             this.grpAlarmSettings.Controls.Add(this.btnDisableAlarms);
             this.grpAlarmSettings.Controls.Add(this.btnEnableAlarms);
             this.grpAlarmSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grpAlarmSettings.Location = new System.Drawing.Point(24, 170);
+            this.grpAlarmSettings.Location = new System.Drawing.Point(24, 272);
             this.grpAlarmSettings.Name = "grpAlarmSettings";
             this.grpAlarmSettings.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.grpAlarmSettings.Size = new System.Drawing.Size(840, 314);
+            this.grpAlarmSettings.Size = new System.Drawing.Size(840, 285);
             this.grpAlarmSettings.TabIndex = 2;
             this.grpAlarmSettings.TabStop = false;
             this.grpAlarmSettings.Text = "Alarm settings";
@@ -272,7 +278,7 @@
             // chkEnableSoundAlarms
             // 
             this.chkEnableSoundAlarms.AutoSize = true;
-            this.chkEnableSoundAlarms.Location = new System.Drawing.Point(491, 289);
+            this.chkEnableSoundAlarms.Location = new System.Drawing.Point(437, 41);
             this.chkEnableSoundAlarms.Name = "chkEnableSoundAlarms";
             this.chkEnableSoundAlarms.Size = new System.Drawing.Size(18, 17);
             this.chkEnableSoundAlarms.TabIndex = 19;
@@ -282,7 +288,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.Location = new System.Drawing.Point(16, 286);
+            this.label15.Location = new System.Drawing.Point(461, 38);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(166, 20);
             this.label15.TabIndex = 18;
@@ -530,7 +536,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(260, 587);
+            this.label6.Location = new System.Drawing.Point(260, 626);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(631, 56);
             this.label6.TabIndex = 3;
@@ -541,10 +547,10 @@
             // 
             this.tabSettings.Controls.Add(this.tabPageBasic);
             this.tabSettings.Controls.Add(this.tabPageAdvanced);
-            this.tabSettings.Location = new System.Drawing.Point(12, 40);
+            this.tabSettings.Location = new System.Drawing.Point(12, 12);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
-            this.tabSettings.Size = new System.Drawing.Size(904, 538);
+            this.tabSettings.Size = new System.Drawing.Size(904, 611);
             this.tabSettings.TabIndex = 0;
             this.tabSettings.Text = "30";
             // 
@@ -556,9 +562,10 @@
             this.tabPageBasic.Location = new System.Drawing.Point(4, 25);
             this.tabPageBasic.Name = "tabPageBasic";
             this.tabPageBasic.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageBasic.Size = new System.Drawing.Size(896, 509);
+            this.tabPageBasic.Size = new System.Drawing.Size(896, 582);
             this.tabPageBasic.TabIndex = 0;
             this.tabPageBasic.Text = "Basic Settings";
+            this.tabPageBasic.Click += new System.EventHandler(this.tabPageBasic_Click);
             // 
             // tabPageAdvanced
             // 
@@ -745,17 +752,75 @@
             this.lblVersionInfo.AutoSize = true;
             this.lblVersionInfo.Enabled = false;
             this.lblVersionInfo.ForeColor = System.Drawing.Color.SeaGreen;
-            this.lblVersionInfo.Location = new System.Drawing.Point(12, 658);
+            this.lblVersionInfo.Location = new System.Drawing.Point(12, 696);
             this.lblVersionInfo.Name = "lblVersionInfo";
             this.lblVersionInfo.Size = new System.Drawing.Size(93, 17);
             this.lblVersionInfo.TabIndex = 4;
             this.lblVersionInfo.Text = "lblVersionInfo";
             // 
+            // txtUserName
+            // 
+            this.txtUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserName.Location = new System.Drawing.Point(329, 21);
+            this.txtUserName.MaximumSize = new System.Drawing.Size(340, 28);
+            this.txtUserName.MinimumSize = new System.Drawing.Size(290, 20);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(340, 27);
+            this.txtUserName.TabIndex = 9;
+            this.txtUserName.WordWrap = false;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(329, 61);
+            this.txtPassword.MaximumSize = new System.Drawing.Size(340, 28);
+            this.txtPassword.MinimumSize = new System.Drawing.Size(290, 20);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(340, 27);
+            this.txtPassword.TabIndex = 10;
+            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.WordWrap = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(7, 24);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(94, 20);
+            this.label20.TabIndex = 11;
+            this.label20.Text = "User Name";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(7, 61);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(83, 20);
+            this.label21.TabIndex = 12;
+            this.label21.Text = "Password";
+            // 
+            // paneUserNamePassword
+            // 
+            this.paneUserNamePassword.Controls.Add(this.txtPassword);
+            this.paneUserNamePassword.Controls.Add(this.txtUserName);
+            this.paneUserNamePassword.Controls.Add(this.label20);
+            this.paneUserNamePassword.Controls.Add(this.label21);
+            this.paneUserNamePassword.Enabled = false;
+            this.paneUserNamePassword.Location = new System.Drawing.Point(9, 127);
+            this.paneUserNamePassword.Name = "paneUserNamePassword";
+            this.paneUserNamePassword.Size = new System.Drawing.Size(825, 109);
+            this.paneUserNamePassword.TabIndex = 14;
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(967, 687);
+            this.ClientSize = new System.Drawing.Size(967, 731);
             this.Controls.Add(this.lblVersionInfo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tabSettings);
@@ -783,6 +848,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).EndInit();
+            this.paneUserNamePassword.ResumeLayout(false);
+            this.paneUserNamePassword.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -840,5 +907,10 @@
         public System.Windows.Forms.RadioButton btnUnitsMMOL;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.TableLayoutPanel tblpDataSourceLocations;
+        public System.Windows.Forms.TextBox txtUserName;
+        private System.Windows.Forms.Label label21;
+        public System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Panel paneUserNamePassword;
     }
 }

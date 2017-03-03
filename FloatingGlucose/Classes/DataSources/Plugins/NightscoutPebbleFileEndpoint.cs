@@ -13,6 +13,8 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     internal class NightscoutPebbleFileEndpoint : NightscoutPebbleEndpoint, IDataSourcePlugin
     {
+        public override bool RequiresUserNameAndPassword => false;
+        public override bool RequiresDataSource => true;
         public override bool PluginDisabled => false;
         public override bool RequiresBrowseButton => true;
         public override string BrowseDialogFileFilter => "Nightscout Dumps|*.nsdata.dump;*.nsdata|Text files|*.txt";

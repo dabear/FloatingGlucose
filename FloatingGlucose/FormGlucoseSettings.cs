@@ -123,7 +123,10 @@ namespace FloatingGlucose
                 {
                     this.cbDataSource.SelectedItem = plugin;
                     plugin.Instance.OnPluginSelected(this);
+
                     this.btnBrowse.Visible = activePlugin.RequiresBrowseButton;
+                    this.lblDataSourceLocation.Enabled = txtDataSourceLocation.Enabled = activePlugin.RequiresDataSource;
+                    this.paneUserNamePassword.Enabled = activePlugin.RequiresUserNameAndPassword;
                 }
             }
 
@@ -315,6 +318,8 @@ namespace FloatingGlucose
             //PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
             selectedPlugin.Instance.OnPluginSelected(this);
 
+            this.paneUserNamePassword.Enabled = selectedPlugin.Instance.RequiresUserNameAndPassword;
+            this.lblDataSourceLocation.Enabled = txtDataSourceLocation.Enabled = selectedPlugin.Instance.RequiresDataSource;
             this.btnBrowse.Visible = selectedPlugin.Instance.RequiresBrowseButton;
         }
 
@@ -336,6 +341,10 @@ namespace FloatingGlucose
         }
 
         private void txtDataSouceLocation_TextChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void tabPageBasic_Click(object sender, EventArgs e)
         {
         }
     }

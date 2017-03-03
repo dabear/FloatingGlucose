@@ -21,7 +21,8 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
     internal class YrWeatherServiceEndpoint : IDataSourcePlugin
     {
         public bool PluginHandlesFormatting => true;
-
+        public bool RequiresUserNameAndPassword => false;
+        public bool RequiresDataSource => true;
         public bool PluginDisabled => false;
         public bool RequiresBrowseButton => false;
         public string BrowseDialogFileFilter => "";
