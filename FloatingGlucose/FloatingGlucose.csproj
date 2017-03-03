@@ -123,6 +123,7 @@
     <Compile Include="Classes\DataSources\Exceptions\NoSuchPluginException.cs" />
     <Compile Include="Classes\DataSources\Exceptions\ConfigValidationException.cs" />
     <Compile Include="Classes\DataSources\Plugins\DexcomShare\DexcomShareUS.cs" />
+    <Compile Include="Classes\DataSources\Plugins\GlimpFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\PluginLoader.cs" />
     <Compile Include="Classes\DataSources\Plugins\YrWeatherService\YrHourByHour.cs" />
