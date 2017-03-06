@@ -122,6 +122,7 @@
     <Compile Include="Classes\DataSources\Exceptions\NoPluginChosenException.cs" />
     <Compile Include="Classes\DataSources\Exceptions\NoSuchPluginException.cs" />
     <Compile Include="Classes\DataSources\Exceptions\ConfigValidationException.cs" />
+    <Compile Include="Classes\DataSources\Plugins\DexcomShare\DexcomShareNonUS.cs" />
     <Compile Include="Classes\DataSources\Plugins\DexcomShare\DexcomShareUS.cs" />
     <Compile Include="Classes\DataSources\Plugins\GlimpFileEndpoint.cs" />
     <Compile Include="Classes\DataSources\Plugins\NightscoutPebbleFileEndpoint.cs" />

@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 
 using static FloatingGlucose.Properties.Settings;
 using ShareClientDotNet;
+using System.Windows.Forms;
 
 namespace FloatingGlucose.Classes.DataSources.Plugins
 {
@@ -27,12 +28,19 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public bool RequiresBrowseButton => false;
         public bool PluginHandlesFormatting => false;
         public string BrowseDialogFileFilter => "";
-        public string DataSourceShortName => "Dexcom Share (US)";
+        public virtual string DataSourceShortName => "Dexcom Share (US)";
         public virtual int SortOrder => 25;
 
         //private List<RawGlimpData> csv = new List<RawGlimpData>();
 
-        public DateTime Date => DateTime.Now;
+        public DateTime Date
+        {
+            get
+            {
+                var reading = this.shareGlucose.First();
+                return reading.LocalTime;
+            }
+        }
 
         public double Delta => this.Glucose - this.PreviousGlucose;
 
@@ -50,16 +58,27 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public double RoundedDelta() => Math.Round(this.Delta, 1);
 
-        public double Glucose => this.UserWantsMmolUnits() ? 0 : 1;
+        public double Glucose
+        {
+            get
+            {
+                var reading = this.shareGlucose.First();
+
+                return Convert.ToDouble(this.UserWantsMmolUnits() ? reading.ValueMmol : reading.ValueMgdl);
+            }
+        }
 
         protected ShareClient shareClient = new ShareClient();
+
+        protected List<ShareGlucose> shareGlucose = new List<ShareGlucose>();
 
         public double PreviousGlucose
         {
             get
             {
-                //return this.UserWantsMmolUnits() ? reading.GlucoseMmol : reading.GlucoseMgdl;
-                return 0;
+                var reading = this.shareGlucose.Skip(1).First();
+
+                return Convert.ToDouble(this.UserWantsMmolUnits() ? reading.ValueMmol : reading.ValueMgdl);
             }
         }
 
@@ -67,7 +86,45 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             get
             {
-                //Sligthly more advanced implementation of direction
+                var first = this.shareGlucose.First();
+
+                //
+                // Converts between share glucose Direction ordinals to nightscout glucose directions
+                // which is the expected format
+                //
+                switch (first.Trend)
+                {
+                    case ShareGlucoseSlopeOrdinals.DOUBLE_UP:
+                        return "DoubleUp";
+
+                    case ShareGlucoseSlopeOrdinals.SINGLE_UP:
+                        return "SingleUp";
+
+                    case ShareGlucoseSlopeOrdinals.UP_45:
+                        return "FortyFiveUp";
+
+                    case ShareGlucoseSlopeOrdinals.FLAT:
+                        return "Flat";
+
+                    case ShareGlucoseSlopeOrdinals.DOWN_45:
+                        return "FortifiveDown";
+
+                    case ShareGlucoseSlopeOrdinals.SINGLE_DOWN:
+                        return "SingleDown";
+
+                    case ShareGlucoseSlopeOrdinals.DOUBLE_DOWN:
+                        return "DoubleDown";
+
+                    case ShareGlucoseSlopeOrdinals.NOT_COMPUTABLE:
+                        return "NOT COMPUTABLE";
+
+                    case ShareGlucoseSlopeOrdinals.OUT_OF_RANGE:
+                        return "OUT OF RANGE";
+
+                    case ShareGlucoseSlopeOrdinals.NONE:
+                        return "None";
+                }
+
                 return "";
             }
         }
@@ -93,6 +150,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 throw new ConfigValidationException("Password field was not correctly filled!");
             }
 
+            shareClient.username = username;
+            shareClient.password = password;
+
             /*if (!Validators.IsReadableFile(settings.DataPathLocation))
             {
                 throw new ConfigValidationException("You have entered an invalid file path for the data dump!");
@@ -103,7 +163,19 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public async Task<IDataSourcePlugin> GetDataSourceDataAsync(NameValueCollection locations)
         {
-            var datapath = locations["raw"];
+            try
+            {
+                //this can return null if the internet connection is broken
+
+                this.shareGlucose = await shareClient.FetchLast(3);
+            }
+            catch (SpecificShareError err)
+            {
+                if (err.code == ShareKnownRemoteErrorCodes.AuthenticateAccountNotFound || err.code == ShareKnownRemoteErrorCodes.AuthenticatePasswordInvalid)
+                {
+                    MessageBox.Show($"Dexcom share client uknown username or password. Entered username: {shareClient.username}", AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
 
             return this;
         }
