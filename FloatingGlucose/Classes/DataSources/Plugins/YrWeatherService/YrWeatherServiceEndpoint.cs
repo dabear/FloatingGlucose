@@ -219,6 +219,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             catch (Exception err)
             {
                 this.WriteDebug($"got error in fetching xmldata from {forecastUrl}: {err.Message}");
+                throw (err);
             }
 
             return this;
