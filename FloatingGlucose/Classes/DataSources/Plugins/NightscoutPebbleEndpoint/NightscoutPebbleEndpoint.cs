@@ -15,6 +15,11 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     internal class NightscoutPebbleEndpoint : IDataSourcePlugin
     {
+        public string Acknowledgment => "Nightscout plugin by Bjørn inge Vikhammermo";
+
+        public string AcknowledgmentUrl => "";
+        public string Author => "Bjørn inge Vikhammermo";
+
         public bool PluginHandlesFormatting => false;
         public virtual bool RequiresDataSource => true;
 

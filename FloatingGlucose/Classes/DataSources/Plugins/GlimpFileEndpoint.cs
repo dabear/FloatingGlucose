@@ -24,6 +24,11 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
     internal class GlimpFileEndpoint : IDataSourcePlugin
     {
+        public string Acknowledgment => "Glimp plugin by Bjørn inge Vikhammermo";
+
+        public string AcknowledgmentUrl => "";
+        public string Author => "Bjørn inge Vikhammermo";
+
         public bool PluginDisabled => false;
         public bool RequiresUserNameAndPassword => false;
         public bool RequiresDataSource => true;

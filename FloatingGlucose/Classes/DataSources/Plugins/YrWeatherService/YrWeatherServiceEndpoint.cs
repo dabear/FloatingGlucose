@@ -20,6 +20,11 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     internal class YrWeatherServiceEndpoint : IDataSourcePlugin
     {
+        public string Acknowledgment => "Weather forecast from Yr, delivered by the Norwegian Meteorological Institute and the NRK";
+
+        public string AcknowledgmentUrl => "";
+        public string Author => "Bjørn inge Vikhammermo";
+
         public bool PluginHandlesFormatting => true;
         public bool RequiresUserNameAndPassword => false;
         public bool RequiresDataSource => true;
