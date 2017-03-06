@@ -29,7 +29,14 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public string DataSourceShortName => "Yr.no Weather";
         public virtual int SortOrder => 20;
 
-        public DateTime Date => @DateTime.Parse(this.weatherData.Forecast.Tabular.Time[0].From);
+        public DateTime Date
+        {
+            get
+            {
+                var from = this.weatherData?.Forecast?.Tabular?.Time[0]?.From;
+                return from == null || from.Length == 0 ? DateTime.MinValue : DateTime.Parse(from);
+            }
+        }
 
         public double Delta => this.Glucose - this.PreviousGlucose;
 
