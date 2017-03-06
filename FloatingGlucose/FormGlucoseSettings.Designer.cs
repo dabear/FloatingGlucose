@@ -83,6 +83,7 @@
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.lblVersionInfo = new System.Windows.Forms.Label();
+            this.lblAck = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.paneUserNamePassword.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -817,11 +818,23 @@
             this.lblVersionInfo.TabIndex = 4;
             this.lblVersionInfo.Text = "lblVersionInfo";
             // 
+            // lblAck
+            // 
+            this.lblAck.AutoSize = true;
+            this.lblAck.Enabled = false;
+            this.lblAck.ForeColor = System.Drawing.Color.SeaGreen;
+            this.lblAck.Location = new System.Drawing.Point(13, 721);
+            this.lblAck.Name = "lblAck";
+            this.lblAck.Size = new System.Drawing.Size(50, 17);
+            this.lblAck.TabIndex = 5;
+            this.lblAck.Text = "Acks...";
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(967, 731);
+            this.ClientSize = new System.Drawing.Size(967, 747);
+            this.Controls.Add(this.lblAck);
             this.Controls.Add(this.lblVersionInfo);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.tabSettings);
@@ -913,5 +926,6 @@
         public System.Windows.Forms.TextBox txtPassword;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel paneUserNamePassword;
+        private System.Windows.Forms.Label lblAck;
     }
 }

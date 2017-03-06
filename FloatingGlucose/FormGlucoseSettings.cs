@@ -134,6 +134,7 @@ namespace FloatingGlucose
                     this.cbDataSource.SelectedItem = plugin;
                     plugin.Instance.OnPluginSelected(this);
 
+                    this.lblAck.Text = activePlugin.Acknowledgment;
                     this.btnBrowse.Visible = activePlugin.RequiresBrowseButton;
                     this.lblDataSourceLocation.Enabled = txtDataSourceLocation.Enabled = activePlugin.RequiresDataSource;
                     this.paneUserNamePassword.Enabled = activePlugin.RequiresUserNameAndPassword;
@@ -331,7 +332,7 @@ namespace FloatingGlucose
             var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
             //PluginLoader.Instance.SetActivePlugin(selectedPlugin.FullName);
             selectedPlugin.Instance.OnPluginSelected(this);
-
+            this.lblAck.Text = selectedPlugin.Instance.Acknowledgment;
             this.paneUserNamePassword.Enabled = selectedPlugin.Instance.RequiresUserNameAndPassword;
             this.lblDataSourceLocation.Enabled = txtDataSourceLocation.Enabled = selectedPlugin.Instance.RequiresDataSource;
             this.btnBrowse.Visible = selectedPlugin.Instance.RequiresBrowseButton;
