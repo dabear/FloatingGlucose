@@ -21,5 +21,56 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
     {
         protected new ShareClient shareClient = new ShareClient(ShareServer.ServerNonUS);
         public override string DataSourceShortName => "Dexcom Share (Non-US)";
+
+        public override void OnPluginSelected(FormGlucoseSettings form)
+        {
+            form.lblDataSourceLocation.Text = "Dexcom share server";
+            form.txtDataSourceLocation.Text = this.shareClient.CurrentDexcomServer;
+        }
+
+        public override bool VerifyConfig(Properties.Settings settings)
+        {
+            var username = settings.UserName;
+            var password = settings.HashedPassword?.Text ?? "";
+
+            if (username.Length < 2)
+            {
+                throw new ConfigValidationException("UserName field was not correctly filled!");
+            }
+
+            if (password.Length < 1)
+            {
+                throw new ConfigValidationException("Password field was not correctly filled!");
+            }
+
+            shareClient.username = username;
+            shareClient.password = password;
+
+            /*if (!Validators.IsReadableFile(settings.DataPathLocation))
+            {
+                throw new ConfigValidationException("You have entered an invalid file path for the data dump!");
+            }*/
+
+            return true;
+        }
+
+        public override async Task<IDataSourcePlugin> GetDataSourceDataAsync(NameValueCollection locations)
+        {
+            try
+            {
+                //this can return null if the internet connection is broken
+
+                this.shareGlucose = await shareClient.FetchLast(3);
+            }
+            catch (SpecificShareError err)
+            {
+                if (err.code == ShareKnownRemoteErrorCodes.AuthenticateAccountNotFound || err.code == ShareKnownRemoteErrorCodes.AuthenticatePasswordInvalid)
+                {
+                    MessageBox.Show($"Dexcom share client uknown username or password. Entered username: {shareClient.username}", AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+            return this;
+        }
     }
 }

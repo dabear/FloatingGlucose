@@ -29,6 +29,11 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.paneUserNamePassword = new System.Windows.Forms.Panel();
+            this.txtPassword = new System.Windows.Forms.TextBox();
+            this.txtUserName = new System.Windows.Forms.TextBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.txtDataSourceLocation = new System.Windows.Forms.TextBox();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.cbDataSource = new System.Windows.Forms.ComboBox();
@@ -78,12 +83,8 @@
             this.numRefreshInterval = new System.Windows.Forms.NumericUpDown();
             this.label7 = new System.Windows.Forms.Label();
             this.lblVersionInfo = new System.Windows.Forms.Label();
-            this.txtUserName = new System.Windows.Forms.TextBox();
-            this.txtPassword = new System.Windows.Forms.TextBox();
-            this.label20 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.paneUserNamePassword = new System.Windows.Forms.Panel();
             this.groupBox1.SuspendLayout();
+            this.paneUserNamePassword.SuspendLayout();
             this.panel2.SuspendLayout();
             this.grpAlarmSettings.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numStaleUrgent)).BeginInit();
@@ -99,7 +100,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).BeginInit();
-            this.paneUserNamePassword.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -123,6 +123,64 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Nightscout settings";
             // 
+            // paneUserNamePassword
+            // 
+            this.paneUserNamePassword.Controls.Add(this.txtPassword);
+            this.paneUserNamePassword.Controls.Add(this.txtUserName);
+            this.paneUserNamePassword.Controls.Add(this.label20);
+            this.paneUserNamePassword.Controls.Add(this.label21);
+            this.paneUserNamePassword.Enabled = false;
+            this.paneUserNamePassword.Location = new System.Drawing.Point(9, 127);
+            this.paneUserNamePassword.Name = "paneUserNamePassword";
+            this.paneUserNamePassword.Size = new System.Drawing.Size(825, 109);
+            this.paneUserNamePassword.TabIndex = 14;
+            // 
+            // txtPassword
+            // 
+            this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPassword.Location = new System.Drawing.Point(329, 61);
+            this.txtPassword.MaximumSize = new System.Drawing.Size(340, 28);
+            this.txtPassword.MinimumSize = new System.Drawing.Size(290, 20);
+            this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
+            this.txtPassword.Size = new System.Drawing.Size(340, 27);
+            this.txtPassword.TabIndex = 10;
+            this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.WordWrap = false;
+            // 
+            // txtUserName
+            // 
+            this.txtUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUserName.Location = new System.Drawing.Point(329, 21);
+            this.txtUserName.MaximumSize = new System.Drawing.Size(340, 28);
+            this.txtUserName.MinimumSize = new System.Drawing.Size(290, 20);
+            this.txtUserName.Name = "txtUserName";
+            this.txtUserName.Size = new System.Drawing.Size(340, 27);
+            this.txtUserName.TabIndex = 9;
+            this.txtUserName.WordWrap = false;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(7, 24);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(94, 20);
+            this.label20.TabIndex = 11;
+            this.label20.Text = "User Name";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(7, 61);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(83, 20);
+            this.label21.TabIndex = 12;
+            this.label21.Text = "Password";
+            // 
             // txtDataSourceLocation
             // 
             this.txtDataSourceLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -135,6 +193,7 @@
             this.txtDataSourceLocation.TabIndex = 0;
             this.txtDataSourceLocation.Text = "https://mysite.azurewebsites.net";
             this.txtDataSourceLocation.WordWrap = false;
+            this.txtDataSourceLocation.TextChanged += new System.EventHandler(this.txtDataSourceLocation_TextChanged);
             // 
             // btnBrowse
             // 
@@ -575,7 +634,7 @@
             this.tabPageAdvanced.Location = new System.Drawing.Point(4, 25);
             this.tabPageAdvanced.Name = "tabPageAdvanced";
             this.tabPageAdvanced.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageAdvanced.Size = new System.Drawing.Size(896, 509);
+            this.tabPageAdvanced.Size = new System.Drawing.Size(896, 582);
             this.tabPageAdvanced.TabIndex = 1;
             this.tabPageAdvanced.Text = "Advanced Settings";
             // 
@@ -758,64 +817,6 @@
             this.lblVersionInfo.TabIndex = 4;
             this.lblVersionInfo.Text = "lblVersionInfo";
             // 
-            // txtUserName
-            // 
-            this.txtUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUserName.Location = new System.Drawing.Point(329, 21);
-            this.txtUserName.MaximumSize = new System.Drawing.Size(340, 28);
-            this.txtUserName.MinimumSize = new System.Drawing.Size(290, 20);
-            this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(340, 27);
-            this.txtUserName.TabIndex = 9;
-            this.txtUserName.WordWrap = false;
-            // 
-            // txtPassword
-            // 
-            this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPassword.Location = new System.Drawing.Point(329, 61);
-            this.txtPassword.MaximumSize = new System.Drawing.Size(340, 28);
-            this.txtPassword.MinimumSize = new System.Drawing.Size(290, 20);
-            this.txtPassword.Name = "txtPassword";
-            this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(340, 27);
-            this.txtPassword.TabIndex = 10;
-            this.txtPassword.UseSystemPasswordChar = true;
-            this.txtPassword.WordWrap = false;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(7, 24);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(94, 20);
-            this.label20.TabIndex = 11;
-            this.label20.Text = "User Name";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(7, 61);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(83, 20);
-            this.label21.TabIndex = 12;
-            this.label21.Text = "Password";
-            // 
-            // paneUserNamePassword
-            // 
-            this.paneUserNamePassword.Controls.Add(this.txtPassword);
-            this.paneUserNamePassword.Controls.Add(this.txtUserName);
-            this.paneUserNamePassword.Controls.Add(this.label20);
-            this.paneUserNamePassword.Controls.Add(this.label21);
-            this.paneUserNamePassword.Enabled = false;
-            this.paneUserNamePassword.Location = new System.Drawing.Point(9, 127);
-            this.paneUserNamePassword.Name = "paneUserNamePassword";
-            this.paneUserNamePassword.Size = new System.Drawing.Size(825, 109);
-            this.paneUserNamePassword.TabIndex = 14;
-            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -831,6 +832,8 @@
             this.Load += new System.EventHandler(this.FormGlucoseSettings_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.paneUserNamePassword.ResumeLayout(false);
+            this.paneUserNamePassword.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.grpAlarmSettings.ResumeLayout(false);
             this.grpAlarmSettings.PerformLayout();
@@ -848,8 +851,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.numOpacity)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numScaling)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numRefreshInterval)).EndInit();
-            this.paneUserNamePassword.ResumeLayout(false);
-            this.paneUserNamePassword.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

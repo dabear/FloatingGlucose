@@ -129,13 +129,13 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             }
         }
 
-        public void OnPluginSelected(FormGlucoseSettings form)
+        public virtual void OnPluginSelected(FormGlucoseSettings form)
         {
             form.lblDataSourceLocation.Text = "Dexcom share server";
             form.txtDataSourceLocation.Text = this.shareClient.CurrentDexcomServer;
         }
 
-        public bool VerifyConfig(Properties.Settings settings)
+        public virtual bool VerifyConfig(Properties.Settings settings)
         {
             var username = settings.UserName;
             var password = settings.HashedPassword?.Text ?? "";
@@ -161,7 +161,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             return true;
         }
 
-        public async Task<IDataSourcePlugin> GetDataSourceDataAsync(NameValueCollection locations)
+        public virtual async Task<IDataSourcePlugin> GetDataSourceDataAsync(NameValueCollection locations)
         {
             try
             {

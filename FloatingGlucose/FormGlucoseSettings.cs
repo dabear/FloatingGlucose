@@ -361,5 +361,9 @@ namespace FloatingGlucose
         private void tabPageBasic_Click(object sender, EventArgs e)
         {
         }
+
+        private void txtDataSourceLocation_TextChanged(object sender, EventArgs e)
+        {
+        }
     }
 }
