@@ -53,7 +53,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             if (this.weatherData != null)
             {
                 var temp = this.weatherData.Forecast?.Tabular?.Time?[0]?.Temperature;
-                var temperature = temp?.Value + " " + temp.Unit?[0].ToString().ToUpper() + "°";
+                var val = temp?.Value ?? "";
+                var unit = temp.Unit?[0].ToString()?.ToUpper() ?? "";
+                var temperature = $"{val} °{unit}";
                 texts.Add(temperature);
                 texts.Add(this.Date.ToLocalTime().ToShortTimeString());
                 texts.Add(this.weatherData.Location?.Name ?? "");
