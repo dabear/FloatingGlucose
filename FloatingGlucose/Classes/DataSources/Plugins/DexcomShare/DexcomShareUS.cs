@@ -67,13 +67,16 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             get
             {
-                var reading = this.shareGlucose.First();
-
+                var reading = this.shareGlucose?.First();
+                if (reading == null)
+                {
+                    return 0;
+                }
                 return Convert.ToDouble(this.UserWantsMmolUnits() ? reading.ValueMmol : reading.ValueMgdl);
             }
         }
 
-        protected ShareClient shareClient = new ShareClient();
+        protected ShareClient shareClient = new DebuggableShareClient();
 
         protected List<ShareGlucose> shareGlucose = new List<ShareGlucose>();
 
@@ -81,8 +84,11 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             get
             {
-                var reading = this.shareGlucose.Skip(1).First();
-
+                var reading = this.shareGlucose?.Skip(1)?.First();
+                if (reading == null)
+                {
+                    return 0;
+                }
                 return Convert.ToDouble(this.UserWantsMmolUnits() ? reading.ValueMmol : reading.ValueMgdl);
             }
         }
@@ -91,7 +97,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             get
             {
-                var first = this.shareGlucose.First();
+                var first = this.shareGlucose?.First();
 
                 //
                 // Converts between share glucose Direction ordinals to nightscout glucose directions
@@ -155,8 +161,8 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 throw new ConfigValidationException("Password field was not correctly filled!");
             }
 
-            shareClient.username = username;
-            shareClient.password = password;
+            shareClient.Username = username;
+            shareClient.Password = password;
 
             /*if (!Validators.IsReadableFile(settings.DataPathLocation))
             {
@@ -171,14 +177,15 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             try
             {
                 //this can return null if the internet connection is broken
-
+                Console.WriteLine($"will attempt {this.shareClient.CurrentDexcomServer}, user: {shareClient.Username}, pass: {shareClient.Password}");
                 this.shareGlucose = await shareClient.FetchLast(3);
             }
             catch (SpecificShareError err)
             {
                 if (err.code == ShareKnownRemoteErrorCodes.AuthenticateAccountNotFound || err.code == ShareKnownRemoteErrorCodes.AuthenticatePasswordInvalid)
                 {
-                    MessageBox.Show($"Dexcom share client uknown username or password. Entered username: {shareClient.username}", AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.shareGlucose = null;
+                    throw new ConfigValidationException($"Dexcom share client uknown username or password. Entered username: {shareClient.Username}");
                 }
             }
 

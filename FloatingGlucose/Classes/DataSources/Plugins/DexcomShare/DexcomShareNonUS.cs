@@ -43,8 +43,8 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 throw new ConfigValidationException("Password field was not correctly filled!");
             }
 
-            shareClient.username = username;
-            shareClient.password = password;
+            shareClient.Username = username;
+            shareClient.Password = password;
 
             /*if (!Validators.IsReadableFile(settings.DataPathLocation))
             {
@@ -66,7 +66,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             {
                 if (err.code == ShareKnownRemoteErrorCodes.AuthenticateAccountNotFound || err.code == ShareKnownRemoteErrorCodes.AuthenticatePasswordInvalid)
                 {
-                    MessageBox.Show($"Dexcom share client uknown username or password. Entered username: {shareClient.username}", AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show($"Dexcom share client uknown username or password. Entered username: {shareClient.Username}", AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
 
