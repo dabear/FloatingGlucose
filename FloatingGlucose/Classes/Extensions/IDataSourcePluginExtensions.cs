@@ -56,7 +56,7 @@ namespace FloatingGlucose.Classes.Extensions
                 case "NOT COMPUTABLE":
                     return "-";
 
-                case "RATE OUT OF RANGE":
+                case "OUT OF RANGE":
                     return "⇕";
 
                 case "":
