@@ -112,7 +112,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                         return "Flat";
 
                     case ShareGlucoseSlopeOrdinals.DOWN_45:
-                        return "FortifiveDown";
+                        return "FortyFiveDown";
 
                     case ShareGlucoseSlopeOrdinals.SINGLE_DOWN:
                         return "SingleDown";
