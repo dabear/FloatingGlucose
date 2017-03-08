@@ -298,9 +298,10 @@ namespace FloatingGlucose
             }
             catch (FileNotFoundException ex)
             {
+                this.SetErrorState(ex);
                 //will only happen during debugging, when the allow file:/// scheme is set
                 this.showErrorMessage($"Could not find file '{ex.FileName}'!");
-                this.SetErrorState(ex);
+                
                 return;
             }
             catch (IOException ex)
@@ -353,6 +354,7 @@ namespace FloatingGlucose
             }
             catch (ConfigValidationException ex)
             {
+                this.SetErrorState(ex);
                 this.showErrorMessage(ex.Message);
                 this.settingsForm.ShowDialogIfNonVisible();
             }
