@@ -66,7 +66,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             {
                 if (err.code == ShareKnownRemoteErrorCodes.AuthenticateAccountNotFound || err.code == ShareKnownRemoteErrorCodes.AuthenticatePasswordInvalid)
                 {
-                    MessageBox.Show($"Dexcom share client uknown username or password. Entered username: {shareClient.Username}", AppShared.AppName, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.shareGlucose = null;
+                    throw new ConfigValidationException($"Dexcom share client uknown username or password. Entered username: {shareClient.Username}");
+
                 }
             }
 

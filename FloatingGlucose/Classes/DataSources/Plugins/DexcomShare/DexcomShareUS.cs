@@ -177,7 +177,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             try
             {
                 //this can return null if the internet connection is broken
-                Console.WriteLine($"will attempt {this.shareClient.CurrentDexcomServer}, user: {shareClient.Username}, pass: {shareClient.Password}");
+                Console.WriteLine($"Will attempt {this.shareClient.CurrentDexcomServer}, user: {shareClient.Username}");
                 this.shareGlucose = await shareClient.FetchLast(3);
             }
             catch (SpecificShareError err)
