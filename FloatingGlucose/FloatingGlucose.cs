@@ -19,7 +19,7 @@ using System.Windows.Forms;
 using static FloatingGlucose.Properties.Settings;
 using FormSettings = FloatingGlucose.Properties.FormSettings;
 using FloatingGlucose.Classes.Utils;
-
+using System.Windows.Forms.DataVisualization.Charting;
 namespace FloatingGlucose
 {
     public partial class FloatingGlucose : Form
@@ -294,6 +294,11 @@ namespace FloatingGlucose
                             setLabelsColor(Color.Green);
                             break;
                     }
+
+
+                    //this.BackgroundImage = this.renderGlucoseChart(Color.Black, Color.White);
+
+
                 }
             }
             catch (FileNotFoundException ex)
@@ -492,6 +497,88 @@ namespace FloatingGlucose
             //every 60s (default) reload the glucose numbers from the Nightscout pebble endpoint
             AppShared.refreshGlucoseTimer.Tick += new EventHandler((asender, ev) => LoadGlucoseValue());
             AppShared.refreshGlucoseTimer.Start();
+
+
+            //this.BackgroundImage;
+
+        }
+        private Bitmap renderGlucoseChart(Color backColor, Color foreColor)
+        {
+            var chart = new Chart();
+            var chartArea1 = new ChartArea();
+            var legend1 = new Legend();
+            var series1 = new Series();
+            chartArea1.Name = "ChartArea1";
+            chart.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            chart.Legends.Add(legend1);
+            chart.Location = this.Location;
+            chart.Name = "chart2";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+
+
+            chart.Series.Add(series1);
+            chart.Size = new System.Drawing.Size(274, 185);
+            chart.TabIndex = 11;
+            chart.Text = "chart2";
+
+
+
+            //chart.Dock = DockStyle.Fill;
+            chart.Visible = false;
+            chart.BackColor = backColor;
+            var area = chart.ChartAreas.ElementAt(0);
+
+            area.BackColor = backColor;
+
+            area.AxisX.MajorGrid.Enabled =
+            area.AxisX.MinorGrid.Enabled =
+            area.AxisY.MajorGrid.Enabled =
+            area.AxisY.MinorGrid.Enabled =
+            area.AxisX.LabelStyle.Enabled =
+            area.AxisY.LabelStyle.Enabled = false;
+
+            area.AxisX.Enabled =
+            area.AxisY.Enabled = AxisEnabled.False;
+
+            var dotseries = chart.Series.First();
+            dotseries.MarkerSize = 5;
+            dotseries.MarkerStyle = MarkerStyle.Circle;
+            dotseries.IsVisibleInLegend = false;
+            dotseries.ChartType = SeriesChartType.Point;
+            dotseries.Color = foreColor;
+
+            var lineseries = chart.Series.Add("Line");
+            lineseries.ChartType = SeriesChartType.Line;
+            lineseries.IsVisibleInLegend = false;
+            lineseries.Color = foreColor;
+            lineseries.MarkerSize = 1;
+
+
+            //datetime, glucose
+            //draws line between dots first
+            lineseries.Points.AddXY(1800, 9.5);
+            lineseries.Points.AddXY(1807, 10.4);
+            lineseries.Points.AddXY(1815, 10.2);
+            lineseries.Points.AddXY(1830, 4.5);
+
+            //draws dots ontop of line
+            dotseries.Points.AddXY(1800, 9.5);
+            dotseries.Points.AddXY(1807, 10.4);
+            dotseries.Points.AddXY(1815, 10.2);
+            dotseries.Points.AddXY(1830, 4.5);
+
+            //add 30% to maximum value and show it as max in the graph
+            area.AxisY.Maximum = (10.4 * 1.30);
+            area.AxisX.Maximum = (1830);
+
+            chart.Visible = true;
+
+            var bmp = new Bitmap(this.Width, this.Height);
+            chart.DrawToBitmap(bmp, new Rectangle(0, 0, this.Width, this.Height));
+            return bmp;
         }
 
         private void SetOpacity()

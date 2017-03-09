@@ -107,31 +107,22 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
                 {
                     case ShareGlucoseSlopeOrdinals.DOUBLE_UP:
                         return "DoubleUp";
-
                     case ShareGlucoseSlopeOrdinals.SINGLE_UP:
                         return "SingleUp";
-
                     case ShareGlucoseSlopeOrdinals.UP_45:
                         return "FortyFiveUp";
-
                     case ShareGlucoseSlopeOrdinals.FLAT:
                         return "Flat";
-
                     case ShareGlucoseSlopeOrdinals.DOWN_45:
                         return "FortyFiveDown";
-
                     case ShareGlucoseSlopeOrdinals.SINGLE_DOWN:
                         return "SingleDown";
-
                     case ShareGlucoseSlopeOrdinals.DOUBLE_DOWN:
                         return "DoubleDown";
-
                     case ShareGlucoseSlopeOrdinals.NOT_COMPUTABLE:
                         return "NOT COMPUTABLE";
-
                     case ShareGlucoseSlopeOrdinals.OUT_OF_RANGE:
                         return "OUT OF RANGE";
-
                     case ShareGlucoseSlopeOrdinals.NONE:
                         return "None";
                 }
@@ -164,10 +155,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
             shareClient.Username = username;
             shareClient.Password = password;
 
-            /*if (!Validators.IsReadableFile(settings.DataPathLocation))
-            {
-                throw new ConfigValidationException("You have entered an invalid file path for the data dump!");
-            }*/
+
 
             return true;
         }
