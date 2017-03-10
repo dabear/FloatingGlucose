@@ -60,7 +60,7 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="BackgroundColorHex" Type="System.String" Scope="User">
-      <Value Profile="(Default)">FF0000</Value>
+      <Value Profile="(Default)">FF000000</Value>
     </Setting>
     <Setting Name="BackgroundImage" Type="System.String" Scope="User">
       <Value Profile="(Default)" />

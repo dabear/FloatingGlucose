@@ -15,7 +15,8 @@ namespace FloatingGlucose.Classes.Extensions
         public static Color FromHexStringToColor(this String hexColor)
         {
             var argb = Convert.ToInt32(hexColor, 16);
-            return Color.FromArgb(argb);
+            var color = Color.FromArgb(argb);//FF000000 - black with no transparency
+            return color;
         }
 
 
