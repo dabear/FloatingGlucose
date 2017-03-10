@@ -452,6 +452,23 @@ namespace FloatingGlucose
             FormSettings.Default.Save();
         }
 
+        private void setBackgroundImage()
+        {
+            var path = Default.BackgroundImage;
+            if(path != "" && File.Exists(path))
+            {
+                try
+                {
+                    this.BackgroundImage = Image.FromFile(path);
+                }
+                catch (Exception)
+                {
+
+                }
+                
+            }
+        }
+
         private void FloatingGlucose_Load(object sender, EventArgs e)
         {
             // We want all data values to be formatted with a dot, not comma, as some cultures do
@@ -460,6 +477,8 @@ namespace FloatingGlucose
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
             this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc;
             SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
+
+            
 
             this.lblRawDelta.Visible =
             this.lblRawBG.Visible = Default.EnableRawGlucoseDisplay;
@@ -484,6 +503,7 @@ namespace FloatingGlucose
             }*/
 
             this.BackColor = Default.BackgroundColorHex.FromHexStringToColor();
+            this.setBackgroundImage();
 
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
@@ -587,7 +607,9 @@ namespace FloatingGlucose
             //we got notified via the appshared proxy that settings have been changed
             //try to load glucose values anew straight away
             this.setFormSize();
+            
             this.BackColor = Default.BackgroundColorHex.FromHexStringToColor();
+            this.setBackgroundImage();
             this.lblRawDelta.Visible =
             this.lblRawBG.Visible = Default.EnableRawGlucoseDisplay;
 

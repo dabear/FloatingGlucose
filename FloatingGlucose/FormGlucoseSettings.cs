@@ -349,8 +349,12 @@ namespace FloatingGlucose
             OpenFileDialog dialog = new OpenFileDialog();
             var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
 
+
+            var file = this.txtDataSourceLocation.Text;
+            var ext = (file.Split('.')?.Last() ?? "").ToLower();
+
             dialog.Filter = selectedPlugin.Instance.BrowseDialogFileFilter;
-            dialog.InitialDirectory = Path.GetPathRoot(Environment.SystemDirectory);
+            dialog.InitialDirectory = ext.Length > 0 && File.Exists(file) ? Path.GetDirectoryName(file) : Path.GetPathRoot(Environment.SystemDirectory);
             dialog.Title = "Select a file for the plugin to handle";
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -398,17 +402,29 @@ namespace FloatingGlucose
             var codecs = ImageCodecInfo.GetImageEncoders();
             var sep = "";
 
+            var i = 0;
+
+            var file = this.txtBackImage.Text;
+            var ext = (file.Split('.')?.Last() ?? "").ToLower() ; 
+
             foreach (var c in codecs)
             {
+                i++;
                 var codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
                 dialog.Filter = String.Format("{0}{1}{2} ({3})|{3}", dialog.Filter, sep, codecName, c.FilenameExtension);
+              
+                //if an image is previously set, set that image extension as selected
+                if (ext.Length > 0 && c.FilenameExtension.ToLower().IndexOf(ext) != -1)
+                {
+                    dialog.FilterIndex = i;
+                }
+                
                 sep = "|";
             }
 
             
-
-            dialog.DefaultExt = ".png"; // Default file extension 
-            dialog.InitialDirectory = Path.GetPathRoot(Environment.SystemDirectory);
+            
+            dialog.InitialDirectory = ext.Length > 0  && File.Exists(file)? Path.GetDirectoryName(file) : Path.GetPathRoot(Environment.SystemDirectory);
             dialog.Title = "Select a background image";
 
             if (dialog.ShowDialog() == DialogResult.OK)
