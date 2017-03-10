@@ -296,7 +296,7 @@ namespace FloatingGlucose
                     }
 
 
-                    //this.BackgroundImage = this.renderGlucoseChart(Color.Black, Color.White);
+                    //this.BackgroundImage = this.renderGlucoseChart(Color.Black, Color.DarkCyan);
 
 
                 }
@@ -499,35 +499,24 @@ namespace FloatingGlucose
             AppShared.refreshGlucoseTimer.Start();
 
 
-            //this.BackgroundImage;
-
         }
         private Bitmap renderGlucoseChart(Color backColor, Color foreColor)
         {
-            var chart = new Chart();
-            var chartArea1 = new ChartArea();
-            var legend1 = new Legend();
-            var series1 = new Series();
-            chartArea1.Name = "ChartArea1";
+            var w = this.Width;
+            var h = this.Height;
+
+            var chart = new Chart { Name="chart2", Text="chart2", Location=this.Location, TabIndex=11, Visible=false};
+            var chartArea1 = new ChartArea { Name="ChartArea1"};
+            var legend1 = new Legend { Name="Legend1"};
+            var series1 = new Series { ChartArea = "ChartArea1", Legend="Legend1", Name="Series1"};
+          
             chart.ChartAreas.Add(chartArea1);
-            legend1.Name = "Legend1";
+  
             chart.Legends.Add(legend1);
-            chart.Location = this.Location;
-            chart.Name = "chart2";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-
-
             chart.Series.Add(series1);
-            chart.Size = new System.Drawing.Size(274, 185);
-            chart.TabIndex = 11;
-            chart.Text = "chart2";
+            chart.Size = new System.Drawing.Size(w, h);
 
 
-
-            //chart.Dock = DockStyle.Fill;
-            chart.Visible = false;
             chart.BackColor = backColor;
             var area = chart.ChartAreas.ElementAt(0);
 
@@ -551,6 +540,7 @@ namespace FloatingGlucose
             dotseries.Color = foreColor;
 
             var lineseries = chart.Series.Add("Line");
+            
             lineseries.ChartType = SeriesChartType.Line;
             lineseries.IsVisibleInLegend = false;
             lineseries.Color = foreColor;
@@ -576,8 +566,8 @@ namespace FloatingGlucose
 
             chart.Visible = true;
 
-            var bmp = new Bitmap(this.Width, this.Height);
-            chart.DrawToBitmap(bmp, new Rectangle(0, 0, this.Width, this.Height));
+            var bmp = new Bitmap(w, h);
+            chart.DrawToBitmap(bmp, new Rectangle(0, 0, w, h));
             return bmp;
         }
 
