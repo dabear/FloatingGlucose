@@ -146,7 +146,8 @@ namespace FloatingGlucose
             }
 
             this.cbImageLayouts.Items.Clear();
-
+            
+            
             foreach (var layout in Enum.GetNames(typeof(ImageLayout)) )
             {
                 
@@ -156,6 +157,11 @@ namespace FloatingGlucose
                 {
                     this.cbImageLayouts.SelectedItem = layout;
                 }
+            }
+
+            if(this.cbImageLayouts.SelectedIndex == -1)
+            {
+                this.cbImageLayouts.SelectedIndex = 0;
             }
 
 
