@@ -477,6 +477,10 @@ namespace FloatingGlucose
                 }
                 
             }
+            else
+            {
+                this.BackgroundImage = null;
+            }
         }
 
         private void FloatingGlucose_Load(object sender, EventArgs e)
