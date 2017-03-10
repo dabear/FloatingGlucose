@@ -72,6 +72,7 @@ namespace FloatingGlucose
             this.chkDisableSoundOnWorkstationLock.Checked = Default.DisableSoundAlarmsOnWorkstationLock;
             this.txtBackColor.Text = Default.BackgroundColorHex;
             this.txtBackImage.Text = Default.BackgroundImage;
+            this.cbImageLayouts.SelectedItem = Default.BackgroundImageLayout;
             //this is the default in the settings file
             //override it so it makes sense
             if (nsurl == "https://...")
@@ -143,6 +144,21 @@ namespace FloatingGlucose
                     this.paneUserNamePassword.Enabled = activePlugin.RequiresUserNameAndPassword;
                 }
             }
+
+            this.cbImageLayouts.Items.Clear();
+
+            foreach (var layout in Enum.GetNames(typeof(ImageLayout)) )
+            {
+                
+                this.cbImageLayouts.Items.Add(layout);
+                
+                if(Default.BackgroundImageLayout == layout)
+                {
+                    this.cbImageLayouts.SelectedItem = layout;
+                }
+            }
+
+
 
             //de-uglify glucosesettings by setting a default plugin even if there was none selected
             //or a previously included plugin was selected that has been renamed or removed
@@ -241,6 +257,8 @@ namespace FloatingGlucose
 
             //Save plugin type based on the selected fullname
             Default.DataSourceFullName = (this.cbDataSource.SelectedItem as DataSourceInfo).FullName;
+
+            Default.BackgroundImageLayout = (cbImageLayouts.SelectedItem as String) ?? "Stretch";
 
             DataSourceInfo plugin;
 
@@ -433,6 +451,11 @@ namespace FloatingGlucose
             }
             dialog.Dispose();
             dialog = null;
+        }
+
+        private void groupBox2_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

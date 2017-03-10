@@ -90,6 +90,8 @@
             this.label23 = new System.Windows.Forms.Label();
             this.txtBackImage = new System.Windows.Forms.TextBox();
             this.btnBrowseBackImage = new System.Windows.Forms.Button();
+            this.label24 = new System.Windows.Forms.Label();
+            this.cbImageLayouts = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.paneUserNamePassword.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -647,6 +649,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.cbImageLayouts);
+            this.groupBox2.Controls.Add(this.label24);
             this.groupBox2.Controls.Add(this.btnBrowseBackImage);
             this.groupBox2.Controls.Add(this.txtBackImage);
             this.groupBox2.Controls.Add(this.label23);
@@ -673,6 +677,7 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced application settings (requires restart)";
+            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // label18
             // 
@@ -894,6 +899,25 @@
             this.btnBrowseBackImage.UseVisualStyleBackColor = false;
             this.btnBrowseBackImage.Click += new System.EventHandler(this.btnBrowseBackImage_Click);
             // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(38, 355);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(203, 20);
+            this.label24.TabIndex = 24;
+            this.label24.Text = "Background Image Layout";
+            // 
+            // cbImageLayouts
+            // 
+            this.cbImageLayouts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbImageLayouts.FormattingEnabled = true;
+            this.cbImageLayouts.Location = new System.Drawing.Point(385, 347);
+            this.cbImageLayouts.Name = "cbImageLayouts";
+            this.cbImageLayouts.Size = new System.Drawing.Size(179, 28);
+            this.cbImageLayouts.TabIndex = 25;
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -998,5 +1022,7 @@
         private System.Windows.Forms.Button btnBrowseBackImage;
         public System.Windows.Forms.TextBox txtBackImage;
         private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.ComboBox cbImageLayouts;
+        private System.Windows.Forms.Label label24;
     }
 }

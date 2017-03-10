@@ -273,5 +273,17 @@ namespace FloatingGlucose.Properties {
                 this["BackgroundImage"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Stretch")]
+        public string BackgroundImageLayout {
+            get {
+                return ((string)(this["BackgroundImageLayout"]));
+            }
+            set {
+                this["BackgroundImageLayout"] = value;
+            }
+        }
     }
 }

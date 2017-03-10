@@ -65,5 +65,8 @@
     <Setting Name="BackgroundImage" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="BackgroundImageLayout" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Stretch</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
