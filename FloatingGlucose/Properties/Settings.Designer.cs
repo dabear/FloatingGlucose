@@ -261,5 +261,17 @@ namespace FloatingGlucose.Properties {
                 this["BackgroundColorHex"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string BackgroundImage {
+            get {
+                return ((string)(this["BackgroundImage"]));
+            }
+            set {
+                this["BackgroundImage"] = value;
+            }
+        }
     }
 }

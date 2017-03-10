@@ -87,6 +87,9 @@
             this.label22 = new System.Windows.Forms.Label();
             this.clrBack = new System.Windows.Forms.ColorDialog();
             this.txtBackColor = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtBackImage = new System.Windows.Forms.TextBox();
+            this.btnBrowseBackImage = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.paneUserNamePassword.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -644,6 +647,9 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.btnBrowseBackImage);
+            this.groupBox2.Controls.Add(this.txtBackImage);
+            this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Controls.Add(this.txtBackColor);
             this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.label18);
@@ -854,6 +860,40 @@
             this.txtBackColor.Click += new System.EventHandler(this.txtBackColor_Click);
             this.txtBackColor.TextChanged += new System.EventHandler(this.txtBackColor_TextChanged);
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(38, 310);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(148, 20);
+            this.label23.TabIndex = 21;
+            this.label23.Text = "Background Image";
+            // 
+            // txtBackImage
+            // 
+            this.txtBackImage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtBackImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBackImage.Location = new System.Drawing.Point(224, 310);
+            this.txtBackImage.MaximumSize = new System.Drawing.Size(340, 28);
+            this.txtBackImage.MinimumSize = new System.Drawing.Size(290, 20);
+            this.txtBackImage.Name = "txtBackImage";
+            this.txtBackImage.Size = new System.Drawing.Size(340, 27);
+            this.txtBackImage.TabIndex = 22;
+            this.txtBackImage.WordWrap = false;
+            // 
+            // btnBrowseBackImage
+            // 
+            this.btnBrowseBackImage.BackColor = System.Drawing.Color.Transparent;
+            this.btnBrowseBackImage.FlatAppearance.BorderSize = 0;
+            this.btnBrowseBackImage.Location = new System.Drawing.Point(597, 306);
+            this.btnBrowseBackImage.Name = "btnBrowseBackImage";
+            this.btnBrowseBackImage.Size = new System.Drawing.Size(106, 35);
+            this.btnBrowseBackImage.TabIndex = 23;
+            this.btnBrowseBackImage.Text = "Browse..";
+            this.btnBrowseBackImage.UseVisualStyleBackColor = false;
+            this.btnBrowseBackImage.Click += new System.EventHandler(this.btnBrowseBackImage_Click);
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -955,5 +995,8 @@
         private System.Windows.Forms.TextBox txtBackColor;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ColorDialog clrBack;
+        private System.Windows.Forms.Button btnBrowseBackImage;
+        public System.Windows.Forms.TextBox txtBackImage;
+        private System.Windows.Forms.Label label23;
     }
 }

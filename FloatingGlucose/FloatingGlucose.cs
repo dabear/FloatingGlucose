@@ -500,7 +500,7 @@ namespace FloatingGlucose
             AppShared.refreshGlucoseTimer.Tick += new EventHandler((asender, ev) => LoadGlucoseValue());
             AppShared.refreshGlucoseTimer.Start();
 
-
+            
         }
         private Bitmap renderGlucoseChart(Color backColor, Color foreColor)
         {

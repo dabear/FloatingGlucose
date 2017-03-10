@@ -9,6 +9,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -70,7 +71,7 @@ namespace FloatingGlucose
 
             this.chkDisableSoundOnWorkstationLock.Checked = Default.DisableSoundAlarmsOnWorkstationLock;
             this.txtBackColor.Text = Default.BackgroundColorHex;
-
+            this.txtBackImage.Text = Default.BackgroundImage;
             //this is the default in the settings file
             //override it so it makes sense
             if (nsurl == "https://...")
@@ -236,7 +237,7 @@ namespace FloatingGlucose
             Default.EnableRawGlucoseDisplay = this.chkEnableRAWGlucose.Checked;
 
             Default.BackgroundColorHex = this.txtBackColor.Text;
-            
+            Default.BackgroundImage = this.txtBackImage.Text;
 
             //Save plugin type based on the selected fullname
             Default.DataSourceFullName = (this.cbDataSource.SelectedItem as DataSourceInfo).FullName;
@@ -387,6 +388,35 @@ namespace FloatingGlucose
 
 
 
+        }
+
+        private void btnBrowseBackImage_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+
+
+            var codecs = ImageCodecInfo.GetImageEncoders();
+            var sep = "";
+
+            foreach (var c in codecs)
+            {
+                var codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
+                dialog.Filter = String.Format("{0}{1}{2} ({3})|{3}", dialog.Filter, sep, codecName, c.FilenameExtension);
+                sep = "|";
+            }
+
+            
+
+            dialog.DefaultExt = ".png"; // Default file extension 
+            dialog.InitialDirectory = Path.GetPathRoot(Environment.SystemDirectory);
+            dialog.Title = "Select a background image";
+
+            if (dialog.ShowDialog() == DialogResult.OK)
+            {
+                this.txtBackImage.Text = dialog.FileName;
+            }
+            dialog.Dispose();
+            dialog = null;
         }
     }
 }

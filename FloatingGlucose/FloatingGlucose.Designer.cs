@@ -66,6 +66,7 @@
             // 
             this.lblLastUpdate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblLastUpdate.AutoSize = true;
+            this.lblLastUpdate.BackColor = System.Drawing.Color.Transparent;
             this.lblLastUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastUpdate.ForeColor = System.Drawing.Color.Green;
             this.lblLastUpdate.Location = new System.Drawing.Point(48, 81);
@@ -186,7 +187,7 @@
             // lblRawBG
             // 
             this.lblRawBG.AutoSize = true;
-            this.lblRawBG.BackColor = System.Drawing.Color.Black;
+            this.lblRawBG.BackColor = System.Drawing.Color.Transparent;
             this.lblRawBG.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRawBG.ForeColor = System.Drawing.Color.SteelBlue;
             this.lblRawBG.Location = new System.Drawing.Point(21, 22);
@@ -199,7 +200,7 @@
             // lblRawDelta
             // 
             this.lblRawDelta.AutoSize = true;
-            this.lblRawDelta.BackColor = System.Drawing.Color.Black;
+            this.lblRawDelta.BackColor = System.Drawing.Color.Transparent;
             this.lblRawDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRawDelta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.lblRawDelta.Location = new System.Drawing.Point(22, 51);
