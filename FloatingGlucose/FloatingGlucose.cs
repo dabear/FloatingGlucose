@@ -478,10 +478,10 @@ namespace FloatingGlucose
 
             // Enable special color for  debugging,
             // This is very handy when developing with a Release binary running alongside a dev version
-            if (AppShared.isDebuggingBuild)
+            /*if (AppShared.isDebuggingBuild)
             {
                 this.BackColor = Color.LightBlue;
-            }
+            }*/
 
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 

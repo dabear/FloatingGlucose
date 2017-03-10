@@ -59,5 +59,8 @@
     <Setting Name="HashedPassword" Type="FloatingGlucose.Classes.Utils.DataProtector" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="BackgroundColorHex" Type="System.String" Scope="User">
+      <Value Profile="(Default)">FF0000</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -130,6 +130,7 @@
     <Compile Include="Classes\DataSources\PluginLoader.cs" />
     <Compile Include="Classes\DataSources\Plugins\YrWeatherService\YrHourByHour.cs" />
     <Compile Include="Classes\DataSources\Plugins\YrWeatherService\YrWeatherServiceEndpoint.cs" />
+    <Compile Include="Classes\Extensions\ColorExtensions.cs" />
     <Compile Include="Classes\Extensions\IDataSourcePluginExtensions.cs" />
     <Compile Include="Classes\Extensions\FormExtensions.cs" />
     <Compile Include="Classes\Extensions\DatetimeExtensions.cs" />

@@ -1,6 +1,7 @@
 ﻿using FloatingGlucose.Classes;
 using FloatingGlucose.Classes.DataSources;
 using FloatingGlucose.Classes.DataSources.Plugins;
+using FloatingGlucose.Classes.Extensions;
 using FloatingGlucose.Classes.Utils;
 using System;
 using System.Collections.Generic;
@@ -68,6 +69,7 @@ namespace FloatingGlucose
             this.chkEnableRAWGlucose.Checked = Default.EnableRawGlucoseDisplay;
 
             this.chkDisableSoundOnWorkstationLock.Checked = Default.DisableSoundAlarmsOnWorkstationLock;
+            this.txtBackColor.Text = Default.BackgroundColorHex;
 
             //this is the default in the settings file
             //override it so it makes sense
@@ -94,7 +96,7 @@ namespace FloatingGlucose
 
         private void FormGlucoseSettings_Load(object sender, EventArgs e)
         {
-            var pass = Default.HashedPassword?.Text;
+           
 
             this.updateFormControlsFromSettings();
             this.FormClosing += this.OnClosing;
@@ -233,6 +235,9 @@ namespace FloatingGlucose
             Default.DisableSoundAlarmsOnWorkstationLock = this.chkDisableSoundOnWorkstationLock.Checked;
             Default.EnableRawGlucoseDisplay = this.chkEnableRAWGlucose.Checked;
 
+            Default.BackgroundColorHex = this.txtBackColor.Text;
+            
+
             //Save plugin type based on the selected fullname
             Default.DataSourceFullName = (this.cbDataSource.SelectedItem as DataSourceInfo).FullName;
 
@@ -365,6 +370,23 @@ namespace FloatingGlucose
 
         private void txtDataSourceLocation_TextChanged(object sender, EventArgs e)
         {
+        }
+
+        private void txtBackColor_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBackColor_Click(object sender, EventArgs e)
+        {
+            this.clrBack.AnyColor = false;
+            this.clrBack.ShowDialog();
+            this.txtBackColor.Text = this.clrBack.Color.ToHexString();
+
+            
+
+
+
         }
     }
 }

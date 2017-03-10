@@ -84,6 +84,9 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblVersionInfo = new System.Windows.Forms.Label();
             this.lblAck = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.clrBack = new System.Windows.Forms.ColorDialog();
+            this.txtBackColor = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.paneUserNamePassword.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -641,6 +644,8 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtBackColor);
+            this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.numOpacity);
             this.groupBox2.Controls.Add(this.label17);
@@ -658,7 +663,7 @@
             this.groupBox2.Location = new System.Drawing.Point(35, 19);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(20, 3, 3, 3);
-            this.groupBox2.Size = new System.Drawing.Size(959, 346);
+            this.groupBox2.Size = new System.Drawing.Size(840, 535);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced application settings (requires restart)";
@@ -829,6 +834,26 @@
             this.lblAck.TabIndex = 5;
             this.lblAck.Text = "Acks...";
             // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(38, 269);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(143, 20);
+            this.label22.TabIndex = 19;
+            this.label22.Text = "Background Color";
+            // 
+            // txtBackColor
+            // 
+            this.txtBackColor.Location = new System.Drawing.Point(416, 269);
+            this.txtBackColor.Name = "txtBackColor";
+            this.txtBackColor.ReadOnly = true;
+            this.txtBackColor.Size = new System.Drawing.Size(148, 27);
+            this.txtBackColor.TabIndex = 20;
+            this.txtBackColor.Click += new System.EventHandler(this.txtBackColor_Click);
+            this.txtBackColor.TextChanged += new System.EventHandler(this.txtBackColor_TextChanged);
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -927,5 +952,8 @@
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Panel paneUserNamePassword;
         private System.Windows.Forms.Label lblAck;
+        private System.Windows.Forms.TextBox txtBackColor;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.ColorDialog clrBack;
     }
 }
