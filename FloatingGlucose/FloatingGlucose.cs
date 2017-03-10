@@ -483,6 +483,8 @@ namespace FloatingGlucose
                 this.BackColor = Color.LightBlue;
             }*/
 
+            this.BackColor = Default.BackgroundColorHex.FromHexStringToColor();
+
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
             this.setFormSize();
@@ -585,6 +587,7 @@ namespace FloatingGlucose
             //we got notified via the appshared proxy that settings have been changed
             //try to load glucose values anew straight away
             this.setFormSize();
+            this.BackColor = Default.BackgroundColorHex.FromHexStringToColor();
             this.lblRawDelta.Visible =
             this.lblRawBG.Visible = Default.EnableRawGlucoseDisplay;
 
