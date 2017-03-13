@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace FloatingGlucose.Classes.Utils
 {
@@ -19,7 +17,7 @@ namespace FloatingGlucose.Classes.Utils
         {
             if (value is string)
             {
-                //TODO: convert from encrypted form here
+                //converts from encrypted text settings into plain text
                 var val = (string)value;
                 DataProtector protector;
                 if (val == null || (val != null && val.Length == 0))
@@ -48,7 +46,7 @@ namespace FloatingGlucose.Classes.Utils
                 // return string.Format("{0},{1}", room.RoomNumber, room.Location);
 
                 var val = (DataProtector)value;
-                //TODO: convert to encrypted form here
+                //encrypts the plaintext and base64 encodes it for storage
                 if (val == null || val.Text == null || val.Text.Length == 0)
                 {
                     return "";

@@ -1,7 +1,6 @@
 ﻿using NAudio.Wave;
 using System.Linq;
 using System.Text;
-using System;
 
 namespace FloatingGlucose.Classes
 {

@@ -1,19 +1,14 @@
 ﻿using FloatingGlucose.Classes;
 using FloatingGlucose.Classes.DataSources;
-using FloatingGlucose.Classes.DataSources.Plugins;
 using FloatingGlucose.Classes.Extensions;
 using FloatingGlucose.Classes.Utils;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 using static FloatingGlucose.Properties.Settings;
@@ -98,8 +93,6 @@ namespace FloatingGlucose
 
         private void FormGlucoseSettings_Load(object sender, EventArgs e)
         {
-           
-
             this.updateFormControlsFromSettings();
             this.FormClosing += this.OnClosing;
 
@@ -146,25 +139,21 @@ namespace FloatingGlucose
             }
 
             this.cbImageLayouts.Items.Clear();
-            
-            
-            foreach (var layout in Enum.GetNames(typeof(ImageLayout)) )
+
+            foreach (var layout in Enum.GetNames(typeof(ImageLayout)))
             {
-                
                 this.cbImageLayouts.Items.Add(layout);
-                
-                if(Default.BackgroundImageLayout == layout)
+
+                if (Default.BackgroundImageLayout == layout)
                 {
                     this.cbImageLayouts.SelectedItem = layout;
                 }
             }
 
-            if(this.cbImageLayouts.SelectedIndex == -1)
+            if (this.cbImageLayouts.SelectedIndex == -1)
             {
                 this.cbImageLayouts.SelectedIndex = 0;
             }
-
-
 
             //de-uglify glucosesettings by setting a default plugin even if there was none selected
             //or a previously included plugin was selected that has been renamed or removed
@@ -373,7 +362,6 @@ namespace FloatingGlucose
             OpenFileDialog dialog = new OpenFileDialog();
             var selectedPlugin = (this.cbDataSource.SelectedItem as DataSourceInfo);
 
-
             var file = this.txtDataSourceLocation.Text;
             var ext = (file.Split('.')?.Last() ?? "").ToLower();
 
@@ -403,7 +391,6 @@ namespace FloatingGlucose
 
         private void txtBackColor_TextChanged(object sender, EventArgs e)
         {
-
         }
 
         private void txtBackColor_Click(object sender, EventArgs e)
@@ -411,17 +398,11 @@ namespace FloatingGlucose
             this.clrBack.AnyColor = false;
             this.clrBack.ShowDialog();
             this.txtBackColor.Text = this.clrBack.Color.ToHexString();
-
-            
-
-
-
         }
 
         private void btnBrowseBackImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
-
 
             var codecs = ImageCodecInfo.GetImageEncoders();
             var sep = "";
@@ -429,26 +410,24 @@ namespace FloatingGlucose
             var i = 0;
 
             var file = this.txtBackImage.Text;
-            var ext = (file.Split('.')?.Last() ?? "").ToLower() ; 
+            var ext = (file.Split('.')?.Last() ?? "").ToLower();
 
             foreach (var c in codecs)
             {
                 i++;
                 var codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim();
                 dialog.Filter = String.Format("{0}{1}{2} ({3})|{3}", dialog.Filter, sep, codecName, c.FilenameExtension);
-              
+
                 //if an image is previously set, set that image extension as selected
                 if (ext.Length > 0 && c.FilenameExtension.ToLower().IndexOf(ext) != -1)
                 {
                     dialog.FilterIndex = i;
                 }
-                
+
                 sep = "|";
             }
 
-            
-            
-            dialog.InitialDirectory = ext.Length > 0  && File.Exists(file)? Path.GetDirectoryName(file) : Path.GetPathRoot(Environment.SystemDirectory);
+            dialog.InitialDirectory = ext.Length > 0 && File.Exists(file) ? Path.GetDirectoryName(file) : Path.GetPathRoot(Environment.SystemDirectory);
             dialog.Title = "Select a background image";
 
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -461,7 +440,6 @@ namespace FloatingGlucose
 
         private void groupBox2_Enter(object sender, EventArgs e)
         {
-
         }
     }
 }

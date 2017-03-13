@@ -1,18 +1,12 @@
 ﻿using FloatingGlucose.Classes.Extensions;
-using FloatingGlucose.Classes.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
-using static FloatingGlucose.Properties.Settings;
-using System.Windows.Forms;
 using System.Xml.Serialization;
 using Xml2CSharp;
 

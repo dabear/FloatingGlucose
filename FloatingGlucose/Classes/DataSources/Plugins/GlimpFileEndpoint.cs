@@ -11,8 +11,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-using static FloatingGlucose.Properties.Settings;
-
 namespace FloatingGlucose.Classes.DataSources.Plugins
 {
     internal class RawGlimpData : BgReading

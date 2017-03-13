@@ -1,11 +1,7 @@
 ﻿using FloatingGlucose.Classes.Extensions;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using static FloatingGlucose.Properties.Settings;
 
 namespace FloatingGlucose.Classes.Utils
 {

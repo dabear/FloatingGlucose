@@ -6,9 +6,8 @@
  Adapted from http://xmltocsharp.azurewebsites.net/ by bjorninges.spam@bjorninge.no
  */
 
-using System;
-using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Xml.Serialization;
 
 namespace Xml2CSharp
 {

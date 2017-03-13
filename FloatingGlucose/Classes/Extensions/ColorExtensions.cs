@@ -18,8 +18,5 @@ namespace FloatingGlucose.Classes.Extensions
             var color = Color.FromArgb(argb);//FF000000 - black with no transparency
             return color;
         }
-
-
-
     }
 }

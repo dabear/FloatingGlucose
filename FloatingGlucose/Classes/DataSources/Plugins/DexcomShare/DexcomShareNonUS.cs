@@ -1,19 +1,6 @@
-﻿using FloatingGlucose.Classes.Extensions;
-using FloatingGlucose.Classes.Utils;
-using System;
-using System.Collections.Generic;
-using System.Collections.Specialized;
-using System.Diagnostics;
-using System.Globalization;
-using System.IO;
+﻿using ShareClientDotNet;
 using System.Linq;
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-
-using static FloatingGlucose.Properties.Settings;
-using ShareClientDotNet;
-using System.Windows.Forms;
 
 namespace FloatingGlucose.Classes.DataSources.Plugins
 {
@@ -26,7 +13,5 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             this.shareClient.SetShareServer(ShareServer.ServerNonUS);
         }
-
-   
     }
 }

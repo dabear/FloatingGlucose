@@ -1,10 +1,10 @@
-﻿using System;
-using FloatingGlucose.Classes;
+﻿using FloatingGlucose.Classes;
 using FloatingGlucose.Classes.DataSources;
 using FloatingGlucose.Classes.Extensions;
+using FloatingGlucose.Classes.Utils;
 using Microsoft.Win32;
 using Newtonsoft.Json;
-
+using System;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Diagnostics;
@@ -16,10 +16,10 @@ using System.Net.Http;
 using System.Runtime.InteropServices;
 using System.Threading;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 using static FloatingGlucose.Properties.Settings;
 using FormSettings = FloatingGlucose.Properties.FormSettings;
-using FloatingGlucose.Classes.Utils;
-using System.Windows.Forms.DataVisualization.Charting;
+
 namespace FloatingGlucose
 {
     public partial class FloatingGlucose : Form
@@ -295,10 +295,7 @@ namespace FloatingGlucose
                             break;
                     }
 
-
                     //this.BackgroundImage = this.renderGlucoseChart(Color.Black, Color.DarkCyan);
-
-
                 }
             }
             catch (FileNotFoundException ex)
@@ -306,7 +303,7 @@ namespace FloatingGlucose
                 this.SetErrorState(ex);
                 //will only happen during debugging, when the allow file:/// scheme is set
                 this.showErrorMessage($"Could not find file '{ex.FileName}'!");
-                
+
                 return;
             }
             catch (IOException ex)
@@ -455,27 +452,21 @@ namespace FloatingGlucose
         private void setBackgroundImage()
         {
             var path = Default.BackgroundImage;
-            if(path != "" && File.Exists(path))
+            if (path != "" && File.Exists(path))
             {
                 try
                 {
                     this.BackgroundImage = Image.FromFile(path);
 
-                   
                     ImageLayout choice;
                     if (Enum.TryParse(Default.BackgroundImageLayout, out choice))
                     {
-                        
                         this.BackgroundImageLayout = (ImageLayout)choice;
                     }
-                    
-                    
                 }
                 catch (Exception)
                 {
-
                 }
-                
             }
             else
             {
@@ -491,8 +482,6 @@ namespace FloatingGlucose
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
             this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc;
             SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
-
-            
 
             this.lblRawDelta.Visible =
             this.lblRawBG.Visible = Default.EnableRawGlucoseDisplay;
@@ -533,25 +522,23 @@ namespace FloatingGlucose
             //every 60s (default) reload the glucose numbers from the Nightscout pebble endpoint
             AppShared.refreshGlucoseTimer.Tick += new EventHandler((asender, ev) => LoadGlucoseValue());
             AppShared.refreshGlucoseTimer.Start();
-
-            
         }
+
         private Bitmap renderGlucoseChart(Color backColor, Color foreColor)
         {
             var w = this.Width;
             var h = this.Height;
 
-            var chart = new Chart { Name="chart2", Text="chart2", Location=this.Location, TabIndex=11, Visible=false};
-            var chartArea1 = new ChartArea { Name="ChartArea1"};
-            var legend1 = new Legend { Name="Legend1"};
-            var series1 = new Series { ChartArea = "ChartArea1", Legend="Legend1", Name="Series1"};
-          
+            var chart = new Chart { Name = "chart2", Text = "chart2", Location = this.Location, TabIndex = 11, Visible = false };
+            var chartArea1 = new ChartArea { Name = "ChartArea1" };
+            var legend1 = new Legend { Name = "Legend1" };
+            var series1 = new Series { ChartArea = "ChartArea1", Legend = "Legend1", Name = "Series1" };
+
             chart.ChartAreas.Add(chartArea1);
-  
+
             chart.Legends.Add(legend1);
             chart.Series.Add(series1);
             chart.Size = new System.Drawing.Size(w, h);
-
 
             chart.BackColor = backColor;
             var area = chart.ChartAreas.ElementAt(0);
@@ -576,12 +563,11 @@ namespace FloatingGlucose
             dotseries.Color = foreColor;
 
             var lineseries = chart.Series.Add("Line");
-            
+
             lineseries.ChartType = SeriesChartType.Line;
             lineseries.IsVisibleInLegend = false;
             lineseries.Color = foreColor;
             lineseries.MarkerSize = 1;
-
 
             //datetime, glucose
             //draws line between dots first
@@ -621,7 +607,7 @@ namespace FloatingGlucose
             //we got notified via the appshared proxy that settings have been changed
             //try to load glucose values anew straight away
             this.setFormSize();
-            
+
             this.BackColor = Default.BackgroundColorHex.FromHexStringToColor();
             this.setBackgroundImage();
             this.lblRawDelta.Visible =

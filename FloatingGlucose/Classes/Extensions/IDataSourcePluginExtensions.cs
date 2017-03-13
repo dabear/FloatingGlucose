@@ -1,10 +1,9 @@
 ﻿using FloatingGlucose.Classes.DataSources;
-using System.Linq;
 using System.Text;
+using System.Linq;
 using System;
-using static FloatingGlucose.Properties.Settings;
 using System.Diagnostics;
-using FloatingGlucose.Classes.DataSources.Plugins;
+using static FloatingGlucose.Properties.Settings;
 
 namespace FloatingGlucose.Classes.Extensions
 {
