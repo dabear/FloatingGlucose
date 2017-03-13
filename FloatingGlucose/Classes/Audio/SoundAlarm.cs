@@ -1,5 +1,5 @@
-﻿using System.Text;
-using System.Linq;
+﻿using System.Linq;
+using System.Text;
 using NAudio.Wave;
 using System;
 using System.Diagnostics;

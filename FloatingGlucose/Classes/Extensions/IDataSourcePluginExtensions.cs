@@ -1,6 +1,6 @@
 ﻿using FloatingGlucose.Classes.DataSources;
-using System.Text;
 using System.Linq;
+using System.Text;
 using System;
 using System.Diagnostics;
 using static FloatingGlucose.Properties.Settings;
