@@ -458,8 +458,7 @@ namespace FloatingGlucose
                 {
                     this.BackgroundImage = Image.FromFile(path);
 
-                    ImageLayout choice;
-                    if (Enum.TryParse(Default.BackgroundImageLayout, out choice))
+                    if (Enum.TryParse(Default.BackgroundImageLayout, out ImageLayout choice))
                     {
                         this.BackgroundImageLayout = (ImageLayout)choice;
                     }
