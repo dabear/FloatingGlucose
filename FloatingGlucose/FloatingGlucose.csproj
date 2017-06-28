@@ -279,7 +279,9 @@ REM creates setupRelease.exe|setupDebug.exe installer
 echo Creating Signed installer file
 
 ECHO.$(ConfigurationName)| FIND /I "nosign"&gt;Nul &amp;&amp; ( 
-  echo Did not create setup installer
+  
+  cd $(ProjectDir)\installer
+  %25innosetupiscc%25 /DReleaseType=$(ConfigurationName)  /DMyAppVersion=%25BUILDVER%25 /O$(TargetDir)  floatingglucosenosign.iss
 ) || (
   cd $(ProjectDir)\installer
   %25innosetupiscc%25 /DReleaseType=$(ConfigurationName)  /DMyAppVersion=%25BUILDVER%25 /O$(TargetDir)  floatingglucose.iss

@@ -21,7 +21,7 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-SignTool=signtool /d $qFloatingGlucoseInstaller$q $f
+;SignTool=signtool /d $qFloatingGlucoseInstaller$q $f
 AppId={{B271DEE6-C788-4604-B392-8B8DD16C97A8}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
