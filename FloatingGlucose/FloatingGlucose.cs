@@ -479,7 +479,7 @@ namespace FloatingGlucose
             // as this messes up the gui a bit
             // we avoid this: double foo=7.0; foo.toString() => "7,0" in the nb-NO culture
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
-            this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc;
+            this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc_v2;
             SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
 
             this.lblRawDelta.Visible =

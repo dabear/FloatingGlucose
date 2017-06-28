@@ -49,7 +49,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>noun_335372_cc.ico</ApplicationIcon>
+    <ApplicationIcon>noun_335372_cc_v2.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>false</SignAssembly>
@@ -87,6 +87,9 @@
   </PropertyGroup>
   <PropertyGroup>
     <StartupObject>FloatingGlucose.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="NAudio, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -227,10 +230,11 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="noun_335372_cc.ico" />
+    <Content Include="noun_335372_cc_v2.ico" />
     <Content Include="README_attributions.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\noun_335372_cc_v2.ico" />
     <None Include="Resources\browse-file.ico" />
     <None Include="Resources\alarm.mp3" />
     <None Include="Resources\alarm2.mp3" />

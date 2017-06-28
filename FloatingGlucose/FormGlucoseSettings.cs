@@ -296,6 +296,23 @@ namespace FloatingGlucose
 
         private void NumericUpDowns_Value_Changed(object sender, EventArgs e)
         {
+            var button = sender as NumericUpDown;
+
+            if (button != null)
+            {
+                var above = button.Value >= 36;
+                if (above)
+                {
+                    //if above 36,assume this is a mg/dl value rather than mmol/L
+                    //for mgdl we really never want decimals..
+                    button.Increment = 1.0M;
+                    button.Value = Math.Round(button.Value, 1);
+                }
+                else
+                {
+                    button.Increment = 0.1M;
+                }
+            }
         }
 
         private void GlucoseUnit_Changed(object sender, EventArgs e)
@@ -377,22 +394,6 @@ namespace FloatingGlucose
             dialog = null;
         }
 
-        private void txtDataSouceLocation_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void tabPageBasic_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void txtDataSourceLocation_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void txtBackColor_TextChanged(object sender, EventArgs e)
-        {
-        }
-
         private void txtBackColor_Click(object sender, EventArgs e)
         {
             this.clrBack.AnyColor = false;
@@ -436,10 +437,6 @@ namespace FloatingGlucose
             }
             dialog.Dispose();
             dialog = null;
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
         }
     }
 }

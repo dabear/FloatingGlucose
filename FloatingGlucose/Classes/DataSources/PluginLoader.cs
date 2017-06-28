@@ -77,12 +77,6 @@ namespace FloatingGlucose.Classes.DataSources
         {
         }
 
-        public static PluginLoader Instance
-        {
-            get
-            {
-                return instance;
-            }
-        }
+        public static PluginLoader Instance => instance;
     }
 }

@@ -69,6 +69,13 @@
             this.tabPageBasic = new System.Windows.Forms.TabPage();
             this.tabPageAdvanced = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.cbImageLayouts = new System.Windows.Forms.ComboBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.btnBrowseBackImage = new System.Windows.Forms.Button();
+            this.txtBackImage = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
+            this.txtBackColor = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.numOpacity = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
@@ -84,14 +91,7 @@
             this.label7 = new System.Windows.Forms.Label();
             this.lblVersionInfo = new System.Windows.Forms.Label();
             this.lblAck = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.clrBack = new System.Windows.Forms.ColorDialog();
-            this.txtBackColor = new System.Windows.Forms.TextBox();
-            this.label23 = new System.Windows.Forms.Label();
-            this.txtBackImage = new System.Windows.Forms.TextBox();
-            this.btnBrowseBackImage = new System.Windows.Forms.Button();
-            this.label24 = new System.Windows.Forms.Label();
-            this.cbImageLayouts = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.paneUserNamePassword.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -202,7 +202,6 @@
             this.txtDataSourceLocation.TabIndex = 0;
             this.txtDataSourceLocation.Text = "https://mysite.azurewebsites.net";
             this.txtDataSourceLocation.WordWrap = false;
-            this.txtDataSourceLocation.TextChanged += new System.EventHandler(this.txtDataSourceLocation_TextChanged);
             // 
             // btnBrowse
             // 
@@ -633,7 +632,7 @@
             this.tabPageBasic.Size = new System.Drawing.Size(896, 582);
             this.tabPageBasic.TabIndex = 0;
             this.tabPageBasic.Text = "Basic Settings";
-            this.tabPageBasic.Click += new System.EventHandler(this.tabPageBasic_Click);
+           
             // 
             // tabPageAdvanced
             // 
@@ -677,7 +676,80 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced application settings (requires restart)";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
+
+            // 
+            // cbImageLayouts
+            // 
+            this.cbImageLayouts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbImageLayouts.FormattingEnabled = true;
+            this.cbImageLayouts.Location = new System.Drawing.Point(385, 347);
+            this.cbImageLayouts.Name = "cbImageLayouts";
+            this.cbImageLayouts.Size = new System.Drawing.Size(179, 28);
+            this.cbImageLayouts.TabIndex = 25;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label24.Location = new System.Drawing.Point(38, 355);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(203, 20);
+            this.label24.TabIndex = 24;
+            this.label24.Text = "Background Image Layout";
+            // 
+            // btnBrowseBackImage
+            // 
+            this.btnBrowseBackImage.BackColor = System.Drawing.Color.Transparent;
+            this.btnBrowseBackImage.FlatAppearance.BorderSize = 0;
+            this.btnBrowseBackImage.Location = new System.Drawing.Point(597, 306);
+            this.btnBrowseBackImage.Name = "btnBrowseBackImage";
+            this.btnBrowseBackImage.Size = new System.Drawing.Size(106, 35);
+            this.btnBrowseBackImage.TabIndex = 23;
+            this.btnBrowseBackImage.Text = "Browse..";
+            this.btnBrowseBackImage.UseVisualStyleBackColor = false;
+            this.btnBrowseBackImage.Click += new System.EventHandler(this.btnBrowseBackImage_Click);
+            // 
+            // txtBackImage
+            // 
+            this.txtBackImage.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtBackImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBackImage.Location = new System.Drawing.Point(224, 310);
+            this.txtBackImage.MaximumSize = new System.Drawing.Size(340, 28);
+            this.txtBackImage.MinimumSize = new System.Drawing.Size(290, 20);
+            this.txtBackImage.Name = "txtBackImage";
+            this.txtBackImage.Size = new System.Drawing.Size(340, 27);
+            this.txtBackImage.TabIndex = 22;
+            this.txtBackImage.WordWrap = false;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(38, 310);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(148, 20);
+            this.label23.TabIndex = 21;
+            this.label23.Text = "Background Image";
+            // 
+            // txtBackColor
+            // 
+            this.txtBackColor.Location = new System.Drawing.Point(416, 269);
+            this.txtBackColor.Name = "txtBackColor";
+            this.txtBackColor.ReadOnly = true;
+            this.txtBackColor.Size = new System.Drawing.Size(148, 27);
+            this.txtBackColor.TabIndex = 20;
+            this.txtBackColor.Click += new System.EventHandler(this.txtBackColor_Click);
+  
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(38, 269);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(143, 20);
+            this.label22.TabIndex = 19;
+            this.label22.Text = "Background Color";
             // 
             // label18
             // 
@@ -844,79 +916,6 @@
             this.lblAck.Size = new System.Drawing.Size(50, 17);
             this.lblAck.TabIndex = 5;
             this.lblAck.Text = "Acks...";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(38, 269);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(143, 20);
-            this.label22.TabIndex = 19;
-            this.label22.Text = "Background Color";
-            // 
-            // txtBackColor
-            // 
-            this.txtBackColor.Location = new System.Drawing.Point(416, 269);
-            this.txtBackColor.Name = "txtBackColor";
-            this.txtBackColor.ReadOnly = true;
-            this.txtBackColor.Size = new System.Drawing.Size(148, 27);
-            this.txtBackColor.TabIndex = 20;
-            this.txtBackColor.Click += new System.EventHandler(this.txtBackColor_Click);
-            this.txtBackColor.TextChanged += new System.EventHandler(this.txtBackColor_TextChanged);
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(38, 310);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(148, 20);
-            this.label23.TabIndex = 21;
-            this.label23.Text = "Background Image";
-            // 
-            // txtBackImage
-            // 
-            this.txtBackImage.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtBackImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBackImage.Location = new System.Drawing.Point(224, 310);
-            this.txtBackImage.MaximumSize = new System.Drawing.Size(340, 28);
-            this.txtBackImage.MinimumSize = new System.Drawing.Size(290, 20);
-            this.txtBackImage.Name = "txtBackImage";
-            this.txtBackImage.Size = new System.Drawing.Size(340, 27);
-            this.txtBackImage.TabIndex = 22;
-            this.txtBackImage.WordWrap = false;
-            // 
-            // btnBrowseBackImage
-            // 
-            this.btnBrowseBackImage.BackColor = System.Drawing.Color.Transparent;
-            this.btnBrowseBackImage.FlatAppearance.BorderSize = 0;
-            this.btnBrowseBackImage.Location = new System.Drawing.Point(597, 306);
-            this.btnBrowseBackImage.Name = "btnBrowseBackImage";
-            this.btnBrowseBackImage.Size = new System.Drawing.Size(106, 35);
-            this.btnBrowseBackImage.TabIndex = 23;
-            this.btnBrowseBackImage.Text = "Browse..";
-            this.btnBrowseBackImage.UseVisualStyleBackColor = false;
-            this.btnBrowseBackImage.Click += new System.EventHandler(this.btnBrowseBackImage_Click);
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(38, 355);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(203, 20);
-            this.label24.TabIndex = 24;
-            this.label24.Text = "Background Image Layout";
-            // 
-            // cbImageLayouts
-            // 
-            this.cbImageLayouts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbImageLayouts.FormattingEnabled = true;
-            this.cbImageLayouts.Location = new System.Drawing.Point(385, 347);
-            this.cbImageLayouts.Name = "cbImageLayouts";
-            this.cbImageLayouts.Size = new System.Drawing.Size(179, 28);
-            this.cbImageLayouts.TabIndex = 25;
             // 
             // FormGlucoseSettings
             // 
