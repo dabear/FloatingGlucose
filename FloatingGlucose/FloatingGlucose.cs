@@ -33,10 +33,11 @@ namespace FloatingGlucose
                 // data points to calculate raw glucose diff
                 var count = Default.EnableRawGlucoseDisplay ? 2 : 1;
                 var units = Default.GlucoseUnits;
+                var urlstripped = Default.DataPathLocation.TrimEnd('/');
                 return new NameValueCollection()
                 {
                     { "raw", Default.DataPathLocation },
-                    { "location", $"{Default.DataPathLocation}/pebble?count={count}&units={units}"}
+                    { "location", $"{urlstripped}/pebble?count={count}&units={units}"}
                 };
             }
         }
@@ -57,6 +58,17 @@ namespace FloatingGlucose
                 return this._settingsForm;
             }
         }
+        [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
+        private static extern IntPtr CreateRoundRectRgn
+        (
+            int nLeftRect, // x-coordinate of upper-left corner
+            int nTopRect, // y-coordinate of upper-left corner
+            int nRightRect, // x-coordinate of lower-right corner
+            int nBottomRect, // y-coordinate of lower-right corner
+            int nWidthEllipse, // height of ellipse
+            int nHeightEllipse // width of ellipse
+        );
+
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
@@ -105,6 +117,8 @@ namespace FloatingGlucose
                 var r = Screen.PrimaryScreen.WorkingArea;
                 this.Location = new Point(r.Width - this.Width, r.Height - this.Height);
             }
+            //draws round corners
+            //this.Region = System.Drawing.Region.FromHrgn(CreateRoundRectRgn(Width, Height, Width, Height, 20, 20));
         }
 
         private void setFormSize()

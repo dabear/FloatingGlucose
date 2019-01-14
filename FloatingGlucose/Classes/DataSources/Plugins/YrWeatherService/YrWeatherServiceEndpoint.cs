@@ -22,7 +22,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public bool PluginHandlesFormatting => true;
         public bool RequiresUserNameAndPassword => false;
         public bool RequiresDataSource => true;
-        public bool PluginDisabled => false;
+        public bool PluginDisabled => true;
         public bool RequiresBrowseButton => false;
         public string BrowseDialogFileFilter => "";
         public string DataSourceShortName => "Yr.no Weather";
