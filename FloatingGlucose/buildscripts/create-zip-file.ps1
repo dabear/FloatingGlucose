@@ -83,7 +83,7 @@ function createReleaseZipFile(){
 
 	$files = ls . |  where { -not ($_.name.EndsWith(".vshost.exe") -or $_.name.EndsWith(".zip"))  }
 
-
+    echo "writing zip to $outpath"
 	$files | out-zip -zipfilename $outpath -files $files
 	return $zipfilename
 }

@@ -10,8 +10,8 @@
 ;should be set via iscc
 ;cd installer
 ;"%programfiles(x86)%/Inno Setup 5/ISCC.exe" floatingglucose.iss
-;#define MyAppVersion "0.9.9test"
-;#define ReleaseType "Release"
+#define MyAppVersion "1.5.3"
+#define ReleaseType "Release+NoSign"
 
 ;setting up signing:
 ; in inno setup, go to tools->configure sign tools

@@ -324,6 +324,12 @@ namespace FloatingGlucose
             {
                 this.SetErrorState(ex);
             }
+            catch(System.Threading.Tasks.TaskCanceledException ex)
+            {
+                // This might happen when a datasource attempts to get data from a remote location,
+                // but for some reason that fails
+                this.SetErrorState(ex);
+            }
             catch (HttpRequestException ex)
             {
                 this.SetErrorState(ex);
