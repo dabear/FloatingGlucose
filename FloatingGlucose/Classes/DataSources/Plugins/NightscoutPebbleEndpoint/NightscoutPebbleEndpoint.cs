@@ -1,4 +1,4 @@
-﻿using FloatingGlucose.Classes.Extensions;
+using FloatingGlucose.Classes.Extensions;
 using FloatingGlucose.Classes.Utils;
 using Newtonsoft.Json;
 using System;
@@ -24,7 +24,7 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
 
         public List<string> HandleFormatting() => null;
 
-        public virtual bool RequiresUserNameAndPassword => false;
+        public virtual bool RequiresUserNameAndPassword => true;
         public virtual bool PluginDisabled => false;
         public virtual bool RequiresBrowseButton => false;
         public virtual string BrowseDialogFileFilter => "";
@@ -138,6 +138,9 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         public virtual void OnPluginSelected(FormGlucoseSettings form)
         {
             form.lblDataSourceLocation.Text = "Your Nightscout installation URL";
+            form.lblUsername.Text = "Access Token";
+            form.lblPassword.Enabled = false;
+            form.txtPassword.Enabled = false;
 
             var source = form.txtDataSourceLocation.Text.ToLower();
             //for this plugin, we handle only http:// and https://
