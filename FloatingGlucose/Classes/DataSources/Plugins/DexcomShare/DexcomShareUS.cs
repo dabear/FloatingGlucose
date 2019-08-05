@@ -1,4 +1,4 @@
-﻿using FloatingGlucose.Classes.Extensions;
+using FloatingGlucose.Classes.Extensions;
 using ShareClientDotNet;
 using System;
 using System.Collections.Generic;
@@ -136,6 +136,10 @@ namespace FloatingGlucose.Classes.DataSources.Plugins
         {
             form.lblDataSourceLocation.Text = "Dexcom share server";
             form.txtDataSourceLocation.Text = this.shareClient.CurrentDexcomServer;
+
+            form.lblUsername.Text = "User Name";
+            form.lblPassword.Enabled = true;
+            form.txtPassword.Enabled = true;
         }
 
         public virtual bool VerifyConfig(Properties.Settings settings)

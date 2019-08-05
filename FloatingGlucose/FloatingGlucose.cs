@@ -33,11 +33,21 @@ namespace FloatingGlucose
                 // data points to calculate raw glucose diff
                 var count = Default.EnableRawGlucoseDisplay ? 2 : 1;
                 var units = Default.GlucoseUnits;
-                var urlstripped = Default.DataPathLocation.TrimEnd('/');
+                var url = Default.DataPathLocation.TrimEnd('/');
+                var username = Default.UserName;
+                if (username == "")
+                {
+                    url += $"/pebble?count={count}&units={units}";
+                } else
+                {
+                    // username not empty -> use as Accees Token
+                    url += $"/pebble?count={count}&units={units}&token={username}";
+                }
+
                 return new NameValueCollection()
                 {
                     { "raw", Default.DataPathLocation },
-                    { "location", $"{urlstripped}/pebble?count={count}&units={units}"}
+                    { "location", url}
                 };
             }
         }
@@ -740,7 +750,13 @@ namespace FloatingGlucose
 
         private void openNightscoutSiteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            var url = Default.DataPathLocation;
+            var url = Default.DataPathLocation.TrimEnd('/');
+            var username = Default.UserName;
+            if (username != "")
+            {
+                // username not empty -> use as Access Token
+                url += $"/?token={username}";
+            }
             if (Validators.IsUrl(url))
             {
                 try
