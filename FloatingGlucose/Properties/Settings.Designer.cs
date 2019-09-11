@@ -297,5 +297,17 @@ namespace FloatingGlucose.Properties {
                 this["EnableInvertedTrayIcon"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool EnableBackgroundImage {
+            get {
+                return ((bool)(this["EnableBackgroundImage"]));
+            }
+            set {
+                this["EnableBackgroundImage"] = value;
+            }
+        }
     }
 }
