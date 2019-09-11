@@ -859,6 +859,7 @@
             this.txtBackColor.Location = new System.Drawing.Point(334, 273);
             this.txtBackColor.Margin = new System.Windows.Forms.Padding(2);
             this.txtBackColor.Name = "txtBackColor";
+            this.txtBackColor.ReadOnly = true;
             this.txtBackColor.Size = new System.Drawing.Size(112, 23);
             this.txtBackColor.TabIndex = 20;
             // 
