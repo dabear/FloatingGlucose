@@ -56,9 +56,10 @@
             this.lblGlucoseValue.BackColor = System.Drawing.Color.Transparent;
             this.lblGlucoseValue.Font = new System.Drawing.Font("Microsoft Sans Serif", 28.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGlucoseValue.ForeColor = System.Drawing.Color.Green;
-            this.lblGlucoseValue.Location = new System.Drawing.Point(35, 9);
+            this.lblGlucoseValue.Location = new System.Drawing.Point(26, 7);
+            this.lblGlucoseValue.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblGlucoseValue.Name = "lblGlucoseValue";
-            this.lblGlucoseValue.Size = new System.Drawing.Size(104, 55);
+            this.lblGlucoseValue.Size = new System.Drawing.Size(83, 44);
             this.lblGlucoseValue.TabIndex = 2;
             this.lblGlucoseValue.Text = "N/A";
             // 
@@ -69,9 +70,10 @@
             this.lblLastUpdate.BackColor = System.Drawing.Color.Transparent;
             this.lblLastUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLastUpdate.ForeColor = System.Drawing.Color.Green;
-            this.lblLastUpdate.Location = new System.Drawing.Point(48, 81);
+            this.lblLastUpdate.Location = new System.Drawing.Point(36, 66);
+            this.lblLastUpdate.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLastUpdate.Name = "lblLastUpdate";
-            this.lblLastUpdate.Size = new System.Drawing.Size(42, 24);
+            this.lblLastUpdate.Size = new System.Drawing.Size(32, 18);
             this.lblLastUpdate.TabIndex = 4;
             this.lblLastUpdate.Text = "N/A";
             this.lblLastUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -92,12 +94,12 @@
             this.settingsToolStripMenuItem,
             this.quitToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(226, 160);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(176, 136);
             // 
             // showApplicationToolStripMenuItem
             // 
             this.showApplicationToolStripMenuItem.Name = "showApplicationToolStripMenuItem";
-            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.showApplicationToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.showApplicationToolStripMenuItem.Text = "Show &Application";
             this.showApplicationToolStripMenuItem.Click += new System.EventHandler(this.showApplicationToolStripMenuItem_Click);
             // 
@@ -109,27 +111,27 @@
             this.reenableAlarmsToolStripMenuItem,
             this.postponedUntilFooToolStripMenuItem});
             this.postponeAlarmsToolStripMenuItem.Name = "postponeAlarmsToolStripMenuItem";
-            this.postponeAlarmsToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.postponeAlarmsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.postponeAlarmsToolStripMenuItem.Text = "Sn&ooze sound alarms";
             // 
             // postponeFor30MinutesToolStripMenuItem
             // 
             this.postponeFor30MinutesToolStripMenuItem.Name = "postponeFor30MinutesToolStripMenuItem";
-            this.postponeFor30MinutesToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.postponeFor30MinutesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.postponeFor30MinutesToolStripMenuItem.Text = "Snooze for &30 minutes";
             this.postponeFor30MinutesToolStripMenuItem.Click += new System.EventHandler(this.postponeFor30MinutesToolStripMenuItem_Click);
             // 
             // postponeFor90MinutesToolStripMenuItem
             // 
             this.postponeFor90MinutesToolStripMenuItem.Name = "postponeFor90MinutesToolStripMenuItem";
-            this.postponeFor90MinutesToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.postponeFor90MinutesToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.postponeFor90MinutesToolStripMenuItem.Text = "Snooze for &90 minutes";
             this.postponeFor90MinutesToolStripMenuItem.Click += new System.EventHandler(this.postponeFor90MinutesToolStripMenuItem_Click);
             // 
             // reenableAlarmsToolStripMenuItem
             // 
             this.reenableAlarmsToolStripMenuItem.Name = "reenableAlarmsToolStripMenuItem";
-            this.reenableAlarmsToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.reenableAlarmsToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.reenableAlarmsToolStripMenuItem.Text = "&Re-enable alarms";
             this.reenableAlarmsToolStripMenuItem.Visible = false;
             this.reenableAlarmsToolStripMenuItem.Click += new System.EventHandler(this.reenableAlarmsToolStripMenuItem_Click);
@@ -138,35 +140,35 @@
             // 
             this.postponedUntilFooToolStripMenuItem.Enabled = false;
             this.postponedUntilFooToolStripMenuItem.Name = "postponedUntilFooToolStripMenuItem";
-            this.postponedUntilFooToolStripMenuItem.Size = new System.Drawing.Size(232, 26);
+            this.postponedUntilFooToolStripMenuItem.Size = new System.Drawing.Size(181, 22);
             this.postponedUntilFooToolStripMenuItem.Text = "Snoozed until ";
             this.postponedUntilFooToolStripMenuItem.Visible = false;
             // 
             // openNightscoutSiteToolStripMenuItem
             // 
             this.openNightscoutSiteToolStripMenuItem.Name = "openNightscoutSiteToolStripMenuItem";
-            this.openNightscoutSiteToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.openNightscoutSiteToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.openNightscoutSiteToolStripMenuItem.Text = "&Open nightscout site";
             this.openNightscoutSiteToolStripMenuItem.Click += new System.EventHandler(this.openNightscoutSiteToolStripMenuItem_Click);
             // 
             // reloadToolStripMenuItem
             // 
             this.reloadToolStripMenuItem.Name = "reloadToolStripMenuItem";
-            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.reloadToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.reloadToolStripMenuItem.Text = "&Reload";
             this.reloadToolStripMenuItem.Click += new System.EventHandler(this.reloadToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
             this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.settingsToolStripMenuItem.Text = "&Settings";
             this.settingsToolStripMenuItem.Click += new System.EventHandler(this.settingsToolStripMenuItem_Click);
             // 
             // quitToolStripMenuItem
             // 
             this.quitToolStripMenuItem.Name = "quitToolStripMenuItem";
-            this.quitToolStripMenuItem.Size = new System.Drawing.Size(225, 26);
+            this.quitToolStripMenuItem.Size = new System.Drawing.Size(175, 22);
             this.quitToolStripMenuItem.Text = "&Quit";
             this.quitToolStripMenuItem.Click += new System.EventHandler(this.quitToolStripMenuItem_Click);
             // 
@@ -177,9 +179,10 @@
             this.lblDelta.BackColor = System.Drawing.Color.Transparent;
             this.lblDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDelta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblDelta.Location = new System.Drawing.Point(48, 57);
+            this.lblDelta.Location = new System.Drawing.Point(36, 46);
+            this.lblDelta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblDelta.Name = "lblDelta";
-            this.lblDelta.Size = new System.Drawing.Size(45, 24);
+            this.lblDelta.Size = new System.Drawing.Size(35, 18);
             this.lblDelta.TabIndex = 7;
             this.lblDelta.Text = "N/A";
             this.lblDelta.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -190,9 +193,10 @@
             this.lblRawBG.BackColor = System.Drawing.Color.Transparent;
             this.lblRawBG.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRawBG.ForeColor = System.Drawing.Color.SteelBlue;
-            this.lblRawBG.Location = new System.Drawing.Point(21, 22);
+            this.lblRawBG.Location = new System.Drawing.Point(16, 18);
+            this.lblRawBG.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRawBG.Name = "lblRawBG";
-            this.lblRawBG.Size = new System.Drawing.Size(27, 29);
+            this.lblRawBG.Size = new System.Drawing.Size(21, 24);
             this.lblRawBG.TabIndex = 8;
             this.lblRawBG.Text = "0";
             this.lblRawBG.Visible = false;
@@ -203,19 +207,20 @@
             this.lblRawDelta.BackColor = System.Drawing.Color.Transparent;
             this.lblRawDelta.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRawDelta.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(200)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.lblRawDelta.Location = new System.Drawing.Point(22, 51);
+            this.lblRawDelta.Location = new System.Drawing.Point(16, 41);
+            this.lblRawDelta.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblRawDelta.Name = "lblRawDelta";
-            this.lblRawDelta.Size = new System.Drawing.Size(17, 24);
+            this.lblRawDelta.Size = new System.Drawing.Size(14, 18);
             this.lblRawDelta.TabIndex = 9;
             this.lblRawDelta.Text = "-";
             this.lblRawDelta.Visible = false;
             // 
             // FloatingGlucose
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Black;
-            this.ClientSize = new System.Drawing.Size(232, 112);
+            this.ClientSize = new System.Drawing.Size(174, 91);
             this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.lblRawDelta);
             this.Controls.Add(this.lblRawBG);
@@ -223,6 +228,7 @@
             this.Controls.Add(this.lblLastUpdate);
             this.Controls.Add(this.lblGlucoseValue);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FloatingGlucose";
             this.Opacity = 0.85D;
             this.ShowIcon = false;

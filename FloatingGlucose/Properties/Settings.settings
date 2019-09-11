@@ -56,9 +56,6 @@
     <Setting Name="UserName" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="HashedPassword" Type="FloatingGlucose.Classes.Utils.DataProtector" Scope="User">
-      <Value Profile="(Default)" />
-    </Setting>
     <Setting Name="BackgroundColorHex" Type="System.String" Scope="User">
       <Value Profile="(Default)">FF000000</Value>
     </Setting>
@@ -73,6 +70,12 @@
     </Setting>
     <Setting Name="EnableBackgroundImage" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="EnableAlwaysOnTop" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HashedPassword" Type="FloatingGlucose.Classes.Utils.DataProtector" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
   </Settings>
 </SettingsFile>
