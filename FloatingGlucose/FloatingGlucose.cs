@@ -519,16 +519,6 @@ namespace FloatingGlucose
                 this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc_v2;
             }
 
-
-            if (Default.EnableAlwaysOnTop == true)
-            {
-                this.TopMost = true;
-            }
-            else
-            {
-                this.TopMost = false;
-            }
-
             SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
 
             this.lblRawDelta.Visible =
