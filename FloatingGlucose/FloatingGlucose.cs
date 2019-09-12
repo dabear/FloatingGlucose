@@ -509,7 +509,16 @@ namespace FloatingGlucose
             // as this messes up the gui a bit
             // we avoid this: double foo=7.0; foo.toString() => "7,0" in the nb-NO culture
             Thread.CurrentThread.CurrentCulture = CultureInfo.CreateSpecificCulture("en-GB");
-            this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc_v2;
+
+            if (Default.EnableInvertedTrayIcon == true)
+            {
+                this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc_v2_inverted;
+            }
+            else
+            {
+                this.notifyIcon1.Icon = Properties.Resources.noun_335372_cc_v2;
+            }
+
             SystemEvents.SessionSwitch += SystemEvents_SessionSwitch;
 
             this.lblRawDelta.Visible =
@@ -534,8 +543,17 @@ namespace FloatingGlucose
                 this.BackColor = Color.LightBlue;
             }*/
 
-            this.BackColor = Default.BackgroundColorHex.FromHexStringToColor();
-            this.setBackgroundImage();
+            //If Backgroundimage was chosen, use it else use BackgroundColor
+            if (Default.EnableBackgroundImage == true)
+            {
+                this.setBackgroundImage();
+            }
+            else
+            {
+                this.BackColor = Default.BackgroundColorHex.FromHexStringToColor();
+            }
+                      
+           
 
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 
