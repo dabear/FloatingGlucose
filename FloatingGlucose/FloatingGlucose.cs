@@ -543,17 +543,8 @@ namespace FloatingGlucose
                 this.BackColor = Color.LightBlue;
             }*/
 
-            //If Backgroundimage was chosen, use it else use BackgroundColor
-            if (Default.EnableBackgroundImage == true)
-            {
-                this.setBackgroundImage();
-            }
-            else
-            {
-                this.BackColor = Default.BackgroundColorHex.FromHexStringToColor();
-            }
-                      
-           
+            this.BackColor = Default.BackgroundColorHex.FromHexStringToColor();
+            this.setBackgroundImage();
 
             AppShared.RegisterSettingsChangedCallback(Settings_Changed_Event);
 

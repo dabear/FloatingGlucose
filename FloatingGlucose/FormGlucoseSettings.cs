@@ -65,8 +65,6 @@ namespace FloatingGlucose
             this.chkEnableRAWGlucose.Checked = Default.EnableRawGlucoseDisplay;
 
             this.chkDisableSoundOnWorkstationLock.Checked = Default.DisableSoundAlarmsOnWorkstationLock;
-
-            this.radioBtnBackgroundImage.Checked = Default.EnableBackgroundImage;
             this.txtBackColor.Text = Default.BackgroundColorHex;
             this.txtBackImage.Text = Default.BackgroundImage;
             this.cbImageLayouts.SelectedItem = Default.BackgroundImageLayout;
@@ -188,19 +186,6 @@ namespace FloatingGlucose
                 this.tabSettings.SelectTab(this.tabPageBasic);
                 this.txtDataSourceLocation.Select();
             }
-
-            //disable BackgroundImage inputs, when BackgroundColor is selected
-            if (radioBtnBackgroundColor.Checked == true)
-            {
-                txtBackImage.Enabled = false;
-                btnBrowseBackImage.Enabled = false;
-                cbImageLayouts.Enabled = false;
-            }
-            else
-            {
-                txtBackColor.Enabled = false;
-            }
-
         }
 
         private void OnClosing(object sender, FormClosingEventArgs e)
@@ -265,8 +250,6 @@ namespace FloatingGlucose
             Default.DisableSoundAlarmsOnWorkstationLock = this.chkDisableSoundOnWorkstationLock.Checked;
             Default.EnableRawGlucoseDisplay = this.chkEnableRAWGlucose.Checked;
 
-
-            Default.EnableBackgroundImage = this.radioBtnBackgroundImage.Checked;
             Default.BackgroundColorHex = this.txtBackColor.Text;
             Default.BackgroundImage = this.txtBackImage.Text;
             Default.EnableInvertedTrayIcon = this.chkEnableInvertedTrayIcon.Checked;
@@ -415,6 +398,13 @@ namespace FloatingGlucose
             dialog = null;
         }
 
+        private void txtBackColor_Click(object sender, EventArgs e)
+        {
+            this.clrBack.AnyColor = false;
+            this.clrBack.ShowDialog();
+            this.txtBackColor.Text = this.clrBack.Color.ToHexString();
+        }
+
         private void btnBrowseBackImage_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
@@ -451,33 +441,6 @@ namespace FloatingGlucose
             }
             dialog.Dispose();
             dialog = null;
-        }
-
-        private void RadioBtnBackgroundImage_CheckedChanged(object sender, EventArgs e)
-        {
-            //disable BackgroundColor inputs, when BackgroundImage is selected
-            txtBackImage.Enabled = true;
-            btnBrowseBackImage.Enabled = true;
-            cbImageLayouts.Enabled = true;
-            txtBackColor.Enabled = false;
-            btnBrowseBackColor.Enabled = false;
-        }
-
-        private void RadioBtnBackgroundColor_CheckedChanged(object sender, EventArgs e)
-        {
-            //disable BackgroundImage inputs, when BackgroundColor is selected
-            txtBackImage.Enabled = false;
-            btnBrowseBackImage.Enabled = false;
-            cbImageLayouts.Enabled = false;
-            txtBackColor.Enabled = true;
-            btnBrowseBackColor.Enabled = true;
-        }
-
-        private void btnBrowseBackColor_Click(object sender, EventArgs e)
-        {
-            this.clrBack.AnyColor = false;
-            this.clrBack.ShowDialog();
-            this.txtBackColor.Text = this.clrBack.Color.ToHexString();
         }
     }
 }

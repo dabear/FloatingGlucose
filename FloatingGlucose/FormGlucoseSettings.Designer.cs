@@ -69,18 +69,13 @@
             this.tabPageBasic = new System.Windows.Forms.TabPage();
             this.tabPageAdvanced = new System.Windows.Forms.TabPage();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.btnBrowseBackColor = new System.Windows.Forms.Button();
-            this.radioBtnBackgroundImage = new System.Windows.Forms.RadioButton();
-            this.radioBtnBackgroundColor = new System.Windows.Forms.RadioButton();
-            this.label25 = new System.Windows.Forms.Label();
-            this.label21 = new System.Windows.Forms.Label();
-            this.chkEnableInvertedTrayIcon = new System.Windows.Forms.CheckBox();
-            this.label20 = new System.Windows.Forms.Label();
             this.cbImageLayouts = new System.Windows.Forms.ComboBox();
             this.label24 = new System.Windows.Forms.Label();
             this.btnBrowseBackImage = new System.Windows.Forms.Button();
             this.txtBackImage = new System.Windows.Forms.TextBox();
+            this.label23 = new System.Windows.Forms.Label();
             this.txtBackColor = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.numOpacity = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
@@ -97,6 +92,9 @@
             this.lblVersionInfo = new System.Windows.Forms.Label();
             this.lblAck = new System.Windows.Forms.Label();
             this.clrBack = new System.Windows.Forms.ColorDialog();
+            this.chkEnableInvertedTrayIcon = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.paneUserNamePassword.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -692,10 +690,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.btnBrowseBackColor);
-            this.groupBox2.Controls.Add(this.radioBtnBackgroundImage);
-            this.groupBox2.Controls.Add(this.radioBtnBackgroundColor);
-            this.groupBox2.Controls.Add(this.label25);
             this.groupBox2.Controls.Add(this.label21);
             this.groupBox2.Controls.Add(this.chkEnableInvertedTrayIcon);
             this.groupBox2.Controls.Add(this.label20);
@@ -703,7 +697,9 @@
             this.groupBox2.Controls.Add(this.label24);
             this.groupBox2.Controls.Add(this.btnBrowseBackImage);
             this.groupBox2.Controls.Add(this.txtBackImage);
+            this.groupBox2.Controls.Add(this.label23);
             this.groupBox2.Controls.Add(this.txtBackColor);
+            this.groupBox2.Controls.Add(this.label22);
             this.groupBox2.Controls.Add(this.label18);
             this.groupBox2.Controls.Add(this.numOpacity);
             this.groupBox2.Controls.Add(this.label17);
@@ -727,91 +723,11 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Advanced application settings (requires restart)";
             // 
-            // btnBrowseBackColor
-            // 
-            this.btnBrowseBackColor.BackColor = System.Drawing.Color.Transparent;
-            this.btnBrowseBackColor.FlatAppearance.BorderSize = 0;
-            this.btnBrowseBackColor.Location = new System.Drawing.Point(450, 270);
-            this.btnBrowseBackColor.Margin = new System.Windows.Forms.Padding(2);
-            this.btnBrowseBackColor.Name = "btnBrowseBackColor";
-            this.btnBrowseBackColor.Size = new System.Drawing.Size(31, 28);
-            this.btnBrowseBackColor.TabIndex = 32;
-            this.btnBrowseBackColor.Text = "...";
-            this.btnBrowseBackColor.UseVisualStyleBackColor = false;
-            this.btnBrowseBackColor.Click += new System.EventHandler(this.btnBrowseBackColor_Click);
-            // 
-            // radioBtnBackgroundImage
-            // 
-            this.radioBtnBackgroundImage.AutoSize = true;
-            this.radioBtnBackgroundImage.Location = new System.Drawing.Point(52, 302);
-            this.radioBtnBackgroundImage.Name = "radioBtnBackgroundImage";
-            this.radioBtnBackgroundImage.Size = new System.Drawing.Size(144, 21);
-            this.radioBtnBackgroundImage.TabIndex = 31;
-            this.radioBtnBackgroundImage.Text = "Background Image";
-            this.radioBtnBackgroundImage.UseVisualStyleBackColor = true;
-            this.radioBtnBackgroundImage.CheckedChanged += new System.EventHandler(this.RadioBtnBackgroundImage_CheckedChanged);
-            // 
-            // radioBtnBackgroundColor
-            // 
-            this.radioBtnBackgroundColor.AutoSize = true;
-            this.radioBtnBackgroundColor.Checked = true;
-            this.radioBtnBackgroundColor.Location = new System.Drawing.Point(52, 274);
-            this.radioBtnBackgroundColor.Name = "radioBtnBackgroundColor";
-            this.radioBtnBackgroundColor.Size = new System.Drawing.Size(139, 21);
-            this.radioBtnBackgroundColor.TabIndex = 30;
-            this.radioBtnBackgroundColor.TabStop = true;
-            this.radioBtnBackgroundColor.Text = "Background Color";
-            this.radioBtnBackgroundColor.UseVisualStyleBackColor = true;
-            this.radioBtnBackgroundColor.CheckedChanged += new System.EventHandler(this.RadioBtnBackgroundColor_CheckedChanged);
-            // 
-            // label25
-            // 
-            this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(24, 249);
-            this.label25.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(113, 17);
-            this.label25.TabIndex = 29;
-            this.label25.Text = "Set Background:";
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(427, 42);
-            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(30, 17);
-            this.label21.TabIndex = 28;
-            this.label21.Text = "sec";
-            // 
-            // chkEnableInvertedTrayIcon
-            // 
-            this.chkEnableInvertedTrayIcon.AutoSize = true;
-            this.chkEnableInvertedTrayIcon.Location = new System.Drawing.Point(408, 222);
-            this.chkEnableInvertedTrayIcon.Margin = new System.Windows.Forms.Padding(2);
-            this.chkEnableInvertedTrayIcon.Name = "chkEnableInvertedTrayIcon";
-            this.chkEnableInvertedTrayIcon.Size = new System.Drawing.Size(15, 14);
-            this.chkEnableInvertedTrayIcon.TabIndex = 27;
-            this.chkEnableInvertedTrayIcon.UseVisualStyleBackColor = true;
-            // 
-            // label20
-            // 
-            this.label20.AutoSize = true;
-            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(28, 220);
-            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(138, 17);
-            this.label20.TabIndex = 26;
-            this.label20.Text = "Use inverted try icon";
-            // 
             // cbImageLayouts
             // 
             this.cbImageLayouts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbImageLayouts.FormattingEnabled = true;
-            this.cbImageLayouts.Location = new System.Drawing.Point(311, 328);
+            this.cbImageLayouts.Location = new System.Drawing.Point(289, 285);
             this.cbImageLayouts.Margin = new System.Windows.Forms.Padding(2);
             this.cbImageLayouts.Name = "cbImageLayouts";
             this.cbImageLayouts.Size = new System.Drawing.Size(135, 25);
@@ -821,7 +737,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(70, 334);
+            this.label24.Location = new System.Drawing.Point(28, 291);
             this.label24.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(173, 17);
@@ -832,12 +748,12 @@
             // 
             this.btnBrowseBackImage.BackColor = System.Drawing.Color.Transparent;
             this.btnBrowseBackImage.FlatAppearance.BorderSize = 0;
-            this.btnBrowseBackImage.Location = new System.Drawing.Point(450, 300);
+            this.btnBrowseBackImage.Location = new System.Drawing.Point(448, 252);
             this.btnBrowseBackImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnBrowseBackImage.Name = "btnBrowseBackImage";
-            this.btnBrowseBackImage.Size = new System.Drawing.Size(31, 28);
+            this.btnBrowseBackImage.Size = new System.Drawing.Size(80, 28);
             this.btnBrowseBackImage.TabIndex = 23;
-            this.btnBrowseBackImage.Text = "...";
+            this.btnBrowseBackImage.Text = "Browse..";
             this.btnBrowseBackImage.UseVisualStyleBackColor = false;
             this.btnBrowseBackImage.Click += new System.EventHandler(this.btnBrowseBackImage_Click);
             // 
@@ -845,23 +761,46 @@
             // 
             this.txtBackImage.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtBackImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBackImage.Location = new System.Drawing.Point(223, 301);
+            this.txtBackImage.Location = new System.Drawing.Point(168, 255);
             this.txtBackImage.Margin = new System.Windows.Forms.Padding(2);
             this.txtBackImage.MaximumSize = new System.Drawing.Size(256, 28);
             this.txtBackImage.MinimumSize = new System.Drawing.Size(218, 20);
             this.txtBackImage.Name = "txtBackImage";
-            this.txtBackImage.Size = new System.Drawing.Size(223, 23);
+            this.txtBackImage.Size = new System.Drawing.Size(256, 23);
             this.txtBackImage.TabIndex = 22;
             this.txtBackImage.WordWrap = false;
             // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label23.Location = new System.Drawing.Point(28, 255);
+            this.label23.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(126, 17);
+            this.label23.TabIndex = 21;
+            this.label23.Text = "Background Image";
+            // 
             // txtBackColor
             // 
-            this.txtBackColor.Location = new System.Drawing.Point(334, 273);
+            this.txtBackColor.Location = new System.Drawing.Point(312, 222);
             this.txtBackColor.Margin = new System.Windows.Forms.Padding(2);
             this.txtBackColor.Name = "txtBackColor";
             this.txtBackColor.ReadOnly = true;
             this.txtBackColor.Size = new System.Drawing.Size(112, 23);
             this.txtBackColor.TabIndex = 20;
+            this.txtBackColor.Click += new System.EventHandler(this.txtBackColor_Click);
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(28, 222);
+            this.label22.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(121, 17);
+            this.label22.TabIndex = 19;
+            this.label22.Text = "Background Color";
             // 
             // label18
             // 
@@ -901,7 +840,7 @@
             // chkDisableSoundOnWorkstationLock
             // 
             this.chkDisableSoundOnWorkstationLock.AutoSize = true;
-            this.chkDisableSoundOnWorkstationLock.Location = new System.Drawing.Point(408, 191);
+            this.chkDisableSoundOnWorkstationLock.Location = new System.Drawing.Point(410, 191);
             this.chkDisableSoundOnWorkstationLock.Margin = new System.Windows.Forms.Padding(2);
             this.chkDisableSoundOnWorkstationLock.Name = "chkDisableSoundOnWorkstationLock";
             this.chkDisableSoundOnWorkstationLock.Size = new System.Drawing.Size(15, 14);
@@ -922,7 +861,7 @@
             // chkEnableRAWGlucose
             // 
             this.chkEnableRAWGlucose.AutoSize = true;
-            this.chkEnableRAWGlucose.Location = new System.Drawing.Point(408, 162);
+            this.chkEnableRAWGlucose.Location = new System.Drawing.Point(410, 162);
             this.chkEnableRAWGlucose.Margin = new System.Windows.Forms.Padding(2);
             this.chkEnableRAWGlucose.Name = "chkEnableRAWGlucose";
             this.chkEnableRAWGlucose.Size = new System.Drawing.Size(15, 14);
@@ -962,7 +901,7 @@
             // chkEnableExceptions
             // 
             this.chkEnableExceptions.AutoSize = true;
-            this.chkEnableExceptions.Location = new System.Drawing.Point(408, 131);
+            this.chkEnableExceptions.Location = new System.Drawing.Point(410, 131);
             this.chkEnableExceptions.Margin = new System.Windows.Forms.Padding(2);
             this.chkEnableExceptions.Name = "chkEnableExceptions";
             this.chkEnableExceptions.Size = new System.Drawing.Size(15, 14);
@@ -1043,6 +982,38 @@
             this.lblAck.Size = new System.Drawing.Size(40, 13);
             this.lblAck.TabIndex = 5;
             this.lblAck.Text = "Acks...";
+            // 
+            // chkEnableInvertedTrayIcon
+            // 
+            this.chkEnableInvertedTrayIcon.AutoSize = true;
+            this.chkEnableInvertedTrayIcon.Location = new System.Drawing.Point(410, 329);
+            this.chkEnableInvertedTrayIcon.Margin = new System.Windows.Forms.Padding(2);
+            this.chkEnableInvertedTrayIcon.Name = "chkEnableInvertedTrayIcon";
+            this.chkEnableInvertedTrayIcon.Size = new System.Drawing.Size(15, 14);
+            this.chkEnableInvertedTrayIcon.TabIndex = 27;
+            this.chkEnableInvertedTrayIcon.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label20.Location = new System.Drawing.Point(28, 329);
+            this.label20.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(138, 17);
+            this.label20.TabIndex = 26;
+            this.label20.Text = "Use inverted try icon";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label21.Location = new System.Drawing.Point(427, 42);
+            this.label21.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(30, 17);
+            this.label21.TabIndex = 28;
+            this.label21.Text = "sec";
             // 
             // FormGlucoseSettings
             // 
@@ -1142,9 +1113,11 @@
         private System.Windows.Forms.Panel paneUserNamePassword;
         private System.Windows.Forms.Label lblAck;
         private System.Windows.Forms.TextBox txtBackColor;
+        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.ColorDialog clrBack;
         private System.Windows.Forms.Button btnBrowseBackImage;
         public System.Windows.Forms.TextBox txtBackImage;
+        private System.Windows.Forms.Label label23;
         private System.Windows.Forms.ComboBox cbImageLayouts;
         private System.Windows.Forms.Label label24;
         public System.Windows.Forms.Label lblUsername;
@@ -1152,9 +1125,5 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.CheckBox chkEnableInvertedTrayIcon;
         private System.Windows.Forms.Label label20;
-        private System.Windows.Forms.RadioButton radioBtnBackgroundColor;
-        private System.Windows.Forms.Label label25;
-        private System.Windows.Forms.RadioButton radioBtnBackgroundImage;
-        private System.Windows.Forms.Button btnBrowseBackColor;
     }
 }
