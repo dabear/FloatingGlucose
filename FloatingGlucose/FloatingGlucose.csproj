@@ -234,6 +234,7 @@
     <Content Include="README_attributions.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\noun_335372_cc_v2_inverted.ico" />
     <None Include="Resources\noun_335372_cc_v2.ico" />
     <None Include="Resources\browse-file.ico" />
     <None Include="Resources\alarm.mp3" />

@@ -68,6 +68,9 @@ namespace FloatingGlucose
             this.txtBackColor.Text = Default.BackgroundColorHex;
             this.txtBackImage.Text = Default.BackgroundImage;
             this.cbImageLayouts.SelectedItem = Default.BackgroundImageLayout;
+
+            this.chkEnableInvertedTrayIcon.Checked = Default.EnableInvertedTrayIcon;
+
             //this is the default in the settings file
             //override it so it makes sense
             if (nsurl == "https://...")
@@ -249,6 +252,7 @@ namespace FloatingGlucose
 
             Default.BackgroundColorHex = this.txtBackColor.Text;
             Default.BackgroundImage = this.txtBackImage.Text;
+            Default.EnableInvertedTrayIcon = this.chkEnableInvertedTrayIcon.Checked;
 
             //Save plugin type based on the selected fullname
             Default.DataSourceFullName = (this.cbDataSource.SelectedItem as DataSourceInfo).FullName;

@@ -68,5 +68,8 @@
     <Setting Name="BackgroundImageLayout" Type="System.String" Scope="User">
       <Value Profile="(Default)">Stretch</Value>
     </Setting>
+    <Setting Name="EnableInvertedTrayIcon" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
