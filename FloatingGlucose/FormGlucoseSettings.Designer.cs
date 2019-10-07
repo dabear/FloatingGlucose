@@ -92,6 +92,7 @@
             this.lblVersionInfo = new System.Windows.Forms.Label();
             this.lblAck = new System.Windows.Forms.Label();
             this.clrBack = new System.Windows.Forms.ColorDialog();
+            this.label20 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.paneUserNamePassword.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -125,7 +126,7 @@
             this.groupBox1.Controls.Add(this.lblDataSourceLocation);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(18, 11);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(15, 2, 2, 2);
             this.groupBox1.Size = new System.Drawing.Size(630, 194);
@@ -141,7 +142,7 @@
             this.paneUserNamePassword.Controls.Add(this.lblPassword);
             this.paneUserNamePassword.Enabled = false;
             this.paneUserNamePassword.Location = new System.Drawing.Point(7, 103);
-            this.paneUserNamePassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.paneUserNamePassword.Margin = new System.Windows.Forms.Padding(2);
             this.paneUserNamePassword.Name = "paneUserNamePassword";
             this.paneUserNamePassword.Size = new System.Drawing.Size(619, 89);
             this.paneUserNamePassword.TabIndex = 14;
@@ -151,7 +152,7 @@
             this.txtPassword.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(247, 50);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(2);
             this.txtPassword.MaximumSize = new System.Drawing.Size(256, 28);
             this.txtPassword.MinimumSize = new System.Drawing.Size(218, 20);
             this.txtPassword.Name = "txtPassword";
@@ -166,7 +167,7 @@
             this.txtUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtUserName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.Location = new System.Drawing.Point(247, 17);
-            this.txtUserName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtUserName.Margin = new System.Windows.Forms.Padding(2);
             this.txtUserName.MaximumSize = new System.Drawing.Size(256, 28);
             this.txtUserName.MinimumSize = new System.Drawing.Size(218, 20);
             this.txtUserName.Name = "txtUserName";
@@ -201,7 +202,7 @@
             this.txtDataSourceLocation.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtDataSourceLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDataSourceLocation.Location = new System.Drawing.Point(254, 56);
-            this.txtDataSourceLocation.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtDataSourceLocation.Margin = new System.Windows.Forms.Padding(2);
             this.txtDataSourceLocation.MaximumSize = new System.Drawing.Size(256, 28);
             this.txtDataSourceLocation.MinimumSize = new System.Drawing.Size(218, 20);
             this.txtDataSourceLocation.Name = "txtDataSourceLocation";
@@ -215,7 +216,7 @@
             this.btnBrowse.BackColor = System.Drawing.Color.Transparent;
             this.btnBrowse.FlatAppearance.BorderSize = 0;
             this.btnBrowse.Location = new System.Drawing.Point(525, 46);
-            this.btnBrowse.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBrowse.Margin = new System.Windows.Forms.Padding(2);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(80, 28);
             this.btnBrowse.TabIndex = 7;
@@ -228,7 +229,7 @@
             this.cbDataSource.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDataSource.FormattingEnabled = true;
             this.cbDataSource.Location = new System.Drawing.Point(254, 21);
-            this.cbDataSource.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbDataSource.Margin = new System.Windows.Forms.Padding(2);
             this.cbDataSource.Name = "cbDataSource";
             this.cbDataSource.Size = new System.Drawing.Size(256, 25);
             this.cbDataSource.TabIndex = 6;
@@ -242,7 +243,7 @@
             this.tblpDataSourceLocations.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblpDataSourceLocations.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle());
             this.tblpDataSourceLocations.Location = new System.Drawing.Point(341, 49);
-            this.tblpDataSourceLocations.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tblpDataSourceLocations.Margin = new System.Windows.Forms.Padding(2);
             this.tblpDataSourceLocations.Name = "tblpDataSourceLocations";
             this.tblpDataSourceLocations.RowCount = 1;
             this.tblpDataSourceLocations.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -264,7 +265,7 @@
             // 
             this.btnUnitsMGDL.AutoSize = true;
             this.btnUnitsMGDL.Location = new System.Drawing.Point(332, 79);
-            this.btnUnitsMGDL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUnitsMGDL.Margin = new System.Windows.Forms.Padding(2);
             this.btnUnitsMGDL.Name = "btnUnitsMGDL";
             this.btnUnitsMGDL.Size = new System.Drawing.Size(65, 21);
             this.btnUnitsMGDL.TabIndex = 4;
@@ -276,7 +277,7 @@
             this.btnUnitsMMOL.AutoSize = true;
             this.btnUnitsMMOL.Checked = true;
             this.btnUnitsMMOL.Location = new System.Drawing.Point(254, 79);
-            this.btnUnitsMMOL.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnUnitsMMOL.Margin = new System.Windows.Forms.Padding(2);
             this.btnUnitsMMOL.Name = "btnUnitsMMOL";
             this.btnUnitsMMOL.Size = new System.Drawing.Size(71, 21);
             this.btnUnitsMMOL.TabIndex = 3;
@@ -311,7 +312,7 @@
             // 
             this.btnVerifySubmit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnVerifySubmit.Location = new System.Drawing.Point(9, 511);
-            this.btnVerifySubmit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnVerifySubmit.Margin = new System.Windows.Forms.Padding(2);
             this.btnVerifySubmit.Name = "btnVerifySubmit";
             this.btnVerifySubmit.Size = new System.Drawing.Size(172, 43);
             this.btnVerifySubmit.TabIndex = 1;
@@ -324,7 +325,7 @@
             this.panel2.Controls.Add(this.grpAlarmSettings);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Location = new System.Drawing.Point(4, 5);
-            this.panel2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel2.Margin = new System.Windows.Forms.Padding(2);
             this.panel2.Name = "panel2";
             this.panel2.Padding = new System.Windows.Forms.Padding(38, 8, 38, 8);
             this.panel2.Size = new System.Drawing.Size(652, 463);
@@ -352,7 +353,7 @@
             this.grpAlarmSettings.Controls.Add(this.btnEnableAlarms);
             this.grpAlarmSettings.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.grpAlarmSettings.Location = new System.Drawing.Point(18, 221);
-            this.grpAlarmSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.grpAlarmSettings.Margin = new System.Windows.Forms.Padding(2);
             this.grpAlarmSettings.Name = "grpAlarmSettings";
             this.grpAlarmSettings.Padding = new System.Windows.Forms.Padding(15, 2, 2, 2);
             this.grpAlarmSettings.Size = new System.Drawing.Size(630, 232);
@@ -364,7 +365,7 @@
             // 
             this.chkEnableSoundAlarms.AutoSize = true;
             this.chkEnableSoundAlarms.Location = new System.Drawing.Point(328, 33);
-            this.chkEnableSoundAlarms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkEnableSoundAlarms.Margin = new System.Windows.Forms.Padding(2);
             this.chkEnableSoundAlarms.Name = "chkEnableSoundAlarms";
             this.chkEnableSoundAlarms.Size = new System.Drawing.Size(15, 14);
             this.chkEnableSoundAlarms.TabIndex = 19;
@@ -384,7 +385,7 @@
             // numStaleUrgent
             // 
             this.numStaleUrgent.Location = new System.Drawing.Point(292, 201);
-            this.numStaleUrgent.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numStaleUrgent.Margin = new System.Windows.Forms.Padding(2);
             this.numStaleUrgent.Maximum = new decimal(new int[] {
             650,
             0,
@@ -429,7 +430,7 @@
             // numStaleWarning
             // 
             this.numStaleWarning.Location = new System.Drawing.Point(292, 173);
-            this.numStaleWarning.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numStaleWarning.Margin = new System.Windows.Forms.Padding(2);
             this.numStaleWarning.Maximum = new decimal(new int[] {
             650,
             0,
@@ -480,7 +481,7 @@
             0,
             65536});
             this.numUrgentLow.Location = new System.Drawing.Point(292, 145);
-            this.numUrgentLow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numUrgentLow.Margin = new System.Windows.Forms.Padding(2);
             this.numUrgentLow.Maximum = new decimal(new int[] {
             650,
             0,
@@ -504,7 +505,7 @@
             0,
             65536});
             this.numLow.Location = new System.Drawing.Point(292, 118);
-            this.numLow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numLow.Margin = new System.Windows.Forms.Padding(2);
             this.numLow.Maximum = new decimal(new int[] {
             650,
             0,
@@ -528,7 +529,7 @@
             0,
             65536});
             this.numHigh.Location = new System.Drawing.Point(292, 91);
-            this.numHigh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numHigh.Margin = new System.Windows.Forms.Padding(2);
             this.numHigh.Maximum = new decimal(new int[] {
             650,
             0,
@@ -552,7 +553,7 @@
             0,
             65536});
             this.numUrgentHigh.Location = new System.Drawing.Point(292, 64);
-            this.numUrgentHigh.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numUrgentHigh.Margin = new System.Windows.Forms.Padding(2);
             this.numUrgentHigh.Maximum = new decimal(new int[] {
             650,
             0,
@@ -616,7 +617,7 @@
             this.btnDisableAlarms.AutoSize = true;
             this.btnDisableAlarms.Checked = true;
             this.btnDisableAlarms.Location = new System.Drawing.Point(14, 29);
-            this.btnDisableAlarms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnDisableAlarms.Margin = new System.Windows.Forms.Padding(2);
             this.btnDisableAlarms.Name = "btnDisableAlarms";
             this.btnDisableAlarms.Size = new System.Drawing.Size(119, 21);
             this.btnDisableAlarms.TabIndex = 1;
@@ -628,7 +629,7 @@
             // 
             this.btnEnableAlarms.AutoSize = true;
             this.btnEnableAlarms.Location = new System.Drawing.Point(175, 29);
-            this.btnEnableAlarms.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnEnableAlarms.Margin = new System.Windows.Forms.Padding(2);
             this.btnEnableAlarms.Name = "btnEnableAlarms";
             this.btnEnableAlarms.Size = new System.Drawing.Size(116, 21);
             this.btnEnableAlarms.TabIndex = 0;
@@ -652,7 +653,7 @@
             this.tabSettings.Controls.Add(this.tabPageBasic);
             this.tabSettings.Controls.Add(this.tabPageAdvanced);
             this.tabSettings.Location = new System.Drawing.Point(9, 10);
-            this.tabSettings.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabSettings.Margin = new System.Windows.Forms.Padding(2);
             this.tabSettings.Name = "tabSettings";
             this.tabSettings.SelectedIndex = 0;
             this.tabSettings.Size = new System.Drawing.Size(678, 496);
@@ -665,9 +666,9 @@
             this.tabPageBasic.Controls.Add(this.panel2);
             this.tabPageBasic.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPageBasic.Location = new System.Drawing.Point(4, 22);
-            this.tabPageBasic.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageBasic.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageBasic.Name = "tabPageBasic";
-            this.tabPageBasic.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageBasic.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageBasic.Size = new System.Drawing.Size(670, 470);
             this.tabPageBasic.TabIndex = 0;
             this.tabPageBasic.Text = "Basic Settings";
@@ -678,15 +679,16 @@
             this.tabPageAdvanced.Controls.Add(this.groupBox2);
             this.tabPageAdvanced.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPageAdvanced.Location = new System.Drawing.Point(4, 22);
-            this.tabPageAdvanced.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageAdvanced.Margin = new System.Windows.Forms.Padding(2);
             this.tabPageAdvanced.Name = "tabPageAdvanced";
-            this.tabPageAdvanced.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageAdvanced.Padding = new System.Windows.Forms.Padding(2);
             this.tabPageAdvanced.Size = new System.Drawing.Size(670, 470);
             this.tabPageAdvanced.TabIndex = 1;
             this.tabPageAdvanced.Text = "Advanced Settings";
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label20);
             this.groupBox2.Controls.Add(this.cbImageLayouts);
             this.groupBox2.Controls.Add(this.label24);
             this.groupBox2.Controls.Add(this.btnBrowseBackImage);
@@ -709,7 +711,7 @@
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(26, 15);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(15, 2, 2, 2);
             this.groupBox2.Size = new System.Drawing.Size(630, 435);
@@ -722,7 +724,7 @@
             this.cbImageLayouts.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbImageLayouts.FormattingEnabled = true;
             this.cbImageLayouts.Location = new System.Drawing.Point(289, 282);
-            this.cbImageLayouts.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbImageLayouts.Margin = new System.Windows.Forms.Padding(2);
             this.cbImageLayouts.Name = "cbImageLayouts";
             this.cbImageLayouts.Size = new System.Drawing.Size(135, 25);
             this.cbImageLayouts.TabIndex = 25;
@@ -743,7 +745,7 @@
             this.btnBrowseBackImage.BackColor = System.Drawing.Color.Transparent;
             this.btnBrowseBackImage.FlatAppearance.BorderSize = 0;
             this.btnBrowseBackImage.Location = new System.Drawing.Point(448, 249);
-            this.btnBrowseBackImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnBrowseBackImage.Margin = new System.Windows.Forms.Padding(2);
             this.btnBrowseBackImage.Name = "btnBrowseBackImage";
             this.btnBrowseBackImage.Size = new System.Drawing.Size(80, 28);
             this.btnBrowseBackImage.TabIndex = 23;
@@ -756,7 +758,7 @@
             this.txtBackImage.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtBackImage.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBackImage.Location = new System.Drawing.Point(168, 252);
-            this.txtBackImage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBackImage.Margin = new System.Windows.Forms.Padding(2);
             this.txtBackImage.MaximumSize = new System.Drawing.Size(256, 28);
             this.txtBackImage.MinimumSize = new System.Drawing.Size(218, 20);
             this.txtBackImage.Name = "txtBackImage";
@@ -778,7 +780,7 @@
             // txtBackColor
             // 
             this.txtBackColor.Location = new System.Drawing.Point(312, 219);
-            this.txtBackColor.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBackColor.Margin = new System.Windows.Forms.Padding(2);
             this.txtBackColor.Name = "txtBackColor";
             this.txtBackColor.ReadOnly = true;
             this.txtBackColor.Size = new System.Drawing.Size(112, 23);
@@ -810,7 +812,7 @@
             // numOpacity
             // 
             this.numOpacity.Location = new System.Drawing.Point(333, 95);
-            this.numOpacity.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numOpacity.Margin = new System.Windows.Forms.Padding(2);
             this.numOpacity.Name = "numOpacity";
             this.numOpacity.Size = new System.Drawing.Size(90, 23);
             this.numOpacity.TabIndex = 17;
@@ -835,7 +837,7 @@
             // 
             this.chkDisableSoundOnWorkstationLock.AutoSize = true;
             this.chkDisableSoundOnWorkstationLock.Location = new System.Drawing.Point(410, 188);
-            this.chkDisableSoundOnWorkstationLock.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkDisableSoundOnWorkstationLock.Margin = new System.Windows.Forms.Padding(2);
             this.chkDisableSoundOnWorkstationLock.Name = "chkDisableSoundOnWorkstationLock";
             this.chkDisableSoundOnWorkstationLock.Size = new System.Drawing.Size(15, 14);
             this.chkDisableSoundOnWorkstationLock.TabIndex = 15;
@@ -856,7 +858,7 @@
             // 
             this.chkEnableRAWGlucose.AutoSize = true;
             this.chkEnableRAWGlucose.Location = new System.Drawing.Point(410, 162);
-            this.chkEnableRAWGlucose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkEnableRAWGlucose.Margin = new System.Windows.Forms.Padding(2);
             this.chkEnableRAWGlucose.Name = "chkEnableRAWGlucose";
             this.chkEnableRAWGlucose.Size = new System.Drawing.Size(15, 14);
             this.chkEnableRAWGlucose.TabIndex = 13;
@@ -882,7 +884,7 @@
             0,
             65536});
             this.numScaling.Location = new System.Drawing.Point(333, 66);
-            this.numScaling.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numScaling.Margin = new System.Windows.Forms.Padding(2);
             this.numScaling.Name = "numScaling";
             this.numScaling.Size = new System.Drawing.Size(90, 23);
             this.numScaling.TabIndex = 11;
@@ -896,7 +898,7 @@
             // 
             this.chkEnableExceptions.AutoSize = true;
             this.chkEnableExceptions.Location = new System.Drawing.Point(410, 131);
-            this.chkEnableExceptions.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.chkEnableExceptions.Margin = new System.Windows.Forms.Padding(2);
             this.chkEnableExceptions.Name = "chkEnableExceptions";
             this.chkEnableExceptions.Size = new System.Drawing.Size(15, 14);
             this.chkEnableExceptions.TabIndex = 10;
@@ -927,7 +929,7 @@
             // numRefreshInterval
             // 
             this.numRefreshInterval.Location = new System.Drawing.Point(333, 37);
-            this.numRefreshInterval.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numRefreshInterval.Margin = new System.Windows.Forms.Padding(2);
             this.numRefreshInterval.Minimum = new decimal(new int[] {
             2,
             0,
@@ -977,6 +979,15 @@
             this.lblAck.TabIndex = 5;
             this.lblAck.Text = "Acks...";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(428, 39);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(61, 17);
+            this.label20.TabIndex = 26;
+            this.label20.Text = "seconds";
+            // 
             // FormGlucoseSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -988,7 +999,7 @@
             this.Controls.Add(this.tabSettings);
             this.Controls.Add(this.btnVerifySubmit);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormGlucoseSettings";
             this.Text = "Glucose Settings";
             this.Load += new System.EventHandler(this.FormGlucoseSettings_Load);
@@ -1084,5 +1095,6 @@
         private System.Windows.Forms.Label label24;
         public System.Windows.Forms.Label lblUsername;
         public System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label label20;
     }
 }
