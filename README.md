@@ -4,7 +4,7 @@ FloatingGlucose is a windows program aiming to display your current bloogsugars 
 A transparent popup window will be displayed in the bottom right corner of your desktop, with your current blood glucose values fetched from your nightscout site.
 
 ## Screenshot
-![Image of Floating glucose in action](https://s10.postimg.org/5ju8r9zh5/floatingglucose_1_4_1.png)
+![Floatingglucose in action](floatingglucose.png)
 
 ## Installation
 Download The Setup.exe of the latest release, [which you can find here](https://github.com/dabear/FloatingGlucose/releases/) and run it. You should normally just install it to the default directory which is C:\Program Files (x86)\FloatingGlucose. 
@@ -18,9 +18,6 @@ Download The Setup.exe of the latest release, [which you can find here](https://
 
 - Nightscout Nightscout plugin by Bjørn inge Vikhammermo. The original - fetches glucose from a specified nightscout site.
 
-- Glimp plugin by Bjørn inge Vikhammermo. Fetches glucose from a dropbox file uploaded by Glimp on your phone. This requires your computer to also have dropbox installed.
-
-- YR.no weather [Weather forecast from Yr, delivered by the Norwegian Meteorological Institute and the NRK](http://om.yr.no/verdata/free-weather-data/ "http://om.yr.no/verdata/free-weather-data/")
 
 
 ## Running the program 
